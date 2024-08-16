@@ -1,7 +1,10 @@
-import React from "react";
-
+import { Outlet } from "react-router-dom";
 function App() {
-  return <div className="bg-blue-500 text-white p-4">Hello, Tailwind!</div>;
+  return (
+    <>
+      <Outlet />
+    </>
+  );
 }
 
 export default App;
