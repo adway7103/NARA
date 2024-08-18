@@ -28,10 +28,8 @@ const TopSection = () => {
             </div>
 
             <div className="md:ml-20 md:text-left">
-              <p className="font-semibold font-mono text-4xl mb-8">
-                Who We Are
-              </p>
-              <p className="mb-8 mr-5 font-mono">
+              <p className="font-semibold  text-4xl mb-8">Who We Are</p>
+              <p className="mb-8 mr-5 ">
                 Welcome to NARA—where we’re reimagining Indian heritage for the
                 modern world. Our designs fuse timeless fabrics with edgy
                 styles, creating fashion that’s as daring as it is affordable.
@@ -46,10 +44,8 @@ const TopSection = () => {
         <div className="max-w-screen-xl w-full">
           <section className="pl-52 mb-10 flex flex-col md:flex-row items-center rounded-lg ">
             <div className=" md:text-left">
-              <p className="font-semibold font-mono text-4xl mb-8">
-                Our secret sauce
-              </p>
-              <p className="mb-8 mr-5 font-mono">
+              <p className="font-semibold text-4xl mb-8">Our secret sauce</p>
+              <p className="mb-8 mr-5 ">
                 Local fabrics and a commitment to affordability that's so
                 serious, it's almost like we're your budgeting experts! We're
                 all about local love, using pure cotton and heritage fabrics

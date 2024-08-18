@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+  font-family: "Antikor Text";
+  src: url("./fonts/AntikorText-Regular.woff2") format("woff2"),
+    url("./fonts/AntikorText-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+body {
+  font-family: "Antikor Text", sans-serif;
+}

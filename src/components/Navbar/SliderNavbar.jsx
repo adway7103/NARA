@@ -30,7 +30,7 @@ const SliderNavbar = ({ isOpen, toggleMenu }) => {
                 <li>
                   <Link
                     to="/"
-                    className="text-lg md:text-xl font-mono text-[#5D5D5D] italic"
+                    className="text-lg md:text-xl  text-[#5D5D5D] italic"
                   >
                     01{" "}
                     <span
@@ -44,11 +44,11 @@ const SliderNavbar = ({ isOpen, toggleMenu }) => {
                 <li>
                   <Link
                     to="#shop"
-                    className="text-lg md:text-xl font-mono text-[#5D5D5D] italic"
+                    className="text-lg md:text-xl  text-[#5D5D5D] italic"
                   >
                     02
                     <span
-                      className="text-3xl md:text-5xl font-extrabold text-black not-italic pl-4 md:pl-8"
+                      className="text-3xl md:text-5xl font-semibold text-black not-italic pl-4 md:pl-8"
                       style={{ letterSpacing: "4px md:8px" }}
                     >
                       OUR SHOP
@@ -58,11 +58,11 @@ const SliderNavbar = ({ isOpen, toggleMenu }) => {
                 <li>
                   <Link
                     to="/about"
-                    className="text-lg md:text-xl font-mono text-[#5D5D5D] italic"
+                    className="text-lg md:text-xl  text-[#5D5D5D] italic"
                   >
                     03
                     <span
-                      className="text-3xl md:text-5xl font-extrabold text-black not-italic pl-4 md:pl-8"
+                      className="text-3xl md:text-5xl font-semibold text-black not-italic pl-4 md:pl-8"
                       style={{ letterSpacing: "4px md:8px" }}
                     >
                       ABOUT US
@@ -72,11 +72,11 @@ const SliderNavbar = ({ isOpen, toggleMenu }) => {
                 <li>
                   <Link
                     to="#behind"
-                    className="text-lg md:text-xl font-mono text-[#5D5D5D] italic"
+                    className="text-lg md:text-xl  text-[#5D5D5D] italic"
                   >
                     04
                     <span
-                      className="text-3xl md:text-5xl font-extrabold text-black not-italic pl-4 md:pl-8"
+                      className="text-3xl md:text-5xl font-semibold text-black not-italic pl-4 md:pl-8"
                       style={{ letterSpacing: "4px md:8px" }}
                     >
                       BEHIND THE SCENE
@@ -86,11 +86,11 @@ const SliderNavbar = ({ isOpen, toggleMenu }) => {
                 <li>
                   <Link
                     to="#contact"
-                    className="text-lg md:text-xl font-mono text-[#5D5D5D] italic"
+                    className="text-lg md:text-xl  text-[#5D5D5D] italic"
                   >
                     05
                     <span
-                      className="text-3xl md:text-5xl font-extrabold text-black not-italic pl-4 md:pl-8"
+                      className="text-3xl md:text-5xl font-semibold text-black not-italic pl-4 md:pl-8"
                       style={{ letterSpacing: "4px md:8px" }}
                     >
                       CONTACT US
