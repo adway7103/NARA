@@ -24,7 +24,7 @@ const Navbar = () => {
         </div>
         <div className="flex items-center md:space-x-7 space-x-4">
           <i className="fas fa-music fa-2x text-white md:flex hidden"></i>
-          <i className="fas fa-user fa-2x text-white"></i>
+          <a className="fas fa-user fa-2x text-white" href="/login"></a>
           <i className="fas fa-shopping-cart fa-2x text-white"></i>
         </div>
       </div>
