@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import LoginImage from "../../assets/LoginImage.png";
 import LoginMobile from "../../assets/loginMobile.png";
 import logo from "../../assets/NaraLogo.png";
+import LoginApi from "../../apis/LoginApi";
+import { toast } from "sonner";
 function LoginSection() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    const userData = { email, password };
+    try {
+      const response = await LoginApi(userData);
+      toast.success("Login successful!");
+      // Handle successful login (e.g., store access token)
+      console.log(response);
+    } catch (error) {
+      toast.error("Login failed: " + error.message);
+      // Handle login errors (e.g., display error message)
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <div className="w-[100%] h-screen flex lg:flex-row flex-col">
       <div className="lg:w-[50%] h-full object-cover">
@@ -32,6 +53,9 @@ function LoginSection() {
             <div className="w-full">
               <p className="text-[#626262] text-sm">Email Id</p>
               <input
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
                 className="px-4 py-2 border-1 border-[#A7A7A766] bg-[#F7F7F7] w-full"
                 type="text"
               />
@@ -39,6 +63,9 @@ function LoginSection() {
             <div>
               <p className="text-[#626262] text-sm">Password</p>
               <input
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
                 className="px-4 py-2 border-1 border-[#A7A7A766] bg-[#F7F7F7] w-full"
                 type="password"
               />
@@ -46,8 +73,11 @@ function LoginSection() {
             <p className="text-[#1F4A40] text-right items-end">
               Forgot Password?
             </p>
-            <button className="bg-[#1F4A40] text-white font-semibold px-2 py-2">
-              Login
+            <button
+              onClick={handleLogin}
+              className="bg-[#1F4A40] text-white font-semibold px-2 py-2"
+            >
+              {isLoading ? "Logging In..." : "Log In"}
             </button>
           </div>
           <div className="flex items-center gap-2 justify-center">
@@ -63,7 +93,9 @@ function LoginSection() {
           </div>
           <div className="flex gap-1 justify-center">
             Dont have an account?
-            <p className="text-[#1F4A40] font-semibold">Sign Up.</p>
+            <a className="text-[#1F4A40] font-semibold" href="/signup">
+              Sign Up.
+            </a>
           </div>
         </div>
       </div>
