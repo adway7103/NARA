@@ -5,7 +5,9 @@ import LoginMobile from "../../assets/loginMobile.png";
 import logo from "../../assets/NaraLogo.png";
 import LoginApi from "../../apis/LoginApi";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 function LoginSection() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -16,6 +18,7 @@ function LoginSection() {
     try {
       const response = await LoginApi(userData);
       toast.success("Login successful!");
+      navigate("/");
       // Handle successful login (e.g., store access token)
       console.log(response);
     } catch (error) {

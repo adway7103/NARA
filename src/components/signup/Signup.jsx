@@ -6,8 +6,9 @@ import logo from "../../assets/NaraLogo.png";
 import { MuiTelInput } from "mui-tel-input";
 import SignupApi from "../../apis/SignupApi";
 import { toast } from "sonner";
-
+import { useNavigate } from "react-router-dom";
 function SignupSection() {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [country, setCountry] = useState("");
@@ -28,6 +29,7 @@ function SignupSection() {
       });
       toast.success("Signup successful!");
       console.log("Signup successful:", response);
+      navigate("/login");
       // Handle successful signup (e.g., redirect)
     } catch (error) {
       toast.error("Signup failed: " + error.message);

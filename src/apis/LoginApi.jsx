@@ -42,6 +42,11 @@ async function LoginApi(userData) {
             .message
       );
     } else {
+      const accessToken =
+        response.data.data.customerAccessTokenCreate.customerAccessToken
+          .accessToken;
+
+      localStorage.setItem("accessToken", accessToken);
       return response.data.data; // Return data if successful
     }
   } catch (error) {
