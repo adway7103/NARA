@@ -11,23 +11,23 @@ const FooterSection = () => {
   return (
     <div>
       <div className="relative lg:min-h-screen">
-        <div className="grid grid-cols-4 w-full max-w-full">
+        <div className="grid grid-cols-2 md:grid-cols-4 w-full max-w-full">
           {/* Top Row Images */}
-          <div className="col-span-1 w-full h-40 md:h-96">
+          <div className="col-span-1 w-full h-full md:h-96">
             <img
               src="/home/footer/f1.png"
               alt="Image 1"
               className="w-full h-full object-center object-cover"
             />
           </div>
-          <div className="col-span-1 w-full h-40 md:h-96">
+          <div className="col-span-1 w-full h-full md:h-96">
             <img
               src="/home/footer/f2.png"
               alt="Image 2"
               className="w-full h-full object-cover object-center"
             />
           </div>
-          <div className="col-span-2 w-full h-40 md:h-96">
+          <div className="hidden md:col-span-2 w-full h-96 md:block">
             <video
               autoPlay
               loop
@@ -39,7 +39,7 @@ const FooterSection = () => {
           {/* Bottom Row Images */}
           <div className="col-span-1 w-full h-40 md:h-96">
             <img
-              src="/home/footer/f4.png"
+              src="/home/footer/f3.png"
               alt="Image 4"
               className="w-full h-full object-cover object-center"
             />
@@ -67,11 +67,11 @@ const FooterSection = () => {
           </div>
         </div>
         {/* Subscribe Section */}
-        <div className="absolute bottom-0 left-[80px] sm:left-[150px] lg:left-[250px] w-2/3 h-[230px] sm:h-[400px] lg:h-3/5 bg-white p-8 sm:p-16 lg:p-32">
-          <h2 className="text-lg md:text-3xl font-bold italic tracking-widest text-black mb-4 md:mb-8 text-left">
+        <div className="absolute bottom-0 w-6/7 mx-[10px] sm:mx-[20px] lg:ml-[250px] lg:w-2/3 h-[230px] sm:h-[300px] lg:h-3/5 bg-white p-8 sm:p-16 lg:pt-24 lg:px-32">
+          <h2 className="text-lg md:text-3xl font-extrabold italic tracking-widest text-black mb-4 sm:mb-8 lg:mb-10 text-left">
             JOIN US AT NARA
           </h2>
-          <p className="text-black font-normal mb-4 md:mb-20 tracking-widest text-[10px] md:text-lg">
+          <p className="text-black font-normal mb-4 sm:mb-20 lg:pt-6 lg:pb-10 tracking-widest text-[12px] md:text-lg">
             We promise to NOT spam you. Share your email ID, so that we can keep
             you informed about our exclusive drops and offers.
           </p>
@@ -80,27 +80,28 @@ const FooterSection = () => {
               <input
                 type="email"
                 placeholder="Email ID"
-                className="border border-[#C4C4C4] p-2 md:p-6 w-full pr-24"
+                className="border border-[#C4C4C4] h-12 sm:h-16 lg:h-16 p-2 sm:p-4 lg:pl-20 w-full pr-24 text-lg"
               />
-              <button className="absolute top-0 right-0 bg-[#1E7B74] text-white py-2 px-2 sm:px-4">
+              <button className="absolute top-0 right-0 bg-[#1E7B74] font-bold text-[14px] text-white py-1 px-2 lg:px-4 my-2 mr-2 sm:px-4 sm:h-12 lg:h-12 lg:w-24">
                 Subscribe
               </button>
             </div>
           </div>
         </div>
       </div>
-
       <div className="bg-[#F5F5F5] text-center pt-8 relative">
         <div
-          className="top-2  text-[#1E7B74] text-sm cursor-pointer mt-16"
+          className="top-2 text-[#1E7B74] text-sm cursor-pointer mt-16"
           onClick={scrollToTop}>
           <p>Scroll up</p>
           <div className="text-2xl">
             <i className="fas fa-chevron-up"></i>
           </div>
         </div>
+
+        {/* Decorative Stars */}
         <div className="hidden lg:block text-[#C4C4C4] my-10">
-          <div className="flex flex-wrap justify-center space-x-5 mb-4">
+          <div className="flex flex-wrap justify-center space-x-2 lg:space-x-5 mb-4">
             {Array(42)
               .fill(null)
               .map((_, index) => (
@@ -108,11 +109,11 @@ const FooterSection = () => {
                   key={index}
                   src="/home/footer/star.png"
                   alt="Decoration"
-                  className="w-4 h-4"
+                  className="w-2 h-2 lg:w-4 lg:h-4"
                 />
               ))}
           </div>
-          <div className="flex flex-wrap justify-center space-x-5">
+          <div className="flex flex-wrap justify-center space-x-2 lg:space-x-5">
             {Array(42)
               .fill(null)
               .map((_, index) => (
@@ -120,19 +121,23 @@ const FooterSection = () => {
                   key={index}
                   src="/home/footer/star.png"
                   alt="Decoration"
-                  className="w-4 h-4"
+                  className="w-2 h-2 lg:w-4 lg:h-4"
                 />
               ))}
           </div>
         </div>
+
         {/* Footer Links */}
-        <div className="text-[#1F4A40] text-[5px] sm:text-[8px] lg:text-[14px] font-bold my-4 md:mb-4">
-          <div className="flex justify-center space-x-3 md:space-x-20">
+        <div className="text-[#1F4A40] text-[8px] sm:text-[12px] lg:text-[14px] font-bold my-4 md:mb-4 px-10 sm:px-16">
+          <div className="grid grid-cols-3 lg:flex lg:flex-row justify-center gap-y-2 lg:space-x-20">
             <a href="#" className="underline">
               Contact us
             </a>
             <a href="#" className="underline">
               Track order
+            </a>
+            <a href="#" className="underline">
+              Privacy policies
             </a>
             <a href="#" className="underline">
               Privacy policies
@@ -145,7 +150,9 @@ const FooterSection = () => {
             </a>
           </div>
         </div>
-        <div className="bg-black text-[10px] font-bold text-white py-4 tracking-widest">
+
+        {/* Copyright */}
+        <div className="bg-black text-[8px] sm:text-[10px] font-bold text-white py-2 sm:py-4 tracking-widest">
           <p>Copyright © 2024 NARA. All rights reserved.</p>
         </div>
       </div>
