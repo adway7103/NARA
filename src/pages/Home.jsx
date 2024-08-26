@@ -5,6 +5,7 @@ import BehindTheScreen from "../components/home/BehindTheScreen";
 import Spotlight from "../components/home/Spotlight";
 import MidSection from "../components/home/MidSection";
 import FooterSection from "../components/home/FooterSection";
+import SubscribeSection from "../components/home/SubscribeSection";
 
 const Home = ({ isOpen }) => {
   return (
@@ -14,6 +15,7 @@ const Home = ({ isOpen }) => {
       <BehindTheScreen />
       <Spotlight />
       <MidSection />
+      <SubscribeSection />
       <FooterSection />
     </>
   );

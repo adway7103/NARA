@@ -75,7 +75,7 @@ const MidSection = () => {
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className={`min-w-[300px] md:min-w-[400px] pt-3 px-6 md:p-6 border-2 ${testimonial.bgColor} ${testimonial.border}`}>
+                className={`min-w-[300px] md:min-w-[400px] py-3 px-6 md:p-6 border-2 ${testimonial.bgColor} ${testimonial.border}`}>
                 <div className="flex mb-4 justify-between">
                   <img
                     src={testimonial.image}
