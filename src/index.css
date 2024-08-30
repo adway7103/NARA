@@ -11,3 +11,19 @@
 body {
   font-family: "Antikor Text", sans-serif;
 }
+/* .scroll-container {
+  scroll-snap-type: x mandatory;
+}
+
+.testimonial-card {
+  scroll-snap-align: start;
+} */
+.testimonial-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge, and Firefox */
+.testimonial-container {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

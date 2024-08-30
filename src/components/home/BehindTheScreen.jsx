@@ -11,59 +11,78 @@ const BehindTheScreen = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}>
-        <div className="max-w-7xl mx-auto grid grid-cols-4 gap-12 my-28">
-          {/* Left Section */}
-          <div className="flex flex-col justify-start items-end">
-            <h2 className="text-3xl font-bold italic mb-4">BEHIND</h2>
-            <h2 className="text-3xl font-bold italic mb-4">THE</h2>
-            <h2 className="text-3xl font-bold italic mb-10">SCREEN</h2>
-            <p className="mb-10 font-sans text-right">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12 my-10 lg:my-28">
+          <div className="hidden lg:flex flex-col justify-start items-center lg:items-end text-center lg:text-right">
+            <h2 className=" text-3xl font-bold italic mb-2 tracking-widest">
+              BEHIND
+            </h2>
+            <h2 className=" text-3xl font-bold italic mb-2 tracking-widest">
+              THE
+            </h2>
+            <h2 className=" text-3xl font-bold italic mb-6 lg:mb-10 tracking-widest">
+              SCREEN
+            </h2>
+            <p className="mb-6 lg:mb-10 font-sans text-right">
               From brainstorming designs over chai to the final quality check, a
               lot of magic goes into each NARA piece.
             </p>
-            <button className=" text-[#1F4A40] font-bold py-2 px-4 border-[2px] border-[#B5B5B5]">
+            <button className="text-[#1F4A40] font-bold py-2 px-4 border-[2px] border-[#B5B5B5]">
               Our process
             </button>
           </div>
-
-          {/* Center Section - Images */}
-          <div className="relative grid grid-cols-2 gap-2 col-span-2">
+          <div className="relative grid grid-cols-2 gap-2 lg:col-span-2">
             <div className="relative col-span-2 row-span-2">
               <video
                 src="/home/designs/d5.mp4"
                 autoPlay
                 loop
                 muted
-                className="w-full h-[650px] object-cover"
+                className="w-full md:w-full h-[400px] sm:h-[600px] sm:w-full lg:h-[650px] object-cover"
               />
             </div>
             <img
               src="/home/designs/d4.png"
               alt="Fashion 2"
-              className="absolute bottom-0 right-0 w-[250px] h-[450px] object-cover"
+              className="absolute bottom-0 right-0 w-[150px] h-[300px] sm:w-[300px] sm:h-[400px] lg:w-[250px] lg:h-[450px] object-cover object-center"
             />
             <img
               src="/home/designs/d2.png"
               alt="Overlayed Fashion 1"
-              className="absolute top-0 right-0 w-1/3 h-1/3 object-fit"
+              className="absolute top-0 right-0 w-[100px] h-[120px] sm:w-[200px] sm:h-[200px] lg:w-1/3 lg:h-1/3 object-fit"
             />
             <img
               src="/home/designs/d3.png"
               alt="Fashion 3"
-              className="absolute bottom-0 left-0 w-1/2 h-[300px] object-cover"
+              className="absolute bottom-0 left-0 w-[150px] h-[200px] sm:w-2/5 sm:h-[300px] lg:w-2/5 lg:h-[300px] object-cover object-center"
             />
             <img
               src="/home/designs/d1.png"
               alt="Fashion 4"
-              className="absolute bottom-0 right-0 mr-28 w-[250px] h-[300px] object-cover"
+              className="absolute bottom-0 right-0 w-2/5 h-[200px] mr-20 sm:mr-40 lg:mr-36 sm:w-2/5 sm:h-[300px] lg:w-[2/5] lg:h-[300px] object-cover"
             />
           </div>
-
-          {/* Right Section */}
-          <div className="flex flex-col justify-end items-left">
-            <h2 className="text-3xl font-bold mb-2 italic">Peek Into The</h2>
-            <h2 className="text-3xl font-bold mb-8 italic">Chaos</h2>
-            <p className="text-lg mb-4">and creativity behind the scenes</p>
+          <div className="lg:hidden flex flex-col justify-start text-left items-start ">
+            <h2 className="text-2xl font-bold italic mb-4 lg:hidden tracking-widest">
+              BEHIND THE SCREEN
+            </h2>
+            <p className="mb-6 sm:text-lg font-sans ">
+              From brainstorming designs over chai to the final quality check, a
+              lot of magic goes into each NARA piece.
+            </p>
+            <button className="text-[#1F4A40] font-bold py-2 px-4 border-[2px] border-[#B5B5B5] ">
+              Our process
+            </button>
+          </div>
+          <div className="hidden lg:flex flex-col justify-end items-center lg:items-start text-center lg:text-left">
+            <h2 className="text-3xl font-bold mb-2 italic tracking-widest">
+              Peek Into The
+            </h2>
+            <h2 className="text-3xl font-bold mb-8 italic tracking-widest">
+              Chaos
+            </h2>
+            <p className="text-sm md:text-lg mb-4">
+              and creativity behind the scenes
+            </p>
           </div>
         </div>
       </div>

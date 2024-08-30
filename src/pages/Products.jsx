@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { fetchProducts } from "../apis/getAllProducts";
 import Navbar from "../components/Navbar/Navbar";
 import Categories from "../components/products/categories";
 import ProductHeader from "../components/products/header";
@@ -8,6 +9,21 @@ import { productData } from "../constants";
 const Products = () => {
   const colors = ["black", "brown", "beige", "gray"];
   const [activeProductColor, setActiveProductColor] = useState()
+  const [products, setProducts] = useState([]);
+  console.log(products)
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        const productsData = await fetchProducts();
+        setProducts(productsData);
+      } catch (error) {
+        console.error('Failed to load products:', error);
+      }
+    };
+
+    loadProducts();
+  }, []);
 
   return (
     <div>
