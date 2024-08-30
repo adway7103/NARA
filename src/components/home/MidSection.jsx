@@ -36,16 +36,20 @@ const MidSection = () => {
   ];
   return (
     <>
-      <div className="hidden lg:flex flex-col bg-[#E9EAC6] lg:min-h-screen md:min-h-[50vh] relative justify-center items-center">
-        <div className="absolute text-center top-28 md:top-32 bottom-20 md:bottom-28">
+      <div className="hidden lg:flex flex-col bg-[#E9EAC6] dark:!bg-black lg:min-h-screen md:min-h-[50vh] relative justify-center items-center">
+        <div className="absolute text-center top-28 md:top-32  bottom-20 md:bottom-28">
           <h1 className="text-3xl md:text-5xl font-semibold italic text-black mb-8 whitespace-break-spaces">
-            <span className="block mb-3 tracking-widest">YOU CAN FIND</span>
-            <span className="block tracking-widest">HIDDEN GEMS,</span>
+            <span className="block mb-3 dark:!text-white tracking-widest">
+              YOU CAN FIND
+            </span>
+            <span className="block dark:!text-white tracking-widest">
+              HIDDEN GEMS,
+            </span>
           </h1>
-          <p className="text-xl md:text-3xl font-normal text-black tracking-widest">
+          <p className="text-xl md:text-3xl font-normal text-black dark:!text-white tracking-widest">
             if you look around, with all
           </p>
-          <p className="text-xl md:text-3xl font-normal text-black text-left md:tracking-widest">
+          <p className="text-xl md:text-3xl font-normal text-black dark:!text-white text-left md:tracking-widest">
             your heart.
           </p>
         </div>
@@ -53,20 +57,25 @@ const MidSection = () => {
           <img
             src="/home/frame.png"
             alt="Stars pattern"
-            className="w-full h-auto"
+            className="dark:hidden w-full h-auto"
+          />
+          <img
+            src="/home/frame3.png"
+            alt="Stars pattern"
+            className="hidden dark:block w-full h-auto"
           />
         </div>
       </div>
       <div className="relative">
-        <div className="bg-white pb-24 md:py-24">
+        <div className="bg-white dark:!bg-black pb-24 md:py-24">
           <div className="max-w-8xl mx-auto text-left pl-8 md:pl-24">
-            <h2 className="text-xl md:text-3xl font-extrabold italic md:tracking-widest uppercase">
+            <h2 className="text-xl md:text-3xl dark:!text-white font-extrabold italic md:tracking-widest uppercase">
               Wind brought in the word
             </h2>
-            <p className="mt-2 text-black text-[12px] md:text-[18px] font-normal md:tracking-widest">
+            <p className="mt-2 text-black dark:!text-white text-[12px] md:text-[18px] font-normal md:tracking-widest">
               This is what people have to say about us.
             </p>
-            <button className="mt-6 bg-transparent border border-[#B5B5B5] text-[#1F4A40] text-[14px] font-bold py-2 px-6">
+            <button className="mt-6 bg-transparent border border-[#B5B5B5] text-[#1F4A40] dark:!text-[#D8E3B1] text-[14px] font-bold py-2 px-6">
               View all
             </button>
           </div>
@@ -82,16 +91,16 @@ const MidSection = () => {
                     alt={testimonial.name}
                     className="w-12 h-12 rounded-full mr-4"
                   />
-                  <div className="text-[#1F4A40] text-3xl md:text-4xl font-bold space-x-2">
+                  <div className="text-[#1F4A40] dark:!text-[#D8E3B1] text-3xl md:text-4xl font-bold space-x-2">
                     {Array.from({ length: testimonial.rating }, (_, i) => (
                       <span key={i}>*</span>
                     ))}
                   </div>
                 </div>
-                <h3 className="text-[16px] font-bold text-black mb-7">
+                <h3 className="text-[16px] font-bold text-black dark:!text-[#D8E3B1] mb-7">
                   {testimonial.name}
                 </h3>
-                <p className="text-black font-medium text-[14px]">
+                <p className="text-black dark:!text-white font-medium text-[14px]">
                   {testimonial.text}
                 </p>
               </div>

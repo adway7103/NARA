@@ -9,7 +9,7 @@ const FooterSection = () => {
   };
   return (
     <div>
-      <div className="bg-[#F5F5F5] text-center pt-8 relative">
+      <div className="bg-[#F5F5F5] dark:!bg-[#12322A] text-center pt-8 relative">
         <div
           className="top-2 text-[#1E7B74] text-sm cursor-pointer mt-16"
           onClick={scrollToTop}>
@@ -25,30 +25,47 @@ const FooterSection = () => {
             {Array(42)
               .fill(null)
               .map((_, index) => (
-                <img
-                  key={index}
-                  src="/home/footer/star.png"
-                  alt="Decoration"
-                  className="w-2 h-2 lg:w-4 lg:h-4"
-                />
+                <>
+                  <img
+                    key={index}
+                    src="/home/footer/star.png"
+                    alt="Decoration"
+                    className="dark:hidden w-2 h-2 lg:w-4 lg:h-4"
+                  />
+                  <img
+                    key={index}
+                    src="/home/footer/star2.png"
+                    alt="Decoration"
+                    className="hidden dark:block w-2 h-2 lg:w-4 lg:h-4"
+                  />
+                </>
               ))}
+            {/* #D8E3B14A  #1F4A40*/}
           </div>
           <div className="flex flex-wrap justify-center space-x-2 lg:space-x-5">
             {Array(42)
               .fill(null)
               .map((_, index) => (
-                <img
-                  key={index}
-                  src="/home/footer/star.png"
-                  alt="Decoration"
-                  className="w-2 h-2 lg:w-4 lg:h-4"
-                />
+                <>
+                  <img
+                    key={index}
+                    src="/home/footer/star.png"
+                    alt="Decoration"
+                    className="dark:hidden w-2 h-2 lg:w-4 lg:h-4"
+                  />
+                  <img
+                    key={index}
+                    src="/home/footer/star2.png"
+                    alt="Decoration"
+                    className="hidden dark:block w-2 h-2 lg:w-4 lg:h-4"
+                  />
+                </>
               ))}
           </div>
         </div>
 
         {/* Footer Links */}
-        <div className="text-[#1F4A40] text-[8px] sm:text-[12px] lg:text-[14px] font-bold my-4 md:mb-4 px-10 sm:px-16">
+        <div className="text-[#1F4A40] dark:!text-[#D8E3B1] text-[8px] sm:text-[12px] lg:text-[14px] font-bold my-4 md:mb-4 px-10 sm:px-16">
           <div className="grid grid-cols-3 lg:flex lg:flex-row justify-center gap-y-2 lg:space-x-20">
             <a href="#" className="underline">
               Contact us

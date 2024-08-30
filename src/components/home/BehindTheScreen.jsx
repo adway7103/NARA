@@ -4,7 +4,7 @@ const BehindTheScreen = () => {
   return (
     <>
       <div
-        className="text-black font-sans p-4"
+        className="text-black dark:!text-white dark:!bg-none  font-sans p-4 "
         style={{
           backgroundImage: "url('/home/designs/design.jpeg')",
           backgroundAttachment: "fixed",
@@ -13,20 +13,20 @@ const BehindTheScreen = () => {
         }}>
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12 my-10 lg:my-28">
           <div className="hidden lg:flex flex-col justify-start items-center lg:items-end text-center lg:text-right">
-            <h2 className=" text-3xl font-bold italic mb-2 tracking-widest">
+            <h2 className=" text-3xl font-bold italic mb-2 tracking-widest  ">
               BEHIND
             </h2>
-            <h2 className=" text-3xl font-bold italic mb-2 tracking-widest">
+            <h2 className=" text-3xl font-bold italic mb-2 tracking-widest ">
               THE
             </h2>
-            <h2 className=" text-3xl font-bold italic mb-6 lg:mb-10 tracking-widest">
+            <h2 className=" text-3xl font-bold italic mb-6 lg:mb-10 tracking-widest ">
               SCREEN
             </h2>
             <p className="mb-6 lg:mb-10 font-sans text-right">
               From brainstorming designs over chai to the final quality check, a
               lot of magic goes into each NARA piece.
             </p>
-            <button className="text-[#1F4A40] font-bold py-2 px-4 border-[2px] border-[#B5B5B5]">
+            <button className="text-[#1F4A40] dark:!text-[#D8E3B1] font-bold py-2 px-4 border-[2px] border-[#B5B5B5]">
               Our process
             </button>
           </div>
@@ -69,7 +69,7 @@ const BehindTheScreen = () => {
               From brainstorming designs over chai to the final quality check, a
               lot of magic goes into each NARA piece.
             </p>
-            <button className="text-[#1F4A40] font-bold py-2 px-4 border-[2px] border-[#B5B5B5] ">
+            <button className="text-[#1F4A40] dark:!text-[#D8E3B1] font-bold py-2 px-4 border-[2px] border-[#B5B5B5] ">
               Our process
             </button>
           </div>

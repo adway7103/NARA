@@ -6,10 +6,9 @@ const TopSection = () => {
     <div
       id="carouselExampleSlidesOnly"
       className="carousel slide relative"
-      data-bs-ride="carousel"
-    >
+      data-bs-ride="carousel">
       <div className="carousel-inner h-screen">
-        <div className="carousel-item active relative w-full h-full">
+        <div className="carousel-item active relative w-full h-full ">
           <video
             autoPlay
             loop
@@ -31,8 +30,7 @@ const TopSection = () => {
           <h2 className="text-4xl font-bold py-4">मेल</h2>
           <a
             href="#"
-            className="inline-block bg-transparent border border-white text-[#D8E3B1] py-2 px-4"
-          >
+            className="inline-block bg-transparent border border-white text-[#D8E3B1] py-2 px-4">
             View collection
           </a>
           <div className="absolute flex justify-between w-full px-12 mt-4">
@@ -40,24 +38,20 @@ const TopSection = () => {
               className="carousel-control-prev bg-[#D8E3B121] bg-opacity-30 hover:bg-opacity-50 rounded-full w-12 h-12 flex items-center justify-center"
               type="button"
               data-bs-target="#carouselExampleSlidesOnly"
-              data-bs-slide="prev"
-            >
+              data-bs-slide="prev">
               <span
                 className="carousel-control-prev-icon inline-block bg-no-repeat"
-                aria-hidden="true"
-              ></span>
+                aria-hidden="true"></span>
               <span className="visually-hidden">Previous</span>
             </button>
             <button
               className="carousel-control-next bg-[#D8E3B121] bg-opacity-30 hover:bg-opacity-50 rounded-full w-12 h-12 flex items-center justify-center"
               type="button"
               data-bs-target="#carouselExampleSlidesOnly"
-              data-bs-slide="next"
-            >
+              data-bs-slide="next">
               <span
                 className="carousel-control-next-icon inline-block bg-no-repeat"
-                aria-hidden="true"
-              ></span>
+                aria-hidden="true"></span>
               <span className="visually-hidden">Next</span>
             </button>
           </div>

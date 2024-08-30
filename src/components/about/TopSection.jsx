@@ -1,27 +1,27 @@
 import React from "react";
 const TopSection = () => {
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100 dark:!bg-black">
       <div className="flex flex-col lg:items-center lg:justify-center pt-32 lg:pt-64">
         <div className="flex container mx-auto px-4 pt-10 lg:py-10 items-center justify-start">
-          <h1 className="lg:ml-40 text-2xl sm:text-4xl lg:text-6xl font-medium text-gray-800">
+          <h1 className="lg:ml-72 text-2xl sm:text-4xl lg:text-6xl font-medium text-gray-800 dark:!text-white">
             ABOUT
           </h1>
         </div>
         <div className="flex flex-col lg:flex-row pl-8 lg:pr-24">
           <img src="about/nara.png" className="hidden lg:block" />
           <img src="about/logo.png" className="lg:hidden pr-8" alt="logo" />
-          <p className="hidden lg:flex ml-7 text-lg tracking-widest text-black font-semibold items-end ">
+          <p className="hidden lg:flex ml-7 text-lg tracking-widest text-black dark:!text-white font-semibold items-end ">
             NEW AGE <br /> REAL <br /> ATTIRE
           </p>
-          <p className="lg:hidden mt-4 ml-0 sm:text-4xl text-lg tracking-widest text-black font-medium">
+          <p className="lg:hidden mt-4 ml-0 sm:text-4xl text-lg tracking-widest text-black dark:!text-white font-medium">
             NEW AGE REAL ATTIRE
           </p>
         </div>
       </div>
       <div className="flex items-center justify-center min-h-[60vh] py-20">
         <div className="max-w-screen-xl w-full ">
-          <section className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-12  lg:gap-y-20 px-4 lg:px-40 items-center rounded-lg ">
+          <section className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-12  lg:gap-y-20 dark:!text-white px-4 lg:px-40 items-center rounded-lg ">
             <div className="w-full h-full lg:w-[80vh] md:h-[90vh] lg:ml-40">
               <video
                 src="/about/divein.mp4"
