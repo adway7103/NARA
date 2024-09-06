@@ -31,6 +31,7 @@ export const fetchProducts = async () => {
       query: GET_ALL_PRODUCTS_QUERY,
     });
     const products = response.data.data.products.edges.map(edge => edge.node);
+    console.log(products)
     return products;
   } catch (error) {
     console.error('Error fetching products:', error);
