@@ -28,19 +28,12 @@ const FooterSection = () => {
                 <>
                   <img
                     key={index}
-                    src="/home/footer/star.png"
+                    src="/home/footer/star.svg"
                     alt="Decoration"
-                    className="dark:hidden w-2 h-2 lg:w-4 lg:h-4"
-                  />
-                  <img
-                    key={index}
-                    src="/home/footer/star2.png"
-                    alt="Decoration"
-                    className="hidden dark:block w-2 h-2 lg:w-4 lg:h-4"
+                    className=" w-2 h-2 lg:w-4 lg:h-4"
                   />
                 </>
               ))}
-            {/* #D8E3B14A  #1F4A40*/}
           </div>
           <div className="flex flex-wrap justify-center space-x-2 lg:space-x-5">
             {Array(42)
@@ -49,15 +42,9 @@ const FooterSection = () => {
                 <>
                   <img
                     key={index}
-                    src="/home/footer/star.png"
+                    src="/home/footer/star.svg"
                     alt="Decoration"
-                    className="dark:hidden w-2 h-2 lg:w-4 lg:h-4"
-                  />
-                  <img
-                    key={index}
-                    src="/home/footer/star2.png"
-                    alt="Decoration"
-                    className="hidden dark:block w-2 h-2 lg:w-4 lg:h-4"
+                    className="w-2 h-2 lg:w-4 lg:h-4"
                   />
                 </>
               ))}

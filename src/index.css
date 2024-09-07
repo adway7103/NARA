@@ -8,22 +8,35 @@
   font-weight: 400;
   font-style: normal;
 }
-body {
+/* body {
   font-family: "Antikor Text", sans-serif;
-}
-/* .scroll-container {
-  scroll-snap-type: x mandatory;
-}
-
-.testimonial-card {
-  scroll-snap-align: start;
 } */
+body {
+  font-family: monospace;
+}
 .testimonial-container::-webkit-scrollbar {
   display: none;
 }
-
 /* Hide scrollbar for IE, Edge, and Firefox */
 .testimonial-container {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+.white-icon {
+  filter: brightness(0) invert(1);
+}
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+.bloc {
+  animation: appear linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
 }

@@ -14,14 +14,14 @@ const TopSection = () => {
             loop
             muted
             src={topVideo}
-            className="d-block w-full h-full object-cover"
+            className="bloc d-block w-full h-full object-cover"
             alt="slide1"
           />
         </div>
         <div className="carousel-item relative w-full h-full">
           <img
             src={CarouselImage}
-            className="d-block w-full h-full object-cover"
+            className="bloc d-block w-full h-full object-cover"
             alt="slide1"
           />
         </div>
