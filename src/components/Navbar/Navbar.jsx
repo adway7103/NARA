@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SliderNavbar from "./SliderNavbar";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -85,7 +86,7 @@ const Navbar = () => {
             isScrolled ? (
               <>
                 <img src="home/navbar/icon1.svg" alt="light mode icon" />
-                <img src="home/navbar/user.svg" alt="light mode icon" />
+                <Link to="/profile"><img src="home/navbar/user.svg" alt="light mode icon" /></Link>
                 <img
                   src="home/navbar/shoppingCart.svg"
                   className="md:flex hidden"
@@ -99,11 +100,13 @@ const Navbar = () => {
                   className="white-icon"
                   alt="light mode icon"
                 />
+                <Link to="/profile">
                 <img
                   src="home/navbar/user.svg"
                   className="white-icon"
                   alt="light mode icon"
                 />
+                </Link>
                 <img
                   src="home/navbar/shoppingCart.svg"
                   className="white-icon md:flex hidden"
@@ -118,11 +121,13 @@ const Navbar = () => {
                 className="white-icon"
                 alt="dark mode icon"
               />
+              <Link to="/profile">
               <img
                 src="home/navbar/user.svg"
                 className="white-icon"
                 alt="light mode icon"
               />
+              </Link>
               <img
                 src="home/navbar/shoppingCart.svg"
                 className="white-icon md:flex hidden"

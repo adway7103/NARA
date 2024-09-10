@@ -6,31 +6,36 @@ import Login from "../pages/Login";
 import Products from "../pages/Products";
 
 import SignUp from "../pages/SignUp";
+import Profile from "../pages/Profile";
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
       {
-        path: "/",
+        index: true,
         element: <Home />,
       },
       {
-        path: "/about",
+        path: "about",
         element: <AboutUs />,
       },
       {
-        path: "/login",
+        path: "login",
         element: <Login />,
       },
       {
-        path: "/products",
+        path: "products",
         element: <Products />,
       },
       {
-        path: "/signup",
+        path: "signup",
         element: <SignUp />,
+      },
+      {path: "profile",
+      element: <Profile />
       }
+
     ],
   },
 ]);
