@@ -1,52 +1,59 @@
 import React from "react";
-import api from "../utils/interceptors"; // Assuming this imports the API client
-import axios from "axios";
+import api from "../utils/interceptors"; 
+
 async function SignupApi(userData) {
-  const { name, phone, email, password } = userData; // Destructure user data
+  const { name, phone, email, password } = userData;
   const nameParts = name.split(" ");
   const firstName = nameParts[0];
   const lastName = nameParts[nameParts.length - 1];
+  
   const mutation = `
-   mutation customerCreate($input: CustomerCreateInput!) {
-  customerCreate(input: $input) {
-    customer {
-      firstName
-      lastName
-      email
-      phone
+    mutation customerCreate($input: CustomerCreateInput!) {
+      customerCreate(input: $input) {
+        customer {
+          firstName
+          lastName
+          email
+          phone
+        }
+        customerUserErrors {
+          field
+          message
+          code
+        }
+      }
     }
-    customerUserErrors {
-      field
-      message
-      code
-    }
-  }
-}
   `;
 
   const variables = {
     input: {
       firstName,
-      lastName, // Assuming same last name
+      lastName,
       email,
       password,
-      phone: phone.replace(/\s/g, ""), // Use actual phone number
+      phone: phone.replace(/\s/g, ""),
     },
   };
 
   try {
-    console.log(phone.replace(/\s/g, ""));
+    console.log("Signup request variables:", variables);
     const response = await api.post("", {
       query: mutation,
       variables,
     });
 
+    console.log("Signup response:", response.data);
+
     if (response.data.errors) {
-      // Handle API errors (specific details based on your API)
-      throw new Error("Signup failed: " + response.data.errors[0].message);
-    } else {
-      return response.data; // Return data if successful
+      throw new Error("Signup failed: " + response.data.errors.map(error => error.message).join(", "));
     }
+
+    const customerErrors = response.data.data?.customerCreate?.customerUserErrors;
+    if (customerErrors && customerErrors.length > 0) {
+      throw new Error("Signup user error(s): " + customerErrors.map(error => error.message).join(", "));
+    }
+
+    return response.data;
   } catch (error) {
     console.error("Signup error:", error);
     throw error;
