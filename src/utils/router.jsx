@@ -1,41 +1,65 @@
 import { createBrowserRouter } from "react-router-dom";
+import React, { Suspense } from "react";
 import App from "../App";
-import Home from "../pages/Home";
-import AboutUs from "../pages/AboutUs";
-import Login from "../pages/Login";
-import Products from "../pages/Products";
+import ProtectedRoutes from "../components/utils/ProtectedRoutes";
+import RedirectWhenLoggedIn from "../components/utils/RedirectWhenLoggedIn";
+import ScrollToTop from "../components/utils/ScrollToTop";
+import LazyComponent from "../components/utils/LazyComponent";
 
-import SignUp from "../pages/SignUp";
-import Profile from "../pages/Profile";
+// Lazy load the components
+const Home = React.lazy(() => import("../pages/Home"));
+const AboutUs = React.lazy(() => import("../pages/AboutUs"));
+const Login = React.lazy(() => import("../pages/Login"));
+const Products = React.lazy(() => import("../pages/Products"));
+const SignUp = React.lazy(() => import("../pages/SignUp"));
+const Profile = React.lazy(() => import("../pages/Profile"));
+const ProductsDetail = React.lazy(()=>import("../pages/ProductsDetail"));
+
+
+
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <LazyComponent component={<App />} />,
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <LazyComponent component={<Home />} />,
       },
       {
         path: "about",
-        element: <AboutUs />,
-      },
-      {
-        path: "login",
-        element: <Login />,
+        element: <LazyComponent component={<AboutUs />} />,
       },
       {
         path: "products",
-        element: <Products />,
+        element: <LazyComponent component={<Products />} />,
       },
       {
-        path: "signup",
-        element: <SignUp />,
+        path: "product/:id",
+        element: <LazyComponent component={<ProductsDetail />} />,
       },
-      {path: "profile",
-      element: <Profile />
-      }
-
+      {
+        element: <RedirectWhenLoggedIn />,
+        children: [
+          {
+            path: "login",
+            element: <LazyComponent component={<Login />} />,
+          },
+          {
+            path: "signup",
+            element: <LazyComponent component={<SignUp />} />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedRoutes />,
+        children: [
+          {
+            path: "profile",
+            element: <LazyComponent component={<Profile />} />,
+          },
+        ],
+      },
     ],
   },
 ]);

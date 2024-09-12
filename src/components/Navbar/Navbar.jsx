@@ -61,7 +61,7 @@ const Navbar = () => {
             &#9776;
           </button>
           <img
-            src="home/navbar/logo.svg"
+            src="/home/navbar/logo.svg"
             className="h-[40px] md:ml-10 ml-4"
             alt="logo"
           />
@@ -70,25 +70,25 @@ const Navbar = () => {
           <button onClick={toggleTheme} className="text-4xl rounded-full ">
             {theme === "light" ? (
               isScrolled ? (
-                <img src="home/navbar/light_icon1.svg" alt="light mode icon" />
+                <img src="/home/navbar/light_icon1.svg" alt="light mode icon" />
               ) : (
                 <img
-                  src="home/navbar/light_icon1.svg"
+                  src="/home/navbar/light_icon1.svg"
                   className="white-icon"
                   alt="light mode icon"
                 />
               )
             ) : (
-              <img src="home/navbar/icon4.svg" alt="dark mode icon" />
+              <img src="/home/navbar/icon4.svg" alt="dark mode icon" />
             )}
           </button>
           {theme === "light" ? (
             isScrolled ? (
               <>
-                <img src="home/navbar/icon1.svg" alt="light mode icon" />
+                <img src="/home/navbar/icon1.svg" alt="light mode icon" />
                 <Link to="/profile"><img src="home/navbar/user.svg" alt="light mode icon" /></Link>
                 <img
-                  src="home/navbar/shoppingCart.svg"
+                  src="/home/navbar/shoppingCart.svg"
                   className="md:flex hidden"
                   alt="light mode icon"
                 />
@@ -96,19 +96,19 @@ const Navbar = () => {
             ) : (
               <>
                 <img
-                  src="home/navbar/icon1.svg"
+                  src="/home/navbar/icon1.svg"
                   className="white-icon"
                   alt="light mode icon"
                 />
                 <Link to="/profile">
                 <img
-                  src="home/navbar/user.svg"
+                  src="/home/navbar/user.svg"
                   className="white-icon"
                   alt="light mode icon"
                 />
                 </Link>
                 <img
-                  src="home/navbar/shoppingCart.svg"
+                  src="/home/navbar/shoppingCart.svg"
                   className="white-icon md:flex hidden"
                   alt="light mode icon"
                 />
@@ -117,19 +117,19 @@ const Navbar = () => {
           ) : (
             <>
               <img
-                src="home/navbar/icon1.svg"
+                src="/home/navbar/icon1.svg"
                 className="white-icon"
                 alt="dark mode icon"
               />
               <Link to="/profile">
               <img
-                src="home/navbar/user.svg"
+                src="/home/navbar/user.svg"
                 className="white-icon"
                 alt="light mode icon"
               />
               </Link>
               <img
-                src="home/navbar/shoppingCart.svg"
+                src="/home/navbar/shoppingCart.svg"
                 className="white-icon md:flex hidden"
                 alt="light mode icon "
               />

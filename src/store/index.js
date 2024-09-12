@@ -5,6 +5,8 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 const userSlice = createSlice({
   name: "user",
   initialState: {
+    accessToken: null,
+    isAuthenticated: null,
     id: null,
     fullName: null,
     email: null,
@@ -29,6 +31,10 @@ const userSlice = createSlice({
     },
     setAddresses(state, action){
         state.addresses = action.payload;
+    },
+    setAuthStatus(state, action){
+      state.accessToken = action.payload.accessToken;
+      state.isAuthenticated = action.payload.isAuthenticated;
     }
   },
 });
@@ -41,5 +47,5 @@ const store = configureStore({
 });
 
 
-export const { setUser, setFullName, setEmail, setPhone, setAddresses } = userSlice.actions;
+export const { setUser, setFullName, setEmail, setPhone, setAddresses, setAuthStatus } = userSlice.actions;
 export default store;

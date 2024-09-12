@@ -3,8 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "../../store";
 import { useEffect } from "react";
 import getAccountDetailsAPI from "../../apis/getAccoutDetailsAPI";
+import { setAuthStatus } from "../../store";
+import { useNavigate } from "react-router-dom";
 export default function PersonalInfoSection() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const userId = useSelector((state) => state.user.userId);
     const fullName = useSelector(state=>state.user.fullName);
     const email = useSelector(state=>state.user.email);
@@ -19,6 +22,9 @@ export default function PersonalInfoSection() {
         dispatch(setUser({ id: customer.id, fullName: customerName, email: customerEmail, phone: customerPhone }));
       } catch (error) {
         console.error("could not fetch account details: " + error.message);
+        localStorage.removeItem("accessToken");
+        dispatch(setAuthStatus({accessToken: null, isAuthenticated: false}));
+        navigate("/login");
       }
     };
   
