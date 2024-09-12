@@ -6,28 +6,32 @@ import logo from "../../assets/NaraLogo.png";
 import LoginApi from "../../apis/LoginApi";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setAuthStatus } from "../../store";
 function LoginSection() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     const userData = { email, password };
     try {
-      const response = await LoginApi(userData);
+      const accessToken = await LoginApi(userData);
       toast.success("Login successful!");
+      dispatch(setAuthStatus({accessToken, isAuthenticated: true}));
       navigate("/");
-      // Handle successful login (e.g., store access token)
-      console.log(response);
+     
     } catch (error) {
       toast.error("Login failed: " + error.message);
-      // Handle login errors (e.g., display error message)
     } finally {
       setIsLoading(false);
     }
   };
+  
   return (
     <div className="w-[100%] h-screen flex lg:flex-row flex-col">
       <div className="lg:w-[50%] h-full object-cover">

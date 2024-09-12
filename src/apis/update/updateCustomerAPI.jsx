@@ -1,7 +1,6 @@
 import api from "../../utils/interceptors"; 
 
-export default async function updateCustomerAPI(type, payload) {
-  const customerAccessToken = localStorage.getItem("accessToken");
+export default async function updateCustomerAPI(type, payload, customerAccessToken) {
   const customer = {};
   const id = payload.userId;
   switch(type){

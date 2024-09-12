@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import SliderNavbar from "./SliderNavbar";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
-const Navbar2 = () => {
+const NavbarRelative = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -27,7 +27,7 @@ const Navbar2 = () => {
   return (
     <div>
       {/* Top Navbar */}
-      <div className="fixed top-0 left-0 w-full z-50 flex justify-between items-center bg-white dark:!bg-black md:px-10 pl-4 pr-2 py-4 bg-opacity-80">
+      <div className="relative top-0 left-0 w-full z-50 flex justify-between items-center bg-white dark:!bg-black md:px-10 pl-4 pr-2 py-4 bg-opacity-80">
         <div className="flex items-center">
           <button
             className="text-4xl font-bold text-black dark:!text-white"
@@ -88,4 +88,4 @@ const Navbar2 = () => {
   );
 };
 
-export default Navbar2;
+export default NavbarRelative;

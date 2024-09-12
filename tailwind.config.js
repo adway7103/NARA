@@ -13,9 +13,16 @@ export default {
         '2xl': '1536px',    // Tailwind's default 2x extra large screen
         '3xl': '1920px',    // Custom 3x extra large screen
       },
+      utilities: {
+        '.all-unset': {
+          all: 'revert',
+        },
+      }
     },
   },
 
-  plugins: [],
+  plugins: [
+    
+  ],
 };
 
