@@ -12,8 +12,8 @@ const sortByItems = {
 }
 
 const sortItems = {
-  PriceDsc: "price: high to low",
-  PriceAsc: "price: low to high",
+  PriceDsc: "Price: high to low",
+  PriceAsc: "Price: low to high",
   // RatingAsc: "rating: low to high",
   // RatingDsc: "rating: high to low"
 }
@@ -135,16 +135,16 @@ const ProductHeader = ({ products, setProducts, copyProducts }) => {
     <div className="flex items-center justify-between flex-wrap md:flex-nowrap py-3 px-4 lg:px-12">
       <div className="relative z-50">
         <div
-          className="items-center gap-1 text-[#1F4A40] font-semibold hidden md:flex cursor-pointer"
+          className="items-center gap-1 text-[#1F4A40] font-semibold flex cursor-pointer"
           onClick={() => setFilter(!filter)}
         >
           <IoFilter />
           Filter
         </div>
         {filter && (
-          <div className="absolute bg-white p-4 shadow-xl top-full rounded-md translate-y-2 border">
+          <div className="absolute bg-white p-4 shadow-xl top-full rounded-md  border">
             <h1 className="font-semibold">Filter</h1>
-            <div className="py-6 flex items-center gap-6 w-screen max-w-xs">
+            <div className="py-6 flex items-center gap-6 w-screen max-w-[200px] md:max-w-xs">
               <div
                 className={`pb-2 cursor-pointer ${
                   activeFilterType.women &&
@@ -179,14 +179,11 @@ const ProductHeader = ({ products, setProducts, copyProducts }) => {
           </div>
         )}
       </div>
-      <ProductsSearch products={products} originalProducts={copyProducts}/>
-      <div className="flex md:hidden items-center gap-1 text-[#1F4A40] font-semibold">
-        <IoFilter />
-        Filter
-      </div>
+      {/* Product search component reused at the bottom for mobile view. make sure to apply function call there as well for mobile view */}
+      <ProductsSearch products={products} originalProducts={copyProducts} className="hidden md:flex md:max-w-sm"/>
       <div className="relative z-50">
         <div
-          className="items-center gap-1 text-[#1F4A40] font-semibold hidden md:flex cursor-pointer"
+          className="items-center gap-1 text-[#1F4A40] font-semibold flex cursor-pointer"
           onClick={() => setSort(!sort)}
         >
           <BiSortAlt2 />
@@ -208,6 +205,8 @@ const ProductHeader = ({ products, setProducts, copyProducts }) => {
           </div>
         )}
       </div>
+      {/* Product serach component */}
+      <ProductsSearch products={products} originalProducts={copyProducts} className="md:hidden flex max-w-full"/>
     </div>
   );
 };

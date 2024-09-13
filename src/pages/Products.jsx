@@ -19,7 +19,6 @@ const Products = () => {
         setIsLoading(true);
         const productsData = await fetchProducts();
         setProducts(productsData);
-
         setCopiedProducts(productsData); // Initialize copied products
       } catch (error) {
         console.error("Failed to load products:", error);
