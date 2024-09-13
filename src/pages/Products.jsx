@@ -16,7 +16,7 @@ const Products = () => {
       try {
         const productsData = await fetchProducts();
         setProducts(productsData);
-        setCopiedProducts(productsData); // Initialize copied products
+        setCopiedProducts(productsData); 
       } catch (error) {
         console.error('Failed to load products:', error);
       }
@@ -37,8 +37,8 @@ const Products = () => {
           {products.map((product, index) => (
             <ProductItem 
               key={product.id}
-              img={product.images.edges[0].node.src}
-              colors={colors} 
+              img={product.images && product.images.edges[0] && product.images.edges[0].node ? product.images.edges[0].node.src : ''}
+              colors={""} 
               setActiveProductColor={setActiveProductColor}
               price={product.priceRange.minVariantPrice.amount}
               name={product.title}

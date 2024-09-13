@@ -1,19 +1,35 @@
 import { formatToINR } from "../global/convert-to-inr";
-import { IoMdAdd } from "react-icons/io";
-import { FaC, FaRegBookmark } from "react-icons/fa6";
-import { FaBookmark, FaCheck } from "react-icons/fa6";
+import {  FaRegBookmark } from "react-icons/fa6";
+import { FaBookmark } from "react-icons/fa6";
 import { useState } from "react";
+import { GoPlus, GoDash } from "react-icons/go";
+import { toast } from "sonner";
+
 
 const ProductItem = ({ colors, setActiveProductColor, name, discount, message, price, img  }) => {
     const [bookmark, setBookmark] = useState(false)
     const [addToCart, setAddToCart] = useState(false)
+    const [productCount, setProductCount] = useState(0)
 
     const handleBookmark = ()  => {
-        setBookmark(!bookmark);
+      setBookmark(!bookmark);
+      if(bookmark) {
+        toast.success("Product removed from your whishlist")
+      } else {
+        toast.success("Product added to your whishlist")
+      }
     }
 
-    const handleAddtocard = () => {
-        setAddToCart(!addToCart)
+    const handleAddtocard = (action) => {
+      if (action === "add") {
+        setProductCount(productCount + 1)
+        toast.success("Product added to cart")
+      } else {
+        if (productCount > 0) {
+          setProductCount(productCount - 1)
+          toast.success("Product removed from cart")
+        }
+      }
     }
 
     return (
@@ -21,8 +37,8 @@ const ProductItem = ({ colors, setActiveProductColor, name, discount, message, p
         <div className="w-full md:h-[400px] h-[477px] lg:h-[477px] relative">
           <img 
             src={img}
-            alt="product-model" 
-            className=" w-full h-full object-contain"
+            alt={`product-model-${name}`}
+            className=" w-full h-full object-cover"
           />
           <div className="absolute w-full bottom-0">
             <div className="flex gap-2.5 p-3">
@@ -39,30 +55,24 @@ const ProductItem = ({ colors, setActiveProductColor, name, discount, message, p
           <h1 className="font-semibold py-2">{name}</h1>
           <div className="flex justify-between items-center">
             <div className="font-mono text-base">INR {formatToINR(price)}</div>
-            <div className="flex items-center gap-2">
-              {colors.map((color, index) => (
-                <ProductColor 
-                  key={index} 
-                  color={color} 
-                  active={false}
-                />
-              ))}
-            </div>
+            {colors && (
+              <div className="flex items-center gap-2">
+                {colors.map((color, index) => (
+                  <ProductColor 
+                    key={index} 
+                    color={color} 
+                    active={false}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </div>
-        <div className="flex justify-between lg:px-4 py-2">
-            <div className="font-medium flex gap-1 items-center cursor-pointer" onClick={handleAddtocard}>
-                {addToCart ? (
-                    <>
-                    <FaCheck />
-                    Added to cart
-                    </>
-                ) : (
-                    <>
-                    <IoMdAdd />
-                    Add to cart
-                    </>
-                )}
+        <div className="flex justify-between py-2">
+            <div className="flex text-xl items-center cursor-pointer gap-2">
+              <div className="border w-8 h-8 grid place-items-center cursor-pointer" onClick={() => handleAddtocard("add")}><GoPlus /></div>
+              <div>{productCount}</div>
+              <div className="border w-8 h-8 grid place-items-center cursor-pointer" onClick={() => handleAddtocard("remove")}><GoDash /></div>
             </div>
             <div className="font-medium flex gap-1 items-center cursor-pointer" onClick={handleBookmark}>
                 {bookmark ? (
