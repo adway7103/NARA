@@ -6,7 +6,7 @@ import FooterSection from "../components/home/FooterSection";
 
 const AboutUs = () => {
   return (
-    <div>
+    <div className="dark:!bg-black">
       <Navbar2 />
       <TopSection />
       <FabricStorySection />

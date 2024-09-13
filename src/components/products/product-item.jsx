@@ -4,9 +4,12 @@ import { FaBookmark } from "react-icons/fa6";
 import { useState } from "react";
 import { GoPlus, GoDash } from "react-icons/go";
 import { toast } from "sonner";
+import { Link, useNavigate } from "react-router-dom";
 
 
-const ProductItem = ({ colors, setActiveProductColor, name, discount, message, price, img  }) => {
+const ProductItem = ({ colors, setActiveProductColor, name, discount, message, price, img, productId  }) => {
+    productId = encodeURIComponent(productId) //Bad code 
+    const navigate = useNavigate();  
     const [bookmark, setBookmark] = useState(false)
     const [addToCart, setAddToCart] = useState(false)
     const [productCount, setProductCount] = useState(0)
@@ -32,8 +35,14 @@ const ProductItem = ({ colors, setActiveProductColor, name, discount, message, p
       }
     }
 
+    const productClickHandler =()=>{
+      // const encodedProductId = encodeURIComponent(productId);
+      // navigate(`/product/${encodedProductId}`);
+    }
+
     return (
-      <div className="font-sans max-w-sm">
+      <Link to={`/product/${productId}`}>
+      <div className="font-sans max-w-sm cursor-pointer hover:brightness-75" onClick={productClickHandler} >
         <div className="w-full md:h-[400px] h-[477px] lg:h-[477px] relative">
           <img 
             src={img}
@@ -84,6 +93,8 @@ const ProductItem = ({ colors, setActiveProductColor, name, discount, message, p
             </div>
         </div>
       </div>
+      </Link>
+      
     );
   }
   
@@ -98,6 +109,7 @@ const ProductItem = ({ colors, setActiveProductColor, name, discount, message, p
           style={{ backgroundColor: color }}
         ></div>
       </div>
+      
     );
   }
   
