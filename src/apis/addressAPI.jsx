@@ -53,7 +53,7 @@ export async function getAddressesAPI() {
       query getCustomerAddresses($customerAccessToken: String!) {
         customer(customerAccessToken: $customerAccessToken) {
           id
-          addresses(first: 10) {
+          addresses(first: 50) {
             edges {
               node {
                 id
@@ -66,6 +66,7 @@ export async function getAddressesAPI() {
                 country
                 zip
                 phone
+                
               }
             }
           }
@@ -87,6 +88,7 @@ export async function getAddressesAPI() {
       }
   
       const addresses = response.data.data?.customer?.addresses?.edges?.map(edge => edge.node) || [];
+      console.log(response.data.data?.customer)
       return addresses;
     } catch (error) {
       console.error("Could not fetch addresses:", error.message);
@@ -116,6 +118,7 @@ export async function getAddressesAPI() {
             country
             zip
             phone
+            
           }
         }
       }
@@ -138,3 +141,7 @@ export async function getAddressesAPI() {
     }
   }
   
+
+  export async function getShippingProfiles(){
+
+  }

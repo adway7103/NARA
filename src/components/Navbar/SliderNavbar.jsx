@@ -38,8 +38,8 @@ const SliderNavbar = ({ isOpen, toggleMenu }) => {
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    to="#shop"
+                  <Link to={"/products"}
+                   
                     className="text-lg md:text-xl  text-[#5D5D5D] italic">
                     02
                     <span
