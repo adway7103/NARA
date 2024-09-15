@@ -67,7 +67,7 @@ const NavbarRelative = () => {
               <img src="/home/navbar/user.svg" alt="light mode icon" />
               <img
                 src="/home/navbar/shoppingCart.svg"
-                className="md:flex hidden"
+                className="md:flex "
                 alt="light mode icon"
                 onClick={toggleCartOpen}
               />

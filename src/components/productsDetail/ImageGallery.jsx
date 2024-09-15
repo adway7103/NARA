@@ -1,5 +1,6 @@
 import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 import { useRef } from "react";
+import classes from "./imageGallery.module.css"
 
 export default function ImageGallery({
     images,
@@ -12,12 +13,12 @@ export default function ImageGallery({
     const containerRef = useRef(null);
   
     return (
-      <div className="flex w-full  gap-2 lg:w-3/5 xl:h-[621px] h-[460px]   ">
+      <div className="flex w-full  gap-2 lg:w-3/5 xl:h-full  h-[460px]   ">
         {/* Image Side Pane */}
         <div className="flex h-full  flex-col items-center gap-4 w-1/5 ">
-          <div className="h-4/5 overflow-auto w-16">
+          <div className={`h-full overflow-auto ${classes["hide-scrollbar"]}  lg:w-28 w-16 `}>
             {images?.map((el, index) => (
-            <div key={index} className="aspect-w-9 mt-2 mb-2 aspect-h-16  bg-red-500 flex items-center justify-center">
+            <div key={index} className=" mb-4 h-[102px] lg:h-[130px]  flex items-center justify-center">
             <img
               src={el?.node?.src}
               className="cursor-pointer w-full h-full object-cover border-2"
