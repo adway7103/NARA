@@ -2,7 +2,7 @@ import React from "react";
 const Spotlight = () => {
   const products = [
     {
-      imgSrc: "/home/spotlight/s1.png",
+      imgSrc: "/home/spotlight/s1.svg",
       description: "Raglan mili panelled dress",
       price: "INR 4,500.50",
       label: "Best seller",
@@ -16,7 +16,7 @@ const Spotlight = () => {
       bought: "12.5k people bought it",
     },
     {
-      imgSrc: "/home/spotlight/s3.png",
+      imgSrc: "/home/spotlight/s3.svg",
       description: "Raglan mili panelled dress",
       price: "INR 4,500.50",
       label: "",
@@ -45,7 +45,7 @@ const Spotlight = () => {
             View all
           </button>
         </div>
-        <div className="mt-6  md:mt-12 overflow-x-scroll testimonial-container">
+        <div className="mt-6 md:mt-12 overflow-x-scroll testimonial-container">
           <div className="flex lg:grid lg:grid-cols-4 md:grid-cols-3 gap-3 md:gap-2 pl-4">
             {products.map((product, index) => (
               <div

@@ -33,7 +33,7 @@ const FabricStorySection = () => {
                 className="bloc col-span-4 lg:h-[400px] lg:w-3/4 lg:left-[300px] object-cover lg:absolute "
               />
               <img
-                src="/home/spotlight/s1.png"
+                src="/home/spotlight/s1.svg"
                 alt="Fabric story 3"
                 className="hidden col-span-1 lg:block left-0 h-[320px] lg:pl-40 lg:h-[300px] lg:top-[450px] object-center object-cover"
               />
@@ -48,7 +48,7 @@ const FabricStorySection = () => {
               className="bloc lg:col-span-2 lg:row-span-7 lg:w-[400px] lg:h-[500px] h-1/2 object-cover p-4 lg:ml-20"
             />
             <img
-              src="/about/fabric/a1.png"
+              src="/about/fabric/a1.svg"
               alt="Fabric story 4"
               className="bloc lg:col-span-2 row-span-2 sm:h-[400px] lg:h-[260px] lg:w-[400px] lg:py-8 lg:pl-40  sm:pl-40 pl-20 object-cover"
             />
