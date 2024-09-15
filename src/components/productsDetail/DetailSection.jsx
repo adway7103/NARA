@@ -22,11 +22,10 @@ export default function DetailSection({ title, descriptionHtml }) {
         </div>
         <h2 className="font-black xl:text-2xl text-xl"> {title}</h2>{" "}
         {/*{product?.title}*/}
-        
         <h3 className="tracking-tight font-semibold text-xl">
-          {productOutOfStock ? <span className="bg-red-500 p-2 rounded-full text-white">
-              out of stock
-            </span> : currentVariant ?  (
+          {productOutOfStock ? (
+            <span className="p-2 rounded-full text-white">out of stock</span>
+          ) : currentVariant ? (
             currentVariant?.node.price.currencyCode +
             " " +
             parseFloat(currentVariant?.node.price.amount).toFixed(2)
@@ -37,7 +36,6 @@ export default function DetailSection({ title, descriptionHtml }) {
             />
           )}
         </h3>
-
       </div>
       <div className="flex flex-col gap-2">
         <h2 className="font-bold">Description</h2>

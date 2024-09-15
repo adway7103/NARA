@@ -14,9 +14,9 @@ const NavbarRelative = () => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const element = document.documentElement;
 
-  const toggleCartOpen = ()=>{
-    setCartOpen(state=>!state);
-  }
+  const toggleCartOpen = () => {
+    setCartOpen((state) => !state);
+  };
   useEffect(() => {
     if (theme === "dark") {
       element.classList.add("dark");
@@ -33,18 +33,22 @@ const NavbarRelative = () => {
   return (
     <div>
       {/* Top Navbar */}
-      <div className="relative top-0 left-0  w-full z-50 flex justify-between items-center bg-white dark:!bg-black md:px-10 pl-4 pr-2 py-2 xl:!py-4 bg-opacity-80">
+      <div className="top-0 left-0  w-full z-50 flex justify-between items-center bg-white dark:!bg-black md:px-10 pl-4 pr-2 py-2 xl:!py-4 bg-opacity-80 fixed">
         {/* Cart */}
         {cartOpen && <Cart toggleCartOpen={toggleCartOpen} />}
         {/* end of cart */}
         <div className="flex items-center">
           <button
-            className="text-4xl font-bold text-black dark:!text-white"
+            className="text-4xl flex mt-[10px] items-center font-bold text-black dark:!text-white"
             onClick={toggleMenu}
           >
             &#9776;
           </button>
-          <img src="/about/logo.svg"  className="w-36 md:ml-10 ml-4" alt="logo" />
+          <img
+            src="/about/logo.svg"
+            className="w-36 md:ml-10 ml-4"
+            alt="logo"
+          />
         </div>
         <div className="flex items-center space-x-1 md:space-x-7">
           <button

@@ -75,7 +75,6 @@ export default function ProductsDetailPage() {
     const modelOption = product.options.find((el) => el.name === "model");
     setModelInfo(modelOption?.values || []);
   };
- 
 
   // Throttle function
   function throttle(fn, delay) {
@@ -89,7 +88,7 @@ export default function ProductsDetailPage() {
       return fn(...args);
     };
   }
-  
+
   const scrollToImage = useCallback(
     throttle((index) => {
       const imageElement = imageRefs.current[index];
@@ -105,12 +104,11 @@ export default function ProductsDetailPage() {
 
   const scrollToImageBySrc = useCallback(
     throttle((imageSrc) => {
-      
       // Find the index of the image element by its src
       const imageElementIndex = imageRefs.current.findIndex(
         (img) => img?.src === imageSrc
       );
-  
+
       if (imageElementIndex !== -1) {
         const imageElement = imageRefs.current[imageElementIndex];
         if (imageElement) {
@@ -125,20 +123,18 @@ export default function ProductsDetailPage() {
     }, 300), // Throttling to every 300ms
     []
   );
-  
-  
+
   const handleUp = () => {
     if (currentIndex > 0) {
       scrollToImage(currentIndex - 1);
     }
   };
-  
+
   const handleDown = () => {
     if (currentIndex < imageRefs.current.length - 1) {
       scrollToImage(currentIndex + 1);
     }
   };
-  
 
   useEffect(() => {
     fetchProductInfo(params.id);
@@ -149,10 +145,10 @@ export default function ProductsDetailPage() {
       {isLoading ? (
         <Loading />
       ) : (
-        <div className=" flex flex-col bg-[#F7F7F7] dark:bg-black dark:text-[#ffff]  font-antikor max-h-screen overflow-hidden">
+        <div className=" flex flex-col bg-[#F7F7F7] dark:bg-black dark:text-[#ffff]  font-antikor max-h-screen lg:overflow-hidden">
           <NavbarRelative />
 
-          <div className="  flex flex-col gap-4 items-center justify-center xl:items-start xl:flex-row bg-red-500 xl:!p-2 p-2 ">
+          <div className="mt-[74px]  flex flex-col gap-4 items-center justify-center xl:items-start xl:flex-row  xl:!p-2 p-2 ">
             <ImageGallery
               images={product?.images?.edges}
               currentIndex={currentIndex}
@@ -161,18 +157,24 @@ export default function ProductsDetailPage() {
               scrollToImage={scrollToImage}
               imageRefs={imageRefs}
             />
-            <div className="xl:w-2/5 md:w-3/4 flex flex-col gap-8 p-4  h-screen overflow-auto mb-12 !pb-12 !px-12 bg-green-500">
-              <DetailSection title={product.title} descriptionHtml={product.descriptionHtml} />
+            <div className="xl:w-2/5 md:w-3/4 flex flex-col gap-8 p-4 lg:h-screen  mb-12 !pb-12 !px-8 lg:overflow-scroll">
+              <DetailSection
+                title={product.title}
+                descriptionHtml={product.descriptionHtml}
+              />
 
               {/* Color Section */}
-              
 
-              <VariantsController scrollToImageBySrc={scrollToImageBySrc} colorsArray={product.colorsArray} options={product.options} variants={product.variants}  />
-                
-             
+              <VariantsController
+                scrollToImageBySrc={scrollToImageBySrc}
+                colorsArray={product.colorsArray}
+                options={product.options}
+                variants={product.variants}
+              />
+
               <ActionButtons />
 
-              <img src="/dividers/star_divider.svg" alt="" />  
+              <img src="/dividers/star_divider.svg" alt="" />
               {/* Fabric Name Section */}
               <div className="bg-[#D8E3B11C] border-2 border-[#D8E3B1] p-4 flex flex-col gap-4">
                 <div className="flex gap-4">
