@@ -19,6 +19,18 @@ query getProductById($id: ID!) {
     }
     options {
       name
+      optionValues {
+        swatch {
+          color
+          image {
+            mediaContentType
+            previewImage {
+              url
+            }
+          }
+        }
+        name
+      }
       values
     }
     variants(first: 250) {
@@ -26,6 +38,7 @@ query getProductById($id: ID!) {
         node {
           id
           title
+          quantityAvailable
           price {
             amount
             currencyCode
@@ -33,9 +46,9 @@ query getProductById($id: ID!) {
           selectedOptions {
             name
             value
-          },
-          image{
-          src
+          }
+          image {
+            src
           }
         }
       }
@@ -76,6 +89,8 @@ query getProductById($id: ID!) {
 
     // Check if the product has only one variant
     const variants = productData.variants.edges;
+
+    console.log("logging products variants: ", variants);
     
     // add sizes 
     const sizes = productData.options.filter(el=>el.name==="Size")[0]?.values;
@@ -112,7 +127,13 @@ query getProductById($id: ID!) {
     }
     
     // set default colors:
+    // colorOptions.map(el=> ({name:el.name, value: el.swatch.color, image: el.swatch.image?.previewImage?.url}))
 
+    // Extract and attach the colors array:
+    const colorsArray = productData.options.find(el=>el.name=="Color")?.optionValues.map(el=> ({name:el.name, value: el.swatch.color, image: el.swatch.image?.previewImage?.url}));
+    productData.colorsArray = colorsArray;
+
+    console.log("logging the complete product data, ", productData);
     return productData;
   } catch (error) {
     console.error("Could not fetch product info:", error.message);

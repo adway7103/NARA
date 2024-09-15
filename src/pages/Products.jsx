@@ -5,6 +5,7 @@ import Categories from "../components/products/categories";
 import ProductHeader from "../components/products/header";
 import ProductItem from "../components/products/product-item";
 import Loading from "../components/utils/Loading";
+import NavbarRelative from "../components/Navbar/NavbarRelative";
 
 const Products = () => {
   const colors = ["black", "brown", "beige", "gray"];
@@ -33,8 +34,8 @@ const Products = () => {
 
   return (
     <div>
-      <Navbar />
-      <div className="mt-16">
+      <NavbarRelative />
+      <div className="mt-8">
         <div className="bg-[#F7F7F7] pb-4 mt-20">
           <ProductHeader
             products={products}

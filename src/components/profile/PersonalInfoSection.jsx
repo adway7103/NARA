@@ -19,7 +19,9 @@ export default function PersonalInfoSection() {
         const customerName = customer.firstName + " " + customer.lastName;
         const customerEmail = customer.email;
         const customerPhone = customer.phone;
-        dispatch(setUser({ id: customer.id, fullName: customerName, email: customerEmail, phone: customerPhone }));
+        const defaultAddressId = customer.defaultAddress.id.split("?")[0];
+        const defaultAddress = customer.defaultAddress;
+        dispatch(setUser({ id: customer.id, fullName: customerName, email: customerEmail, phone: customerPhone, defaultAddressId, defaultAddress }));
       } catch (error) {
         console.error("could not fetch account details: " + error.message);
         localStorage.removeItem("accessToken");
@@ -27,9 +29,18 @@ export default function PersonalInfoSection() {
         navigate("/login");
       }
     };
+
+    const fetchDefaultAddress = ()=>{
+      try {
+        console.log("do something here")
+      } catch (error) {
+        console.log(error);
+      }
+    }
   
     useEffect(() => {
       fetchAccountDetails();
+      fetchDefaultAddress();
     }, []);
   
     return (
