@@ -75,4 +75,3 @@ export default async function updateCustomerAPI(type, payload, customerAccessTok
   }
 }
 
-

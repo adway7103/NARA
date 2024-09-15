@@ -12,19 +12,21 @@ export default function ImageGallery({
     const containerRef = useRef(null);
   
     return (
-      <div className="flex w-full lg:w-3/5 h-[70vh] lg:h-[80vh]">
+      <div className="flex w-full  gap-2 lg:w-3/5 xl:h-[621px] h-[460px]   ">
         {/* Image Side Pane */}
-        <div className="flex flex-col items-center gap-2 w-1/5 ">
-          <div className="h-4/5 overflow-auto p-2">
+        <div className="flex h-full  flex-col items-center gap-4 w-1/5 ">
+          <div className="h-4/5 overflow-auto w-16">
             {images?.map((el, index) => (
-              <img
-                key={index}
-                src={el?.node?.src}
-                className="cursor-pointer w-[68px] h-[102px] border-2"
-                alt={`Image ${index + 1}`}
-                onClick={() => scrollToImage(index)}
-                onLoad={() => console.log("Image loaded")}
-              />
+            <div key={index} className="aspect-w-9 mt-2 mb-2 aspect-h-16  bg-red-500 flex items-center justify-center">
+            <img
+              src={el?.node?.src}
+              className="cursor-pointer w-full h-full object-cover border-2"
+              alt={`Image ${index + 1}`}
+              onClick={() => scrollToImage(index)}
+              onLoad={() => console.log("Image loaded")}
+            />
+          </div>
+          
             ))}
           </div>
           <div className="flex flex-col h-fit gap-2 h-1/5">
@@ -42,12 +44,12 @@ export default function ImageGallery({
             </button>
           </div>
         </div>
-        <div className="w-full h-full overflow-hidden" ref={containerRef}>
+        <div className="xl:w-[625px] xl:h-[641px] w-full sm:w-[641px] h-[460px]  overflow-hidden" ref={containerRef}>
           {images?.map((el, index) => (
             <img
               key={index}
               src={el?.node?.src}
-              className=" h-full mr-auto ml-auto"
+              className=" h-full w-full object-cover mr-auto ml-auto"
               alt={`Image ${index + 1}`}
               ref={(el) => (imageRefs.current[index] = el)}
             />

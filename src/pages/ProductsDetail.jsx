@@ -8,6 +8,9 @@ import DetailSection from "../components/productsDetail/DetailSection";
 import SizeSelector from "../components/productsDetail/SizeSelector";
 import ActionButtons from "../components/productsDetail/ActionButtons";
 import ColorSection from "../components/productsDetail/ColorSection";
+import { HiOutlineArrowRight } from "react-icons/hi";
+import { FaPlus } from "react-icons/fa6";
+import VariantsController from "../components/productsDetail/VariantsController";
 
 export default function ProductsDetailPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -41,7 +44,7 @@ export default function ProductsDetailPage() {
       setIsLoading(false);
     }
   };
-  
+
   const updateSizes = (product) => {
     if (product.sizesAvailable) {
       const { availableSizes, disabledSizes, defaultSize } = product;
@@ -55,39 +58,87 @@ export default function ProductsDetailPage() {
       setSizes({ sizesAvailable: false });
     }
   };
-  
+
   const updateDefaultColorAndSize = (product) => {
     if (product.defaultColor) setDefaultColor(product.defaultColor);
     if (product.defaultSize) setDefaultSize(product.defaultSize);
   };
-  
+
   const updateColors = (product) => {
     const colorOption = product?.options?.find((el) => el.name === "Color");
     const colors = colorOption?.values.map((el) => el.toLowerCase()) || [];
     console.log(colors);
     setAvailableColors(colors);
   };
-  
+
   const updateModelInfo = (product) => {
     const modelOption = product.options.find((el) => el.name === "model");
     setModelInfo(modelOption?.values || []);
   };
+ 
+
+  // Throttle function
+  function throttle(fn, delay) {
+    let lastCall = 0;
+    return function (...args) {
+      const now = new Date().getTime();
+      if (now - lastCall < delay) {
+        return;
+      }
+      lastCall = now;
+      return fn(...args);
+    };
+  }
   
+  const scrollToImage = useCallback(
+    throttle((index) => {
+      const imageElement = imageRefs.current[index];
+      if (imageElement) {
+        const container = imageRefs.current[0]?.parentElement;
+        const offsetTop = imageElement?.offsetTop - container?.offsetTop;
+        container?.scrollTo({ top: offsetTop, behavior: "smooth" });
+        setCurrentIndex(index);
+      }
+    }, 300), // Throttling to every 300ms
+    []
+  );
 
-  const scrollToImage = useCallback((index) => {
-    const imageElement = imageRefs.current[index];
-    if (imageElement) {
-      const container = imageRefs.current[0]?.parentElement;
-      const offsetTop = imageElement?.offsetTop - container?.offsetTop;
-      container?.scrollTo({ top: offsetTop, behavior: "smooth" });
-      setCurrentIndex(index);
+  const scrollToImageBySrc = useCallback(
+    throttle((imageSrc) => {
+      
+      // Find the index of the image element by its src
+      const imageElementIndex = imageRefs.current.findIndex(
+        (img) => img?.src === imageSrc
+      );
+  
+      if (imageElementIndex !== -1) {
+        const imageElement = imageRefs.current[imageElementIndex];
+        if (imageElement) {
+          const container = imageRefs.current[0]?.parentElement;
+          const offsetTop = imageElement?.offsetTop - container?.offsetTop;
+          container?.scrollTo({ top: offsetTop, behavior: "smooth" });
+          setCurrentIndex(imageElementIndex);
+        }
+      } else {
+        console.warn(`Image with src ${imageSrc} not found.`);
+      }
+    }, 300), // Throttling to every 300ms
+    []
+  );
+  
+  
+  const handleUp = () => {
+    if (currentIndex > 0) {
+      scrollToImage(currentIndex - 1);
     }
-  }, []);
-
-  const handleUp = () => currentIndex > 0 && scrollToImage(currentIndex - 1);
-  const handleDown = () =>
-    currentIndex < imageRefs.current.length - 1 &&
-    scrollToImage(currentIndex + 1);
+  };
+  
+  const handleDown = () => {
+    if (currentIndex < imageRefs.current.length - 1) {
+      scrollToImage(currentIndex + 1);
+    }
+  };
+  
 
   useEffect(() => {
     fetchProductInfo(params.id);
@@ -98,10 +149,10 @@ export default function ProductsDetailPage() {
       {isLoading ? (
         <Loading />
       ) : (
-        <div className="xl:h-screen overflow-hidden flex flex-col bg-[#F7F7F7] dark:bg-black dark:text-[#ffff]">
+        <div className=" flex flex-col bg-[#F7F7F7] dark:bg-black dark:text-[#ffff]  font-antikor">
           <NavbarRelative />
 
-          <div className="xl:h-screen overflow-hidden flex flex-col items-center justify-center xl:items-start xl:flex-row xl:gap-12 gap-8 xl:p-12 p-2">
+          <div className="  flex flex-col gap-4 items-center justify-center xl:items-start xl:flex-row xl:!p-12 p-2 ">
             <ImageGallery
               images={product?.images?.edges}
               currentIndex={currentIndex}
@@ -110,22 +161,18 @@ export default function ProductsDetailPage() {
               scrollToImage={scrollToImage}
               imageRefs={imageRefs}
             />
-            <div className="xl:w-2/5 md:w-3/4 flex flex-col gap-8 p-4 h-full overflow-auto mb-12">
-              <DetailSection product={product} />
-
-              <SizeSelector model={modelInfo} defaultColor={defaultColor} setDefaultSize={setDefaultSize} sizes={sizes} />
+            <div className="xl:w-2/5 md:w-3/4 flex flex-col gap-8 p-4 h-full overflow-auto mb-12 !px-12">
+              <DetailSection title={product.title} descriptionHtml={product.descriptionHtml} />
 
               {/* Color Section */}
-              {availableColors && <ColorSection
-                colors={availableColors}
-                defaultColor={defaultColor}
-                defaultSize = {defaultSize}
-                setDefaultColor = {setDefaultColor}
-              /> }
+              
 
+              <VariantsController scrollToImageBySrc={scrollToImageBySrc} colorsArray={product.colorsArray} options={product.options} variants={product.variants}  />
+                
+             
               <ActionButtons />
 
-
+              <img src="/dividers/star_divider.svg" alt="" />  
               {/* Fabric Name Section */}
               <div className="bg-[#D8E3B11C] border-2 border-[#D8E3B1] p-4 flex flex-col gap-4">
                 <div className="flex gap-4">

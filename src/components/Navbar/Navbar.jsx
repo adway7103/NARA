@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import SliderNavbar from "./SliderNavbar";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { Link } from "react-router-dom";
+import Cart from "../Cart";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -87,11 +88,14 @@ const Navbar = () => {
               <>
                 <img src="/home/navbar/icon1.svg" alt="light mode icon" />
                 <Link to="/profile"><img src="home/navbar/user.svg" alt="light mode icon" /></Link>
+                <Link to = "/products">
                 <img
                   src="/home/navbar/shoppingCart.svg"
                   className="md:flex hidden"
                   alt="light mode icon"
                 />
+                </Link>
+                
               </>
             ) : (
               <>
@@ -107,11 +111,13 @@ const Navbar = () => {
                   alt="light mode icon"
                 />
                 </Link>
+                <Link to={"/products"}>
                 <img
                   src="/home/navbar/shoppingCart.svg"
                   className="white-icon md:flex hidden"
                   alt="light mode icon"
-                />
+                />  
+                </Link>
               </>
             )
           ) : (

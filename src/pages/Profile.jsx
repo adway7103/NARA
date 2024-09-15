@@ -76,7 +76,7 @@ function Sidebar({ isMenuOpen }) {
     <aside
       className={`absolute lg:relative top-0 bottom-0 transition-transform duration-500 ease-in-out transform ${
         isMenuOpen ? "translate-x-0" : "-translate-x-full"
-      } lg:translate-x-0 flex flex-col justify-between lg:w-1/4 w-1/2 dark:bg-black bg-[#ffff] border-r p-4 gap-1`}
+      } lg:translate-x-0 flex flex-col xl:justify-between   lg:w-1/4 w-4/5 dark:bg-black bg-[#ffff] border-r p-4 gap-12`}
     >
       <div>
         <div className="text-sm font-semibold bg-[#D8E3B180] border-l-2 border-l-[#1F4A40] p-2 flex justify-between">
