@@ -9,14 +9,14 @@ const SubscribeSection = () => {
           {/* Top Row Images */}
           <div className="col-span-1 w-full h-full md:h-96">
             <img
-              src="/home/footer/f1.png"
+              src="/home/footer/f1.svg"
               alt="Image 1"
               className="bloc w-full h-full object-center object-cover"
             />
           </div>
           <div className="col-span-1 w-full h-full md:h-96">
             <img
-              src="/home/footer/f2.png"
+              src="/home/footer/f2.svg"
               alt="Image 2"
               className="bloc w-full h-full object-cover object-center"
             />
@@ -33,14 +33,14 @@ const SubscribeSection = () => {
           {/* Bottom Row Images */}
           <div className="col-span-1 w-full h-40 md:h-96">
             <img
-              src="/home/footer/f3.png"
+              src="/home/footer/f3.svg"
               alt="Image 4"
               className="bloc w-full h-full object-cover object-center"
             />
           </div>
           <div className="col-span-1 w-full h-40 md:h-96">
             <img
-              src="/home/footer/f5.png"
+              src="/home/footer/f5.svg"
               alt="Image 5"
               className="bloc w-full h-full object-cover object-center"
             />
@@ -49,14 +49,14 @@ const SubscribeSection = () => {
             <img
               src="/home/footer/f4.png"
               alt="Image 6"
-              className="bloc w-full h-full object-cover object-center"
+              className="bloc w-full h-full object-cover object-right-bottom"
             />
           </div>
           <div className="col-span-1 w-full h-40 md:h-96">
             <img
-              src="/home/footer/f7.png"
+              src="/home/footer/f7.svg"
               alt="Image 7"
-              className="bloc w-full h-full object-cover object-center"
+              className="bloc w-full h-full object-cover object-left"
             />
           </div>
         </div>
