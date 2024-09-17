@@ -2,55 +2,39 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Outlet, useLocation } from "react-router-dom";
 import { Toaster, toast } from "sonner";
-import { setAuthStatus, setActiveCart } from "./store";
+import { setAuthStatus, setActiveCartId, setTotalQuantityInCart, setProductsinCart } from "./store";
 import { updateCustomerDefaultAddress } from "./apis/getAccoutDetailsAPI";
-import createCart, { getCheckoutURL, updateBuyersIndentity } from "./apis/Cart";
+import createCart, { getCheckoutURL, getItemsInCartAPI, updateBuyersIndentity } from "./apis/Cart";
 import { getProductVariantDetail } from "./apis/Products";
-
 
 function App() {
   const dispatch = useDispatch();
 
   const { pathname } = useLocation();
-  async function updateDefaultAddress(){
+
+  const fetchAllItemsInCart = async (cartId) => {
     try {
-      await updateCustomerDefaultAddress("gid://shopify/MailingAddress/9376642302207");
-      console.log("address updated");
+      const response = await getItemsInCartAPI(cartId);
+      const itemsQuantity = response?.totalQuantity;
+      dispatch(setTotalQuantityInCart(itemsQuantity));
+      dispatch(setActiveCartId(cartId));
+      const products = response?.lines?.edges;
+      dispatch(setProductsinCart(products));
     } catch (error) {
       console.error(error);
+      if (error?.message?.includes("GraphQL error(s)")) {
+        toast.error("Something went wrong");
+      } else if (error?.meesage) {
+        toast.error(error.message);
+      } else {
+        toast.error("Something went wrong!");
+      }
     }
-  }
-  const createCartQuery = async ()=>{
-    try {
-      const response = await createCart();
-      console.log("logging from cart create query", response);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  };
 
-  const fetchProductVariant =async ()=>{
-    try {
-      const response = await getProductVariantDetail("gid://shopify/ProductVariant/46130453741823");
-      console.log("Logging product variant detail: ", response);
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  const getCheckoutURLNOW = async ()=>{
-    try {
-      const response = await updateBuyersIndentity();
-      console.log("checkout URL", response);
-    } catch (error) {
-      console.error(error)
-    }
-  }
   useEffect(() => {
     window.scrollTo(0, 0);
-    // updateDefaultAddress();
-    // createCartQuery();
-    // fetchProductVariant();
-    // getCheckoutURLNOW()
+    
   }, [pathname]);
 
   useEffect(() => {
@@ -60,9 +44,9 @@ function App() {
       dispatch(setAuthStatus({ accessToken, isAuthenticated: true }));
 
     const cartId = localStorage.getItem("cartId");
-    const checkoutUrl = localStorage.getItem("checkoutUrl");
-    if(cartId && checkoutUrl)
-      dispatch(setActiveCart({id: cartId, checkoutUrl}));
+    if(cartId )
+      // dispatch(setActiveCartId({id: cartId}));
+     fetchAllItemsInCart(cartId);
   }, []);
   return (
     <div>

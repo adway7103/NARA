@@ -1,4 +1,4 @@
-import api from "../utils/interceptors"; 
+import api from "../utils/interceptors";
 
 export default async function getAccountDetailsAPI() {
   const customerAccessToken = localStorage.getItem("accessToken");
@@ -12,6 +12,13 @@ export default async function getAccountDetailsAPI() {
         phone
         defaultAddress{
         id
+        firstName
+        lastName
+        province
+        city
+        zip
+        address1
+        address2
         }
         orders(first: 3) {
           edges {
@@ -33,7 +40,9 @@ export default async function getAccountDetailsAPI() {
     });
 
     if (response.data.errors) {
-      const errorMessages = response.data.errors.map(error => error.message).join(", ");
+      const errorMessages = response.data.errors
+        .map((error) => error.message)
+        .join(", ");
       throw new Error(`GraphQL error(s): ${errorMessages}`);
     }
 
@@ -45,26 +54,21 @@ export default async function getAccountDetailsAPI() {
     return customerData;
   } catch (error) {
     console.error("Could not fetch account details:", error.message);
-    throw error; 
+    throw error;
   }
 }
 
-
-
-export async function updateCustomerDefaultAddress(addressId) {
-  // const addressId = "gid://shopify/MailingAddress/9376829997311?model_name=CustomerAddress&customer_access_token=fxxGDlb4FljgEpa8iEplc4Jo6rKv9LKW76Wkb6P7HlXxmb9IHQr1P6QmYgPXd02veFntGiRa0uqRLHcOSm0MX1dvyOfK9-0hdDod3tkrvslb9j83xxmsxqSbvF_7t2keftYAoNAyKBqcuMv1358jsAUHhxQ0s4LG2dai9B1fi6rdT9JFgGhhnSJ_Bp3-7mk-Y1-EYhDiX7dtgSBYs6qT_yUCX6HCD3g3w2bRSHfokunz3Ky_dQ1OzNdgulHvBgHt"
-
-  const customerAccessToken = localStorage.getItem("accessToken");
+export async function updateCustomerDefaultAddress(addressId, customerAccessToken) {
 
   const query = `
-    mutation customerDefaultAddressUpdate($addressId: ID!, $customerAccessToken: String!) {
+   mutation customerDefaultAddressUpdate($addressId: ID!, $customerAccessToken: String!) {
       customerDefaultAddressUpdate(addressId: $addressId, customerAccessToken: $customerAccessToken) {
-        
-        customerUserErrors {
-          field
-          message
+        customer{
+          defaultAddress{
+            id
+          }
         }
-        userErrors {
+        customerUserErrors {
           field
           message
         }
@@ -81,26 +85,23 @@ export async function updateCustomerDefaultAddress(addressId) {
     });
 
     if (response.data.errors) {
-      const errorMessages = response.data.errors.map(error => error.message).join(", ");
+      const errorMessages = response.data.errors
+        .map((error) => error.message)
+        .join(", ");
       throw new Error(`GraphQL error(s): ${errorMessages}`);
     }
-    
+
     const returnedData = response.data.data?.customerDefaultAddressUpdate;
     const customerUserErrors = returnedData?.customerUserErrors;
-    const userErrors = returnedData?.userErrors;
 
-    const wasUpdateSuccess = customerUserErrors.length===0 && userErrors.length===0;
-    
-    if (!wasUpdateSuccess) {
-      throw new Error({userErrors, customerUserErrors});
+    const defaultAddressId = returnedData?.customer?.defaultAddress?.id.split("?")[0];
+
+    if (!defaultAddressId) {
+      throw new Error(customerUserErrors.map(el=>el.message).join(". "));
     }
-
-    return wasUpdateSuccess;
+    return defaultAddressId;
   } catch (error) {
     console.error("Could not update default address:", error.message);
-    throw error; 
+    throw error;
   }
 }
-
-
-

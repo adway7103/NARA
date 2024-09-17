@@ -11,6 +11,8 @@ import ColorSection from "../components/productsDetail/ColorSection";
 import { HiOutlineArrowRight } from "react-icons/hi";
 import { FaPlus } from "react-icons/fa6";
 import VariantsController from "../components/productsDetail/VariantsController";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function ProductsDetailPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -148,7 +150,7 @@ export default function ProductsDetailPage() {
         <div className=" flex flex-col bg-[#F7F7F7] dark:bg-black dark:text-[#ffff]  font-antikor max-h-screen lg:overflow-hidden">
           <NavbarRelative />
 
-          <div className="mt-[74px]  flex flex-col gap-4 items-center justify-center xl:items-start xl:flex-row  xl:!p-2 p-2 ">
+          <div className="mt-[74px]  flex flex-col gap-4 items-center justify-center xl:items-start xl:flex-row dark:bg-black xl:!p-2 p-2 ">
             <ImageGallery
               images={product?.images?.edges}
               currentIndex={currentIndex}
@@ -173,6 +175,11 @@ export default function ProductsDetailPage() {
               />
 
               <ActionButtons />
+              <button onClick={()=>{
+
+                toast(<CartToast />)
+              }} className="bg-red-500 p-2 text-white">Click to view Toast</button>
+              <ToastContainer hideProgressBar={true} closeButton={false} position="bottom-center" style={{backgroundColor: 0}} />
 
               <img src="/dividers/star_divider.svg" alt="" />
               {/* Fabric Name Section */}
@@ -198,4 +205,14 @@ export default function ProductsDetailPage() {
       )}
     </>
   );
+}
+
+function CartToast (){
+  return (
+    <div className="p-12 bg-black text-white -m-4">
+
+        <h1>Item added to cart successfully!</h1>
+
+    </div>
+  )
 }

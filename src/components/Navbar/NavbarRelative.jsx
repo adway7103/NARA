@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
 import SliderNavbar from "./SliderNavbar";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import Cart from "../Cart";
+import CartIcon from "../CartIcon";
+import { useDispatch } from "react-redux";
+import { setAppTheme } from "../../store";
 
 const NavbarRelative = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const [cartOpen, setCartOpen] = useState(false);
 
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const element = document.documentElement;
 
-  const toggleCartOpen = () => {
-    setCartOpen((state) => !state);
-  };
+
   useEffect(() => {
     if (theme === "dark") {
       element.classList.add("dark");
@@ -29,14 +29,13 @@ const NavbarRelative = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
+    dispatch(setAppTheme(newTheme));
   };
   return (
     <div>
       {/* Top Navbar */}
       <div className="top-0 left-0  w-full z-50 flex justify-between items-center bg-white dark:!bg-black md:px-10 pl-4 pr-2 py-2 xl:!py-4 bg-opacity-80 fixed">
-        {/* Cart */}
-        {cartOpen && <Cart toggleCartOpen={toggleCartOpen} />}
-        {/* end of cart */}
+        
         <div className="flex items-center">
           <button
             className="text-4xl flex mt-[10px] items-center font-bold text-black dark:!text-white"
@@ -69,12 +68,7 @@ const NavbarRelative = () => {
             <>
               <img src="/home/navbar/icon1.svg" alt="light mode icon" />
               <img src="/home/navbar/user.svg" alt="light mode icon" />
-              <img
-                src="/home/navbar/shoppingCart.svg"
-                className="md:flex "
-                alt="light mode icon"
-                onClick={toggleCartOpen}
-              />
+              <CartIcon theme = {theme} />
             </>
           ) : (
             <>
@@ -88,12 +82,7 @@ const NavbarRelative = () => {
                 className="white-icon"
                 alt="light mode icon"
               />
-              <img
-                src="/home/navbar/shoppingCart.svg"
-                className="white-icon md:flex hidden"
-                alt="light mode icon"
-                onClick={toggleCartOpen}
-              />
+              <CartIcon theme = {theme} />
             </>
           )}
         </div>

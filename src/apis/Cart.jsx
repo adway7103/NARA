@@ -112,10 +112,11 @@ export default async function createCart(itemId) {
   cartCreate(input: $cartInput) {
     cart {
       id
+      totalQuantity
       createdAt
       updatedAt
       checkoutUrl
-      lines(first: 10) {
+      lines(first: 200) {
         edges {
           node {
             id
@@ -186,7 +187,7 @@ export default async function createCart(itemId) {
   }
 }
 
-export async function getItemsInCart(cartId) {
+export async function getItemsInCartAPI(cartId) {
   const query = `query cartQuery($cartId: ID!) {
   cart(id: $cartId) {
     id
@@ -194,7 +195,7 @@ export async function getItemsInCart(cartId) {
     updatedAt
     checkoutUrl
     totalQuantity
-    lines(first: 10) {
+    lines(first: 200) {
       edges {
         node {
           id
@@ -296,7 +297,8 @@ export async function addItemToCart(cartId, variantId) {
       cartLinesAdd(cartId: $cartId, lines: $lines) {
         cart {
           id
-          lines(first: 10){
+          totalQuantity
+          lines(first: 200){
             edges
             {
               node{
@@ -372,13 +374,14 @@ export async function addItemToCart(cartId, variantId) {
 }
 
 
-export async function updateLineItem (cartId, lineId, quantity){
+export async function updateLineItem (cartId, lineId, variantId ,quantity){
  const query = `
   mutation updateCartLines($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
     cartLinesUpdate(cartId: $cartId, lines: $lines) {
       cart {
         id
-        lines(first: 10) {
+        totalQuantity
+        lines(first: 200) {
           edges {
             node {
               id
@@ -439,12 +442,94 @@ export async function updateLineItem (cartId, lineId, quantity){
 
     const cartLine = response.data;
     if (!cartLine) {
-      throw new Error("Could update cart line!");
+      throw new Error("Could not update cart line!");
     }
 
-    return cartLine;
+    const updatedQuantity = cartLine.data?.cartLinesUpdate?.cart?.lines?.edges?.find(el=>el.node.merchandise.id===variantId)?.node?.quantity;
+
+    return updatedQuantity;
   } catch (error) {
-    console.error("Could update cart line item: ", error.message);
+    console.error("Could not update cart line item: ", error.message);
     throw error;
   }
+}
+
+export async function removeCartLine(cartId, lineId){
+  const query = `mutation removeCartLines($cartId: ID!, $lineIds: [ID!]!) {
+  cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
+    cart {
+      id
+      totalQuantity
+      lines(first: 200){
+        edges
+        {
+          node{
+            quantity
+            merchandise{
+              ... on ProductVariant {
+                id
+              }
+            }
+          }
+        }
+      }
+      cost {
+        totalAmount {
+          amount
+          currencyCode
+        }
+        subtotalAmount {
+          amount
+          currencyCode
+        }
+        totalTaxAmount {
+          amount
+          currencyCode
+        }
+        totalDutyAmount {
+          amount
+          currencyCode
+        }
+      }
+    }
+    
+    userErrors {
+      field
+      message
+    }
+  }
+}
+`
+const variables ={
+  "cartId": cartId,
+  "lineIds": [
+    lineId
+  ]
+}
+
+try {
+    const response = await api.post("", {
+      query,
+      variables,
+    });
+
+    if (response.data.errors) {
+      const errorMessages = response.data.errors
+        .map((error) => error.message)
+        .join(", ");
+      throw new Error(`GraphQL error(s): ${errorMessages}`);
+    }
+
+    const userErrors = response?.data?.data?.cartLinesRemove?.userErrors.length;
+    if (userErrors) {
+      throw new Error("Could not remove the CartLine. Try refreshing the page!");
+    }
+
+    return true;
+
+  } catch (error) {
+    console.error("Could remove cart line item: ", error.message);
+    throw error;
+  }
+
 }

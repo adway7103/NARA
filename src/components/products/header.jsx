@@ -133,7 +133,7 @@ const ProductHeader = ({ products, setProducts, copyProducts }) => {
 
   return (
     <div className="flex items-center justify-between flex-wrap md:flex-nowrap py-3 px-4 lg:px-12">
-      <div className="relative z-50">
+      <div className="relative ">
         <div
           className="items-center gap-1 text-[#1F4A40] font-semibold flex cursor-pointer"
           onClick={() => setFilter(!filter)}

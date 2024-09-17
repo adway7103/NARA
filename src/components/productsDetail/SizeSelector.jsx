@@ -11,7 +11,7 @@ export default function SizeSelector({ sizes, defaultSize, selectSize  }) {
        
         <div className="flex gap-4">
           {sizes.map(size => (
-            <SizeItem key={size} name={size} selectSize={selectSize} defaultSizeName={defaultSize} />
+            <SizeItem key={size.name} enabled={size.enabled} name={size.name} selectSize={selectSize} defaultSizeName={defaultSize} />
           ))}
   
           {/* {sizes.disabledSizes?.map((size, index) => (
@@ -28,7 +28,7 @@ export default function SizeSelector({ sizes, defaultSize, selectSize  }) {
     );
   }
 
-  function SizeItem({ name, defaultSizeName, selectSize }) {
+  function SizeItem({ name, defaultSizeName, selectSize, enabled }) {
     const clickHandler = () => {
       
       selectSize("Size", name)
@@ -36,10 +36,12 @@ export default function SizeSelector({ sizes, defaultSize, selectSize  }) {
   
     return (
       <button
+        title={enabled ? name : "Not available with other selected options!"}
         onClick={clickHandler}
-        className={`border-2 w-8 h-8 border-[#BEBCBD] ${
+        className={`border-2 w-8 h-8 border-[#BEBCBD] disabled:opacity-25   ${
           name === defaultSizeName ? "bg-[#1F4A40] text-white" : ""
         }`}
+        disabled={!enabled}
       >
         {name}
       </button>

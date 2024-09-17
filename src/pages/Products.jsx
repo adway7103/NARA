@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { fetchProducts } from "../apis/getAllProducts";
 import Navbar from "../components/Navbar/Navbar";
 import Categories from "../components/products/categories";
@@ -31,6 +31,15 @@ const Products = () => {
     loadProducts();
   }, []);
 
+  useEffect(() => {
+    if (!isLoading && products.length > 0) {
+      // Wait until the next frame to ensure painting
+      requestAnimationFrame(() => {
+        // alert("All products have been rendered!");
+      });
+    }
+  }, [isLoading, products]);
+
   return (
     <div>
       <NavbarRelative />
@@ -48,6 +57,7 @@ const Products = () => {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 lg:gap-x-16 p-4 place-items-center">
             {products.map((product, index) => (
+              
               <ProductItem
                 key={product.id}
                 img={product?.images?.edges[0]?.node?.src}
@@ -59,6 +69,7 @@ const Products = () => {
                 message={""}
                 productId={product.id}
               />
+              
             ))}
           </div>
         )}

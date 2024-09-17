@@ -1,13 +1,19 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Skeleton } from "@mui/material";
+import classes from "./DetailSection.module.css"
+import { useEffect, useState } from "react";
 export default function DetailSection({ title, descriptionHtml }) {
+ 
+  const theme = useSelector(state=>state.app.theme);
   const currentVariant = useSelector(
     (state) => state.activeProduct.currentVariant
   );
   const productOutOfStock = useSelector(
     (state) => state.activeProduct.outOfStock
   );
+
+
   return (
     <>
       <div className="flex flex-col xl:!gap-3 gap-1 ">
@@ -37,31 +43,19 @@ export default function DetailSection({ title, descriptionHtml }) {
           )}
         </h3>
       </div>
+
+      {/* Description HTML section */}
+
       <div className="flex flex-col gap-2">
-        <h2 className="font-bold">Description</h2>
+        <h2 className="font-bold">Description {theme}</h2>
         <div
-          className="tracking-tighter"
+          className={`prose ${theme==="dark"  && classes["text-white-recursive"]}  text-sm`}
           dangerouslySetInnerHTML={{
             __html: descriptionHtml
-
-              ?.replace(/<ul>/g, '<ul class="list-disc pl-6 mb-4">')
-              ?.replace(/<ol>/g, '<ol class="list-decimal pl-6 mb-4">')
-              ?.replace(
-                /<table>/g,
-                '<table class=" p-2 table-auto w-full border-collapse border border-gray-300 mb-4">'
-              )
-              ?.replace(
-                /<th>/g,
-                '<th class="border-2 border-gray-300 px-4 py-2 bg-gray-100 text-left">'
-              )
-              ?.replace(
-                /<td>/g,
-                '<td class="border-2 border-gray-300 px-4 py-2">'
-              )
-              ?.replace(/<tr>/g, '<tr class="border border-gray-300">'),
-          }}
-        ></div>
+          }}></div>
       </div>
+
+
     </>
   );
 }

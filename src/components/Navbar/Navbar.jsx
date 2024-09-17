@@ -2,11 +2,15 @@ import React, { useState, useEffect } from "react";
 import SliderNavbar from "./SliderNavbar";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { Link } from "react-router-dom";
-import Cart from "../Cart";
+
+import CartIcon from "../CartIcon";
+import { useDispatch } from "react-redux";
+import { setAppTheme } from "../../store";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const dispatch = useDispatch()
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -25,6 +29,7 @@ const Navbar = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
+    setAppTheme(newTheme);
   };
 
   const handleScroll = () => {
@@ -81,6 +86,7 @@ const Navbar = () => {
               )
             ) : (
               <img src="/home/navbar/icon4.svg" alt="dark mode icon" />
+              
             )}
           </button>
           {theme === "light" ? (
@@ -88,13 +94,8 @@ const Navbar = () => {
               <>
                 <img src="/home/navbar/icon1.svg" alt="light mode icon" />
                 <Link to="/profile"><img src="home/navbar/user.svg" alt="light mode icon" /></Link>
-                <Link to = "/products">
-                <img
-                  src="/home/navbar/shoppingCart.svg"
-                  className="md:flex hidden"
-                  alt="light mode icon"
-                />
-                </Link>
+                <CartIcon theme = {theme}   />
+                
                 
               </>
             ) : (
@@ -111,13 +112,7 @@ const Navbar = () => {
                   alt="light mode icon"
                 />
                 </Link>
-                <Link to={"/products"}>
-                <img
-                  src="/home/navbar/shoppingCart.svg"
-                  className="white-icon md:flex hidden"
-                  alt="light mode icon"
-                />  
-                </Link>
+                <CartIcon theme = {theme} OnHomePageHeroSection = {true}  />
               </>
             )
           ) : (
@@ -134,11 +129,7 @@ const Navbar = () => {
                 alt="light mode icon"
               />
               </Link>
-              <img
-                src="/home/navbar/shoppingCart.svg"
-                className="white-icon md:flex hidden"
-                alt="light mode icon "
-              />
+              <CartIcon theme = {theme} />
             </>
           )}
         </div>

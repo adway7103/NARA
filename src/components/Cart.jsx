@@ -1,10 +1,16 @@
 import { useEffect, useRef, useCallback, useState } from "react";
 import { HiArrowNarrowLeft } from "react-icons/hi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
-import { addItemToCart, getItemsInCart, updateLineItem } from "../apis/Cart";
+import {
+  addItemToCart,
+  getItemsInCartAPI,
+  removeCartLine,
+  updateLineItem,
+} from "../apis/Cart";
 import { Skeleton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { setProductsinCart } from "../store";
 
 function CartItem({
   src,
@@ -22,7 +28,7 @@ function CartItem({
   const [productIsUpdating, setProductIsUpdating] = useState(false);
 
   const cartId = useSelector((state) => state.cart?.id);
-  
+
   useEffect(() => {
     if (quantity) {
       setProductQuantity(quantity);
@@ -54,9 +60,16 @@ function CartItem({
   const updateCartItem = async (cartId, cartLineId, quantity) => {
     try {
       setQuantityUpdating(true);
-      const response = await updateLineItem(cartId, cartLineId, quantity);
-      const updatedQuantity =
-        response?.data?.cartLinesUpdate?.cart?.lines?.edges?.[0]?.node?.quantity;
+      const response = await updateLineItem(
+        cartId,
+        cartLineId,
+        productId,
+        quantity
+      );
+      const updatedQuantity = response; //. data.cartLinesUpdate.cart.lines.edges[1].node.merchandise.id
+
+      console.log("Updated quantity: ", updatedQuantity);
+      console.log(cartLineId);
       setProductQuantity(updatedQuantity);
     } catch (error) {
       console.error(error);
@@ -69,36 +82,48 @@ function CartItem({
     }
   };
 
-  const updateCartLine = () => {
-    if (productId && cartId) {
-      increaseTheProductQuantity(cartId, productId);
-    }
-  };
-
-  const decreaseQuantityHandler = () => {
-    if (cartId && cartLineId) {
-      updateCartItem(cartId, cartLineId, productQuantity - 1);
+  const removeProductFromCart = async (cartId, cartLineId) => {
+    try {
+      setProductIsUpdating(true);
+      const wasRemoved = await removeCartLine(cartId, cartLineId);
+      if (wasRemoved) console.log("Item was removed successfully!");
+      fetchAllItems(cartId);
+    } catch (error) {
+      if (error?.message?.includes("GraphQL error(s)")) {
+        toast.error("Something went wrong");
+      } else {
+        toast.error(error.message);
+      }
+    } finally {
+      setProductIsUpdating(false);
     }
   };
 
   const removeProductFromCarthandler = async () => {
     if (cartId && cartLineId) {
-      try {
-        setProductIsUpdating(true);
-        await updateCartItem(cartId, cartLineId, 0);
-        fetchAllItems(cartId);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setProductIsUpdating(false);
+      removeProductFromCart(cartId, cartLineId);
+    }
+  };
+
+  const increaseQuantityHandler = () => {
+    if (cartId && cartLineId) {
+      updateCartItem(cartId, cartLineId, productQuantity + 1);
+    }
+  };
+
+  const decreaseQuantityHandler = () => {
+    if (cartId && cartLineId) {
+      if (productQuantity === 1) {
+        removeProductFromCart(cartId, cartLineId);
+      } else {
+        updateCartItem(cartId, cartLineId, productQuantity - 1);
       }
-      // have to make a better function
     }
   };
 
   return (
     <>
-      <div className="flex gap-2 z-100 sm:h-32 h-24 pb-2 border-b-2   ">
+      <div className="flex gap-2 z-100 sm:h-32 h-24 pb-2 border-b-2  dark:bg-black dark:text-white">
         {productIsUpdating ? (
           <Skeleton
             variant="rectangular"
@@ -107,7 +132,11 @@ function CartItem({
         ) : (
           <>
             <div className="flex w-1/3  ">
-              <img src={src} alt="Frock" className="object-cover w-full h-full" />
+              <img
+                src={src}
+                alt="Frock"
+                className="object-cover w-full h-full"
+              />
             </div>
 
             <div className="flex sm:gap-4 sm:gap-2 items-start w-2/3 ">
@@ -120,33 +149,41 @@ function CartItem({
                   <p className="text-xs sm:text-base">
                     {pricePerItem?.currencyCode}{" "}
                     <strong className="font-black">
-                      {(pricePerItem?.amount * 1.0 * productQuantity).toFixed(2)}
+                      {(pricePerItem?.amount * 1.0 * productQuantity).toFixed(
+                        2
+                      )}
                     </strong>{" "}
                     | Size: <strong className="font-bold">{size}</strong>
                   </p>
                 </div>
-                {quantityUpdating ? (
-                  <Skeleton
-                    variant="rectangular"
-                    className=" w-full h-auto p-3 dark:bg-white"
-                  />
-                ) : (
-                  <div className="text-xs sm:text-base">
-                    <button
-                      className="px-2 bg-[#F7F7F7] border-1"
-                      onClick={updateCartLine}
-                    >
-                      +
-                    </button>{" "}
-                    {productQuantity}{" "}
-                    <button
-                      className="px-2 bg-[#F7F7F7] border-1"
-                      onClick={decreaseQuantityHandler}
-                    >
-                      &mdash;{" "}
-                    </button>
-                  </div>
-                )}
+
+                <div className="text-xs sm:text-base flex flex-row gap-2">
+                  <button
+                    className="disabled:text-gray-400 px-2 bg-[#F7F7F7] border-1 dark:bg-black dark:text-white"
+                    onClick={increaseQuantityHandler}
+                    disabled={quantityUpdating}
+                  >
+                    +
+                  </button>{" "}
+                  {quantityUpdating ? (
+                    <Skeleton
+                      variant="rectangular"
+                    
+                      width={"20px"}
+                      height={"100%"}
+                      className=" dark:bg-white  "
+                    />
+                  ) : (
+                    <p className="  w-[20px] flex items-center justify-center ">{productQuantity}</p>
+                  )}
+                  <button
+                    className="disabled:text-gray-400 px-2 bg-[#F7F7F7] border-1 dark:bg-black dark:text-white"
+                    onClick={decreaseQuantityHandler}
+                    disabled={quantityUpdating}
+                  >
+                    &mdash;{" "}
+                  </button>
+                </div>
               </div>
               {/* delete button */}
               <button className="w-1/6" onClick={removeProductFromCarthandler}>
@@ -181,9 +218,12 @@ const useDebounce = (fn, delay) => {
 export default function Cart({ toggleCartOpen }) {
   const [itemsQuantity, setItemsQuantity] = useState(0);
   const [checkoutURL, setCheckoutUrl] = useState(null);
-  const [products, setProducts] = useState(null);
+  // const [products, setProducts] = useState(null);
+  const productsInCart = useSelector(state=>state.cart.productsInCart);
+  const dispatch = useDispatch();
   const cartRef = useRef(null);
   const cartId = useSelector((state) => state.cart?.id);
+  const [cartLoading, setCartLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -195,41 +235,69 @@ export default function Cart({ toggleCartOpen }) {
 
   const checkOutHandler = () => {
     if (!checkoutURL) return alert("Checkout Url does not exist");
+    if (itemsQuantity === 0)
+      return toast.error(
+        "You have no items in the cart! Please add products first!"
+      );
     window.open(checkoutURL);
   };
 
   const fetchAllItems = async (cartId) => {
     try {
-      const response = await getItemsInCart(cartId);
+      setCartLoading(true);
+      setItemsQuantity(0); // so that the checkout button can be disabled
+      const response = await getItemsInCartAPI(cartId);
       const itemsQuantity = response?.totalQuantity;
       setItemsQuantity(itemsQuantity);
       setCheckoutUrl(response?.checkoutUrl);
       const products = response?.lines?.edges;
-      setProducts(products);
+      dispatch(setProductsinCart(products));
     } catch (error) {
       console.error(error);
       if (error?.message?.includes("GraphQL error(s)")) {
         toast.error("Something went wrong");
-        // proceed to delete the cartId from localstorage and redux
+      } else if (error?.meesage) {
+        toast.error(error.message);
+      } else {
+        toast.error("Something went wrong!");
       }
+    } finally {
+      setCartLoading(false);
     }
   };
 
   const continueShoppingHandler = () => {
-    navigate("/products");
+    toggleCartOpen();
   };
 
-  useEffect(() => {
-    if (cartId) {
-      fetchAllItems(cartId);
-    }
-  }, [cartId]);
+  // useEffect(() => {
+  //   if (cartId) {
+  //     fetchAllItems(cartId);
+  //   }
+  // }, [cartId]);
+
+  useEffect(()=>{
+    console.log(productsInCart);
+  }, [productsInCart])
+
+  // const handleClickOutside = (event) => {
+  //   if (cartRef.current && !cartRef.current.contains(event.target)) {
+  //     toggleCartOpen();
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, []);
 
   return (
     <>
       <div
         ref={cartRef}
-        className="border-2 fixed z-[10000]  top-0 bottom-0 right-0  bg-white w-[100vw] sm:w-[500px] "
+        className={`border-2 fixed z-[100]  top-0 bottom-0 right-0   transition-transform duration-300 ease-in-out bg-[#ffff] w-[100vw] sm:w-[500px] dark:!bg-black dark:!text-white `}
       >
         <div className=" flex items-center justify-between border-b-2 p-4">
           <h1 className="text-2xl font-black ">MY CART</h1>
@@ -240,42 +308,61 @@ export default function Cart({ toggleCartOpen }) {
             &times;
           </button>
         </div>
-      <div className="flex flex-col  h-full pb-4">
-        <div className="flex flex-col gap-4 h-5/6 p-4">
-          <h2 className="font-black ">Added Products ({itemsQuantity}) </h2>
-          {/* cartItems */}
-          <div className="flex flex-col gap-2  overflow-auto">
-            {products?.map((el) => (
-              <CartItem
-                setItemsQuantity={setItemsQuantity}
-                key={el?.node?.id}
-                cartLineId={el?.node?.id}
-                src={el?.node?.merchandise?.image?.src}
-                quantity={el?.node?.quantity}
-                title={el?.node?.merchandise?.product?.title}
-                pricePerItem={el?.node?.merchandise?.price}
-                productId={el?.node?.merchandise?.id}
-                fetchAllItems={fetchAllItems}
-                size={
-                  el?.node?.merchandise?.selectedOptions?.find(
-                    (el) => el?.name === "Size"
-                  )?.value
-                }
+        <div className="flex flex-col  h-full pb-4">
+          <div className="flex flex-col gap-4 h-5/6 p-4">
+            {cartLoading ? (
+              <Skeleton
+                variant="rectangular"
+                width={"100%"}
+                height={"100%"}
+                className=" p-3 dark:bg-white"
               />
-            ))}
+            ) : (
+              <>
+                <h2 className="font-black ">
+                  Added Products ({itemsQuantity}){" "}
+                </h2>
+                {/* cartItems */}
+                <div className="flex flex-col gap-2  overflow-auto">
+                  {productsInCart?.map((el) => (
+                    <CartItem
+                      setItemsQuantity={setItemsQuantity}
+                      key={el?.node?.id}
+                      cartLineId={el?.node?.id}
+                      src={el?.node?.merchandise?.image?.src}
+                      quantity={el?.node?.quantity}
+                      title={el?.node?.merchandise?.product?.title}
+                      pricePerItem={el?.node?.merchandise?.price}
+                      productId={el?.node?.merchandise?.id}
+                      fetchAllItems={fetchAllItems}
+                      size={
+                        el?.node?.merchandise?.selectedOptions?.find(
+                          (el) => el?.name === "Size"
+                        )?.value
+                      }
+                    />
+                  ))}
+                </div>
+              </>
+            )}
           </div>
-        </div>
-        <div className="flex justify-around font-outfit ">
-            <button onClick={continueShoppingHandler} className="text-[#1F4A40] border-1 border-[#1F4A40] px-2 py-1 flex items-center gap-2">
+          <div className="flex justify-around font-outfit ">
+            <button
+              onClick={continueShoppingHandler}
+              className="text-[#1F4A40] dark:text-[#ffff] border-1 border-[#1F4A40] px-2 py-1 flex items-center gap-2"
+            >
               <HiArrowNarrowLeft /> Continue Shopping
             </button>
-            <button onClick={checkOutHandler} className=" bg-[#1F4A40] px-2 py-1 text-[#ffff]">
+            <button
+              onClick={checkOutHandler}
+              className="disabled:opacity-50  bg-[#1F4A40] px-2 py-1 text-[#ffff]"
+              disabled={itemsQuantity > 0 ? false : true}
+            >
               Continue to Checkout
             </button>
           </div>
-      </div>
+        </div>
       </div>
     </>
   );
 }
-

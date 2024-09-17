@@ -12,7 +12,6 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.6.0",
     "@reduxjs/toolkit": "^2.2.7",
-    "@tailwindcss/typography": "^0.5.15",
     "axios": "^1.7.4",
     "mui-tel-input": "^5.1.2",
     "react": "^18.3.1",
@@ -27,6 +26,7 @@
   "devDependencies": {
     "@eslint/js": "^9.8.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/typography": "^0.5.15",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
