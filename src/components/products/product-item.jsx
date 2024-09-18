@@ -1,10 +1,13 @@
 import { formatToINR } from "../global/convert-to-inr";
 import {  FaRegBookmark } from "react-icons/fa6";
 import { FaBookmark } from "react-icons/fa6";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { GoPlus, GoDash } from "react-icons/go";
 import { toast } from "sonner";
 import { Link, useNavigate } from "react-router-dom";
+
+import Skeleton from '@mui/material/Skeleton';
+import Box from '@mui/material/Box';
 
 
 const ProductItem = ({ colors, setActiveProductColor, name, discount, message, price, img, productId  }) => {
@@ -12,7 +15,8 @@ const ProductItem = ({ colors, setActiveProductColor, name, discount, message, p
     const navigate = useNavigate();  
     const [bookmark, setBookmark] = useState(false)
     const [addToCart, setAddToCart] = useState(false)
-    const [productCount, setProductCount] = useState(0)
+    const [productCount, setProductCount] = useState(0);
+    const [loadingImage, setLoadingImage] = useState(true);
 
     const handleBookmark = ()  => {
       setBookmark(!bookmark);
@@ -42,13 +46,10 @@ const ProductItem = ({ colors, setActiveProductColor, name, discount, message, p
 
     return (
       <Link to={`/product/${productId}`}>
-      <div className="font-sans max-w-sm cursor-pointer hover:brightness-75" onClick={productClickHandler} >
+      <div className="font-sans xl:w-[350px] w-[350px] cursor-pointer hover:brightness-75" onClick={productClickHandler} >
         <div className="w-full md:h-[400px] h-[477px] lg:h-[477px] relative">
-          <img 
-            src={img}
-            alt={`product-model-${name}`}
-            className=" w-full h-full object-cover"
-          />
+         <ImageWithSkeleton img={img} name={name} />
+        
           <div className="absolute w-full bottom-0">
             <div className="flex gap-2.5 p-3">
               {discount && (
@@ -112,4 +113,36 @@ const ProductItem = ({ colors, setActiveProductColor, name, discount, message, p
       
     );
   }
+
+
+function ImageWithSkeleton({ img, name }) {
+  const [loadingImage, setLoadingImage] = useState(true);
+
+  return (
+    
+
+<Box sx={{ width: '100%', height: '100%' }}>
+      {loadingImage && (
+        <Skeleton 
+          variant="rectangular" 
+          width="100%" 
+          height="100%" 
+          sx={{ bgcolor: 'grey.300' }} 
+        />
+      )}
+      <img 
+        src={img} 
+        alt={`product-model-${name}`} 
+        className={`${loadingImage? "opacity-0": "opacity-100"} w-full h-full object-cover `} 
+        onLoad={() => setLoadingImage(false)} 
+     
+      />
+    </Box>
+
+    
+  );
+}
+
+
+
   

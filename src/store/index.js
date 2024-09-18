@@ -22,8 +22,6 @@ const userSlice = createSlice({
       state.fullName = action.payload.fullName;
       state.email = action.payload.email;
       state.phone = action.payload.phone;
-      state.defaultAddressId = action.payload.defaultAddressId;
-      state.defaultAddress = action.payload.defaultAddress;
     },
     setFullName(state, action){
         state.fullName = action.payload.firstName+ " " + action.payload.lastName;
@@ -60,11 +58,21 @@ const cartSlice = createSlice({
   initialState: {
     id: null,
     checkoutUrl: null,
+    totalQuantity: 0,
+    productsInCart: null
   },
   reducers: {
-    setActiveCart(state, action){
-      state.id = action.payload.id;
-      state.checkoutUrl = action.payload.checkoutUrl;
+    setActiveCartId(state, action){
+      state.id = action.payload;
+    },
+    setTotalQuantityInCart(state, action){
+      state.totalQuantity = action.payload;
+    },
+    setProductsinCart(state, action){
+      state.productsInCart = action.payload;
+    },
+    setCheckoutUrl(state, action){
+      state.checkoutUrl = action.payload;
     }
   }
 
@@ -89,12 +97,26 @@ const activeProductSlice = createSlice({
 })
 
 
+const appSlice = createSlice({
+  name: "app",
+  initialState: {
+    theme: "light",
+
+  },
+  reducers: {
+    setAppTheme(state, action){
+      state.theme = action.payload;
+    }
+  }
+})
 
 const store = configureStore({
   reducer: {
     user: userSlice.reducer, 
     activeProduct: activeProductSlice.reducer,
-    cart: cartSlice.reducer
+    cart: cartSlice.reducer,
+    app: appSlice.reducer
+   
   },
 });
 
@@ -102,5 +124,7 @@ const store = configureStore({
 
 export const { setUser, setFullName, setEmail, setPhone, setAddresses, setAuthStatus, setDefaultAddressId, setDefaultAddress, setAreAddressesLoading } = userSlice.actions;
 export const {setCurrentVariant, setOutOfStock} = activeProductSlice.actions;
-export const {setActiveCart} = cartSlice.actions;
+export const {setActiveCartId, setCheckoutUrl,setTotalQuantityInCart, setProductsinCart} = cartSlice.actions;
+export const {setAppTheme} = appSlice.actions;
+
 export default store;

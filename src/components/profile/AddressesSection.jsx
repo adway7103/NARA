@@ -59,6 +59,7 @@ export default function AddressesSection() {
             phone={address.phone}
             addressId={address.id}
             province = {address.province}
+            fullAddressObject = {address}
           />
         ))}
       </div>

@@ -13,6 +13,15 @@ export async function addAddressAPI(address) {
         }
         customerAddress {
           id
+          address1
+          address2
+          city
+          country
+          firstName
+          lastName
+          phone
+          province
+          zip
         }
       }
     }
@@ -145,3 +154,101 @@ export async function getAddressesAPI() {
   export async function getShippingProfiles(){
 
   }
+
+  export async function deleteAddressAPI(customerAccessToken, addressId) {
+    const query = `mutation customerAddressDelete($addressId: ID!, $customerAccessToken: String!) {
+    customerAddressDelete(id: $addressId, customerAccessToken: $customerAccessToken) {
+      deletedCustomerAddressId
+      customerUserErrors {
+        field
+        message
+      }
+    }
+  }`;
+  
+    const variables = {
+      customerAccessToken,
+      addressId
+    };
+  
+    try {
+      const response = await api.post("", {
+        query,
+        variables,
+      });
+  
+      if (response.data.errors) {
+        const errorMessages = response.data.errors
+          .map((error) => error.message)
+          .join(", ");
+        throw new Error(`GraphQL error(s): ${errorMessages}`);
+      }
+      
+      const customerAddressDelete = response?.data?.data?.customerAddressDelete;
+      const deletedCustomerAddressId = customerAddressDelete?.deletedCustomerAddressId;
+      const customerUserErrors = customerAddressDelete?.customerUserErrors[0]?.message;
+    
+  
+      if (!deletedCustomerAddressId) {
+      
+        throw new Error( customerUserErrors );
+        
+      }
+  
+      return deletedCustomerAddressId;
+    } catch (error) {
+      console.error("Could not delete the address:", error.message);
+      throw error;
+    }
+  }
+
+//   export async function getDefaultAddressAPI (customerAccessToken){
+//     const query = `{
+//     customer(customerAccessToken: ${customerAccessToken}) {
+//       defaultAddress {
+//         address1
+//         address2
+//         city
+//         country
+//         firstName
+//         lastName
+//         phone
+//         province
+//         zip
+//       }
+//     }
+// }`
+
+// try {
+//   const response = await api.post("", {
+//     query
+//   });
+
+//   if (response.data.errors) {
+//     const errorMessages = response.data.errors
+//       .map((error) => error.message)
+//       .join(", ");
+//     throw new Error(`GraphQL error(s): ${errorMessages}`);
+//   }
+  
+
+//   const defaultAddress = "";
+
+//   // see what it returns when there is no default address!
+
+
+//   if (!deletedCustomerAddressId) {
+  
+//     throw new Error( customerUserErrors );
+    
+//   }
+
+//   return deletedCustomerAddressId;
+// } catch (error) {
+//   console.error("Could not delete the address:", error.message);
+//   throw error;
+// }
+
+
+
+//   }

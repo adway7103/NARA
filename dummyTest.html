@@ -264,65 +264,62 @@ const variants = {
         }
     ]
 };
-
 let availableVariants = variants.edges;
 console.log("all variants: ", availableVariants);
-let variantsInStock = availableVariants.filter(el=>parseInt(el.node.quantityAvailable)>0);
-
-
+let variantsInStock = availableVariants.filter(el => parseInt(el.node.quantityAvailable) > 0);
 console.log("Variants that are in stock: ", variantsInStock);
 
-const lowestPricedVariant = variantsInStock.reduce((prev,cur)=>{
-    return +cur.node.price.amount < +prev.node.price.amount ? cur : prev;
-});
-
-
-
-console.log("Lowest Priced Variant: ", lowestPricedVariant)
-let options = [
-    {name: "Color", values: ["Black", "Gray"]},
-    {name: "Fabric", values: ["Silk", "Cotton"]},
-    {name: "Size", values: ["S", "M", "L"]},
-    
-];
-
-const availableOptions = options.map(el=>el.name);
-console.log("Available options", availableOptions);
-
-
-function findVariant (OptionsWithValues){
-      const variant = variantsInStock.find((item) => {
+const findVariant = (optionsWithValues) => {
+    return variantsInStock.find(item => {
         const selectedOptions = item.node.selectedOptions;
-    
-        return selectedOptions.every(
-          (option) => OptionsWithValues[option.name] === option.value
-        );
-      });
+        return selectedOptions.every(option => optionsWithValues[option.name] === option.value);
+    });
+};
 
-      console.log("matched node: ", variant)
+const optionChoices = {
+    Color: [
+        {name: "Black", enabled: true},
+        {name: "Gray", enabled: true}
+    ],
+    Size: [
+        {name: "S", enabled: true},
+        {name: "M", enabled: true},
+        {name: "L", enabled: true}
+    ],
+    Fabric: [
+        {name: "Silk", enabled: true},
+        {name: "Cotton", enabled: true}
+    ]
+};
 
+const selectedOptions = {Color: "Black", Size: "S", Fabric: "Silk"};
 
-}
+const updateOptionStatuses = () => {
+    Object.keys(optionChoices).forEach(optionKey => {
+        const currentOption = optionKey;
+        const optionValues = optionChoices[currentOption].map(el => el.name);
 
+        optionValues.forEach(value => {
+            // Create a new selection with the current option value
+            const newSelection = {...selectedOptions, [currentOption]: value};
+            // Check if this combination exists as a variant
+            const variantExists = findVariant(newSelection);
+            // Update the enabled status based on whether the variant exists
+            optionChoices[currentOption] = optionChoices[currentOption].map(opt => 
+                opt.name === value ? { ...opt, enabled: !!variantExists } : opt
+            );
+        });
+    });
 
-findVariant({Color: "Black", Size: "S", Fabric: "Silk"});
-const selectedOptions= {Color: "Black", Size: "S", Fabric: "Silk"};
-const ColorOptionValues = options.find(el=>el.name==="Color").values;
-console.log("Color Option Values: ", ColorOptionValues);
-console.log("Color Item Already Selected: ", "Black");
-console.log("Remaining Color values: ", ColorOptionValues.filter(el=>el!=="Black"));
+    console.log("Updated option choices with enabled statuses:", optionChoices);
+};
 
-const remainingColorValues =  ColorOptionValues.filter(el=>el!=="Black");
+updateOptionStatuses();
+// remainingOptions.forEach(el=>{
+//     console.log(selectedOptions[el], )
+// })
 
-remainingColorValues.forEach(el=>{
-    console.log(selectedOptions);
-    console.log("")
-    console.log(el, selectedOptions.Size, selectedOptions.Fabric)
-    // object.keys(selectedOptions).forEach(key=>{
-
-    // })
-})
-
+// });
 
 
 

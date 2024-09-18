@@ -1,14 +1,26 @@
 import React from "react";
 import topVideo from "../../assets/home/backgroundVideo.mp4";
+import topImage from "../../assets/home/backgroundImage.png"
 import CarouselImage from "../../assets/home/carouselImage.jpeg";
+import { useState } from "react";
 const TopSection = () => {
+  const [videoLoaded, setVideoLoaded] = useState(false);
   return (
     <div
       id="carouselExampleSlidesOnly"
       className="carousel slide relative"
       data-bs-ride="carousel">
-      <div className="carousel-inner h-screen">
+      <div className="carousel-inner h-screen bg-black">
         <div className="carousel-item active relative w-full h-full ">
+         <img
+            
+            src={topImage}
+            className={`${!videoLoaded ? "block " : "hidden"} w-full h-full object-cover`}
+            alt="slide1"
+            
+            
+          />
+          
           <video
             autoPlay
             loop
@@ -16,7 +28,10 @@ const TopSection = () => {
             src={topVideo}
             className="bloc d-block w-full h-full object-cover"
             alt="slide1"
+            onCanPlay={()=>{   setVideoLoaded(true); }}
+            
           />
+
         </div>
         <div className="carousel-item relative w-full h-full">
           <img

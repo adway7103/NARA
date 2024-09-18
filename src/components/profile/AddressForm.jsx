@@ -58,9 +58,10 @@ export default function AddressForm({ closeForm }) {
   const addAddress = async (data) => {
     try {
       setIsSubmitting(true);
-      await addAddressAPI(data);
+      const customerAddress = await addAddressAPI(data);
+      
       toast.success("New Address Added Successfully!");
-      dispatch(setAddresses([...currentAddresses, data]));
+      dispatch(setAddresses([...currentAddresses, customerAddress]));
       closeForm();
     } catch (err) {
       console.log(err);

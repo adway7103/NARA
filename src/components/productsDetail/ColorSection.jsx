@@ -10,10 +10,16 @@ export default function ColorSection({
   const [availableColors, setAvailableColors] = useState([]);
 
   useEffect(() => {
-  
-    setAvailableColors(
-      colors.filter((el) => availableChoices.includes(el.name))
-    );
+    const allColorsWithValues = colors;
+    const availableColorChoices = availableChoices;
+    const updatedColorChoices = availableColorChoices.map(colorObject=>{
+      const value = allColorsWithValues.find(colorElement=>colorElement.name==colorObject.name).value;
+      return {name: colorObject.name, value, enabled: colorObject.enabled}
+    });
+
+    setAvailableColors(updatedColorChoices);
+
+   
   }, [availableChoices, colors]);
 
   return (
@@ -32,6 +38,7 @@ export default function ColorSection({
             image={el.image}
             defaultColor={defaultColor}
             selectColor = {selectColor}
+            enabled = {el.enabled}
           />
         ))}
       </div>
@@ -39,9 +46,12 @@ export default function ColorSection({
   );
 }
 
-function SingleColorItem({ name, value, image, defaultColor, selectColor }) {
+function SingleColorItem({ name, value, image, defaultColor, selectColor, enabled }) {
   const clickHandler = () => {
+    
+    if(enabled)
     selectColor("Color", name);
+    
   };
 
   return (
@@ -53,19 +63,25 @@ function SingleColorItem({ name, value, image, defaultColor, selectColor }) {
       }`}
       style={{ backgroundColor: "white" }}
     >
+
+
       <button
-        title={`${name}`}
-        className="relative w-full h-full rounded-full "
+        disabled={!enabled}
+        title={enabled ? name : "Not available with other selected options!"}
+        className={`relative w-full h-full rounded-full disabled:opacity-25 `}
         style={{
           backgroundColor: value || "white",
           backgroundImage: image ? `url(${image})` : "none",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
+          
         }}
         onClick={clickHandler}
       >
-        {/* Content if needed */}
+        {!enabled && <div className="bg-red-500 p-[1px] shadow--lg rotate-45   ">
+          
+          </div>}
       </button>
     </div>
   );

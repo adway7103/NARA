@@ -32,7 +32,7 @@ export async function getCheckoutURL() {
   }
 }
 
-export async function updateBuyersIndentity() {
+export async function updateBuyersIndentity(cartId, email, deliveryAddress) {
   const query = `mutation updateCartBuyerIdentity($buyerIdentity: CartBuyerIdentityInput!, $cartId: ID!) {
   cartBuyerIdentityUpdate(buyerIdentity: $buyerIdentity, cartId: $cartId) {
     cart {
@@ -62,24 +62,15 @@ export async function updateBuyersIndentity() {
 
   const variables = {
     buyerIdentity: {
-      countryCode: "CA",
+      countryCode: "IN",
       deliveryAddressPreferences: [
         {
-          deliveryAddress: {
-            address1: "123 Fake St.",
-            city: "Bagaha",
-            country: "India",
-            firstName: "Alice",
-            lastName: "Bob",
-            province: "BIHAR",
-            zip: "845101",
-          },
+          deliveryAddress,
         },
       ],
-      email: "example-email@shopify.com",
+      email,
     },
-    cartId:
-      "gid://shopify/Cart/Z2NwLWFzaWEtc291dGhlYXN0MTowMUo3TkRSRUVQUlFZRFNGRDFIRUdaWTFIVw?key=6759ee7ff43d13cd750fd6f6adaee088",
+    cartId,
   };
 
   try {
@@ -97,17 +88,17 @@ export async function updateBuyersIndentity() {
 
     const cart = response.data;
     if (!cart) {
-      throw new Error("No customer data found");
+      throw new Error("could not update buyer's identity");
     }
 
     return cart;
   } catch (error) {
-    console.error("Could not fetch account details:", error.message);
+    console.error("Could not update cart details:", error.message);
     throw error;
   }
 }
 
-export default async function createCart(itemId) {
+export async function createAuthenticatedCart(variantId, customerAccessToken) {
   const query = `mutation createCart($cartInput: CartInput) {
   cartCreate(input: $cartInput) {
     cart {
@@ -115,13 +106,36 @@ export default async function createCart(itemId) {
       createdAt
       updatedAt
       checkoutUrl
-      lines(first: 10) {
+      totalQuantity
+      buyerIdentity {
+        customer {
+          id
+          email
+        }
+      }
+      lines(first: 200) {
         edges {
           node {
             id
+            quantity
             merchandise {
               ... on ProductVariant {
                 id
+                title
+                price {
+                  amount
+                  currencyCode
+                }
+                image {
+                  src
+                }
+                selectedOptions {
+                  name
+                  value
+                }
+                product {
+                  title
+                }
               }
             }
           }
@@ -148,6 +162,107 @@ export default async function createCart(itemId) {
     }
   }
 }
+
+  `;
+
+  const variables = {
+    cartInput: {
+      buyerIdentity: {
+        customerAccessToken: customerAccessToken,
+      },
+      lines: [
+        {
+          quantity: 1,
+          merchandiseId: variantId,
+        },
+      ],
+    },
+  };
+
+  try {
+    const response = await api.post("", {
+      query,
+      variables,
+    });
+
+    if (response.data.errors) {
+      const errorMessages = response.data.errors
+        .map((error) => error.message)
+        .join(", ");
+      throw new Error(`GraphQL error(s): ${errorMessages}`);
+    }
+
+    const cart = response.data.data.cartCreate.cart;
+    if (!cart) {
+      throw new Error("Could not create cart! Try again later!");
+    }
+    console.log(cart);
+    return cart;
+  } catch (error) {
+    console.error("Could not create cart:", error.message);
+    throw error;
+  }
+}
+
+export default async function createCart(itemId) {
+  const query = `mutation createCart($cartInput: CartInput) {
+  cartCreate(input: $cartInput) {
+    cart {
+      id
+      createdAt
+      updatedAt
+      checkoutUrl
+      totalQuantity
+      lines(first: 200) {
+        edges {
+          node {
+            id
+            quantity
+            merchandise {
+              ... on ProductVariant {
+                id
+                title
+                price {
+                  amount
+                  currencyCode
+                }
+                image {
+                  src
+                }
+                selectedOptions {
+                  name
+                  value
+                }
+                product {
+                  title
+                }
+              }
+            }
+          }
+        }
+      }
+      cost {
+        totalAmount {
+          amount
+          currencyCode
+        }
+        subtotalAmount {
+          amount
+          currencyCode
+        }
+        totalTaxAmount {
+          amount
+          currencyCode
+        }
+        totalDutyAmount {
+          amount
+          currencyCode
+        }
+      }
+    }
+  }
+}
+
 `;
 
   const variables = {
@@ -174,11 +289,11 @@ export default async function createCart(itemId) {
       throw new Error(`GraphQL error(s): ${errorMessages}`);
     }
 
-    const cart = response.data;
+    const cart = response.data.data.cartCreate.cart;
     if (!cart) {
       throw new Error("Could not create cart! Try again later!");
     }
-
+    console.log(cart);
     return cart;
   } catch (error) {
     console.error("Could not create cart:", error.message);
@@ -186,7 +301,7 @@ export default async function createCart(itemId) {
   }
 }
 
-export async function getItemsInCart(cartId) {
+export async function getItemsInCartAPI(cartId) {
   const query = `query cartQuery($cartId: ID!) {
   cart(id: $cartId) {
     id
@@ -194,7 +309,7 @@ export async function getItemsInCart(cartId) {
     updatedAt
     checkoutUrl
     totalQuantity
-    lines(first: 10) {
+    lines(first: 200) {
       edges {
         node {
           id
@@ -293,49 +408,52 @@ export async function getItemsInCart(cartId) {
 export async function addItemToCart(cartId, variantId) {
   const query = `
     mutation addCartLines($cartId: ID!, $lines: [CartLineInput!]!) {
-      cartLinesAdd(cartId: $cartId, lines: $lines) {
-        cart {
-          id
-          lines(first: 10){
-            edges
-            {
-              node{
-                quantity
-                merchandise{
-                  ... on ProductVariant {
-                    id
-                  }
+  cartLinesAdd(cartId: $cartId, lines: $lines) {
+    cart {
+      id
+      createdAt
+      updatedAt
+      checkoutUrl
+      totalQuantity
+      lines(first: 200) {
+        edges {
+          node {
+            id
+            quantity
+            merchandise {
+              ... on ProductVariant {
+                id
+                title
+                price {
+                  amount
+                  currencyCode
+                }
+                image {
+                  src
+                }
+                selectedOptions {
+                  name
+                  value
+                }
+                product {
+                  title
                 }
               }
             }
-          }
-          cost {
-            totalAmount {
-              amount
-              currencyCode
-            }
-            subtotalAmount {
-              amount
-              currencyCode
-            }
-            totalTaxAmount {
-              amount
-              currencyCode
-            }
-            totalDutyAmount {
-              amount
-              currencyCode
+            attributes {
+              key
+              value
             }
           }
-        }
-        
-        
-        userErrors {
-          field
-          message
         }
       }
     }
+    userErrors {
+      field
+      message
+    }
+  }
+}
    `;
 
   const variables = {
@@ -364,21 +482,21 @@ export async function addItemToCart(cartId, variantId) {
       throw new Error("Could not add the item to the cart!");
     }
 
-    return cart;
+    return cart.data.cartLinesAdd.cart;
   } catch (error) {
     console.error("Could not add items to the cart: ", error.message);
     throw error;
   }
 }
 
-
-export async function updateLineItem (cartId, lineId, quantity){
- const query = `
+export async function updateLineItem(cartId, lineId, variantId, quantity) {
+  const query = `
   mutation updateCartLines($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
     cartLinesUpdate(cartId: $cartId, lines: $lines) {
       cart {
         id
-        lines(first: 10) {
+        totalQuantity
+        lines(first: 200) {
           edges {
             node {
               id
@@ -413,16 +531,14 @@ export async function updateLineItem (cartId, lineId, quantity){
     }
   }
  
- ` 
-  const variables = 
-  {
-    "cartId": cartId,
-    "lines": {
-      "id": lineId,
-      "quantity": quantity
-    }
-  }
-
+ `;
+  const variables = {
+    cartId: cartId,
+    lines: {
+      id: lineId,
+      quantity: quantity,
+    },
+  };
 
   try {
     const response = await api.post("", {
@@ -439,12 +555,95 @@ export async function updateLineItem (cartId, lineId, quantity){
 
     const cartLine = response.data;
     if (!cartLine) {
-      throw new Error("Could update cart line!");
+      throw new Error("Could not update cart line!");
     }
 
-    return cartLine;
+    const updatedQuantity =
+      cartLine.data?.cartLinesUpdate?.cart?.lines?.edges?.find(
+        (el) => el.node.merchandise.id === variantId
+      )?.node?.quantity;
+
+    return updatedQuantity;
   } catch (error) {
-    console.error("Could update cart line item: ", error.message);
+    console.error("Could not update cart line item: ", error.message);
+    throw error;
+  }
+}
+
+export async function removeCartLine(cartId, lineId) {
+  const query = `mutation removeCartLines($cartId: ID!, $lineIds: [ID!]!) {
+  cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
+    cart {
+      id
+      totalQuantity
+      lines(first: 200){
+        edges
+        {
+          node{
+            quantity
+            merchandise{
+              ... on ProductVariant {
+                id
+              }
+            }
+          }
+        }
+      }
+      cost {
+        totalAmount {
+          amount
+          currencyCode
+        }
+        subtotalAmount {
+          amount
+          currencyCode
+        }
+        totalTaxAmount {
+          amount
+          currencyCode
+        }
+        totalDutyAmount {
+          amount
+          currencyCode
+        }
+      }
+    }
+    
+    userErrors {
+      field
+      message
+    }
+  }
+}
+`;
+  const variables = {
+    cartId: cartId,
+    lineIds: [lineId],
+  };
+
+  try {
+    const response = await api.post("", {
+      query,
+      variables,
+    });
+
+    if (response.data.errors) {
+      const errorMessages = response.data.errors
+        .map((error) => error.message)
+        .join(", ");
+      throw new Error(`GraphQL error(s): ${errorMessages}`);
+    }
+
+    const userErrors = response?.data?.data?.cartLinesRemove?.userErrors.length;
+    if (userErrors) {
+      throw new Error(
+        "Could not remove the CartLine. Try refreshing the page!"
+      );
+    }
+
+    return true;
+  } catch (error) {
+    console.error("Could remove cart line item: ", error.message);
     throw error;
   }
 }

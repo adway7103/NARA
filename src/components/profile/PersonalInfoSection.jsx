@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "../../store";
 import { useEffect } from "react";
 import getAccountDetailsAPI from "../../apis/getAccoutDetailsAPI";
-import { setAuthStatus } from "../../store";
+import { setAuthStatus, setDefaultAddressId, setDefaultAddress } from "../../store";
 import { useNavigate } from "react-router-dom";
 export default function PersonalInfoSection() {
     const dispatch = useDispatch();
@@ -19,9 +19,16 @@ export default function PersonalInfoSection() {
         const customerName = customer.firstName + " " + customer.lastName;
         const customerEmail = customer.email;
         const customerPhone = customer.phone;
-        const defaultAddressId = customer.defaultAddress.id.split("?")[0];
+        dispatch(setUser({ id: customer.id, fullName: customerName, email: customerEmail, phone: customerPhone}));
+        // check if the customer has default address or not
         const defaultAddress = customer.defaultAddress;
-        dispatch(setUser({ id: customer.id, fullName: customerName, email: customerEmail, phone: customerPhone, defaultAddressId, defaultAddress }));
+        if(!defaultAddress) return console.log("The customer has no default address set yet!");
+        const defaultAddressId = defaultAddress.id.split("?")[0];
+        console.log("The customer has a default address!", defaultAddress);
+
+        dispatch(setDefaultAddressId(defaultAddressId));
+        dispatch(setDefaultAddress(defaultAddress));
+        
       } catch (error) {
         console.error("could not fetch account details: " + error.message);
         localStorage.removeItem("accessToken");

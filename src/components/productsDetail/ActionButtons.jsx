@@ -1,13 +1,18 @@
 import { FaPlus } from "react-icons/fa";
 import { MdBookmarkBorder } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import createCart, { addItemToCart, getItemsInCart } from "../../apis/Cart";
+import createCart, { addItemToCart, createAuthenticatedCart, getItemsInCartAPI } from "../../apis/Cart";
 import { toast } from "sonner";
-import { setActiveCart } from "../../store";
+import { setActiveCartId, setCheckoutUrl, setProductsinCart, setTotalQuantityInCart } from "../../store";
 import { useState } from "react";
+import Spinner from "../utils/Spinner";
+import CartToast from "../utils/CartToast";
+import { ToastContainer, toast as customToast } from "react-toastify";
 export default function ActionButtons() {
-
   const [addingToThecart, setAddingToTheCart] = useState(false);
+  const [buyNowBtnClicked, setBuyNowBtnClicked] = useState(false);
+  const isAuthenticated = useSelector(state=>state.user.isAuthenticated);
+  const accessToken = useSelector(state=>state.user.accessToken);
 
   const currentVariant = useSelector(
     (state) => state.activeProduct.currentVariant
@@ -20,36 +25,71 @@ export default function ActionButtons() {
 
   const createCartWithOneitem = async (variantId) => {
     try {
-      const response = await createCart(variantId);
-      const cartId = response.data.cartCreate.cart.id;
-      const checkoutUrl = response.data.cartCreate.cart.checkoutUrl;
-      toast.success("Item added to cart successfully!");
-      dispatch(setActiveCart({ id: cartId, checkoutUrl }));
+
+      setAddingToTheCart(true);
+      const cart = await createCart(variantId);
+      const cartId = cart.id;
+      const checkoutUrl = cart.checkoutUrl;
+      customToast(<CartToast />)
+      dispatch(setActiveCartId(cartId));
+      dispatch(setCheckoutUrl(checkoutUrl));
+      dispatch(setProductsinCart(cart.lines.edges));
+      dispatch(setTotalQuantityInCart(cart.totalQuantity));
       localStorage.setItem("cartId", cartId);
       localStorage.setItem("checkoutUrl", checkoutUrl);
     } catch (error) {
       console.error(error);
       toast.error(error.message);
+    }finally{
+      setAddingToTheCart(false);
     }
   };
 
-  const addAnotherItemToTheCart = async(cartId, variantId)=>{
+  const createLoggedInCart = async(variantId, customerAccessToken)=>{
     try {
-      setAddingToTheCart(true)
-      const response = await addItemToCart(cartId, variantId);
-      console.log(response);
-      toast.success("1 item added to the cart!")
-
+      setAddingToTheCart(true);
+      const cart = await createAuthenticatedCart(variantId, customerAccessToken);
+      const cartId = cart.id;
+      const checkoutUrl = cart.checkoutUrl;
+      customToast(<CartToast />)
+      dispatch(setActiveCartId(cartId));
+      dispatch(setCheckoutUrl(checkoutUrl));
+      dispatch(setProductsinCart(cart.lines.edges));
+      dispatch(setTotalQuantityInCart(cart.totalQuantity));
+      localStorage.setItem("cartId", cartId);
+      localStorage.setItem("checkoutUrl", checkoutUrl);
     } catch (error) {
       console.error(error);
-      if(error.message.includes("GraphQL error(s)")){
-        toast.error("Something went wrong");
-        //proceed to delete the cartId from localstorage and redux
-      }
+      toast.error(error.message);
     }finally{
-      setAddingToTheCart(false)
+      setAddingToTheCart(false);
     }
   }
+
+  const addAnotherItemToTheCart = async (cartId, variantId) => {
+    try {
+      
+      setAddingToTheCart(true);
+      const response = await addItemToCart(cartId, variantId);
+      const itemsQuantity = response?.totalQuantity;
+      dispatch(setTotalQuantityInCart(itemsQuantity));
+      dispatch(setCheckoutUrl(response?.checkoutUrl))
+      const products = response?.lines?.edges;
+      dispatch(setProductsinCart(products));
+      console.log(products);
+      customToast(<CartToast />)
+    } catch (error) {
+      console.error(error);
+      if (error.message.includes("GraphQL error(s)")) {
+        // we should email this
+        toast.error("Something went wrong");
+      }else{
+        toast.error("Could not add the item to the cart!");
+      }
+    } finally {
+      setAddingToTheCart(false);
+    }
+  };
 
   const addToCartHandler = () => {
     if (!currentVariant || productOutOfStock) {
@@ -57,82 +97,98 @@ export default function ActionButtons() {
       return;
     }
 
+    const variantId = currentVariant.node.id;
     if (cartId) {
       const variantId = currentVariant.node.id;
-      addAnotherItemToTheCart(cartId, variantId );
+      addAnotherItemToTheCart(cartId, variantId);
+    } else if(isAuthenticated){
+      console.log("since user is authenticated here is the authenticated cart: ");
+      createLoggedInCart(variantId, accessToken )
     } else {
-      // alert("cart does not exist so creating the cart");
-      // alert(currentVariant.node.id);
-      // alert(cartId);
-      const variantId = currentVariant.node.id;
+      
       createCartWithOneitem(variantId);
     }
   };
 
-  const fetchItemsInCart = async ()=>{
-    try {
-      const response = await getItemsInCart(cartId);
-      console.log(response);
-    } catch (error) {
-      console.error(error);
-      if(error.message.includes("GraphQL error(s)")){
-        toast.error("Something went wrong");
-        //proceed to delete the cartId from localstorage and redux
-      }
-    }
-  }
 
-
-  const checkOutHandler = () => {
-    // const checkoutUrl = localStorage.getItem("checkoutUrl");
-    // window.open(checkoutUrl, "_blank");
-    if(cartId){
-    fetchItemsInCart(); 
-  }else{
-    alert("No Item added to cart! Please add items to the cart first!")
-  }
-
-  };
 
   const createCartAndCheckout = async (variantId) => {
     try {
-      const response = await createCart(variantId);
-      const cartId = response.data.cartCreate.cart.id;
-      const checkoutUrl = response.data.cartCreate.cart.checkoutUrl;
+      setBuyNowBtnClicked(true);
+      const cart = await createCart(variantId);
+      const checkoutUrl = cart.checkoutUrl;
       window.open(checkoutUrl);
     } catch (error) {
       console.error(error);
       toast.error(error.message);
+    }finally{
+      setBuyNowBtnClicked(false);
     }
   };
 
-  const buyNowHandler = ()=>{
-
-    createCartAndCheckout(currentVariant.node.id);
-
+  const checkoutForLoggedInUser = async(variantId, customerAccessToken)=>{
+    try {
+      setBuyNowBtnClicked(true);
+      const cart = await createAuthenticatedCart(variantId, customerAccessToken)
+      
+      const checkoutUrl = cart.checkoutUrl;
+      window.open(checkoutUrl);
+    } catch (error) {
+      console.error(error);
+      toast.error(error.message);
+    }finally{
+      setBuyNowBtnClicked(false);
+    }
   }
+
+
+  const buyNowHandler = () => {
+    if(isAuthenticated && accessToken){
+      checkoutForLoggedInUser(currentVariant.node.id, accessToken)
+    }else{
+      createCartAndCheckout(currentVariant.node.id);
+    }
+
+  };
 
   return (
     <div className="md:relative fixed bottom-0 right-0 left-0 bg-[#ffff] md:bg-transparent p-2 xl:!p-0 md:p-0 flex sm:flex-row gap-2 justify-center md:justify-start border-2 md:border-none shadow-lg md:!shadow-none dark:bg-black font-outfit text-md  md:text-base  ">
+    
+      <ToastContainer hideProgressBar={true} closeButton={false} position="bottom-center" style={{backgroundColor: 0}} />
       <button
         onClick={addToCartHandler}
         disabled={productOutOfStock || addingToThecart}
-        className={` disabled:bg-gray-400 px-4 py-2  ${addingToThecart ? "bg-gray-800": " bg-[#1F4A40]"}   text-white border-2 shadow-lg flex items-center justify-center gap-2`}
+        className={` disabled:bg-gray-400 px-4 py-2  ${
+          addingToThecart ? "bg-gray-800" : " bg-[#1F4A40]"
+        }   text-white border-2 shadow-lg flex items-center justify-center gap-2`}
       >
-         {addingToThecart? "Adding Item..." : <> <FaPlus /> <pan>Add Item</pan> </>}
+        {addingToThecart ? (
+          "Adding Item..."
+        ) : (
+          <>
+            {" "}
+            <FaPlus /> <pan>Add Item</pan>{" "}
+          </>
+        )}
       </button>
-      <button
-        disabled={!currentVariant}
-        className="disabled:text-gray-200 px-4 py-2 border-2 shadow-lg"
-        onClick={buyNowHandler}
-      >
-        Buy Now
-      </button>
+      
+      <div className="realtive">
+        <button
+          disabled={!currentVariant}
+          className="relative disabled:text-gray-200 px-4 py-2 border-2 shadow-lg"
+          onClick={buyNowHandler}
+        >
+          {buyNowBtnClicked && <div className="absolute flex items-center justify-center top-0 right-0 left-0 bottom-0">
+            <Spinner />
+          </div>}
+
+          <span className={buyNowBtnClicked && "opacity-0"} >Buy Now</span>
+        </button>
+      </div>
+
       <button className="px-2 py-2 border-2 shadow-lg flex items-center justify-center">
         <MdBookmarkBorder size={24} />
       </button>
     </div>
   );
 }
-
-

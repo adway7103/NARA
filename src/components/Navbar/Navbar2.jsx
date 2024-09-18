@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from "react";
 import SliderNavbar from "./SliderNavbar";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import CartIcon from "../CartIcon";
+import { useDispatch } from "react-redux";
+import { setAppTheme } from "../../store";
 import { Link } from "react-router-dom";
 
 const Navbar2 = () => {
   const [isOpen, setIsOpen] = useState(false);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const element = document.documentElement;
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (theme === "dark") {
@@ -22,6 +29,7 @@ const Navbar2 = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
+    dispatch(setAppTheme(newTheme));
   };
   return (
     <div>
@@ -53,39 +61,24 @@ const Navbar2 = () => {
           </button>
           {theme == "light" ? (
             <>
-              <img src="home/navbar/icon1.svg" alt="light mode icon" />
-              <Link to="/profile">
-                <img src="home/navbar/user.svg" alt="light mode icon" />
-              </Link>
-              <Link to="/products">
-                <img
-                  src="home/navbar/shoppingCart.svg"
-                  className="md:flex hidden"
-                  alt="light mode icon"
-                />
-              </Link>
+              <img src="/home/navbar/icon1.svg" alt="light mode icon" />
+              <img src="/home/navbar/user.svg" alt="light mode icon" />
+              <CartIcon theme = {theme} />
             </>
           ) : (
             <>
               <img
                 src="home/navbar/icon1.svg"
                 className="white-icon"
-                alt="dark mode icon"
+                alt="light mode icon"
               />
-              <Link to="/profile">
-                <img
-                  src="/home/navbar/user.svg"
-                  className="white-icon"
-                  alt="dark mode icon"
-                />
-              </Link>
-              <Link to="/products">
-                <img
-                  src="home/navbar/shoppingCart.svg"
-                  className="white-icon md:flex hidden"
-                  alt="dark mode icon"
-                />
-              </Link>
+              <img
+                src="/home/navbar/user.svg"
+                className="white-icon"
+                alt="light mode icon"
+              />
+              
+              <CartIcon theme = {theme} />
             </>
           )}
         </div>

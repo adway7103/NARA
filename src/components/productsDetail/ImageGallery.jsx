@@ -1,6 +1,7 @@
 import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 import { useRef } from "react";
 import classes from "./imageGallery.module.css";
+import ImageWithSkeleton from "../utils/ImageWithSkeleton";
 
 export default function ImageGallery({
   images,
@@ -20,17 +21,25 @@ export default function ImageGallery({
           className={`h-full overflow-auto ${classes["hide-scrollbar"]}  lg:w-28 w-16 `}
         >
           {images?.map((el, index) => (
+            // <div
+            //   key={index}
+            //   className=" mb-4 h-[102px] lg:h-[150px] cursor-pointer  flex items-center justify-center"
+            // >
+            //   <img
+            //     src={el?.node?.src}
+            //     className="cursor-pointer w-full h-full object-cover border-2"
+            //     alt={`Image ${index + 1}`}
+            //     onClick={() => scrollToImage(index)}
+            //     onLoad={() => console.log("Image loaded")}
+            //   />
+            // </div>
+
             <div
               key={index}
-              className=" mb-4 h-[102px] lg:h-[150px]  flex items-center justify-center"
+              onClick={() => scrollToImage(index)}
+              className=" mb-4 h-[102px] lg:h-[150px] cursor-pointer  flex items-center justify-center"
             >
-              <img
-                src={el?.node?.src}
-                className="cursor-pointer w-full h-full object-cover border-2"
-                alt={`Image ${index + 1}`}
-                onClick={() => scrollToImage(index)}
-                onLoad={() => console.log("Image loaded")}
-              />
+              <ImageWithSkeleton img={el?.node?.src} name={index + 1} />
             </div>
           ))}
         </div>
@@ -52,15 +61,17 @@ export default function ImageGallery({
       <div
         className="xl:w-full xl:h-full w-full sm:w-[641px] h-[460px]  overflow-hidden"
         ref={containerRef}
+        
       >
         {images?.map((el, index) => (
-          <img
-            key={index}
-            src={el?.node?.src}
-            className=" h-full w-full object-cover mr-auto ml-auto"
-            alt={`Image ${index + 1}`}
+          <div
+            key={el?.node?.src}
+            className="w-full h-full"
             ref={(el) => (imageRefs.current[index] = el)}
-          />
+            
+          >
+            <ImageWithSkeleton img={el?.node?.src} name={index + 1} />
+          </div>
         ))}
       </div>
     </div>
