@@ -4,6 +4,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import CartIcon from "../CartIcon";
 import { useDispatch } from "react-redux";
 import { setAppTheme } from "../../store";
+import { Link } from "react-router-dom";
 
 const Navbar2 = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +12,6 @@ const Navbar2 = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const element = document.documentElement;
 
@@ -41,19 +41,21 @@ const Navbar2 = () => {
             onClick={toggleMenu}>
             &#9776;
           </button>
-          <img src="/about/logo.svg" className=" md:ml-10 ml-4" alt="logo" />
+          <Link to="/">
+            <img src="about/logo.svg" className=" md:ml-10 ml-4" alt="logo" />
+          </Link>
         </div>
         <div className="flex items-center space-x-1 md:space-x-7">
           <button
             onClick={toggleTheme}
             className="w-8 h-8 leading-9 text-4xl rounded-full m-1 text-[#1F4A40] dark:!text-white">
             {theme == "light" ? (
-              <img src="/home/navbar/light_icon1.svg" alt="light mode icon" />
+              <img src="home/navbar/light_icon1.svg" alt="light mode icon" />
             ) : (
               <img
-                src="/home/navbar/icon4.svg"
+                src="home/navbar/icon4.svg"
                 className="white-icon"
-                alt="/light mode icon"
+                alt="light mode icon"
               />
             )}
           </button>
@@ -66,7 +68,7 @@ const Navbar2 = () => {
           ) : (
             <>
               <img
-                src="/home/navbar/icon1.svg"
+                src="home/navbar/icon1.svg"
                 className="white-icon"
                 alt="light mode icon"
               />

@@ -13,6 +13,7 @@ import { FaPlus } from "react-icons/fa6";
 import VariantsController from "../components/productsDetail/VariantsController";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PageLoader from "../components/utils/PageLoader";
 
 export default function ProductsDetailPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -104,19 +105,42 @@ export default function ProductsDetailPage() {
     []
   );
 
+  // const scrollToImageBySrc = useCallback(
+  //   throttle((imageSrc) => {
+  //     // Find the index of the image element by its src
+  //     const imageElementIndex = imageRefs.current.findIndex(
+  //       (img) => img?.src === imageSrc
+  //     );
+
+  //     if (imageElementIndex !== -1) {
+  //       const imageElement = imageRefs.current[imageElementIndex];
+  //       if (imageElement) {
+  //         const container = imageRefs.current[0]?.parentElement;
+  //         const offsetTop = imageElement?.offsetTop - container?.offsetTop;
+  //         container?.scrollTo({ top: offsetTop, behavior: "smooth" });
+  //         setCurrentIndex(imageElementIndex);
+  //       }
+  //     } else {
+  //       console.warn(`Image with src ${imageSrc} not found.`);
+  //     }
+  //   }, 300), // Throttling to every 300ms
+  //   []
+  // );
+
   const scrollToImageBySrc = useCallback(
     throttle((imageSrc) => {
-      // Find the index of the image element by its src
+      // Find the index of the div element by its image src
       const imageElementIndex = imageRefs.current.findIndex(
-        (img) => img?.src === imageSrc
+        (div) => div?.querySelector('img')?.src === imageSrc // Use querySelector to find the img inside the div
       );
-
+  
       if (imageElementIndex !== -1) {
         const imageElement = imageRefs.current[imageElementIndex];
         if (imageElement) {
           const container = imageRefs.current[0]?.parentElement;
-          const offsetTop = imageElement?.offsetTop - container?.offsetTop;
-          container?.scrollTo({ top: offsetTop, behavior: "smooth" });
+          // Calculate the offset relative to the container
+          const offsetTop = imageElement.getBoundingClientRect().top + container.scrollTop - container.getBoundingClientRect().top;
+          container.scrollTo({ top: offsetTop, behavior: "smooth" });
           setCurrentIndex(imageElementIndex);
         }
       } else {
@@ -125,7 +149,51 @@ export default function ProductsDetailPage() {
     }, 300), // Throttling to every 300ms
     []
   );
-
+  
+  // const scrollToImageBySrc = useCallback(
+  //   throttle((imageSrc) => {
+  //     // Find the index of the div element by its data attribute or some identifier
+  //     const imageElementIndex = imageRefs.current.findIndex(
+  //       (div) => div?.dataset?.src === imageSrc // assuming you're using a data attribute to identify the image
+  //     );
+  
+  //     if (imageElementIndex !== -1) {
+  //       const imageElement = imageRefs.current[imageElementIndex];
+  //       if (imageElement) {
+  //         const container = imageRefs.current[0]?.parentElement;
+  //         const offsetTop = imageElement.offsetTop - container.offsetTop;
+  //         container.scrollTo({ top: offsetTop, behavior: "smooth" });
+  //         setCurrentIndex(imageElementIndex);
+  //       }
+  //     } else {
+  //       console.warn(`Element with src ${imageSrc} not found.`);
+  //     }
+  //   }, 300), // Throttling to every 300ms
+  //   []
+  // );
+  
+  // const scrollToImageBySrc = useCallback(
+  //   throttle((imageSrc) => {
+  //     const imageElementIndex = imageRefs.current.findIndex(
+  //       (div) => div?.dataset?.src === imageSrc
+  //     );
+  
+  //     if (imageElementIndex !== -1) {
+  //       const imageElement = imageRefs.current[imageElementIndex];
+  //       if (imageElement) {
+  //         const container = imageRefs.current[0]?.parentElement;
+  //         // Calculate the offset relative to the container
+  //         const offsetTop = imageElement.getBoundingClientRect().top + container.scrollTop - container.getBoundingClientRect().top;
+  //         container.scrollTo({ top: offsetTop, behavior: "smooth" });
+  //         setCurrentIndex(imageElementIndex);
+  //       }
+  //     } else {
+  //       console.warn(`Element with src ${imageSrc} not found.`);
+  //     }
+  //   }, 300), // Throttling to every 300ms
+  //   []
+  // );
+  
   const handleUp = () => {
     if (currentIndex > 0) {
       scrollToImage(currentIndex - 1);
@@ -145,7 +213,7 @@ export default function ProductsDetailPage() {
   return (
     <>
       {isLoading ? (
-        <Loading />
+        <PageLoader />
       ) : (
         <div className=" flex flex-col bg-[#F7F7F7] dark:bg-black dark:text-[#ffff]  font-antikor max-h-screen lg:overflow-hidden">
           <NavbarRelative />
@@ -175,11 +243,11 @@ export default function ProductsDetailPage() {
               />
 
               <ActionButtons />
-              <button onClick={()=>{
+              {/* <button onClick={()=>{
 
                 toast(<CartToast />)
               }} className="bg-red-500 p-2 text-white">Click to view Toast</button>
-              <ToastContainer hideProgressBar={true} closeButton={false} position="bottom-center" style={{backgroundColor: 0}} />
+              <ToastContainer hideProgressBar={true} closeButton={false} position="bottom-center" style={{backgroundColor: 0}} /> */}
 
               <img src="/dividers/star_divider.svg" alt="" />
               {/* Fabric Name Section */}
@@ -207,12 +275,3 @@ export default function ProductsDetailPage() {
   );
 }
 
-function CartToast (){
-  return (
-    <div className="p-12 bg-black text-white -m-4">
-
-        <h1>Item added to cart successfully!</h1>
-
-    </div>
-  )
-}

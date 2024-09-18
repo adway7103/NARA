@@ -1,14 +1,18 @@
 import { FaPlus } from "react-icons/fa";
 import { MdBookmarkBorder } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import createCart, { addItemToCart, getItemsInCartAPI } from "../../apis/Cart";
+import createCart, { addItemToCart, createAuthenticatedCart, getItemsInCartAPI } from "../../apis/Cart";
 import { toast } from "sonner";
-import { setActiveCartId } from "../../store";
+import { setActiveCartId, setCheckoutUrl, setProductsinCart, setTotalQuantityInCart } from "../../store";
 import { useState } from "react";
 import Spinner from "../utils/Spinner";
+import CartToast from "../utils/CartToast";
+import { ToastContainer, toast as customToast } from "react-toastify";
 export default function ActionButtons() {
   const [addingToThecart, setAddingToTheCart] = useState(false);
   const [buyNowBtnClicked, setBuyNowBtnClicked] = useState(false);
+  const isAuthenticated = useSelector(state=>state.user.isAuthenticated);
+  const accessToken = useSelector(state=>state.user.accessToken);
 
   const currentVariant = useSelector(
     (state) => state.activeProduct.currentVariant
@@ -21,29 +25,66 @@ export default function ActionButtons() {
 
   const createCartWithOneitem = async (variantId) => {
     try {
-      const response = await createCart(variantId);
-      const cartId = response.data.cartCreate.cart.id;
-      const checkoutUrl = response.data.cartCreate.cart.checkoutUrl;
-      toast.success("Item added to cart successfully!");
-      dispatch(setActiveCartId({ id: cartId, checkoutUrl }));
+
+      setAddingToTheCart(true);
+      const cart = await createCart(variantId);
+      const cartId = cart.id;
+      const checkoutUrl = cart.checkoutUrl;
+      customToast(<CartToast />)
+      dispatch(setActiveCartId(cartId));
+      dispatch(setCheckoutUrl(checkoutUrl));
+      dispatch(setProductsinCart(cart.lines.edges));
+      dispatch(setTotalQuantityInCart(cart.totalQuantity));
       localStorage.setItem("cartId", cartId);
       localStorage.setItem("checkoutUrl", checkoutUrl);
     } catch (error) {
       console.error(error);
       toast.error(error.message);
+    }finally{
+      setAddingToTheCart(false);
     }
   };
 
-  const addAnotherItemToTheCart = async (cartId, variantId) => {
+  const createLoggedInCart = async(variantId, customerAccessToken)=>{
     try {
       setAddingToTheCart(true);
+      const cart = await createAuthenticatedCart(variantId, customerAccessToken);
+      const cartId = cart.id;
+      const checkoutUrl = cart.checkoutUrl;
+      customToast(<CartToast />)
+      dispatch(setActiveCartId(cartId));
+      dispatch(setCheckoutUrl(checkoutUrl));
+      dispatch(setProductsinCart(cart.lines.edges));
+      dispatch(setTotalQuantityInCart(cart.totalQuantity));
+      localStorage.setItem("cartId", cartId);
+      localStorage.setItem("checkoutUrl", checkoutUrl);
+    } catch (error) {
+      console.error(error);
+      toast.error(error.message);
+    }finally{
+      setAddingToTheCart(false);
+    }
+  }
+
+  const addAnotherItemToTheCart = async (cartId, variantId) => {
+    try {
+      
+      setAddingToTheCart(true);
       const response = await addItemToCart(cartId, variantId);
-      console.log(response);
-      toast.success("1 item added to the cart!");
+      const itemsQuantity = response?.totalQuantity;
+      dispatch(setTotalQuantityInCart(itemsQuantity));
+      dispatch(setCheckoutUrl(response?.checkoutUrl))
+      const products = response?.lines?.edges;
+      dispatch(setProductsinCart(products));
+      console.log(products);
+      customToast(<CartToast />)
     } catch (error) {
       console.error(error);
       if (error.message.includes("GraphQL error(s)")) {
+        // we should email this
         toast.error("Something went wrong");
+      }else{
+        toast.error("Could not add the item to the cart!");
       }
     } finally {
       setAddingToTheCart(false);
@@ -56,44 +97,26 @@ export default function ActionButtons() {
       return;
     }
 
+    const variantId = currentVariant.node.id;
     if (cartId) {
       const variantId = currentVariant.node.id;
       addAnotherItemToTheCart(cartId, variantId);
+    } else if(isAuthenticated){
+      console.log("since user is authenticated here is the authenticated cart: ");
+      createLoggedInCart(variantId, accessToken )
     } else {
-      const variantId = currentVariant.node.id;
+      
       createCartWithOneitem(variantId);
     }
   };
 
-  // const fetchItemsInCart = async () => {
-  //   try {
-  //     const response = await getItemsInCart(cartId);
-  //     console.log(response);
-  //   } catch (error) {
-  //     console.error(error);
-  //     if (error.message.includes("GraphQL error(s)")) {
-  //       toast.error("Something went wrong");
-  //       //proceed to delete the cartId from localstorage and redux
-  //     }
-  //   }
-  // };
 
-  // const checkOutHandler = () => {
-  //   // const checkoutUrl = localStorage.getItem("checkoutUrl");
-  //   // window.open(checkoutUrl, "_blank");
-  //   if (cartId) {
-  //     fetchItemsInCart();
-  //   } else {
-  //     alert("No Item added to cart! Please add items to the cart first!");
-  //   }
-  // };
 
   const createCartAndCheckout = async (variantId) => {
     try {
       setBuyNowBtnClicked(true);
-      const response = await createCart(variantId);
-      const cartId = response.data.cartCreate.cart.id;
-      const checkoutUrl = response.data.cartCreate.cart.checkoutUrl;
+      const cart = await createCart(variantId);
+      const checkoutUrl = cart.checkoutUrl;
       window.open(checkoutUrl);
     } catch (error) {
       console.error(error);
@@ -103,13 +126,35 @@ export default function ActionButtons() {
     }
   };
 
+  const checkoutForLoggedInUser = async(variantId, customerAccessToken)=>{
+    try {
+      setBuyNowBtnClicked(true);
+      const cart = await createAuthenticatedCart(variantId, customerAccessToken)
+      
+      const checkoutUrl = cart.checkoutUrl;
+      window.open(checkoutUrl);
+    } catch (error) {
+      console.error(error);
+      toast.error(error.message);
+    }finally{
+      setBuyNowBtnClicked(false);
+    }
+  }
+
+
   const buyNowHandler = () => {
-    createCartAndCheckout(currentVariant.node.id);
+    if(isAuthenticated && accessToken){
+      checkoutForLoggedInUser(currentVariant.node.id, accessToken)
+    }else{
+      createCartAndCheckout(currentVariant.node.id);
+    }
 
   };
 
   return (
     <div className="md:relative fixed bottom-0 right-0 left-0 bg-[#ffff] md:bg-transparent p-2 xl:!p-0 md:p-0 flex sm:flex-row gap-2 justify-center md:justify-start border-2 md:border-none shadow-lg md:!shadow-none dark:bg-black font-outfit text-md  md:text-base  ">
+    
+      <ToastContainer hideProgressBar={true} closeButton={false} position="bottom-center" style={{backgroundColor: 0}} />
       <button
         onClick={addToCartHandler}
         disabled={productOutOfStock || addingToThecart}

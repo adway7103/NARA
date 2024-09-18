@@ -78,7 +78,7 @@ export default function VariantsController({ options, variants, colorsArray, scr
         });
 
         scrollToImageBySrc(lowestVariant.node.image.src)
-
+        
         setSelectedOptions(defaultSelectedOptions);
         console.error(choicesList, defaultSelectedOptions)
         const varinstocks = variants.edges.filter(

@@ -24,13 +24,13 @@ export default function DetailSection({ title, descriptionHtml }) {
           <Link className="underline flex items-center gap-3 ">
             Circa2950 <img src="/icons/leftTriangleIcon.svg" alt="" />
           </Link>
-          <Link className="text-[#656565]">{title.slice(0, 20)}...</Link>
+          <Link className="text-[#656565]">{title?.slice(0, 20)}...</Link>
         </div>
         <h2 className="font-black xl:text-2xl text-xl"> {title}</h2>{" "}
         {/*{product?.title}*/}
         <h3 className="tracking-tight font-semibold text-xl">
           {productOutOfStock ? (
-            <span className="p-2 rounded-full text-white">out of stock</span>
+            <span className="p-2 rounded-full text-white bg-red-500">out of stock</span>
           ) : currentVariant ? (
             currentVariant?.node.price.currencyCode +
             " " +

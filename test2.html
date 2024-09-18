@@ -1,153 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Variants</title>
-</head>
-<body>
-    <script>
-        console.log("Page Loaded");
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
 
-        const variants = {
-            "edges": [
-                {
-                    "node": {
-                        "id": "gid://shopify/ProductVariant/46128122265855",
-                        "title": "Black / S / Silk",
-                        "quantityAvailable": 15,
-                        "price": { "amount": "800.0", "currencyCode": "INR" },
-                        "selectedOptions": [
-                            { "name": "Color", "value": "Black" },
-                            { "name": "Size", "value": "S" },
-                            { "name": "Fabric", "value": "Silk" }
-                        ],
-                        "image": { "src": "https://cdn.shopify.com/s/files/1/0713/4265/3695/files/black_2_acdd72e6-87ee-4aba-8556-df214be5db59.jpg?v=1726305268" }
-                    }
-                },
-                {
-                    "node": {
-                        "id": "gid://shopify/ProductVariant/46134517825791",
-                        "title": "Black / S / Cotton",
-                        "quantityAvailable": 0,
-                        "price": { "amount": "800.0", "currencyCode": "INR" },
-                        "selectedOptions": [
-                            { "name": "Color", "value": "Black" },
-                            { "name": "Size", "value": "S" },
-                            { "name": "Fabric", "value": "Cotton" }
-                        ],
-                        "image": { "src": "https://cdn.shopify.com/s/files/1/0713/4265/3695/files/1.webp?v=1726064188" }
-                    }
-                },
-                {
-                    "node": {
-                        "id": "gid://shopify/ProductVariant/46128122364159",
-                        "title": "Black / M / Silk",
-                        "quantityAvailable": 30,
-                        "price": { "amount": "500.0", "currencyCode": "INR" },
-                        "selectedOptions": [
-                            { "name": "Color", "value": "Black" },
-                            { "name": "Size", "value": "M" },
-                            { "name": "Fabric", "value": "Silk" }
-                        ],
-                        "image": { "src": "https://cdn.shopify.com/s/files/1/0713/4265/3695/files/1.webp?v=1726064188" }
-                    }
-                }
-                // More variants can be added here...
-            ]
-        };
+    <style>
+     .loader {
+      display: block;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      position: relative;
+      animation: rotate 1s linear infinite
+    }
+    .loader::before {
+      content: "";
+      box-sizing: border-box;
+      position: absolute;
+      inset: 0px;
+      border-radius: 50%;
+      border: 5px solid #d71919;
+      animation: prixClipFix 2s linear infinite ;
+    }
 
-        let availableVariants = variants.edges;
-        console.log("All variants: ", availableVariants);
+    @keyframes rotate {
+      100%   {transform: rotate(360deg)}
+    }
 
-        // Filter variants that are in stock
-        let variantsInStock = availableVariants.filter(el => parseInt(el.node.quantityAvailable) > 0);
-        console.log("Variants in stock: ", variantsInStock);
-
-        // Find the lowest-priced variant
-        const lowestPricedVariant = variantsInStock.reduce((prev, cur) => {
-            return +cur.node.price.amount < +prev.node.price.amount ? cur : prev;
-        });
-        console.log("Lowest priced variant: ", lowestPricedVariant);
-
-        // Define available options
-        let options = [
-            { name: "Color", values: ["Black", "Gray"] },
-            { name: "Fabric", values: ["Silk", "Cotton"] },
-            { name: "Size", values: ["S", "M", "L"] },
-        ];
-
-        // Extract available option names
-        const availableOptions = options.map(option => option.name);
-        console.log("Available options: ", availableOptions);
-
-        // Example mapping of options
-        let mappedVariants = options.map(option => {
-            return options.map(el => {
-                if (el.name === option.name) return el.name;
-                return `${el.name} available`;
-            });
-        });
-        console.log("Mapped variants: ", mappedVariants);
-
-        // Filtering variants by a specific option (e.g., Size M)
-        const sizeMVariants = variantsInStock.filter(el => 
-            el.node.selectedOptions.find(opt => opt.name === "Size").value === "M"
-        );
-        console.log("Available variants with Size M: ", sizeMVariants);
-
-        // Get available Colors for Size M
-        const colorsAvailableForM = sizeMVariants.map(el => 
-            el.node.selectedOptions.find(opt => opt.name === "Color").value
-        );
-        console.log("Colors available for Size M: ", colorsAvailableForM);
-
-        // Get available Fabrics for Size M
-        const fabricsAvailableForM = sizeMVariants.map(el => 
-            el.node.selectedOptions.find(opt => opt.name === "Fabric").value
-        );
-        console.log("Fabrics available for Size M: ", fabricsAvailableForM);
-
-        // Function to get remaining option values after filtering by a specific option
-        function getRemainingOptionsValues(availableOptions, filterOption, filterOptionValue) {
-            const remainingOptions = availableOptions.filter(option => option !== filterOption);
-
-            // Get matching variants for the selected filter option
-            const matchingVariants = variantsInStock.filter(variant =>
-                variant.node.selectedOptions.find(option => option.name === filterOption).value === filterOptionValue
-            );
-            console.log("Matching variants for", filterOption, filterOptionValue, ": ", matchingVariants);
-
-            const optionValues = {};
-
-            // Extract unique values for each remaining option
-            remainingOptions.forEach(option => {
-                const values = matchingVariants.map(variant =>
-                    variant.node.selectedOptions.find(opt => opt.name === option).value
-                );
-                optionValues[option] = [...new Set(values)]; // Remove duplicates
-            });
-
-            console.log("Available options after filtering by", filterOptionValue, ": ", optionValues);
-        }
-
-        // Example usage of the function
-        getRemainingOptionsValues(availableOptions, "Size", "S");
-        // getRemainingOptionsValues(availableOptions, "Size", "L");
-
-    </script>
-</body>
+    @keyframes prixClipFix {
+        0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+        25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+        50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+        75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+        100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+    }
+    </style>
+  </head>
+  <body>
+    <span class="loader"></span>
+  </body>
 </html>
-
-
-<!-- 
-
-color
-size
-fabric
-
-color black
-matchingvariant......
-
-
--->

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateCustomerDefaultAddress } from "../../apis/getAccoutDetailsAPI";
 import { deleteAddressAPI } from "../../apis/addressAPI";
 import { toast } from "sonner";
-import { setDefaultAddressId, setAddresses } from "../../store";
+import { setDefaultAddressId, setAddresses, setDefaultAddress } from "../../store";
 import { Skeleton } from "@mui/material";
 
 export default function AddressCard({
@@ -12,6 +12,7 @@ export default function AddressCard({
   phone,
   addressId,
   province,
+  fullAddressObject
 }) {
   const defaultAddressId = useSelector((state) => state.user.defaultAddressId);
   const customerAccessToken = useSelector((state) => state.user.accessToken);
@@ -34,6 +35,7 @@ export default function AddressCard({
       const thisAddressId = addressId;
       const updatedAddressId = await updateCustomerDefaultAddress(thisAddressId, customerAccessToken); 
       dispatch(setDefaultAddressId(updatedAddressId));
+      dispatch(setDefaultAddress(fullAddressObject));
       toast.success("Default Address Changed Successfully!");
     } catch (error) {
       if (error.message.includes("GraphQL error(s)")) {
@@ -67,6 +69,12 @@ export default function AddressCard({
           addresses.filter((address) => address.id.split("?")[0] != deletedCustomerAddressId)
         )
       );
+
+      if(isDefaultAddress){
+        dispatch(setDefaultAddress(null));
+        dispatch(setDefaultAddressId(null));
+      }
+
       toast.success("Address was deleted successfully!");
     } catch (error) {
       if (error.message.includes("GraphQL error(s)")) {

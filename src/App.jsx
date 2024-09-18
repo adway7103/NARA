@@ -1,15 +1,15 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useLocation } from "react-router-dom";
 import { Toaster, toast } from "sonner";
-import { setAuthStatus, setActiveCartId, setTotalQuantityInCart, setProductsinCart } from "./store";
+import { setAuthStatus, setActiveCartId, setTotalQuantityInCart, setProductsinCart, setCheckoutUrl } from "./store";
 import { updateCustomerDefaultAddress } from "./apis/getAccoutDetailsAPI";
 import createCart, { getCheckoutURL, getItemsInCartAPI, updateBuyersIndentity } from "./apis/Cart";
 import { getProductVariantDetail } from "./apis/Products";
 
 function App() {
   const dispatch = useDispatch();
-
+  const fetchedCartId = useSelector(state=>state.cart.id);
   const { pathname } = useLocation();
 
   const fetchAllItemsInCart = async (cartId) => {
@@ -17,7 +17,8 @@ function App() {
       const response = await getItemsInCartAPI(cartId);
       const itemsQuantity = response?.totalQuantity;
       dispatch(setTotalQuantityInCart(itemsQuantity));
-      dispatch(setActiveCartId(cartId));
+      dispatch(setCheckoutUrl(response?.checkoutUrl))
+      
       const products = response?.lines?.edges;
       dispatch(setProductsinCart(products));
     } catch (error) {
@@ -44,18 +45,28 @@ function App() {
       dispatch(setAuthStatus({ accessToken, isAuthenticated: true }));
 
     const cartId = localStorage.getItem("cartId");
+    
     if(cartId )
-      // dispatch(setActiveCartId({id: cartId}));
-     fetchAllItemsInCart(cartId);
+    {
+      dispatch(setActiveCartId(cartId));
+      fetchAllItemsInCart(cartId);
+    }
+     
+
+    // dispatch(setActiveCartId(cartId));
+    
+     
   }, []);
+
+  // useEffect(()=>{
+  //   console.log(fetchedCartId);
+  // }, [fetchedCartId])
+  
   return (
-    <div>
+    <div className="cursor-custom">
       <Toaster position="top-center" richColors />
       <Outlet />
     </div>
   );
 }
 export default App;
-
-
-

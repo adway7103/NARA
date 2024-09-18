@@ -63,13 +63,16 @@ const cartSlice = createSlice({
   },
   reducers: {
     setActiveCartId(state, action){
-      state.id = action.payload.id;
+      state.id = action.payload;
     },
     setTotalQuantityInCart(state, action){
       state.totalQuantity = action.payload;
     },
     setProductsinCart(state, action){
       state.productsInCart = action.payload;
+    },
+    setCheckoutUrl(state, action){
+      state.checkoutUrl = action.payload;
     }
   }
 
@@ -121,7 +124,7 @@ const store = configureStore({
 
 export const { setUser, setFullName, setEmail, setPhone, setAddresses, setAuthStatus, setDefaultAddressId, setDefaultAddress, setAreAddressesLoading } = userSlice.actions;
 export const {setCurrentVariant, setOutOfStock} = activeProductSlice.actions;
-export const {setActiveCartId, setTotalQuantityInCart, setProductsinCart} = cartSlice.actions;
+export const {setActiveCartId, setCheckoutUrl,setTotalQuantityInCart, setProductsinCart} = cartSlice.actions;
 export const {setAppTheme} = appSlice.actions;
 
 export default store;

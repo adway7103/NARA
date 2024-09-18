@@ -201,3 +201,54 @@ export async function getAddressesAPI() {
       throw error;
     }
   }
+
+//   export async function getDefaultAddressAPI (customerAccessToken){
+//     const query = `{
+//     customer(customerAccessToken: ${customerAccessToken}) {
+//       defaultAddress {
+//         address1
+//         address2
+//         city
+//         country
+//         firstName
+//         lastName
+//         phone
+//         province
+//         zip
+//       }
+//     }
+// }`
+
+// try {
+//   const response = await api.post("", {
+//     query
+//   });
+
+//   if (response.data.errors) {
+//     const errorMessages = response.data.errors
+//       .map((error) => error.message)
+//       .join(", ");
+//     throw new Error(`GraphQL error(s): ${errorMessages}`);
+//   }
+  
+
+//   const defaultAddress = "";
+
+//   // see what it returns when there is no default address!
+
+
+//   if (!deletedCustomerAddressId) {
+  
+//     throw new Error( customerUserErrors );
+    
+//   }
+
+//   return deletedCustomerAddressId;
+// } catch (error) {
+//   console.error("Could not delete the address:", error.message);
+//   throw error;
+// }
+
+
+
+//   }

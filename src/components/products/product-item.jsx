@@ -46,22 +46,8 @@ const ProductItem = ({ colors, setActiveProductColor, name, discount, message, p
 
     return (
       <Link to={`/product/${productId}`}>
-      <div className="font-sans max-w-sm cursor-pointer hover:brightness-75" onClick={productClickHandler} >
+      <div className="font-sans xl:w-[350px] w-[350px] cursor-pointer hover:brightness-75" onClick={productClickHandler} >
         <div className="w-full md:h-[400px] h-[477px] lg:h-[477px] relative">
-         {/* {loadingImage? <h1>Loading</h1>: null}
-           <img 
-           src={img}
-           alt={`product-model-${name}`}
-           className={` ${loadingImage? "opacity-0" : "opacity-100"} w-full h-full object-cover`}
-           onLoad={()=>{setLoadingImage(false)}}
-         />  */}
-         {/* <Suspense fallback={<h1>Hi</h1>}>
-         <img 
-           src={img}
-           alt={`product-model-${name}`}
-           className={` ${loadingImage? "opacity-0" : "opacity-100"} w-full h-full object-cover`}
-           onLoad={()=>{setLoadingImage(false)}} />
-         </Suspense> */}
          <ImageWithSkeleton img={img} name={name} />
         
           <div className="absolute w-full bottom-0">
@@ -133,7 +119,9 @@ function ImageWithSkeleton({ img, name }) {
   const [loadingImage, setLoadingImage] = useState(true);
 
   return (
-    <Box sx={{ width: '100%', height: '100%' }}>
+    
+
+<Box sx={{ width: '100%', height: '100%' }}>
       {loadingImage && (
         <Skeleton 
           variant="rectangular" 
@@ -145,11 +133,13 @@ function ImageWithSkeleton({ img, name }) {
       <img 
         src={img} 
         alt={`product-model-${name}`} 
-        className={`w-full h-full object-cover `} 
+        className={`${loadingImage? "opacity-0": "opacity-100"} w-full h-full object-cover `} 
         onLoad={() => setLoadingImage(false)} 
-        style={{ transition: 'opacity 0.3s ease-in-out' }}
+     
       />
     </Box>
+
+    
   );
 }
 

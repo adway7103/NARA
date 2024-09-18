@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import SliderNavbar from "./SliderNavbar";
-import "@fortawesome/fontawesome-free/css/all.min.css";
 import { Link } from "react-router-dom";
 
 import CartIcon from "../CartIcon";
@@ -36,7 +35,7 @@ const Navbar = () => {
     const topSectionHeight =
       document.querySelector(".carousel-inner").offsetHeight;
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    setIsScrolled(scrollTop > topSectionHeight - 100); // Adjust the value as needed
+    setIsScrolled(scrollTop > topSectionHeight - 100);
   };
 
   useEffect(() => {
@@ -66,11 +65,13 @@ const Navbar = () => {
             onClick={toggleMenu}>
             &#9776;
           </button>
-          <img
-            src="/home/navbar/logo.svg"
-            className="h-[40px] md:ml-10 ml-4"
-            alt="logo"
-          />
+          <Link to="/">
+            <img
+              src={isScrolled ? "about/logo.svg" : "/home/navbar/logo.svg"}
+              className="h-[40px] md:ml-10 ml-4"
+              alt="logo"
+            />
+          </Link>
         </div>
         <div className="flex items-center md:space-x-5 space-x-2">
           <button onClick={toggleTheme} className="text-4xl rounded-full ">
@@ -106,11 +107,11 @@ const Navbar = () => {
                   alt="light mode icon"
                 />
                 <Link to="/profile">
-                <img
-                  src="/home/navbar/user.svg"
-                  className="white-icon"
-                  alt="light mode icon"
-                />
+                  <img
+                    src="/home/navbar/user.svg"
+                    className="white-icon"
+                    alt="light mode icon"
+                  />
                 </Link>
                 <CartIcon theme = {theme} OnHomePageHeroSection = {true}  />
               </>
@@ -123,12 +124,13 @@ const Navbar = () => {
                 alt="dark mode icon"
               />
               <Link to="/profile">
-              <img
-                src="/home/navbar/user.svg"
-                className="white-icon"
-                alt="light mode icon"
-              />
+                <img
+                  src="/home/navbar/user.svg"
+                  className="white-icon"
+                  alt="dark mode icon"
+                />
               </Link>
+              
               <CartIcon theme = {theme} />
             </>
           )}
@@ -140,4 +142,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

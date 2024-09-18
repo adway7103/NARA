@@ -41,22 +41,22 @@ const BehindTheScreen = () => {
               />
             </div>
             <img
-              src="/home/designs/d4.png"
+              src="/home/designs/d4.svg"
               alt="Fashion 2"
               className="bloc absolute bottom-0 right-0 w-[150px] h-[300px] sm:w-[300px] sm:h-[400px] lg:w-[250px] lg:h-[450px] object-cover object-center"
             />
             <img
-              src="/home/designs/d2.png"
+              src="/home/designs/d2.svg"
               alt="Overlayed Fashion 1"
-              className="bloc absolute top-0 right-0 w-[100px] h-[120px] sm:w-[200px] sm:h-[200px] lg:w-1/3 lg:h-1/3 object-fit"
+              className="bloc absolute top-0 right-0 w-[100px] sm:w-[200px] sm:h-[200px] lg:w-1/3 lg:h-1/3 object-fit"
             />
             <img
-              src="/home/designs/d3.png"
+              src="/home/designs/d3.svg"
               alt="Fashion 3"
               className="bloc absolute bottom-0 left-0 w-[150px] h-[200px] sm:w-2/5 sm:h-[300px] lg:w-2/5 lg:h-[300px] object-cover object-center"
             />
             <img
-              src="/home/designs/d1.png"
+              src="/home/designs/d1.svg"
               alt="Fashion 4"
               className="bloc absolute bottom-0 right-0 w-2/5 h-[200px] mr-20 sm:mr-40 lg:mr-36 sm:w-2/5 sm:h-[300px] lg:w-[2/5] lg:h-[300px] object-cover"
             />
