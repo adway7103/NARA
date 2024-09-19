@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Cart from "./Cart";
+import Cart from "./Cart/Cart";
 import { useSelector } from "react-redux";
 export default function CartIcon({theme, OnHomePageHeroSection}){
     const [cartOpen, setCartOpen] = useState(false);
