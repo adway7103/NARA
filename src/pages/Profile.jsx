@@ -2,7 +2,7 @@ import { useState } from "react";
 import PersonalInfoSection from "../components/profile/PersonalInfoSection";
 import AddressesSection from "../components/profile/AddressesSection";
 import expandIcon from "../assets/icons/expand.svg";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setAuthStatus } from "../store";
 import { LiaPowerOffSolid } from "react-icons/lia";
@@ -12,7 +12,7 @@ export default function Profile() {
   const navigate = useNavigate();
 
   const handleBack = () => {
-    navigate("../");
+    navigate("/");
   };
 
   const handleMenuToggle = () => {
@@ -45,7 +45,7 @@ function Header({ onBack, onMenuToggle, isMenuOpen }) {
       </div>
       <button
         onClick={onBack}
-        className="border-2 w-12 text-4xl border-[#B5B5B5]"
+        className="border-2 w-12 text-4xl border-[#B5B5B5] flex items-center justify-center"
       >
         &times;
       </button>
@@ -83,7 +83,7 @@ function Sidebar({ isMenuOpen }) {
           <h2>Account Details</h2>
           <img src={expandIcon} alt="expand icon" />
         </div>
-        <h2 className="text-sm font-semibold border-b-2 p-2">My Orders</h2>
+        <Link to={"/orders"}><h2 className="text-sm font-semibold border-b-2 p-2">My Orders</h2></Link>
         
       </div>
       <button className="flex items-center justify-center gap-2 font-bold dark:text-[#ffff] border-2 p-1 text-lg" onClick={logoutHandler}> <LiaPowerOffSolid size={24}  />  <span>Log out</span></button>

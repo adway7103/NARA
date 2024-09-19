@@ -1,9 +1,32 @@
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
+import { setAuthStatus } from "../../store";
+import PageLoader from "./PageLoader";
 
 export default function ProtectedRoutes() {
-  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
+  const dispatch = useDispatch();
 
-  if (isAuthenticated) return <Outlet />;
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+
+    if (token) {
+      dispatch(setAuthStatus({ isAuthenticated: true, accessToken: token }));
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+  }, [dispatch]);
+  
+
+  if (isAuthenticated === null) {
+    return <PageLoader />;
+  }
+
+  if (isAuthenticated) {
+    return <Outlet />;
+  }
+
   return <Navigate to="/login" />;
 }

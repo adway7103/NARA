@@ -314,36 +314,9 @@ export default function Cart({ toggleCartOpen, cartOpen }) {
   };
 
   const checkOutHandler = async () => {
-    // alert("The user is authenticated: " + isAuthenticated);
-    // if (isAuthenticated) {
-    //   // console.log("default address", defaultAddress)
-    //   if (defaultAddress && cartId) {
-    //     console.log(
-    //       "The user is authenticated and has the default address: ",
-    //       defaultAddress
-    //     );
-    //     await prefillAdress(cartId, email, {
-    //       firstName: defaultAddress.firstName,
-    //       lastName: defaultAddress.lastName,
-    //       phone: defaultAddress.phone,
-    //       province: defaultAddress.province,
-    //       zip: defaultAddress.zip,
-    //       address1: defaultAddress.address1,
-    //       address2: defaultAddress.address2,
-    //       country: defaultAddress.country,
-    //       city: defaultAddress.city
-    //     });
-        
-    //     console.log("out of prefillAddress");
-    //   } else {
-    //     console.log(
-    //       "Although the user is authenticated he/she has no default address set!"
-    //     );
-    //   }
-    // }
     if (!checkoutUrl) 
     {
-      //proceed to delete cart
+      // Proceed to delete cart
       return;
     }
     if (totalQuantityInCart === 0)

@@ -4,6 +4,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import CartIcon from "../CartIcon";
 import { useDispatch } from "react-redux";
 import { setAppTheme } from "../../store";
+import { Link } from "react-router-dom";
 
 const NavbarRelative = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -67,7 +68,7 @@ const NavbarRelative = () => {
           {theme == "light" ? (
             <>
               <img src="/home/navbar/icon1.svg" alt="light mode icon" />
-              <img src="/home/navbar/user.svg" alt="light mode icon" />
+              <Link to={"/profile"}><img src="/home/navbar/user.svg" alt="light mode icon" /></Link>
               <CartIcon theme = {theme} />
             </>
           ) : (
@@ -77,11 +78,13 @@ const NavbarRelative = () => {
                 className="white-icon"
                 alt="light mode icon"
               />
+              <Link to={"/profile"}>
               <img
                 src="/home/navbar/user.svg"
                 className="white-icon"
                 alt="light mode icon"
               />
+              </Link>
               <CartIcon theme = {theme} />
             </>
           )}
