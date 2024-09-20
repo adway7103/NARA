@@ -105,7 +105,7 @@ export default function ActionButtons() {
       console.log("since user is authenticated here is the authenticated cart: ");
       createLoggedInCart(variantId, accessToken )
     } else {
-      
+      console.log("The user is not authenticated, here is the non authenticated cart:")
       createCartWithOneitem(variantId);
     }
   };

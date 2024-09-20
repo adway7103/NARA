@@ -395,9 +395,8 @@ export async function getItemsInCartAPI(cartId) {
     console.log("Logging from the cart api", cart);
     if (!cart) {
       localStorage.removeItem("cartId");
-      localStorage.removeItem("checkoutUrl");
       throw new Error(
-        "Could not fetch Items in the cart! Maybe the cart has expired! Try adding items again to get a new cart!"
+        "Thank You for shopping with us!"
       );
     }
 
