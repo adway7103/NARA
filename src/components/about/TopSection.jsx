@@ -4,8 +4,8 @@ const TopSection = () => {
   return (
     <div className="bg-gray-100 dark:!bg-black w-full">
       <div className="flex flex-col lg:items-center lg:justify-center pt-32 lg:pt-64">
-        <div className="flex container mx-auto px-4 pt-10 lg:py-10 items-center justify-start">
-          <h1 className="lg:ml-72 text-2xl sm:text-4xl lg:text-6xl font-medium text-gray-800 dark:!text-white">
+        <div className="flex container px-4 pt-10 lg:py-10 justify-start">
+          <h1 className="ml-2 lg:ml-5 xl:ml-40 2xl:ml-72 text-2xl sm:text-4xl lg:text-6xl font-medium text-gray-800 dark:!text-white">
             ABOUT
           </h1>
         </div>
@@ -22,8 +22,8 @@ const TopSection = () => {
       </div>
       <div className="flex items-center justify-center min-h-[60vh] py-20">
         <div className="max-w-screen-xl w-full ">
-          <section className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-12  lg:gap-y-20 dark:!text-white px-4 lg:px-40 items-center rounded-lg ">
-            <div className=" w-full h-full lg:w-[80vh] md:h-[90vh] lg:ml-40">
+          <section className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-12 lg:gap-y-20 dark:!text-white px-4  items-center ">
+            <div className="w-full h-full sm:h-[50vh] xl:h-[90vh] md:ml-4 xl:ml-40">
               <video
                 src="/about/divein.mp4"
                 autoPlay
@@ -32,7 +32,7 @@ const TopSection = () => {
                 className="bloc w-full h-full object-cover object-top"
               />
             </div>
-            <div className=" lg:pl-40">
+            <div className="md:ml-10 xl:pl-28">
               <p className="font-medium text-3xl md:text-4xl tracking-widest mb-4">
                 Who We Are
               </p>
@@ -44,11 +44,11 @@ const TopSection = () => {
                 your wardrobe!
               </p>
             </div>
-            <div className="hidden lg:block pr-5">
+            <div className="hidden lg:block lg:pr-3 xl:pr-5">
               <p className="font-medium text-4xl mb-4 lg:mb-[18px] text-right tracking-widest">
                 Our Secret Sauce
               </p>
-              <p className="mb-8 font-normal text-[16px] lg:text-[18px] text-right pl-0 lg:pl-32 ">
+              <p className="mb-8 font-normal text-[16px] lg:text-[18px] text-right pl-0 xl:pl-32 ">
                 Local fabrics and a commitment to affordability that's so
                 serious, it's almost like we're your budgeting experts! We're
                 all about local love, using pure cotton and heritage fabrics
@@ -57,7 +57,7 @@ const TopSection = () => {
                 bored of.
               </p>
             </div>
-            <div className="w-full lg:w-[80vh] h-[80vh]">
+            <div className="w-full lg:pr-3 lg:h-[60vh] xl:h-[80vh] h-[80vh]">
               <video
                 src="/about/fabric.mp4"
                 autoPlay

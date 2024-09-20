@@ -1,16 +1,28 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const SliderNavbar = ({ isOpen, toggleMenu }) => {
+  const [activeLink, setActiveLink] = useState("home");
+  const location = useLocation();
+  React.useEffect(() => {
+    if (location.pathname === "/") {
+      setActiveLink("home");
+    } else if (location.pathname === "/about") {
+      setActiveLink("about");
+    } else if (location.pathname === "/products") {
+      setActiveLink("products");
+    }
+  }, [location.pathname]);
+  const handleClick = (Link) => {
+    setActiveLink(Link);
+  };
   return (
     <div>
-      {/* Sidebar */}
       <div
         className={`fixed top-0 overflow-scroll left-0 h-full w-full transition-transform duration-300 z-50 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}>
         <div className="flex h-full flex-col md:flex-row">
-          {/* Menu Part */}
           <div className="w-full md:w-1/2 bg-[#f5f5e1] dark:!bg-black pt-8 px-8 md:p-12">
             <div className="flex justify-between items-center">
               <button className="text-black dark:!text-white font-bold text-lg md:text-xl pl-0">
@@ -24,23 +36,34 @@ const SliderNavbar = ({ isOpen, toggleMenu }) => {
             </div>
             <div className="mt-10 md:mt-14">
               <ul className="space-y-8 md:space-y-14">
-                {/* Menu items */}
                 <li>
                   <Link
                     to="/"
-                    className="text-lg md:text-xl  text-[#5D5D5D] italic">
+                    onClick={() => handleClick("home")}
+                    className="text-lg md:text-xl text-[#5D5D5D] italic">
                     01{" "}
-                    <span className="text-green-800 text-3xl md:text-5xl font-semibold not-italic pl-2 md:pl-5 md:tracking-widest">
+                    <span
+                      className={`${
+                        activeLink === "home"
+                          ? "text-green-800"
+                          : "text-black dark:!text-[#D8E3B1]"
+                      }  text-3xl md:text-5xl font-semibold not-italic pl-2 md:pl-7 md:tracking-widest `}>
                       HOME
                     </span>
                   </Link>
                 </li>
                 <li>
-                  <Link to={"/products"}
-                   
+                  <Link
+                    to={"/products"}
+                    onClick={() => handleClick("products")}
                     className="text-lg md:text-xl  text-[#5D5D5D] italic">
                     02
-                    <span className="text-3xl md:text-5xl font-semibold text-black dark:!text-[#D8E3B1] not-italic pl-4 md:pl-8 md:tracking-widest">
+                    <span
+                      className={`${
+                        activeLink === "products"
+                          ? "text-green-800"
+                          : "text-black dark:!text-[#D8E3B1]"
+                      } text-3xl md:text-5xl font-semibold   not-italic pl-4 md:pl-8 md:tracking-widest`}>
                       OUR SHOP
                     </span>
                   </Link>
@@ -48,9 +71,15 @@ const SliderNavbar = ({ isOpen, toggleMenu }) => {
                 <li>
                   <Link
                     to="/about"
+                    onClick={() => handleClick("about")}
                     className="text-lg md:text-xl  text-[#5D5D5D] italic">
                     03
-                    <span className="text-3xl md:text-5xl font-semibold text-black dark:!text-[#D8E3B1] not-italic pl-4 md:pl-8 md:tracking-widest">
+                    <span
+                      className={`text-3xl md:text-5xl font-semibold not-italic pl-4 md:pl-8 md:tracking-widest ${
+                        activeLink === "about"
+                          ? "text-green-800"
+                          : "text-black dark:!text-[#D8E3B1]"
+                      }`}>
                       ABOUT US
                     </span>
                   </Link>
@@ -91,32 +120,7 @@ const SliderNavbar = ({ isOpen, toggleMenu }) => {
                 </div>
               </div>
             </div>
-            {/* <div className="fixed bottom-0 left-0 w-full text-black p-10 pl-12">
-              <div className="flex space-x-3">
-                <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer">
-                  <img src="home/navbar/fb.svg" />
-                </a>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer">
-                  <img src="home/navbar/insta.svg" />
-                </a>
-                <div className="flex items-center space-x-2 bg-white rounded-xl px-3">
-                  <a
-                    href="mailto:firstname.lastname@gmail.com"
-                    className="text-black dark:text-white">
-                    firstname.lastname@gmail.com
-                  </a>
-                  <img src="home/navbar/file.svg" />
-                </div>
-              </div>
-            </div> */}
           </div>
-          {/* Content and Image Part */}
           <div className="w-full md:w-1/2 p-10 md:p-8 flex justify-center items-center bg-white dark:!bg-black relative">
             <div className="text-center ">
               <h1

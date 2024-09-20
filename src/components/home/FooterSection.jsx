@@ -1,4 +1,5 @@
 import React from "react";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const FooterSection = () => {
   const scrollToTop = () => {
@@ -20,7 +21,7 @@ const FooterSection = () => {
         </div>
 
         {/* Decorative Stars */}
-        <div className="hidden lg:block text-[#C4C4C4] my-10">
+        <div className="hidden 2xl:block text-[#C4C4C4] my-10">
           <div className="flex flex-wrap justify-center space-x-2 lg:space-x-5 mb-4">
             {Array(42)
               .fill(null)
@@ -30,7 +31,7 @@ const FooterSection = () => {
                     key={index}
                     src="/home/footer/star.svg"
                     alt="Decoration"
-                    className=" w-2 h-2 lg:w-4 lg:h-4"
+                    className="w-2 h-2 lg:w-4 lg:h-4"
                   />
                 </>
               ))}
@@ -53,7 +54,7 @@ const FooterSection = () => {
 
         {/* Footer Links */}
         <div className="text-[#1F4A40] dark:!text-[#D8E3B1] text-[8px] sm:text-[12px] lg:text-[14px] font-bold my-4 md:mb-4 px-10 sm:px-16">
-          <div className="grid grid-cols-3 lg:flex lg:flex-row justify-center gap-y-2 lg:space-x-20">
+          <div className="grid grid-cols-3 lg:flex lg:flex-row justify-center gap-y-2 lg:space-x-8 xl:space-x-20">
             <a href="#" className="underline">
               Contact us
             </a>
