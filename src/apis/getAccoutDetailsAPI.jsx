@@ -15,6 +15,8 @@ export default async function getAccountDetailsAPI() {
         firstName
         lastName
         province
+        formatted(withName: false)
+        name
         city
         zip
         address1

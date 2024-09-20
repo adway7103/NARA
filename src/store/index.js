@@ -1,21 +1,22 @@
 
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
+const userInitialState = {
+  accessToken: null,
+  isAuthenticated: null,
+  id: null,
+  fullName: null,
+  email: null,
+  phone: null,
+  addresses: [],
+  defaultAddressId:null,
+  areAddressesLoading: false,
+  defaultAddress: null,
+}
 
 const userSlice = createSlice({
   name: "user",
-  initialState: {
-    accessToken: null,
-    isAuthenticated: null,
-    id: null,
-    fullName: null,
-    email: null,
-    phone: null,
-    addresses: [],
-    defaultAddressId:null,
-    areAddressesLoading: false,
-    defaultAddress: null,
-  },
+  initialState: userInitialState ,
   reducers: {
     setUser(state, action) {
       state.id = action.payload.id; 
@@ -48,6 +49,9 @@ const userSlice = createSlice({
     },
     setDefaultAddress(state, action){
       state.defaultAddress = action.payload;
+    },
+    logoutUser(){
+      return userInitialState;
     }
   },
 });
@@ -62,6 +66,12 @@ const cartSlice = createSlice({
     productsInCart: null
   },
   reducers: {
+    deleteCart(state){
+      state.id = null;
+      state.totalQuantity = 0;
+      state.checkoutUrl = null;
+      state.productsInCart = null;
+    },
     setActiveCartId(state, action){
       state.id = action.payload;
     },
@@ -122,9 +132,9 @@ const store = configureStore({
 
 
 
-export const { setUser, setFullName, setEmail, setPhone, setAddresses, setAuthStatus, setDefaultAddressId, setDefaultAddress, setAreAddressesLoading } = userSlice.actions;
+export const { setUser, setFullName, setEmail, setPhone, setAddresses, setAuthStatus, setDefaultAddressId, setDefaultAddress, setAreAddressesLoading, logoutUser } = userSlice.actions;
 export const {setCurrentVariant, setOutOfStock} = activeProductSlice.actions;
-export const {setActiveCartId, setCheckoutUrl,setTotalQuantityInCart, setProductsinCart} = cartSlice.actions;
+export const {setActiveCartId, setCheckoutUrl,setTotalQuantityInCart, setProductsinCart, deleteCart} = cartSlice.actions;
 export const {setAppTheme} = appSlice.actions;
 
 export default store;

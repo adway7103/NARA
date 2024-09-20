@@ -1,8 +1,9 @@
 import api from "../utils/interceptors"; 
 
-const customerAccessToken = localStorage.getItem("accessToken");
+
 
 export async function addAddressAPI(address) {
+  const customerAccessToken = localStorage.getItem("accessToken");
   const mutation = `
     mutation customerAddressCreate($customerAccessToken: String!, $address: MailingAddressInput!) {
       customerAddressCreate(customerAccessToken: $customerAccessToken, address: $address) {
@@ -58,6 +59,8 @@ export async function addAddressAPI(address) {
 
 
 export async function getAddressesAPI() {
+  const customerAccessToken = localStorage.getItem("accessToken");
+  console.log("Getting address for the access token", customerAccessToken)
     const query = `
       query getCustomerAddresses($customerAccessToken: String!) {
         customer(customerAccessToken: $customerAccessToken) {
@@ -75,6 +78,8 @@ export async function getAddressesAPI() {
                 country
                 zip
                 phone
+                formatted(withName: false)
+                name
                 
               }
             }
@@ -108,6 +113,7 @@ export async function getAddressesAPI() {
   
 
   export async function updateAddressAPI( addressId, address) {
+    const customerAccessToken = localStorage.getItem("accessToken");
     const query = `
       mutation customerAddressUpdate($customerAccessToken: String!, $id: ID!, $address: MailingAddressInput!) {
         customerAddressUpdate(customerAccessToken: $customerAccessToken, id: $id, address: $address) {

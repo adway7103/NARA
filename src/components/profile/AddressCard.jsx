@@ -11,7 +11,6 @@ export default function AddressCard({
   addressLine,
   phone,
   addressId,
-  province,
   fullAddressObject
 }) {
   const defaultAddressId = useSelector((state) => state.user.defaultAddressId);
@@ -133,7 +132,7 @@ export default function AddressCard({
             <p className="text-base text-[#7A7A7A]">{phone}</p>
             <p className="text-base mt-2">{addressLine}</p>
             <br />
-            <p>{province}</p>
+            
           </address>
           <div className="flex gap-2">
             <button className="border-r-2 pr-2" onClick={deleteAddressHandler}>

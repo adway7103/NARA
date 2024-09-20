@@ -4,7 +4,15 @@ import AddressesSection from "../components/profile/AddressesSection";
 import expandIcon from "../assets/icons/expand.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setAuthStatus } from "../store";
+import {
+  deleteCart,
+  logoutUser,
+  setActiveCartId,
+  setAuthStatus,
+  setCheckoutUrl,
+  setProductsinCart,
+  setTotalQuantityInCart,
+} from "../store";
 import { LiaPowerOffSolid } from "react-icons/lia";
 
 export default function Profile() {
@@ -65,13 +73,15 @@ function MainContent({ isMenuOpen }) {
 function Sidebar({ isMenuOpen }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
-  const logoutHandler = ()=>{
-    localStorage.removeItem("accessToken");
-    dispatch(setAuthStatus({setAccessToken: null, isAuthenticated: false }));
 
+  const logoutHandler = () => {
+    localStorage.removeItem("accessToken");
+    dispatch(logoutUser());
+    dispatch(deleteCart());
+    localStorage.removeItem("cartId");
+    localStorage.removeItem("checkoutUrl"); // have to remove this too
     navigate("/");
-  }
+  };
   return (
     <aside
       className={`absolute lg:relative top-0 bottom-0 transition-transform duration-500 ease-in-out transform ${
@@ -83,10 +93,17 @@ function Sidebar({ isMenuOpen }) {
           <h2>Account Details</h2>
           <img src={expandIcon} alt="expand icon" />
         </div>
-        <Link to={"/orders"}><h2 className="text-sm font-semibold border-b-2 p-2">My Orders</h2></Link>
-        
+        <Link to={"/orders"}>
+          <h2 className="text-sm font-semibold border-b-2 p-2">My Orders</h2>
+        </Link>
       </div>
-      <button className="flex items-center justify-center gap-2 font-bold dark:text-[#ffff] border-2 p-1 text-lg" onClick={logoutHandler}> <LiaPowerOffSolid size={24}  />  <span>Log out</span></button>
+      <button
+        className="flex items-center justify-center gap-2 font-bold dark:text-[#ffff] border-2 p-1 text-lg"
+        onClick={logoutHandler}
+      >
+        {" "}
+        <LiaPowerOffSolid size={24} /> <span>Log out</span>
+      </button>
     </aside>
   );
 }

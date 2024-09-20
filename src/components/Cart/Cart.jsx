@@ -30,29 +30,29 @@ export default function Cart({ toggleCartOpen, cartOpen }) {
     window.open(checkoutUrl);
   };
 
-  const fetchAllItems = async (cartId) => {
-    try {
-      setCartLoading(true);
-      setItemsQuantity(0); // so that the checkout button can be disabled
-      const response = await getItemsInCartAPI(cartId);
-      const itemsQuantity = response?.totalQuantity;
-      setItemsQuantity(itemsQuantity);
-      dispatch(setCheckoutUrl(response?.checkoutUrl));
-      const products = response?.lines?.edges;
-      dispatch(setProductsinCart(products));
-    } catch (error) {
-      console.error(error);
-      if (error?.message?.includes("GraphQL error(s)")) {
-        toast.error("Something went wrong");
-      } else if (error?.meesage) {
-        toast.error(error.message);
-      } else {
-        toast.error("Something went wrong!");
-      }
-    } finally {
-      setCartLoading(false);
-    }
-  };
+  // const fetchAllItems = async (cartId) => {
+  //   try {
+  //     setCartLoading(true);
+  //     setItemsQuantity(0); // so that the checkout button can be disabled
+  //     const response = await getItemsInCartAPI(cartId);
+  //     const itemsQuantity = response?.totalQuantity;
+  //     setItemsQuantity(itemsQuantity);
+  //     dispatch(setCheckoutUrl(response?.checkoutUrl));
+  //     const products = response?.lines?.edges;
+  //     dispatch(setProductsinCart(products));
+  //   } catch (error) {
+  //     console.error(error);
+  //     if (error?.message?.includes("GraphQL error(s)")) {
+  //       toast.error("Something went wrong");
+  //     } else if (error?.meesage) {
+  //       toast.error(error.message);
+  //     } else {
+  //       toast.error("Something went wrong!");
+  //     }
+  //   } finally {
+  //     setCartLoading(false);
+  //   }
+  // };
 
   const continueShoppingHandler = () => {
     toggleCartOpen();
@@ -127,7 +127,6 @@ export default function Cart({ toggleCartOpen, cartOpen }) {
                     <div className="flex flex-col gap-2 overflow-auto">
                       {productsInCart?.map((el) => (
                         <CartItem
-                          setItemsQuantity={setItemsQuantity}
                           key={el?.node?.id}
                           cartLineId={el?.node?.id}
                           cartId={cartId}
@@ -136,7 +135,6 @@ export default function Cart({ toggleCartOpen, cartOpen }) {
                           title={el?.node?.merchandise?.product?.title}
                           pricePerItem={el?.node?.merchandise?.price}
                           productId={el?.node?.merchandise?.id}
-                          fetchAllItems={fetchAllItems}
                           size={
                             el?.node?.merchandise?.selectedOptions?.find(
                               (el) => el?.name === "Size"

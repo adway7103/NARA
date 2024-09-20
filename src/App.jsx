@@ -15,17 +15,20 @@ function App() {
   const fetchAllItemsInCart = async (cartId) => {
     try {
       const response = await getItemsInCartAPI(cartId);
+      console.log("response", response)
       const itemsQuantity = response?.totalQuantity;
       dispatch(setTotalQuantityInCart(itemsQuantity));
-      dispatch(setCheckoutUrl(response?.checkoutUrl))
+      dispatch(setCheckoutUrl(response?.checkoutUrl));
       
       const products = response?.lines?.edges;
       dispatch(setProductsinCart(products));
+      console.log("Total Quantity", itemsQuantity);
+      console.log("products",  products)
     } catch (error) {
       console.error(error);
       if (error?.message?.includes("GraphQL error(s)")) {
         toast.error("Something went wrong");
-      } else if (error?.meesage) {
+      } else if (error?.message) {
         toast.error(error.message);
       } else {
         toast.error("Something went wrong!");
