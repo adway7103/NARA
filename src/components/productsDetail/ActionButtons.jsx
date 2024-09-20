@@ -36,7 +36,7 @@ export default function ActionButtons() {
       dispatch(setProductsinCart(cart.lines.edges));
       dispatch(setTotalQuantityInCart(cart.totalQuantity));
       localStorage.setItem("cartId", cartId);
-      localStorage.setItem("checkoutUrl", checkoutUrl);
+      
     } catch (error) {
       console.error(error);
       toast.error(error.message);
@@ -57,7 +57,7 @@ export default function ActionButtons() {
       dispatch(setProductsinCart(cart.lines.edges));
       dispatch(setTotalQuantityInCart(cart.totalQuantity));
       localStorage.setItem("cartId", cartId);
-      localStorage.setItem("checkoutUrl", checkoutUrl);
+      
     } catch (error) {
       console.error(error);
       toast.error(error.message);

@@ -23,10 +23,8 @@ function LoginSection() {
       const accessToken = await LoginApi(userData);
       toast.success("Login successful!");
       dispatch(setAuthStatus({accessToken, isAuthenticated: true}));
-      
       dispatch(deleteCart());
       localStorage.removeItem("cartId");
-      localStorage.removeItem("checkoutUrl");
       navigate("/");
      
     } catch (error) {

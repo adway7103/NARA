@@ -79,7 +79,6 @@ function Sidebar({ isMenuOpen }) {
     dispatch(logoutUser());
     dispatch(deleteCart());
     localStorage.removeItem("cartId");
-    localStorage.removeItem("checkoutUrl"); // have to remove this too
     navigate("/");
   };
   return (
