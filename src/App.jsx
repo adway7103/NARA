@@ -71,7 +71,7 @@ function App() {
   // }, [fetchedCartId])
   
   return (
-    <div className="cursor-custom">
+    <div className="cursor-custom dark:bg-black">
       <Toaster position="top-center" richColors />
       <Outlet />
     </div>

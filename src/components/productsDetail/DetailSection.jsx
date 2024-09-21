@@ -47,7 +47,7 @@ export default function DetailSection({ title, descriptionHtml }) {
       {/* Description HTML section */}
 
       <div className="flex flex-col gap-2">
-        <h2 className="font-bold">Description {theme}</h2>
+        <h2 className="font-bold">Description </h2>
         <div
           className={`prose ${theme==="dark"  && classes["text-white-recursive"]}  text-sm`}
           dangerouslySetInnerHTML={{

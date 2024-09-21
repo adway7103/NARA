@@ -13,7 +13,7 @@ const ProductsSearch = ({ className }) => {
             <IoSearch />
         </div>
         <input
-        className="outline-none py-2 w-full text-sm"
+        className="outline-none py-2 w-full text-sm dark:bg-black dark:text-[#ffff]"
         placeholder="Search..."
         onChange={handleSearchInput}
         />

@@ -107,7 +107,7 @@ const ProductHeader = ({ products, setProducts, copyProducts }) => {
       return (
         <div
           key={index}
-          className={`product-item font-mono flex items-center justify-between py-2 cursor-pointer px-2 rounded-md transition-colors duration-300 ${
+          className={`dark:bg-black product-item font-mono flex items-center justify-between py-2 cursor-pointer px-2 rounded-md transition-colors duration-300 ${
             isActive ? "bg-[#67eacb]" : "hover:bg-[#67eacb]"
           }`}
           onClick={() => handleActiveProductFilter(key)}

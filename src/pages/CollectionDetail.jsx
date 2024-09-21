@@ -46,7 +46,7 @@ export default function CollectionDetail() {
         <div className="h-full  lg:w-1/3 w-full sm:w-3/4 md:w-1/2 xl:px-12 px-6 flex flex-col gap-8 overflow-auto scrollbar-hide">
           <div className="flex gap-2 items-center text-[#656565]">
             <Link className="underline ">Home</Link>
-            <img className="-mt-1" src="/public/icons/leftTriangleIcon.svg" />
+            <img className="-mt-1" src="/icons/leftTriangleIcon.svg" />
             <span>{collection.title.slice(0, 11)}{collection.title.length>11 ? "..." : null}</span>
           </div>
 

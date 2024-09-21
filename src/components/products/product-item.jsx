@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import Skeleton from '@mui/material/Skeleton';
 import Box from '@mui/material/Box';
+import ViewButton from "../ViewButton";
 
 
 const ProductItem = ({ colors, setActiveProductColor, name, discount, message, price, img, productId  }) => {
@@ -79,11 +80,13 @@ const ProductItem = ({ colors, setActiveProductColor, name, discount, message, p
           </div>
         </div>
         <div className="flex justify-between py-2">
-            <div className="flex text-xl items-center cursor-pointer gap-2">
+          {/* plus minus button */}
+            {/* <div className="flex text-xl items-center cursor-pointer gap-2">
               <div className="border w-8 h-8 grid place-items-center cursor-pointer" onClick={() => handleAddtocard("add")}><GoPlus /></div>
               <div>{productCount}</div>
               <div className="border w-8 h-8 grid place-items-center cursor-pointer" onClick={() => handleAddtocard("remove")}><GoDash /></div>
-            </div>
+            </div> */}
+            <ViewButton productId={productId} />
             <div className="font-medium flex gap-1 items-center cursor-pointer" onClick={handleBookmark}>
                 {bookmark ? (
                     <FaBookmark />
