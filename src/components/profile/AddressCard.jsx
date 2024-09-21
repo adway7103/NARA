@@ -5,6 +5,7 @@ import { deleteAddressAPI } from "../../apis/addressAPI";
 import { toast } from "sonner";
 import { setDefaultAddressId, setAddresses, setDefaultAddress } from "../../store";
 import { Skeleton } from "@mui/material";
+import AddressForm from "./AddressForm";
 
 export default function AddressCard({
   fullName,
@@ -19,6 +20,7 @@ export default function AddressCard({
   const [isDefaultAddress, setIsDefaultAddress] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
+  const [addressFormOpen, setAddressFormOpen] = useState(false);
 
   useEffect(() => {
     const thisAddressId = addressId?.split("?")[0];
@@ -89,6 +91,16 @@ export default function AddressCard({
     }
   };
 
+  const closeAddressFormHandler = ()=>{
+    setAddressFormOpen(false);
+  }
+
+  const editAddressHandler = ()=>{
+    
+    setAddressFormOpen(true);
+
+  }
+
   return (
     <>
       {isLoading ? (
@@ -115,13 +127,13 @@ export default function AddressCard({
                   <input
                     type="radio"
                     name="makeDefaultAddress"
-                    id={`default-address-${fullName.replace(/\s+/g, "-")}`}
+                    id={`default-address-${fullName?.replace(/\s+/g, "-")}`}
                     aria-label={makeDefaultText}
                     onChange={handleDefaultAddressChange}
                   />
 
                   <label
-                    htmlFor={`default-address-${fullName.replace(/\s+/g, "-")}`}
+                    htmlFor={`default-address-${fullName?.replace(/\s+/g, "-")}`}
                     className="ml-2 lg:text-base text-xs"
                   >
                     {makeDefaultText}
@@ -138,7 +150,8 @@ export default function AddressCard({
             <button className="border-r-2 pr-2" onClick={deleteAddressHandler}>
               Remove
             </button>
-            <button>Edit</button>
+            <button onClick={editAddressHandler}>Edit</button>
+            {addressFormOpen && <AddressForm isEditing={true} address={fullAddressObject} closeForm={closeAddressFormHandler} />}
           </div>
         </div>
       )}

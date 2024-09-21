@@ -17,6 +17,8 @@ export async function addAddressAPI(address) {
           address1
           address2
           city
+          name
+          formatted(withName: false) 
           country
           firstName
           lastName
@@ -112,8 +114,8 @@ export async function getAddressesAPI() {
 
   
 
-  export async function updateAddressAPI( addressId, address) {
-    const customerAccessToken = localStorage.getItem("accessToken");
+  export async function updateAddressAPI( addressId, address, customerAccessToken) {
+    
     const query = `
       mutation customerAddressUpdate($customerAccessToken: String!, $id: ID!, $address: MailingAddressInput!) {
         customerAddressUpdate(customerAccessToken: $customerAccessToken, id: $id, address: $address) {
@@ -126,6 +128,8 @@ export async function getAddressesAPI() {
             id
             firstName
             lastName
+            name
+            formatted(withName: false)
             address1
             address2
             city

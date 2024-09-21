@@ -52,7 +52,7 @@ const Products = () => {
             setProducts={setProducts}
             copyProducts={copiedProducts}
           />
-          <Categories />
+          {/* <Categories /> */}
         </div>
         {isLoading ? (
           

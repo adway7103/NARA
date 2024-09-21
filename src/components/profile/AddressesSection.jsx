@@ -55,11 +55,11 @@ export default function AddressesSection() {
         {userAddresses.map((address) => (
           
           <AddressCard
-            key={address.id}
-            fullName={address.name}
-            addressLine={address.formatted.join(", ")}
-            phone={address.phone}
-            addressId={address.id}
+            key={address?.id}
+            fullName={address?.name}
+            addressLine={address?.formatted?.join(", ")}
+            phone={address?.phone}
+            addressId={address?.id}
             fullAddressObject = {address}
           />
         ))}

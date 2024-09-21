@@ -134,13 +134,13 @@ const ProductHeader = ({ products, setProducts, copyProducts }) => {
   return (
     <div className="flex items-center justify-between flex-wrap md:flex-nowrap py-3 px-4 lg:px-12">
       <div className="relative ">
-        <div
+        {/* <div
           className="items-center gap-1 text-[#1F4A40] font-semibold flex cursor-pointer"
           onClick={() => setFilter(!filter)}
         >
           <IoFilter />
           Filter
-        </div>
+        </div> */}
         {filter && (
           <div className="absolute bg-white p-4 shadow-xl top-full rounded-md  border">
             <h1 className="font-semibold">Filter</h1>
@@ -182,13 +182,13 @@ const ProductHeader = ({ products, setProducts, copyProducts }) => {
       {/* Product search component reused at the bottom for mobile view. make sure to apply function call there as well for mobile view */}
       <ProductsSearch products={products} originalProducts={copyProducts} className="hidden md:flex md:max-w-sm"/>
       <div className="relative z-50">
-        <div
+        {/* <div
           className="items-center gap-1 text-[#1F4A40] font-semibold flex cursor-pointer"
           onClick={() => setSort(!sort)}
         >
           <BiSortAlt2 />
           Sort by
-        </div>
+        </div> */}
         {sort && (
           <div className="absolute bg-white py-2 px-2 text-center border shadow-xl top-full translate-y-2 rounded-md right-0 cursor-pointer space-y-1 w-[180px] text-sm">
             {Object.entries(sortItems).map(([key, value]) => (
