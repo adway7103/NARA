@@ -5,7 +5,6 @@ import CartIcon from "../CartIcon";
 import { useDispatch } from "react-redux";
 import { setAppTheme } from "../../store";
 import { Link } from "react-router-dom";
-
 const NavbarRelative = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
@@ -13,10 +12,8 @@ const NavbarRelative = () => {
     setIsOpen(!isOpen);
   };
 
-
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const element = document.documentElement;
-
 
   useEffect(() => {
     if (theme === "dark") {
@@ -36,7 +33,6 @@ const NavbarRelative = () => {
     <div>
       {/* Top Navbar */}
       <div className="top-0 left-0  w-full z-50 flex justify-between items-center bg-white dark:!bg-black md:px-10 pl-4 pr-2 py-2 xl:!py-4 bg-opacity-80 fixed">
-        
         <div className="flex items-center">
           <button
             className="text-4xl flex mt-[10px] items-center font-bold text-black dark:!text-white"
@@ -68,8 +64,11 @@ const NavbarRelative = () => {
           {theme == "light" ? (
             <>
               <img src="/home/navbar/icon1.svg" alt="light mode icon" />
-              <Link to={"/profile"}><img src="/home/navbar/user.svg" alt="light mode icon" /></Link>
-              <CartIcon theme = {theme} />
+
+              <Link to="/profile">
+                <img src="/home/navbar/user.svg" alt="light mode icon" />
+              </Link>
+              <CartIcon theme={theme} />
             </>
           ) : (
             <>
@@ -78,14 +77,12 @@ const NavbarRelative = () => {
                 className="white-icon"
                 alt="light mode icon"
               />
-              <Link to={"/profile"}>
               <img
                 src="/home/navbar/user.svg"
                 className="white-icon"
                 alt="light mode icon"
               />
-              </Link>
-              <CartIcon theme = {theme} />
+              <CartIcon theme={theme} />
             </>
           )}
         </div>

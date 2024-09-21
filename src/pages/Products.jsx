@@ -1,7 +1,7 @@
 import { useState, useEffect, Suspense } from "react";
 import { fetchProducts } from "../apis/getAllProducts";
 import Navbar from "../components/Navbar/Navbar";
-import Categories from "../components/products/categories";
+
 import ProductHeader from "../components/products/header";
 import ProductItem from "../components/products/product-item";
 import Loading from "../components/utils/Loading";
@@ -52,7 +52,7 @@ const Products = () => {
             setProducts={setProducts}
             copyProducts={copiedProducts}
           />
-          {/* <Categories /> */}
+          
         </div>
         {isLoading ? (
           
