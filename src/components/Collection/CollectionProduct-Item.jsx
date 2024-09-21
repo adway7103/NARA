@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Skeleton from "@mui/material/Skeleton";
 import Box from "@mui/material/Box";
 import ImageWithSkeleton from "../utils/ImageWithSkeleton";
+import ViewButton from "../ViewButton";
 
 const CollectionProductItem = ({
   colors,
@@ -91,28 +92,21 @@ const CollectionProductItem = ({
           </div>
         </div>
         <div className="flex justify-between py-2">
-          <div className="flex text-xl items-center cursor-pointer gap-2">
-            <div
-              className="border w-8 h-8 grid place-items-center cursor-pointer"
-              onClick={() => handleAddtocard("add")}
-            >
-              <GoPlus />
+          {/* plus minus button */}
+            {/* <div className="flex text-xl items-center cursor-pointer gap-2">
+              <div className="border w-8 h-8 grid place-items-center cursor-pointer" onClick={() => handleAddtocard("add")}><GoPlus /></div>
+              <div>{productCount}</div>
+              <div className="border w-8 h-8 grid place-items-center cursor-pointer" onClick={() => handleAddtocard("remove")}><GoDash /></div>
+            </div> */}
+            <ViewButton productId={productId} />
+            <div className="font-medium flex gap-1 items-center cursor-pointer" onClick={handleBookmark}>
+                {bookmark ? (
+                    <FaBookmark />
+                ) : (
+                    <FaRegBookmark />
+                )}
+                Wishlist
             </div>
-            <div>{productCount}</div>
-            <div
-              className="border w-8 h-8 grid place-items-center cursor-pointer"
-              onClick={() => handleAddtocard("remove")}
-            >
-              <GoDash />
-            </div>
-          </div>
-          <div
-            className="font-medium flex gap-1 items-center cursor-pointer"
-            onClick={handleBookmark}
-          >
-            {bookmark ? <FaBookmark /> : <FaRegBookmark />}
-            Wishlist
-          </div>
         </div>
       </div>
     </Link>

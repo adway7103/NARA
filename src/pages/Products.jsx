@@ -42,17 +42,18 @@ const Products = () => {
   }, [isLoading, products]);
 
   return (
-    <div>
+    <div className="dark:bg-black h-screen overflow-hidden">
       <NavbarRelative />
 
-      <div className="mt-8">
-        <div className="bg-[#F7F7F7] pb-2 mt-20">
+      <div className=" dark:bg-black  dark:text-[#ffff] mt-8">
+        <div className="bg-[#F7F7F7]  dark:bg-black  dark:border-b-[#ffff] dark:border-b-2 pb-2 mt-20">
           <ProductHeader
             products={products}
             setProducts={setProducts}
             copyProducts={copiedProducts}
           />
         </div>
+        <div className="max-h-screen overflow-auto">
         {isLoading ? (
           <PageLoader />
         ) : (
@@ -71,8 +72,11 @@ const Products = () => {
                 productId={product.id}
               />
             ))}
+
           </div>
         )}
+
+        </div>
       </div>
     </div>
   );
