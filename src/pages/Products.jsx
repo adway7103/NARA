@@ -1,7 +1,7 @@
 import { useState, useEffect, Suspense } from "react";
 import { fetchProducts } from "../apis/getAllProducts";
 import Navbar from "../components/Navbar/Navbar";
-
+import Categories from "../components/products/categories";
 import ProductHeader from "../components/products/header";
 import ProductItem from "../components/products/product-item";
 import Loading from "../components/utils/Loading";
@@ -44,27 +44,21 @@ const Products = () => {
   return (
     <div>
       <NavbarRelative />
-      
+
       <div className="mt-8">
-        <div className="bg-[#F7F7F7] pb-4 mt-20">
+        <div className="bg-[#F7F7F7] pb-2 mt-20">
           <ProductHeader
             products={products}
             setProducts={setProducts}
             copyProducts={copiedProducts}
           />
-          
         </div>
         {isLoading ? (
-          
-
-              <PageLoader />
-
-          
+          <PageLoader />
         ) : (
           // <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 lg:gap-x-16 p-4 place-items-center">
           <div className="flex flex-wrap gap-4 justify-center py-4">
             {products.map((product, index) => (
-              
               <ProductItem
                 key={product.id}
                 img={product?.images?.edges[0]?.node?.src}
@@ -76,7 +70,6 @@ const Products = () => {
                 message={""}
                 productId={product.id}
               />
-              
             ))}
           </div>
         )}
