@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useLocation } from "react-router-dom";
 import { Toaster, toast } from "sonner";
-import { setAuthStatus, setActiveCartId, setTotalQuantityInCart, setProductsinCart, setCheckoutUrl } from "./store";
+import { setAuthStatus, setActiveCartId, setTotalQuantityInCart, setProductsinCart, setCheckoutUrl, deleteCart } from "./store";
 import { updateCustomerDefaultAddress } from "./apis/getAccoutDetailsAPI";
 import createCart, { getCheckoutURL, getItemsInCartAPI, updateBuyersIndentity } from "./apis/Cart";
 import { getProductVariantDetail } from "./apis/Products";
@@ -15,17 +15,25 @@ function App() {
   const fetchAllItemsInCart = async (cartId) => {
     try {
       const response = await getItemsInCartAPI(cartId);
+      console.log("response", response)
       const itemsQuantity = response?.totalQuantity;
       dispatch(setTotalQuantityInCart(itemsQuantity));
-      dispatch(setCheckoutUrl(response?.checkoutUrl))
+      dispatch(setCheckoutUrl(response?.checkoutUrl));
       
       const products = response?.lines?.edges;
       dispatch(setProductsinCart(products));
+      console.log("Total Quantity", itemsQuantity);
+      console.log("products",  products)
     } catch (error) {
       console.error(error);
       if (error?.message?.includes("GraphQL error(s)")) {
         toast.error("Something went wrong");
-      } else if (error?.meesage) {
+      }else if (error?.message ==="Thank You for shopping with us!") {
+        localStorage.removeItem("cartId");
+        dispatch(deleteCart());
+        toast.info(error?.message);
+      } 
+      else if (error?.message) {
         toast.error(error.message);
       } else {
         toast.error("Something went wrong!");

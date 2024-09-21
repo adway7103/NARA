@@ -391,14 +391,18 @@ export async function getItemsInCartAPI(cartId) {
       throw new Error(`GraphQL error(s): ${errorMessages}`);
     }
 
-    const cart = response.data;
+    const cart = response.data.data.cart;
+    console.log("Logging from the cart api", cart);
     if (!cart) {
+      localStorage.removeItem("cartId");
       throw new Error(
-        "Could not fetch Items in the cart! Maybe the cart has expired! Try adding items again to get a new cart!"
+        "Thank You for shopping with us!"
       );
     }
 
-    return cart.data.cart;
+    
+    return cart;
+    
   } catch (error) {
     console.error("Could not get items in cart: ", error.message);
     throw error;

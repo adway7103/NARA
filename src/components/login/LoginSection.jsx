@@ -7,7 +7,7 @@ import LoginApi from "../../apis/LoginApi";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setActiveCartId, setAuthStatus, setCheckoutUrl, setProductsinCart, setTotalQuantityInCart } from "../../store";
+import { deleteCart, setActiveCartId, setAuthStatus, setCheckoutUrl, setProductsinCart, setTotalQuantityInCart } from "../../store";
 function LoginSection() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,13 +23,8 @@ function LoginSection() {
       const accessToken = await LoginApi(userData);
       toast.success("Login successful!");
       dispatch(setAuthStatus({accessToken, isAuthenticated: true}));
-      // After login we are deleting any existing cart for now:
-      dispatch(setActiveCartId(null));
-      dispatch(setProductsinCart(null));
-      dispatch(setCheckoutUrl(null));
-      dispatch(setTotalQuantityInCart(0));
+      dispatch(deleteCart());
       localStorage.removeItem("cartId");
-      localStorage.removeItem("checkoutUrl");
       navigate("/");
      
     } catch (error) {

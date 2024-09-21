@@ -1,5 +1,5 @@
 import React from "react";
-import { addAddressAPI } from "../../apis/addressAPI";
+import { addAddressAPI, updateAddressAPI } from "../../apis/addressAPI";
 import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import { setAddresses } from "../../store";
@@ -45,10 +45,12 @@ const indianStatesAndUTs = [
   "West Bengal"
 ];
 
-export default function AddressForm({ closeForm }) {
+export default function AddressForm({ closeForm, isEditing, address }) {
   const currentAddresses = useSelector((state) => state.user.addresses);
   const dispatch = useDispatch();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const customerAccessToken = useSelector(state=>state.user.accessToken);
+  const addresses = useSelector(state=>state.user.addresses);
 
   const handleClose = (e) => {
     e.preventDefault();
@@ -86,9 +88,33 @@ export default function AddressForm({ closeForm }) {
       alert("All fields are required!");
       return;
     }
-    console.log(data);
-    addAddress({ ...data, country: "India" });
+
+    
+
+    if(isEditing && customerAccessToken){
+      editAddress({ ...data, country: "India" }, address.id, customerAccessToken )
+    }else{
+      addAddress({ ...data, country: "India" });
+    }
   };
+
+
+  const editAddress = async (address, addressId, customerAccessToken) => {
+    try {
+      setIsSubmitting(true);
+      const editedAddress = await updateAddressAPI(addressId, address, customerAccessToken);
+      const newAddress = addresses.filter(el=>el.id!==addressId);
+      toast.success("Address was edited successfully!");
+      dispatch(setAddresses([...newAddress, editedAddress]));
+      closeForm();
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
 
   return (
     <div className="fixed top-0 bottom-0 right-0 left-0 inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center">
@@ -112,6 +138,7 @@ export default function AddressForm({ closeForm }) {
             id="firstName"
             name="firstName"
             required
+            defaultValue={address?.firstName}
             placeholder="John"
             className="border-b-2 focus:outline-none focus:border-b-black bg-transparent"
           />
@@ -122,6 +149,7 @@ export default function AddressForm({ closeForm }) {
             type="text"
             id="lastName"
             name="lastName"
+            defaultValue={address?.lastName}
             required
             placeholder="Doe"
             className="border-b-2 focus:outline-none focus:border-b-black bg-transparent"
@@ -134,6 +162,7 @@ export default function AddressForm({ closeForm }) {
             id="phone"
             name="phone"
             required
+            defaultValue={address?.phone}
             placeholder="+911234567890"
             className="border-b-2 focus:outline-none focus:border-b-black bg-transparent"
           />
@@ -144,6 +173,7 @@ export default function AddressForm({ closeForm }) {
             type="text"
             id="address1"
             name="address1"
+            defaultValue={address?.address1}
             required
             placeholder="1/4 Pragatinagar Flats, opp. Jain Derasar"
             className="border-b-2 focus:outline-none focus:border-b-black bg-transparent"
@@ -155,6 +185,7 @@ export default function AddressForm({ closeForm }) {
             type="text"
             id="address2"
             name="address2"
+            defaultValue={address?.address2}
             required
             placeholder="near Jain Derasar, Vijaynagar Road"
             className="border-b-2 focus:outline-none focus:border-b-black bg-transparent"
@@ -166,6 +197,7 @@ export default function AddressForm({ closeForm }) {
             id="province"
             name="province"
             required
+            defaultValue={address?.province}
             className="border-b-2 focus:outline-none focus:border-b-black bg-transparent"
           >
             <option value="" disabled >
@@ -184,6 +216,7 @@ export default function AddressForm({ closeForm }) {
             type="text"
             id="zip"
             name="zip"
+            defaultValue={address?.zip}
             required
             placeholder="845101"
             className="border-b-2 focus:outline-none focus:border-b-black bg-transparent"
@@ -196,6 +229,7 @@ export default function AddressForm({ closeForm }) {
             id="city"
             name="city"
             required
+            defaultValue={address?.city}
             placeholder="Ludhiana"
             className="border-b-2 focus:outline-none focus:border-b-black bg-transparent"
           />

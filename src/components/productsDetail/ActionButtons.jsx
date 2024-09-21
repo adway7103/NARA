@@ -36,7 +36,7 @@ export default function ActionButtons() {
       dispatch(setProductsinCart(cart.lines.edges));
       dispatch(setTotalQuantityInCart(cart.totalQuantity));
       localStorage.setItem("cartId", cartId);
-      localStorage.setItem("checkoutUrl", checkoutUrl);
+      
     } catch (error) {
       console.error(error);
       toast.error(error.message);
@@ -57,7 +57,7 @@ export default function ActionButtons() {
       dispatch(setProductsinCart(cart.lines.edges));
       dispatch(setTotalQuantityInCart(cart.totalQuantity));
       localStorage.setItem("cartId", cartId);
-      localStorage.setItem("checkoutUrl", checkoutUrl);
+      
     } catch (error) {
       console.error(error);
       toast.error(error.message);
@@ -105,7 +105,7 @@ export default function ActionButtons() {
       console.log("since user is authenticated here is the authenticated cart: ");
       createLoggedInCart(variantId, accessToken )
     } else {
-      
+      console.log("The user is not authenticated, here is the non authenticated cart:")
       createCartWithOneitem(variantId);
     }
   };
