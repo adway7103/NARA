@@ -42,23 +42,25 @@ const Products = () => {
   }, [isLoading, products]);
 
   return (
-    <div className="dark:bg-black h-screen overflow-hidden">
+    <div className="dark:bg-black h-screen">
       <NavbarRelative />
 
       <div className=" dark:bg-black  dark:text-[#ffff] mt-8">
         <div className="bg-[#F7F7F7]  dark:bg-black  dark:border-b-[#ffff] dark:border-b-2 pb-2 mt-20">
           <ProductHeader
+            setIsLoading={setIsLoading}
             products={products}
             setProducts={setProducts}
             copyProducts={copiedProducts}
           />
         </div>
-        <div className="max-h-screen overflow-auto">
+        <div className="overflow-hidden ">
         {isLoading ? (
-          <PageLoader />
+          <PageLoader  />
         ) : (
           // <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 lg:gap-x-16 p-4 place-items-center">
           <div className="flex flex-wrap gap-4 justify-center py-4">
+            {products.length===0? <h1 className="text-3xl text-center p-12 ">Could not get any product for you!</h1>: null}
             {products.map((product, index) => (
               <ProductItem
                 key={product.id}
