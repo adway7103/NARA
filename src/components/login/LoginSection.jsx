@@ -7,14 +7,24 @@ import LoginApi from "../../apis/LoginApi";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { deleteCart, setActiveCartId, setAuthStatus, setCheckoutUrl, setProductsinCart, setTotalQuantityInCart } from "../../store";
+import {
+  deleteCart,
+  setActiveCartId,
+  setAuthStatus,
+  setCheckoutUrl,
+  setProductsinCart,
+  setTotalQuantityInCart,
+} from "../../store";
+import { ToastContainer, toast as toastifyToast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { SendRecoveryEmailAPI } from "../../apis/CustomerAPI";
 function LoginSection() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -22,20 +32,50 @@ function LoginSection() {
     try {
       const accessToken = await LoginApi(userData);
       toast.success("Login successful!");
-      dispatch(setAuthStatus({accessToken, isAuthenticated: true}));
+      dispatch(setAuthStatus({ accessToken, isAuthenticated: true }));
       dispatch(deleteCart());
       localStorage.removeItem("cartId");
       navigate("/");
-     
     } catch (error) {
       toast.error("Login failed: " + error.message);
     } finally {
       setIsLoading(false);
     }
   };
+
+  const handleForgotPassword = async () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+    if (email.trim().length === 0 || !emailRegex.test(email)) {
+      toastifyToast("Please enter a valid email address!");
+      return;
+    }
+  
+    try {
+      const response = await SendRecoveryEmailAPI(email);
+      if (response) {
+        toastifyToast("An email with the account recovery link has been sent to you. Please follow the link to reset your password.");
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
   
   return (
-    <div className="w-[100%] h-screen flex lg:flex-row flex-col">
+    <div className="dark:text-pink-500 relative w-[100%] h-screen flex lg:flex-row flex-col">
+      <ToastContainer
+        position="bottom-center"
+        autoClose={10000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme={localStorage.getItem("theme")==="dark"? "light" : "dark"}
+      />
+      {/* Same as */}
+
       <div className="lg:w-[50%] h-full object-cover">
         <img
           src={LoginImage}
@@ -79,7 +119,10 @@ function LoginSection() {
                 type="password"
               />
             </div>
-            <p className="text-[#1F4A40] text-right items-end">
+            <p
+              onClick={handleForgotPassword}
+              className="dark:text-pink-500 hover:underline cursor-pointer inline  w-fit ml-auto text-[#1F4A40] "
+            >
               Forgot Password?
             </p>
             <button

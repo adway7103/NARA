@@ -1,4 +1,6 @@
 import React from "react";
+import VideoLazy from "../loaders/VideoLazy";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 const Spotlight = () => {
   const products = [
     {
@@ -50,23 +52,31 @@ const Spotlight = () => {
             {products.map((product, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 w-[300px] sm:w-1/3 lg:w-full">
+                className="flex-shrink-0 w-[300px] sm:w-1/3 lg:w-full"
+              >
                 <div className="w-full md:w-full bg-gray-200  aspect-h-1 overflow-hidden relative h-3/4 ">
                   {product.imgSrc.endsWith(".mp4") ? (
-                    <video
-                      src={product.imgSrc}
-                      alt={product.description}
-                      className="bloc w-full h-full object-center object-cover"
-                      autoPlay
-                      loop
-                      muted
-                    />
+                    <div className="bloc w-full h-full object-center object-cover">
+                      <VideoLazy
+                        src={product.imgSrc}
+                        alt={product.description}
+                      />
+                    </div>
                   ) : (
-                    <img
-                      src={product.imgSrc}
-                      alt={product.description}
-                      className="bloc w-full h-full object-center object-cover"
-                    />
+                    // <img
+                    //   src={product.imgSrc}
+                    //   alt={product.description}
+                    //   className="bloc w-full h-full object-center object-cover"
+                    // />
+                    <div className="bloc w-full h-full object-center object-cover" >
+                      <LazyLoadImage
+                        src={product.imgSrc}
+                        width={"100%"}
+                        height={"100%"}
+                        // PlaceholderSrc={PlaceholderImage}
+                        alt={product.description}
+                      />
+                    </div>
                   )}
                   {product.bought && (
                     <div className="absolute bottom-0 left-0 w-full text-left bg-opacity-70 pb-3 sm:pl-2 pl-4 flex items-center">

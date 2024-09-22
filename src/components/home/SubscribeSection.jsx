@@ -1,5 +1,8 @@
 import React from "react";
 import topVideo from "../../assets/home/backgroundVideo.mp4";
+import topImage from "../../assets/home/backgroundImage.png";
+import VideoLazy from "../loaders/VideoLazy";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const SubscribeSection = () => {
   return (
@@ -8,56 +11,115 @@ const SubscribeSection = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 w-full max-w-full">
           {/* Top Row Images */}
           <div className="col-span-1 w-full h-full md:h-96">
-            <img
+            {/* <img
               src="/home/footer/f1.svg"
               alt="Image 1"
               className="bloc w-full h-full object-center object-cover"
-            />
+            /> */}
+            <div className="bloc w-full h-full object-center object-cover">
+              <LazyLoadImage
+                src="/home/footer/f1.svg"
+                width={"100%"}
+                height={"100%"}
+                className="w-full h-full object-cover"
+                // PlaceholderSrc={PlaceholderImage}
+                alt="Image 1"
+              />
+            </div>
           </div>
           <div className="col-span-1 w-full h-full md:h-96">
-            <img
+            {/* <img
               src="/home/footer/f2.svg"
               alt="Image 2"
               className="bloc w-full h-full object-cover object-center"
-            />
+            /> */}
+
+            <div className="bloc w-full h-full object-center object-cover">
+              <LazyLoadImage
+                src="/home/footer/f2.svg"
+                width={"100%"}
+                height={"100%"}
+                className="w-full h-full object-cover"
+                // PlaceholderSrc={PlaceholderImage}
+                alt="Image 2"
+              />
+            </div>
           </div>
           <div className="hidden md:col-span-2 w-full h-96 md:block">
-            <video
-              autoPlay
-              loop
-              muted
-              src={topVideo}
-              className="bloc w-full h-full object-cover object-center"
-            />
+            <div className="bloc w-full h-full object-cover object-center">
+              <VideoLazy src={topVideo} poster={topImage} />
+            </div>
           </div>
           {/* Bottom Row Images */}
           <div className="col-span-1 w-full h-40 md:h-96">
-            <img
+            {/* <img
               src="/home/footer/f3.svg"
               alt="Image 4"
               className="bloc w-full h-full object-cover object-center"
-            />
+            /> */}
+
+            <div className="bloc w-full h-full object-center object-cover">
+              <LazyLoadImage
+                src="/home/footer/f3.svg"
+                width={"100%"}
+                height={"100%"}
+                className="w-full h-full object-cover"
+                // PlaceholderSrc={PlaceholderImage}
+                alt="Image 4"
+              />
+            </div>
           </div>
           <div className="col-span-1 w-full h-40 md:h-96">
-            <img
+            {/* <img
               src="/home/footer/f5.svg"
               alt="Image 5"
               className="bloc w-full h-full object-cover object-center"
-            />
+            /> */}
+
+            <div className="bloc w-full h-full object-center object-cover">
+              <LazyLoadImage
+                 src="/home/footer/f5.svg"
+                width={"100%"}
+                height={"100%"}
+                className="w-full h-full object-cover"
+                // PlaceholderSrc={PlaceholderImage}
+                alt="Image 5"
+              />
+            </div>
           </div>
           <div className="col-span-1 w-full h-40 md:h-96">
-            <img
+            {/* <img
               src="/home/footer/f4.png"
               alt="Image 6"
               className="bloc w-full h-full object-cover object-right-bottom"
-            />
+            /> */}
+            <div className="bloc w-full h-full object-center object-cover">
+              <LazyLoadImage
+                src="/home/footer/f4.png"
+                width={"100%"}
+                height={"100%"}
+                className="w-full h-full object-cover"
+                // PlaceholderSrc={PlaceholderImage}
+                alt="Image 5"
+              />
+            </div>
           </div>
           <div className="col-span-1 w-full h-40 md:h-96">
-            <img
+            {/* <img
               src="/home/footer/f7.svg"
               alt="Image 7"
               className="bloc w-full h-full object-cover object-left"
-            />
+            /> */}
+            <div className="bloc w-full h-full object-center object-cover">
+              <LazyLoadImage
+                 src="/home/footer/f7.svg"
+                width={"100%"}
+                height={"100%"}
+                className="w-full h-full object-cover"
+                // PlaceholderSrc={PlaceholderImage}
+                alt="Image 5"
+              />
+            </div>
           </div>
         </div>
         {/* Subscribe Section */}

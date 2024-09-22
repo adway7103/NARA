@@ -196,3 +196,52 @@ export async function getProductVariantDetail(variantId) {
     throw error;
   }
 }
+
+
+export async function searchProductsAPI(searchTerm){
+  const query =`
+  {
+  search(query: "${searchTerm}", first: 50) {
+    edges {
+      node {
+        ... on Product {
+          id
+          title
+          priceRange {
+            minVariantPrice {
+              amount
+            }
+          }
+          images(first: 1) {
+            edges {
+              node {
+                src
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`
+
+
+  try {
+    const response = await api.post('/', {
+      query
+    });
+
+    console.log("searched for * and got: ", response);
+    const products = response.data.data.search.edges.map(edge => edge.node);
+    
+    console.log("logging from the search thingy: ", products);
+
+    return products;
+  } catch (error) {
+    console.error('Error searching products:', error);
+    throw error;
+  }
+
+};
+
