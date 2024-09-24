@@ -32,12 +32,7 @@ export async function getCollections() {
     if (!collectionsData) {
       throw new Error("No collections data found");
     }
-
-    const collections = collectionsData.edges.map((el) => ({
-      title: el.node.title,
-      id: el.node.id,
-      imageSrc: el.node.image.url,
-    }));
+    const collections = collectionsData.edges.map(el=>({title: el.node.title, id: el.node.id, imageSrc: el.node.image?.url}));
     return collections;
   } catch (error) {
     console.error("Could not fetch collections:", error.message);

@@ -40,11 +40,13 @@ const NavbarRelative = () => {
           >
             &#9776;
           </button>
+          <Link to= "/" >
           <img
             src="/about/logo.svg"
             className="w-36 md:ml-10 ml-4"
             alt="logo"
           />
+          </Link>
         </div>
         <div className="flex items-center space-x-1 md:space-x-7">
           <button

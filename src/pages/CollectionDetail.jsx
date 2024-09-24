@@ -70,6 +70,9 @@ export default function CollectionDetail() {
               price={product.price}
               name={product.title}
               productId={product.productId}
+              cameFromLink = {`/collection?id=${query.get("id")}`}
+              collectionTitle={collection.title}
+              collectionId = {query.get("id")}
             />
           </div>
          

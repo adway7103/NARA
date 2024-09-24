@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import { Skeleton } from "@mui/material";
 import classes from "./DetailSection.module.css"
 import { useEffect, useState } from "react";
+import useQuery from "../../hooks/useQuery";
 export default function DetailSection({ title, descriptionHtml }) {
- 
+  const query = useQuery();
+  const [cameFrom, setCameFrom] = useState({page: '', link: ''});
   const theme = useSelector(state=>state.app.theme);
   const currentVariant = useSelector(
     (state) => state.activeProduct.currentVariant
@@ -13,6 +15,16 @@ export default function DetailSection({ title, descriptionHtml }) {
     (state) => state.activeProduct.outOfStock
   );
 
+  useEffect(()=>{
+    const camefrompage = query.get("camefrompage");
+    if(camefrompage === "collection"){
+      const collectionId = query.get("id");
+      const title = query.get("title")
+      setCameFrom({page:title, link: `/collection?id=${collectionId}`});
+    }else{
+      setCameFrom({page: camefrompage, link: `/${camefrompage}`})
+    };
+  }, [])
 
   return (
     <>
@@ -21,8 +33,8 @@ export default function DetailSection({ title, descriptionHtml }) {
           <Link className="underline flex items-center gap-3 ">
             Home <img src="/icons/leftTriangleIcon.svg" alt="" />
           </Link>
-          <Link className="underline flex items-center gap-3 ">
-            Circa2950 <img src="/icons/leftTriangleIcon.svg" alt="" />
+          <Link to={cameFrom.link} className="underline flex items-center gap-3 ">
+            {cameFrom.page} <img src="/icons/leftTriangleIcon.svg" alt="" />
           </Link>
           <Link className="text-[#656565]">{title?.slice(0, 20)}...</Link>
         </div>

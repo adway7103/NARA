@@ -16,13 +16,13 @@ const BehindTheScreen = () => {
       >
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12 my-10 lg:my-28">
           <div className="hidden lg:flex flex-col justify-start items-center lg:items-end text-center lg:text-right">
-            <h2 className=" text-3xl font-bold italic mb-2 tracking-widest  ">
+            <h2 className=" text-3xl font-black mb-2 tracking-widest  ">
               BEHIND
             </h2>
-            <h2 className=" text-3xl font-bold italic mb-2 tracking-widest ">
+            <h2 className=" text-3xl font-black mb-2 tracking-widest ">
               THE
             </h2>
-            <h2 className=" text-3xl font-bold italic mb-6 lg:mb-10 tracking-widest ">
+            <h2 className=" text-3xl font-black mb-6 lg:mb-10 tracking-widest ">
               SCREEN
             </h2>
             <p className="mb-6 lg:mb-10 font-mono text-right">
@@ -91,7 +91,7 @@ const BehindTheScreen = () => {
             </div>
           </div>
           <div className="lg:hidden flex flex-col justify-start text-left items-start ">
-            <h2 className="text-2xl font-bold italic mb-4 lg:hidden tracking-widest">
+            <h2 className="text-2xl font-black mb-4 lg:hidden tracking-widest">
               BEHIND THE SCREEN
             </h2>
             <p className="mb-6 sm:text-lg font-mono ">
@@ -103,10 +103,10 @@ const BehindTheScreen = () => {
             </button>
           </div>
           <div className="hidden lg:flex flex-col justify-end items-center lg:items-start lg:text-left">
-            <h2 className="text-3xl font-bold mb-2 italic tracking-widest">
+            <h2 className="text-3xl font-bold mb-2 font-bold tracking-widest">
               Peek Into The
             </h2>
-            <h2 className="text-3xl font-bold mb-8 italic tracking-widest">
+            <h2 className="text-3xl font-bold mb-8 font-bold tracking-widest">
               Chaos
             </h2>
             <p className="text-sm md:text-lg mb-4">

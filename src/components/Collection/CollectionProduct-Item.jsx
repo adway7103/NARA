@@ -20,6 +20,8 @@ const CollectionProductItem = ({
   price,
   img,
   productId,
+  collectionTitle,
+  collectionId
 }) => {
   productId = encodeURIComponent(productId); //Bad code
   const navigate = useNavigate();
@@ -55,7 +57,7 @@ const CollectionProductItem = ({
   };
 
   return (
-    <Link to={`/product/${productId}`}>
+    <Link to={`/product/${productId}?camefrompage=collection&title=${collectionTitle}&id=${encodeURIComponent(collectionId)}`}>
       <div
         className="font-sans xl:w-[23vw] lg:w-[30vw] md:w-[40vw] w-full cursor-pointer hover:brightness-75"
         onClick={productClickHandler}
