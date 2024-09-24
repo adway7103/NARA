@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import { BiSortAlt2 } from "react-icons/bi";
 import { IoFilter, IoSearch } from "react-icons/io5";
-import { kidProfuctFilter, menProfuctFilter, womenProfuctFilter } from "../../constants";
+import {
+  kidProfuctFilter,
+  menProfuctFilter,
+  womenProfuctFilter,
+} from "../../constants";
 import ProductsSearch from "./products-search";
 
 const sortByItems = {
@@ -9,56 +13,57 @@ const sortByItems = {
   PriceDsc: false,
   // RatingAsc: false,
   // RatingDsc: false
-}
+};
 
 const sortItems = {
   PriceDsc: "Price: high to low",
   PriceAsc: "Price: low to high",
   // RatingAsc: "rating: low to high",
   // RatingDsc: "rating: high to low"
-}
+};
 
 const ProductHeader = ({setIsLoading, products, setProducts, copyProducts }) => {
   const [filter, setFilter] = useState(false);
   const [sort, setSort] = useState(false);
   const [activeMenProducts, setActiveMenProducts] = useState(menProfuctFilter);
-  const [activeWomenProducts, setActiveWomenProducts] = useState(womenProfuctFilter);
-  const [activeKidsProducts, setActiveKidsProducts] = useState(kidProfuctFilter);
+  const [activeWomenProducts, setActiveWomenProducts] =
+    useState(womenProfuctFilter);
+  const [activeKidsProducts, setActiveKidsProducts] =
+    useState(kidProfuctFilter);
   const [activeFilterType, setActiveFilterType] = useState({
     women: true,
     men: false,
     kid: false,
   });
   const [sortBy, setSortBy] = useState(sortByItems);
-  const [activeSortBy, setActiveSortBy] = useState('');
+  const [activeSortBy, setActiveSortBy] = useState("");
 
   const handleSort = (key) => {
     if (activeSortBy === key) {
       setProducts(copyProducts);
-      setActiveSortBy('');
+      setActiveSortBy("");
       setSort(false);
     } else {
       setActiveSortBy(key);
-      setSortBy(prev => ({ ...prev, [key]: !prev[key] }));
-  
+      setSortBy((prev) => ({ ...prev, [key]: !prev[key] }));
+
       const sortedProducts = [...products].sort((a, b) => {
         const priceA = parseFloat(a.priceRange.minVariantPrice.amount);
         const priceB = parseFloat(b.priceRange.minVariantPrice.amount);
-  
+
         // Sort logic for ascending and descending order
         if (key === "PriceAsc") {
-          return priceA - priceB; 
+          return priceA - priceB;
         } else if (key === "PriceDsc") {
-          return priceB - priceA; 
+          return priceB - priceA;
         }
-  
+
         return 0;
       });
-  
+
       setProducts(sortedProducts);
     }
   };
-
 
   const handleActiveFilter = (filter) => {
     const newFilterType = {
@@ -73,7 +78,7 @@ const ProductHeader = ({setIsLoading, products, setProducts, copyProducts }) => 
     if (activeFilterType.women) {
       setActiveWomenProducts((prev) => ({
         ...prev,
-        [product]: !prev[product],  
+        [product]: !prev[product],
       }));
     } else if (activeFilterType.men) {
       setActiveMenProducts((prev) => ({
@@ -173,9 +178,7 @@ const ProductHeader = ({setIsLoading, products, setProducts, copyProducts }) => 
                 Kids
               </div>
             </div>
-            <div className="space-y-1">
-              {renderProducts()}
-            </div>
+            <div className="space-y-1">{renderProducts()}</div>
           </div>
         )}
       </div>
@@ -195,7 +198,7 @@ const ProductHeader = ({setIsLoading, products, setProducts, copyProducts }) => 
               <div
                 key={key}
                 className={`px-2 py-1 rounded-md cursor-pointer ${
-                  activeSortBy === key ? 'bg-[#67eacb]' : 'hover:bg-[#67eacb]'
+                  activeSortBy === key ? "bg-[#67eacb]" : "hover:bg-[#67eacb]"
                 }`}
                 onClick={() => handleSort(key)}
               >
@@ -206,7 +209,11 @@ const ProductHeader = ({setIsLoading, products, setProducts, copyProducts }) => 
         )}
       </div>
       {/* Product serach component */}
-      <ProductsSearch products={products} originalProducts={copyProducts} className="md:hidden flex max-w-full"/>
+      <ProductsSearch
+        products={products}
+        originalProducts={copyProducts}
+        className="md:hidden flex max-w-full"
+      />
     </div>
   );
 };
