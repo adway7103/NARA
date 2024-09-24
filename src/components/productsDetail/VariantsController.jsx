@@ -15,7 +15,7 @@ export default function VariantsController({ options, variants, colorsArray, scr
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.error(options);
+    
     let choicesList = {};
     let optionsList = [];
     options?.forEach(option => {
@@ -23,7 +23,7 @@ export default function VariantsController({ options, variants, colorsArray, scr
       optionsList.push(option.name);
     });
 
-    console.log(choicesList);
+    
 
     setOptionsChoiceList(choicesList);
     setOptionsList(optionsList);
@@ -37,21 +37,23 @@ export default function VariantsController({ options, variants, colorsArray, scr
     // Select lowest priced variant as default
     if (inStockVariants?.length > 0) {
       dispatch(setOutOfStock(false));
-      const lowestVariant = inStockVariants.reduce((prev, cur) =>
-        +cur.node.price.amount < +prev.node.price.amount ? cur : prev
-      );
+      // const lowestVariant = inStockVariants.reduce((prev, cur) =>
+      //   +cur.node.price.amount < +prev.node.price.amount ? cur : prev
+      // );
 
-      dispatch(setCurrentVariant(lowestVariant));
+      const firstVariant = inStockVariants[0]
+
+      dispatch(setCurrentVariant(firstVariant));
 
       const defaultSelectedOptions = {};
-      lowestVariant.node?.selectedOptions?.forEach((option) => {
+      firstVariant.node?.selectedOptions?.forEach((option) => {
         defaultSelectedOptions[option.name] = option.value;
       });
 
-      scrollToImageBySrc(lowestVariant.node?.image?.src);
+      scrollToImageBySrc(firstVariant.node?.image?.src);
 
       setSelectedOptions(defaultSelectedOptions);
-      console.error(choicesList, defaultSelectedOptions);
+      
 
       const varinstocks = variants?.edges?.filter(
         (variant) => parseInt(variant.node.quantityAvailable) > 0
@@ -88,19 +90,19 @@ export default function VariantsController({ options, variants, colorsArray, scr
     if (!hasNullProperty) {
       const matchedNode = variantsInStock?.find((item) => {
         const selectedOptions = item.node.selectedOptions;
-        console.log(updatedSelectedOptions);
+        
         return selectedOptions?.every(
           (option) => updatedSelectedOptions[option.name] === option.value
         );
       });
 
-      console.log(variantsInStock);
+      
 
       if (!matchedNode) {
         toast.info("This combination is not available");
         updatedSelectedOptions = { ...selectedOptions };
       } else {
-        console.log("Node Found", matchedNode);
+        
         scrollToImageBySrc(matchedNode.node?.image?.src);
         dispatch(setCurrentVariant(matchedNode));
       }

@@ -59,16 +59,16 @@ const Navbar = () => {
         }`}>
         <div className="flex items-center">
           <button
-            className={`md:text-4xl text-4xl font-bold ${
+            className={` font-bold ${
               isScrolled && theme === "light" ? "text-black" : "text-white"
-            }`}
+            } ${isScrolled? "md:text-4xl text-4xl": "md:text-6xl text-5xl"}`}
             onClick={toggleMenu}>
             &#9776;
           </button>
           <Link to="/">
             <img
               src={isScrolled ? "about/logo.svg" : "/home/navbar/logo.svg"}
-              className="h-[40px] md:ml-10 ml-4"
+              className={`${isScrolled? "h-[40px]" : "md:h-[60px] h-[50px]"} md:ml-10 ml-4`}
               alt="logo"
             />
           </Link>

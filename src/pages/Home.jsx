@@ -14,7 +14,7 @@ const Home = () => {
       <TopSection />
       <BehindTheScreen />
       <Spotlight />
-      <MidSection />
+      {/* <MidSection /> */}
       <SubscribeSection />
       <FooterSection />
     </div>

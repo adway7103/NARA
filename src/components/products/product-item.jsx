@@ -11,7 +11,7 @@ import Box from '@mui/material/Box';
 import ViewButton from "../ViewButton";
 
 
-const ProductItem = ({ colors, setActiveProductColor, name, discount, message, price, img, productId  }) => {
+const ProductItem = ({ colors, setActiveProductColor, name, discount, message, price, img, productId, cameFromLink  }) => {
     productId = encodeURIComponent(productId) //Bad code 
     const navigate = useNavigate();  
     const [bookmark, setBookmark] = useState(false)
@@ -46,7 +46,7 @@ const ProductItem = ({ colors, setActiveProductColor, name, discount, message, p
     }
 
     return (
-      <Link to={`/product/${productId}`}>
+      <Link to={`/product/${productId}?camefrompage=Products`}>
       <div className="font-sans xl:w-[350px] w-[350px] cursor-pointer hover:brightness-75" onClick={productClickHandler} >
         <div className="w-full md:h-[400px] h-[477px] lg:h-[477px] relative">
          <ImageWithSkeleton img={img} name={name} />

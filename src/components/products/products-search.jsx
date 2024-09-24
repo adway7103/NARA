@@ -16,7 +16,7 @@ const ProductsSearch = ({ setIsLoading, className, setProducts }) => {
     if (debounceTimeout) clearTimeout(debounceTimeout);
     setDebounceTimeout(setTimeout(() => {
       handleSearch(e.target.value);
-    }, 1500)); // Adjust the delay as needed
+    }, 1500)); 
   };
 
   const handleSearch = async (input) => {
