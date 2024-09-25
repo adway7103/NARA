@@ -32,7 +32,6 @@ export async function getCollections() {
     if (!collectionsData) {
       throw new Error("No collections data found");
     }
-
     const collections = collectionsData.edges.map(el=>({title: el.node.title, id: el.node.id, imageSrc: el.node.image?.url}));
     return collections;
   } catch (error) {
@@ -90,16 +89,19 @@ export async function getCollectionById(collectionId) {
       throw new Error("No collection data found");
     }
 
-    const collectionDetail = {title: collectionData.title, descriptionHtml: collectionData.descriptionHtml};
-
+    const collectionDetail = {
+      title: collectionData.title,
+      descriptionHtml: collectionData.descriptionHtml,
+    };
+    console.log(collectionData.products.edges);
     const products = collectionData.products.edges.map((product) => ({
       title: product.node.title,
-      imageSrc: product.node.variants.edges[0].node.image.url,
+      imageSrc: product.node.variants.edges[0].node.image?.url,
       price: product.node.variants.edges[0].node.price.amount,
       productId: product.node.id,
     }));
 
-    return {collectionDetail, products};
+    return { collectionDetail, products };
   } catch (error) {
     console.error("Could not fetch collection items:", error.message);
     throw error;
