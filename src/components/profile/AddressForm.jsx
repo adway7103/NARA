@@ -198,13 +198,13 @@ export default function AddressForm({ closeForm, isEditing, address }) {
             name="province"
             required
             defaultValue={address?.province}
-            className="border-b-2 focus:outline-none focus:border-b-black bg-transparent"
+            className="border-b-2 focus:outline-none focus:border-b-black bg-transparent dark:bg-black"
           >
             <option value="" disabled >
               Select your state
             </option>
             {indianStatesAndUTs.map((state) => (
-              <option key={state} value={state}>
+              <option className="dark:bg-black" key={state} value={state}>
                 {state}
               </option>
             ))}

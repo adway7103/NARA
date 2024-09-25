@@ -24,7 +24,7 @@ const ProductsSearch = ({ setIsLoading, className, setProducts }) => {
       navigate(0);
       return;
     }
-
+  
     try {
       setIsLoading(true);
       const products = await searchProductsAPI(input);
@@ -33,17 +33,17 @@ const ProductsSearch = ({ setIsLoading, className, setProducts }) => {
         setProducts(products);
       } else {
         console.warn("Fetched products is not an array:", products);
-        setProducts([]); // or handle the object case accordingly
+        setProducts([]); // Clear the product list or handle object cases
       }
-
-
+  
     } catch (error) {
-      toast.error(error);
-      console.error("error");
+      toast.error(error.message || "Error occurred");
+      console.error("Search error:", error);
     } finally {
       setIsLoading(false);
     }
   };
+  
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {

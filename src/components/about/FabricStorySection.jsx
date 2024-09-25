@@ -2,12 +2,12 @@ import React from "react";
 
 const FabricStorySection = () => {
   return (
-    <div className="flex lg:flex-col items-center justify-center py-12 lg:py-28 xl:py-40 bg-[#EEEBE6] dark:!bg-black">
+    <div className="flex lg:flex-col items-center justify-center py-12 lg:py-28 xl:py-40 bg-[#EEEBE6] dark:!bg-black font-antikor">
       <div className="max-w-screen-2xl w-full ">
         <section className="lg:grid md:grid-cols-9 ">
           {/* Text Section */}
           <div className="lg:col-span-6 dark:!text-white">
-            <h2 className="hidden xl:block text-4xl font-medium tracking-widest leading-relaxed pr-56 pl-8 lg:pl-32">
+            <h2 className="hidden xl:block text-4xl font-medium tracking-tight leading-relaxed pr-56 pl-8 lg:pl-32">
               Our Fabrics Have Their Own Story To Tell
             </h2>
             <h2 className="xl:hidden text-3xl sm:text-5xl sm:leading-relaxed sm:px-8 font-medium leading-normal pl-6">

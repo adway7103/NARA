@@ -206,19 +206,19 @@ export async function searchProductsAPI(searchTerm){
       node {
         ... on Product {
           id
-          title
-          priceRange {
-            minVariantPrice {
+        title
+        variants(first: 1) {
+          nodes {
+            id
+            image {
+              src
+            }
+            price {
               amount
+              currencyCode
             }
           }
-          images(first: 1) {
-            edges {
-              node {
-                src
-              }
-            }
-          }
+        }
         }
       }
     }

@@ -7,7 +7,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 const SubscribeSection = () => {
   return (
     <div>
-      <div className="relative lg:min-h-screen">
+      <div className="relative lg:min-h-screen font-antikor">
         <div className="grid grid-cols-2 md:grid-cols-4 w-full max-w-full">
           {/* Top Row Images */}
           <div className="col-span-1 w-full h-full md:h-96">
@@ -127,7 +127,7 @@ const SubscribeSection = () => {
           <h2 className="text-lg md:text-3xl font-extrabold italic tracking-widest text-black mb-3 sm:mb-8 lg:mb-10 text-left">
             JOIN US AT NARA
           </h2>
-          <p className="text-black font-normal mb-4 sm:mb-20 lg:pt-6 lg:pb-10 tracking-widest text-[11px] md:text-lg">
+          <p className="text-black font-normal mb-4 sm:mb-20 lg:pt-6 lg:pb-10 tracking-tight text-[11px] md:text-lg">
             We promise to NOT spam you. Share your email ID, so that we can keep
             you informed about our exclusive drops and offers.
           </p>
@@ -138,7 +138,7 @@ const SubscribeSection = () => {
                 placeholder="Email ID"
                 className="border border-[#C4C4C4] h-12 sm:h-16 lg:h-16 p-2 sm:p-4 lg:pl-20 w-full pr-24 text-lg"
               />
-              <button className="absolute top-0 right-0 bg-[#1E7B74] font-bold text-[14px] text-white py-1 px-2 lg:px-4 my-2 mr-2 sm:px-4 sm:h-12 lg:h-12 lg:w-24">
+              <button className="absolute tracking-wider top-0 right-0 bg-[#1E7B74] font-bold font-outfit text-[14px] text-white py-1 px-2 lg:px-4 my-2 mr-2 sm:px-4 sm:h-12 lg:h-12 lg:w-24">
                 Subscribe
               </button>
             </div>

@@ -213,6 +213,8 @@ const ProductHeader = ({setIsLoading, products, setProducts, copyProducts }) => 
         products={products}
         originalProducts={copyProducts}
         className="md:hidden flex max-w-full"
+        setProducts={setProducts}
+        setIsLoading={setIsLoading}
       />
     </div>
   );

@@ -5,7 +5,7 @@ import LoginMobile from "../../assets/loginMobile.png";
 import logo from "../../assets/NaraLogo.png";
 import LoginApi from "../../apis/LoginApi";
 import { toast } from "sonner";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
   deleteCart,
@@ -37,7 +37,11 @@ function LoginSection() {
       localStorage.removeItem("cartId");
       navigate("/");
     } catch (error) {
-      toast.error("Login failed: " + error.message);
+      if(error.message.includes("Unidentified customer")){
+        toast.error("Either the email or the password is incorrect!");
+      }else{
+        toast.error("Login failed: " + error.message);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -62,7 +66,7 @@ function LoginSection() {
   };
   
   return (
-    <div className="dark:text-pink-500 relative w-[100%] h-screen flex lg:flex-row flex-col">
+    <div className="dark:text-pink-500 relative w-[100%] h-screen flex lg:flex-row flex-col font-antikor">
       <ToastContainer
         position="bottom-center"
         autoClose={10000}
@@ -91,7 +95,7 @@ function LoginSection() {
           <div className="w-full h-full flex flex-col gap-[10px]">
             <p className="font-extrabold text-2xl">Welcome to</p>
             <div>
-              <img src={logo} alt="logo" className="w-[200px] lg:w-[300px]" />
+              <Link to={"/"} className="cursor-pointer" ><img src={logo} alt="logo" className="w-[200px] lg:w-[300px]" /></Link>
             </div>{" "}
             <p className="font-light lg:text-xl text-md mt-2">
               Today is a new day. It's your day. You shape it. You style it. Be
@@ -125,6 +129,19 @@ function LoginSection() {
             >
               Forgot Password?
             </p>
+
+            {/* Privary Policy and terms and conditions clause */}
+            <p className="text-xs tracking-tight text-center">
+              By Signing in , I agree to{" "}
+              <Link className="text-indigo-500 underline" to="#">
+                Terms and Conditions
+              </Link>{" "}
+              and{" "}
+              <Link className="text-indigo-500 underline" to="#">
+                Privacy Policy{" "}
+              </Link>
+            </p>
+
             <button
               onClick={handleLogin}
               className="bg-[#1F4A40] text-white font-semibold px-2 py-2"

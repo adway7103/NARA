@@ -60,16 +60,8 @@ function App() {
       fetchAllItemsInCart(cartId);
     }
      
-
-    // dispatch(setActiveCartId(cartId));
-    
-     
   }, []);
 
-  // useEffect(()=>{
-  //   console.log(fetchedCartId);
-  // }, [fetchedCartId])
-  
   return (
     <div className="cursor-custom dark:bg-black">
       <Toaster position="top-center" richColors />
