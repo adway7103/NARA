@@ -63,9 +63,9 @@ export default function OrderItem({
               <a
                 href={customerUrl}
                 target="_blank"
-                className="border-2 border-black dark:!border-[#ffff] px-2"
+                className="border-2 border-black dark:!border-[#ffff] px-4 py-2 font-black rounded-lg cursor-pointer font-outfit"
               >
-                Track Order 
+                Track / Return
               </a>
               
             )}

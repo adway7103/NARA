@@ -82,13 +82,8 @@ function App() {
       dispatch(setActiveCartId(cartId));
       fetchAllItemsInCart(cartId);
     }
-
-    // dispatch(setActiveCartId(cartId));
+     
   }, []);
-
-  // useEffect(()=>{
-  //   console.log(fetchedCartId);
-  // }, [fetchedCartId])
 
   return (
     <div className="cursor-custom dark:bg-black">

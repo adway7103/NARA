@@ -9,7 +9,7 @@ import SubscribeSection from "../components/home/SubscribeSection";
 
 const Home = () => {
   return (
-    <div className="dark:!bg-black">
+    <div className="dark:!bg-black ">
       <Navbar />
       <TopSection />
       <BehindTheScreen />

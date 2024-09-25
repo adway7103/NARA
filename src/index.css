@@ -1,6 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+*{
+  cursor: url('../public/icons/cursor.svg'), auto;
+}
+
 @font-face {
   font-family: "Antikor Mono";
   src: url("./fonts/antikor_mono/Taner Ardali  Antikor Mono Bold Italic.ttf") format("truetype");

@@ -18,14 +18,16 @@ export default function ViewButton({productId}){
     //     }
     //   };
     return(
+      <div>
         <Link to={`/product/${productId}`}
        
         className={`  disabled:bg-gray-400 px-4 py-2  rounded-xl border-2  flex items-center justify-center gap-2`}
       >
         
-         <FaEye />   <pan>View Product</pan>
+         <FaEye />   <span>View Product</span>
         
       
       </Link>
+      </div>
     )
 }

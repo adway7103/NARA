@@ -64,10 +64,10 @@ const Products = () => {
             {products.map((product, index) => (
               <ProductItem
                 key={product.id}
-                img={product?.images?.edges[0]?.node?.src}
+                img={product?.variants?.nodes[0]?.image?.src}
                 colors={colors}
                 setActiveProductColor={setActiveProductColor}
-                price={product.priceRange.minVariantPrice.amount}
+                price={product?.variants?.nodes[0]?.price?.amount}
                 name={product.title}
                 discount={""}
                 message={""}

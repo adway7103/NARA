@@ -6,7 +6,7 @@ const BehindTheScreen = () => {
   return (
     <>
       <div
-        className="text-black dark:!text-white dark:!bg-none  font-mono p-4 "
+        className="text-black dark:!text-white dark:!bg-none  font-antikor p-4 "
         style={{
           backgroundImage: "url('/home/designs/design.jpeg')",
           backgroundAttachment: "fixed",
