@@ -149,7 +149,7 @@ function LoginSection() {
               {isLoading ? "Logging In..." : "Log In"}
             </button>
           </div>
-          <div className="flex items-center gap-2 justify-center">
+          {/* <div className="flex items-center gap-2 justify-center">
             <div className="py-[0.5px] bg-[#CFDFE2] w-full"></div>
             <p>Or</p>
             <div className="py-[0.5px] bg-[#CFDFE2] w-full"></div>
@@ -159,7 +159,7 @@ function LoginSection() {
             <button className="font-semibold px-2 py-2 w-full bg-blue-50">
               Sign in with Google
             </button>
-          </div>
+          </div> */}
           <div className="flex gap-1 justify-center">
             Dont have an account?
             <a className="text-[#1F4A40] font-semibold" href="/signup">
