@@ -71,6 +71,7 @@ export default function ActionButtons() {
       
       setAddingToTheCart(true);
       const response = await addItemToCart(cartId, variantId);
+      console.log("logging from add to cart:", response);
       const itemsQuantity = response?.totalQuantity;
       dispatch(setTotalQuantityInCart(itemsQuantity));
       dispatch(setCheckoutUrl(response?.checkoutUrl))
@@ -84,7 +85,7 @@ export default function ActionButtons() {
         // we should email this
         toast.error("Something went wrong");
       }else{
-        toast.error("Could not add the item to the cart!");
+        toast.info(error.message);
       }
     } finally {
       setAddingToTheCart(false);
@@ -154,7 +155,7 @@ export default function ActionButtons() {
   return (
     <div className="md:relative fixed bottom-0 right-0 left-0 bg-[#ffff] md:bg-transparent p-2 xl:!p-0 md:p-0 flex sm:flex-row gap-2 justify-center md:justify-start border-2 md:border-none shadow-lg md:!shadow-none dark:bg-black font-outfit text-md  md:text-base  ">
     
-      <ToastContainer hideProgressBar={true} closeButton={false} position="bottom-center" style={{backgroundColor: 0}} />
+      <ToastContainer hideProgressBar={true} autoClose={800}  closeOnClick closeButton={false} position="bottom-center" style={{backgroundColor: 0, width: "250px"}} />
       <button
         onClick={addToCartHandler}
         disabled={productOutOfStock || addingToThecart}

@@ -4,9 +4,8 @@ import { Skeleton } from "@mui/material";
 import classes from "./DetailSection.module.css"
 import { useEffect, useState } from "react";
 import useQuery from "../../hooks/useQuery";
-export default function DetailSection({ title, descriptionHtml }) {
-  const query = useQuery();
-  const [cameFrom, setCameFrom] = useState({page: '', link: ''});
+export default function DetailSection({ title, descriptionHtml, cameFrom }) {
+
   const theme = useSelector(state=>state.app.theme);
   const currentVariant = useSelector(
     (state) => state.activeProduct.currentVariant
@@ -15,22 +14,15 @@ export default function DetailSection({ title, descriptionHtml }) {
     (state) => state.activeProduct.outOfStock
   );
 
-  useEffect(()=>{
-    const camefrompage = query.get("camefrompage");
-    if(camefrompage === "collection"){
-      const collectionId = query.get("id");
-      const title = query.get("title")
-      setCameFrom({page:title, link: `/collection?id=${collectionId}`});
-    }else{
-      setCameFrom({page: camefrompage, link: `/${camefrompage}`})
-    };
-  }, [])
+
 
   return (
     <>
       <div className="flex flex-col xl:!gap-3 gap-1 ">
+
+      {/* Breadcrumb */}
         <div className="hidden xl:flex gap-4 font-outfit">
-          <Link className="underline flex items-center gap-3 ">
+          <Link className="underline flex items-center gap-3 " to="/">
             Home <img src="/icons/leftTriangleIcon.svg" alt="" />
           </Link>
           <Link to={cameFrom.link} className="underline flex items-center gap-3 ">
@@ -38,6 +30,7 @@ export default function DetailSection({ title, descriptionHtml }) {
           </Link>
           <Link className="text-[#656565]">{title?.slice(0, 20)}...</Link>
         </div>
+
         <h2 className="font-black xl:text-2xl text-xl"> {title}</h2>{" "}
         {/*{product?.title}*/}
         <h3 className="tracking-tight font-semibold text-xl">

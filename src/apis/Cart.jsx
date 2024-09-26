@@ -485,6 +485,10 @@ export async function addItemToCart(cartId, variantId) {
     if (!cart) {
       throw new Error("Could not add the item to the cart!");
     }
+    const errorMessages = cart.data.cartLinesAdd.userErrors.map(el=>el.message).join(".");
+    if(errorMessages!==""){
+      throw new Error(errorMessages);
+    }
 
     return cart.data.cartLinesAdd.cart;
   } catch (error) {

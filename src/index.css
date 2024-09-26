@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
-  cursor: url('../public/icons/cursor.svg'), auto;
-}
 
 @font-face {
   font-family: "Antikor Mono";
@@ -156,7 +153,12 @@
 
 *, *::before, *::after {
   box-sizing: border-box;
+  cursor: url('../public/icons/cursor.svg'), auto;
+  font-family: "Antikor Mono", monospace;
 }
+
+
+
 
 /* body {
   font-family: "Antikor Text", sans-serif;

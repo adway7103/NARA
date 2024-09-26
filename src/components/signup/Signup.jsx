@@ -101,6 +101,11 @@ function SignupSection() {
       <div className="lg:w-[50%] lg:ml-[50%] min-h-full px-8 py-16 flex justify-center items-center overflow-scroll">
         <div className="max-w-[480px] flex-col flex gap-[30px]">
           <div className="w-full h-full flex flex-col gap-[10px]">
+              {/* Breadcrumb */}
+              <div className="flex gap-2 ">
+            <Link className="underline" to={"/"}> Home</Link> <img src="/icons/leftTriangleIcon.svg" alt="" />
+            <span>Signup</span>
+            </div>
             <p className="font-extrabold text-2xl">Welcome to</p>
             <div>
               <Link className="cursor-pointer" to="/"><img src={logo} alt="logo" className="w-[200px] lg:w-[300px]" /></Link>
