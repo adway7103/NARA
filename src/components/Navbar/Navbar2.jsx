@@ -62,7 +62,7 @@ const Navbar2 = () => {
           {theme == "light" ? (
             <>
               <img src="/home/navbar/icon1.svg" alt="light mode icon" />
-              <img src="/home/navbar/user.svg" alt="light mode icon" />
+              <Link to={"/profile"}><img src="/home/navbar/user.svg" alt="light mode icon" /></Link>
               <CartIcon theme = {theme} />
             </>
           ) : (
@@ -72,11 +72,13 @@ const Navbar2 = () => {
                 className="white-icon"
                 alt="light mode icon"
               />
+              <Link to="/profile">
               <img
                 src="/home/navbar/user.svg"
                 className="white-icon"
                 alt="light mode icon"
               />
+              </Link>
               
               <CartIcon theme = {theme} />
             </>

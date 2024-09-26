@@ -28,7 +28,8 @@ export default function ProductsDetailPage() {
   const [defaultSize, setDefaultSize] = useState(null);
   const [defaultColor, setDefaultColor] = useState(null);
   const [availableColors, setAvailableColors] = useState(null);
-  
+  const query = useQuery();
+  const [cameFrom, setCameFrom] = useState({page: '', link: ''});
 
   const [modelInfo, setModelInfo] = useState([]);
   const params = useParams();
@@ -149,6 +150,18 @@ export default function ProductsDetailPage() {
     fetchProductInfo(params.id);
   }, [params.id]);
 
+
+  useEffect(()=>{
+    const camefrompage = query.get("camefrompage");
+    if(camefrompage === "collection"){
+      const collectionId = query.get("id");
+      const title = query.get("title")
+      setCameFrom({page:title, link: `/collection?id=${collectionId}`});
+    }else{
+      setCameFrom({page: camefrompage, link: `/${camefrompage}`})
+    };
+  }, [])
+
   return (
     <>
       {isLoading ? (
@@ -157,7 +170,22 @@ export default function ProductsDetailPage() {
         <div className=" flex flex-col bg-[#F7F7F7] dark:bg-black dark:text-[#ffff]  font-antikor max-h-screen lg:overflow-hidden">
           <NavbarRelative />
 
+          
+         
+          
+
           <div className="mt-[74px]  flex flex-col gap-4 items-center justify-center xl:items-start xl:flex-row dark:bg-black xl:!p-2 p-2 ">
+           {/* breadcrumb  */}
+          <div className="flex xl:hidden  gap-4 font-outfit  ">
+          <Link className="underline flex items-center gap-3 " to="/"> 
+            Home <img src="/icons/leftTriangleIcon.svg" alt="" />
+          </Link>
+          <Link to={cameFrom.link} className="underline flex items-center gap-3 ">
+            {cameFrom.page} <img src="/icons/leftTriangleIcon.svg" alt="" />
+          </Link>
+          <Link className="text-[#656565]">{product.title?.slice(0, 20)}...</Link>
+          </div>
+
             <ImageGallery
               images={product?.images?.edges}
               currentIndex={currentIndex}
@@ -170,6 +198,7 @@ export default function ProductsDetailPage() {
               <DetailSection
                 title={product.title}
                 descriptionHtml={product.descriptionHtml}
+                cameFrom={cameFrom}
               />
 
               {/* Color Section */}

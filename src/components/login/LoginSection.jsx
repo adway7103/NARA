@@ -57,6 +57,7 @@ function LoginSection() {
   
     try {
       const response = await SendRecoveryEmailAPI(email);
+      
       if (response) {
         toastifyToast("An email with the account recovery link has been sent to you. Please follow the link to reset your password.");
       }
@@ -93,6 +94,11 @@ function LoginSection() {
       <div className="lg:w-[50%] h-full px-8 py-16 flex justify-center items-center">
         <div className="max-w-[480px] flex-col flex gap-[30px]">
           <div className="w-full h-full flex flex-col gap-[10px]">
+            {/* Breadcrumb */}
+            <div className="flex gap-2 ">
+            <Link className="underline" to={"/"}> Home</Link> <img src="/icons/leftTriangleIcon.svg" alt="" />
+            <span>Login</span>
+            </div>
             <p className="font-extrabold text-2xl">Welcome to</p>
             <div>
               <Link to={"/"} className="cursor-pointer" ><img src={logo} alt="logo" className="w-[200px] lg:w-[300px]" /></Link>

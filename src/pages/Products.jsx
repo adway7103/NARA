@@ -32,21 +32,21 @@ const Products = () => {
     loadProducts();
   }, []);
 
-  useEffect(() => {
-    if (!isLoading && products.length > 0) {
-      // Wait until the next frame to ensure painting
-      requestAnimationFrame(() => {
-        // alert("All products have been rendered!");
-      });
-    }
-  }, [isLoading, products]);
+  // useEffect(() => {
+  //   if (!isLoading && products.length > 0) {
+  //     // Wait until the next frame to ensure painting
+  //     requestAnimationFrame(() => {
+  //       // alert("All products have been rendered!");
+  //     });
+  //   }
+  // }, [isLoading, products]);
 
   return (
-    <div className="dark:bg-black h-screen">
+    <div className="dark:!bg-black p-[0.2px] overflow-x-hidden  xl:h-screen ">
       <NavbarRelative />
 
-      <div className=" dark:bg-black  dark:text-[#ffff] mt-8">
-        <div className="bg-[#F7F7F7]  dark:bg-black  dark:border-b-[#ffff] dark:border-b-2 pb-2 mt-20">
+      <div className=" dark:!bg-black bg-[#ffff]  dark:text-[#ffff] mt-8">
+        <div className="bg-[#F7F7F7]  dark:bg-black dark:border-b-[#ffff] dark:border-b-2  pb-2 mt-20">
           <ProductHeader
             setIsLoading={setIsLoading}
             products={products}

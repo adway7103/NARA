@@ -61,14 +61,14 @@ const Navbar = () => {
           <button
             className={` font-bold ${
               isScrolled && theme === "light" ? "text-black" : "text-white"
-            } ${isScrolled? "md:text-4xl text-4xl": "md:text-6xl text-4xl"}`}
+            } text-4xl`}
             onClick={toggleMenu}>
             &#9776;
           </button>
           <Link to="/">
             <img
               src={isScrolled ? "about/logo.svg" : "/home/navbar/logo.svg"}
-              className={`${isScrolled? "h-[40px]" : "md:h-[60px] h-[40px]"} md:ml-10 ml-4`}
+              className={`${isScrolled? "h-[40px]" : "xl:h-[250px]  lg:h-[150px] md:h-[100px] sm:h-[60px] sm:absolute  top-2 h-[40px]"} md:ml-10 ml-4`}
               alt="logo"
             />
           </Link>

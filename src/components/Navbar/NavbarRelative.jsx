@@ -79,11 +79,13 @@ const NavbarRelative = () => {
                 className="white-icon"
                 alt="light mode icon"
               />
+              <Link to={"/profile"}>
               <img
                 src="/home/navbar/user.svg"
                 className="white-icon"
                 alt="light mode icon"
               />
+               </Link>
               <CartIcon theme={theme} />
             </>
           )}

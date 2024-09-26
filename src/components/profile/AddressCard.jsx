@@ -111,7 +111,7 @@ export default function AddressCard({
       ) : (
         <div
           className={`p-12 xl:w-[45%] w-full ${
-            isDefaultAddress ? "bg-[#D8E3B14A]" : "bg-[#F7F7F7]"
+            isDefaultAddress ? "bg-green-100" : "bg-[#F7F7F7]"
           }  dark:bg-black dark:text-[#ffff] dark:border-2 flex flex-col justify-between`}
         >
           <address className="not-italic mb-4 dark:text-[#ffff]">

@@ -24,10 +24,10 @@ const SliderNavbar = ({ isOpen, toggleMenu }) => {
         }`}>
         <div className="flex h-full flex-col md:flex-row">
           <div className="w-full md:w-1/2 bg-[#f5f5e1] dark:!bg-black pt-8 px-8 md:p-12">
-            <div className="flex justify-between items-center">
-              <button className="text-black dark:!text-white font-bold text-lg md:text-xl pl-0">
+            <div className="flex justify-end items-center">
+              {/* <button className="text-black dark:!text-white font-bold text-lg md:text-xl pl-0">
                 Menu
-              </button>
+              </button> */}
               <button
                 className="text-black dark:!text-white font-bold text-lg md:text-xl px-3 py-3 border border-[#B5B5B5]"
                 onClick={toggleMenu}>
@@ -102,21 +102,21 @@ const SliderNavbar = ({ isOpen, toggleMenu }) => {
                   href="https://facebook.com"
                   target="_blank"
                   rel="noopener noreferrer">
-                  <img src="home/navbar/fb.svg" />
+                  <img src="/home/navbar/fb.svg" />
                 </a>
                 <a
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer">
-                  <img src="home/navbar/insta.svg" />
+                  <img src="/home/navbar/insta.svg" />
                 </a>
                 <div className="flex items-center space-x-1  md:space-x-2  bg-white px-2 rounded-xl ">
                   <a
-                    href="mailto:firstname.lastname@gmail.com"
+                    href="mailto:info@narawear.com"
                     className="text-black text-xs md:text-[16px] font-sans font-medium">
-                    firstname.lastname@gmail.com
+                    info@narawear.com
                   </a>
-                  <img src="home/navbar/file.svg" />
+                  <img src="/home/navbar/file.svg" />
                 </div>
               </div>
             </div>
@@ -130,7 +130,7 @@ const SliderNavbar = ({ isOpen, toggleMenu }) => {
               </h1>
               <div className="mt-2 relative">
                 <img
-                  src="home/slider.svg"
+                  src="/home/slider.svg"
                   alt="Product"
                   className="w-full h-auto"
                 />
