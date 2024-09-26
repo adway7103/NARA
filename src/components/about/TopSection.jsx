@@ -25,7 +25,7 @@ const TopSection = () => {
           <section className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-12 lg:gap-y-20 dark:!text-white px-4  items-center ">
             <div className="w-full h-full sm:h-[50vh] xl:h-[90vh] md:ml-4 xl:ml-40">
               <video
-                src="/about/divein.mp4"
+                src="/about/divein.webm"
                 autoPlay
                 loop
                 muted
@@ -59,7 +59,7 @@ const TopSection = () => {
             </div>
             <div className="w-full lg:pr-3 lg:h-[60vh] xl:h-[80vh] h-[80vh]">
               <video
-                src="/about/fabric.mp4"
+                src="/about/fabric.webm"
                 autoPlay
                 loop
                 muted

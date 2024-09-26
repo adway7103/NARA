@@ -1,7 +1,6 @@
-import api from "../utils/interceptors"; 
-export async function SendRecoveryEmailAPI(email){
- 
-    const query = `mutation recoverCustomerAccount($email: String!) {
+import api from "../utils/interceptors";
+export async function SendRecoveryEmailAPI(email) {
+  const query = `mutation recoverCustomerAccount($email: String!) {
   customerRecover(email: $email) {
     customerUserErrors {
       code
@@ -10,36 +9,31 @@ export async function SendRecoveryEmailAPI(email){
     }
   }
 }
-`
+`;
 
-try {
+  try {
     const response = await api.post("", {
       query,
-      variables: {email},
+      variables: { email },
     });
 
     console.log("logging response: ", response);
-
+    const userErrors = response?.data?.data?.customerRecover?.customerUserErrors?.map((el) => el.message).join(". ");
+    
     if (response?.data?.errors) {
-      throw new Error("Could not send recovery email: " + response.data.errors[0].message);
-    } else if (
-      response?.data?.customerRecover?.customerUserErrors[0]
-    ) {
       throw new Error(
-        "Login failed: " +
-        response.data.customerRecover.customerUserErrors[0]
-            .message
+        "Could not send recovery email: " + response.data.errors[0].message
       );
+    } else if (userErrors !== "") {
+      throw new Error(userErrors);
     } else {
-      
       return true;
     }
   } catch (error) {
-    console.error("Account recovery error:", error);
+    console.error("Account recovery error:", error.message);
     throw error;
   }
 }
-
 
 /* 
 {

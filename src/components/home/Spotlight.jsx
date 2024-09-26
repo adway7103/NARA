@@ -1,6 +1,7 @@
 import React from "react";
 import VideoLazy from "../loaders/VideoLazy";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Link } from "react-router-dom";
 const Spotlight = () => {
   const products = [
     {
@@ -43,9 +44,11 @@ const Spotlight = () => {
           <p className="mt-2 text-[11px] lg:text-sm leading-8 font-mono tracking-widest sm:text-xl">
             Look what people loved the most this season
           </p>
+          <Link to={"/products"}>
           <button className="mt-3 bg-transparent hover:bg-gray-700 text-[#1F4A40] dark:!text-[#D8E3B1] font-semibold font-mono py-2 px-4 border border-[#B5B5B5]">
             View all
           </button>
+          </Link>
         </div>
         <div className="mt-6 md:mt-12 overflow-x-scroll testimonial-container">
           <div className="flex lg:grid lg:grid-cols-4 md:grid-cols-3 gap-3 md:gap-2 pl-4">

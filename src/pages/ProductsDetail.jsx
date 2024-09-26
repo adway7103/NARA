@@ -11,8 +11,8 @@ import ColorSection from "../components/productsDetail/ColorSection";
 import { HiOutlineArrowRight } from "react-icons/hi";
 import { FaPlus } from "react-icons/fa6";
 import VariantsController from "../components/productsDetail/VariantsController";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import PageLoader from "../components/utils/PageLoader";
 import useQuery from "../hooks/useQuery";
 
@@ -29,7 +29,7 @@ export default function ProductsDetailPage() {
   const [defaultColor, setDefaultColor] = useState(null);
   const [availableColors, setAvailableColors] = useState(null);
   const query = useQuery();
-  const [cameFrom, setCameFrom] = useState({page: '', link: ''});
+  const [cameFrom, setCameFrom] = useState({ page: "", link: "" });
 
   const [modelInfo, setModelInfo] = useState([]);
   const params = useParams();
@@ -104,24 +104,25 @@ export default function ProductsDetailPage() {
         container?.scrollTo({ top: offsetTop, behavior: "smooth" });
         setCurrentIndex(index);
       }
-    }, 300), 
+    }, 300),
     []
   );
 
-
   const scrollToImageBySrc = useCallback(
     throttle((imageSrc) => {
-      
       const imageElementIndex = imageRefs.current.findIndex(
-        (div) => div?.querySelector('img')?.src === imageSrc 
+        (div) => div?.querySelector("img")?.src === imageSrc
       );
-  
+
       if (imageElementIndex !== -1) {
         const imageElement = imageRefs.current[imageElementIndex];
         if (imageElement) {
           const container = imageRefs.current[0]?.parentElement;
           // Calculate the offset relative to the container
-          const offsetTop = imageElement.getBoundingClientRect().top + container.scrollTop - container.getBoundingClientRect().top;
+          const offsetTop =
+            imageElement.getBoundingClientRect().top +
+            container.scrollTop -
+            container.getBoundingClientRect().top;
           container.scrollTo({ top: offsetTop, behavior: "smooth" });
           setCurrentIndex(imageElementIndex);
         }
@@ -131,9 +132,7 @@ export default function ProductsDetailPage() {
     }, 300), // Throttling to every 300ms
     []
   );
-  
 
-  
   const handleUp = () => {
     if (currentIndex > 0) {
       scrollToImage(currentIndex - 1);
@@ -150,17 +149,16 @@ export default function ProductsDetailPage() {
     fetchProductInfo(params.id);
   }, [params.id]);
 
-
-  useEffect(()=>{
+  useEffect(() => {
     const camefrompage = query.get("camefrompage");
-    if(camefrompage === "collection"){
+    if (camefrompage === "collection") {
       const collectionId = query.get("id");
-      const title = query.get("title")
-      setCameFrom({page:title, link: `/collection?id=${collectionId}`});
-    }else{
-      setCameFrom({page: camefrompage, link: `/${camefrompage}`})
-    };
-  }, [])
+      const title = query.get("title");
+      setCameFrom({ page: title, link: `/collection?id=${collectionId}` });
+    } else {
+      setCameFrom({ page: camefrompage, link: `/${camefrompage}` });
+    }
+  }, []);
 
   return (
     <>
@@ -170,21 +168,22 @@ export default function ProductsDetailPage() {
         <div className=" flex flex-col bg-[#F7F7F7] dark:bg-black dark:text-[#ffff]  font-antikor max-h-screen lg:overflow-hidden">
           <NavbarRelative />
 
-          
-         
-          
-
           <div className="mt-[74px]  flex flex-col gap-4 items-center justify-center xl:items-start xl:flex-row dark:bg-black xl:!p-2 p-2 ">
-           {/* breadcrumb  */}
-          <div className="flex xl:hidden  gap-4 font-outfit  ">
-          <Link className="underline flex items-center gap-3 " to="/"> 
-            Home <img src="/icons/leftTriangleIcon.svg" alt="" />
-          </Link>
-          <Link to={cameFrom.link} className="underline flex items-center gap-3 ">
-            {cameFrom.page} <img src="/icons/leftTriangleIcon.svg" alt="" />
-          </Link>
-          <Link className="text-[#656565]">{product.title?.slice(0, 20)}...</Link>
-          </div>
+            {/* breadcrumb  */}
+            <div className="flex xl:hidden text-sm gap-4 font-outfit w-full ">
+              <Link className="underline flex items-center gap-3" to="/">
+                Home <img src="/icons/leftTriangleIcon.svg" alt="" />
+              </Link>
+              <Link
+                to={cameFrom.link}
+                className="underline whitespace-nowrap flex items-center gap-3"
+              >
+                {cameFrom.page} <img src="/icons/leftTriangleIcon.svg" alt="" />
+              </Link>
+              <Link className="text-[#656565] whitespace-nowrap overflow-hidden text-ellipsis ">
+                {product.title}
+              </Link>
+            </div>
 
             <ImageGallery
               images={product?.images?.edges}
@@ -242,4 +241,3 @@ export default function ProductsDetailPage() {
     </>
   );
 }
-
