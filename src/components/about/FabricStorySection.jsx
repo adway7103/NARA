@@ -55,29 +55,29 @@ const FabricStorySection = () => {
           </div>
           <div className="lg:col-span-9 lg:grid lg:grid-cols-9 lg:mt-20 lg:pl-7 xl:pl-20 ">
             <img
-              src="/about/fabric/a2.png"
+              src="/about/fabric/a2.webp"
               alt="Fabric story 6"
               className="bloc lg:col-span-3 w-full h-full xl:h-4/5 object-cover mr-10 p-3 lg:p-0 "
             />
             <img
-              src="/about/fabric/a3.png"
+              src="/about/fabric/a3.webp"
               alt="Fabric story 6"
               className="bloc row-col-2 lg:col-span-2 w-full object-cover xl:ml-16 lg:ml-8"
             />
             <img
-              src="/about/fabric/a4.png"
+              src="/about/fabric/a4.webp"
               alt="Fabric story 7"
               className="bloc lg:col-span-3 w-full h-full xl:h-4/5 p-3 xl:ml-32 lg:ml-20 object-cover"
             />
           </div>
           <div className="lg:col-span-9 lg:grid lg:grid-cols-9 mt-2 lg:mt-0 gap-10 px-10 lg:px-10">
             <img
-              src="/about/fabric/a5.png"
+              src="/about/fabric/a5.webp"
               alt="Fabric story 8"
               className="bloc lg:col-span-6 row-span-5 w-full h-full object-cover"
             />
             <img
-              src="/about/fabric/a6.png"
+              src="/about/fabric/a6.webp"
               alt="Fabric story 9"
               className="bloc lg:col-span-3 w-full h-full object-cover mt-10 lg:mt-20 "
             />
