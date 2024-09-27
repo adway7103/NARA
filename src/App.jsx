@@ -86,9 +86,10 @@ function App() {
   }, []);
 
   return (
-    <div className="cursor-custom dark:!bg-black">
+    <div className="cursor-custom dark:!bg-black font-antikor">
       <Toaster position="top-center" richColors />
       <Outlet />
+      
     </div>
   );
 }

@@ -165,12 +165,12 @@ export default function ProductsDetailPage() {
       {isLoading ? (
         <PageLoader />
       ) : (
-        <div className=" flex flex-col bg-[#F7F7F7] dark:bg-black dark:text-[#ffff]  font-antikor max-h-screen lg:overflow-hidden">
+        <div className=" flex flex-col bg-[#F7F7F7] dark:bg-black dark:text-[#ffff]  font-antikor xl-h-screen xl:max-h-screen lg:overflow-hidden">
           <NavbarRelative />
 
-          <div className="mt-[74px]  flex flex-col gap-4 items-center justify-center xl:items-start xl:flex-row dark:bg-black xl:!p-2 p-2 ">
+          <div className="mt-[74px]  flex flex-col gap-4 items-center justify-center xl:items-start xl:justify-center xl:flex-row dark:bg-black xl:!p-2 p-2 ">
             {/* breadcrumb  */}
-            <div className="flex xl:hidden text-sm gap-4 font-outfit w-full ">
+            <div className="md:w-3/4 flex xl:hidden text-sm gap-4 font-outfit w-full ">
               <Link className="underline flex items-center gap-3" to="/">
                 Home <img src="/icons/leftTriangleIcon.svg" alt="" />
               </Link>
@@ -193,7 +193,7 @@ export default function ProductsDetailPage() {
               scrollToImage={scrollToImage}
               imageRefs={imageRefs}
             />
-            <div className="xl:w-2/5 md:w-3/4 flex flex-col gap-8 p-4 lg:h-screen  mb-12 !pb-12 !px-8 lg:overflow-scroll">
+            <div className="xl:w-2/5 md:w-3/4 flex flex-col gap-8 p-4   mb-12 !pb-12 !px-8 xl:overflow-auto xl:h-screen xl:!pb-36 scrollbar-hide ">
               <DetailSection
                 title={product.title}
                 descriptionHtml={product.descriptionHtml}

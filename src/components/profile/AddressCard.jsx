@@ -110,20 +110,20 @@ export default function AddressCard({
         />
       ) : (
         <div
-          className={`p-12 xl:w-[45%] w-full ${
+          className={`p-4 lg:!p-12 xl:w-[45%] w-full ${
             isDefaultAddress ? "bg-green-100" : "bg-[#F7F7F7]"
           }  dark:bg-black dark:text-[#ffff] dark:border-2 flex flex-col justify-between`}
         >
           <address className="not-italic mb-4 dark:text-[#ffff]">
             <div className="flex justify-between items-center">
-              <h1 className="font-bold text-lg">{fullName}</h1>
+              <h1 className="font-bold lg:text-lg text-md">{fullName}</h1>
 
               {isDefaultAddress ? (
-                <span className="bg-[#ffff] dark:text-black lg:text-base text-xs rounded-full px-1">
+                <span className="whitespace-nowrap bg-[#ffff] dark:text-black lg:text-base text-xs rounded-full px-1">
                   {defaultAddressText}
                 </span>
               ) : (
-                <span className="flex items-center">
+                <span className="flex items-center whitespace-nowrap">
                   <input
                     type="radio"
                     name="makeDefaultAddress"

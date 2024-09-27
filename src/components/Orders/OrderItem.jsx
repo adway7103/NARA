@@ -69,12 +69,12 @@ export default function OrderItem({
               </a>
               
             )}
-            <div className="flex xl:flex-col justify-between w-full xl:w-auto xl:text-right text-xs">
+            <div className="flex xl:flex-col justify-between  w-full xl:w-auto xl:text-right text-xs tracking-tighter">
               <span>
-                Order date: <strong>{processingDate}</strong>
+                Order date: <strong className="whitespace-nowrap">{processingDate}</strong>
               </span>
               <span>
-                Expected Delivery date: <strong>{expectedDateOfDelivery}</strong>
+                Expected Delivery date: <strong className="whitespace-nowrap">{expectedDateOfDelivery}</strong>
               </span>
             </div>
           </div>

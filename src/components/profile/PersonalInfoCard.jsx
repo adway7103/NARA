@@ -87,7 +87,7 @@ export default function PersonalInfoCard({ title, value, type }) {
             ref={inputRef}
             type={type === "password" ? "password" : "text"}
             defaultValue={value}
-            className="xl:text-lg text-md font-bold focus:outline-none"
+            className="xl:text-lg text-sm font-bold focus:outline-none"
           />
         ) : isLoading ? (
           <div className="flex gap-2">
@@ -96,7 +96,7 @@ export default function PersonalInfoCard({ title, value, type }) {
             <div className="w-5 h-5 rounded-full animate-pulse bg-blue-600"></div>
           </div>
         ) : (
-          <h1 className="xl:text-lg text-md font-bold">{value}</h1>
+          <h1 className="lg:text-lg text-sm font-bold">{value}</h1>
         )}
       </div>
       <div className="flex gap-2">

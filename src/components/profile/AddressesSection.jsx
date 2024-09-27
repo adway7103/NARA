@@ -50,7 +50,7 @@ export default function AddressesSection() {
         {addressFormOpen && <AddressForm closeForm={closeAddressForm} />}
       </div>
 
-      <div className="p-2 flex flex-wrap box-border justify-between gap-2">
+      <div className=" flex flex-wrap box-border justify-between gap-2">
         
         {userAddresses.map((address) => (
           

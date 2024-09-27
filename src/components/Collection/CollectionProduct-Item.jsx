@@ -1,7 +1,7 @@
 import { formatToINR } from "../global/convert-to-inr";
 import { FaRegBookmark } from "react-icons/fa6";
 import { FaBookmark } from "react-icons/fa6";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { GoPlus, GoDash } from "react-icons/go";
 import { toast } from "sonner";
 import { Link, useNavigate } from "react-router-dom";
@@ -51,6 +51,10 @@ const CollectionProductItem = ({
     }
   };
 
+  useEffect(()=>{
+    console.log("Logging information: ", collectionTitle, collectionId)
+  }, [])
+
   const productClickHandler = () => {
     // const encodedProductId = encodeURIComponent(productId);
     // navigate(`/product/${encodedProductId}`);
@@ -59,7 +63,7 @@ const CollectionProductItem = ({
   return (
     <Link to={`/product/${productId}?camefrompage=collection&title=${collectionTitle}&id=${encodeURIComponent(collectionId)}`}>
       <div
-        className="font-sans xl:w-[23vw] lg:w-[30vw] md:w-[40vw] w-full cursor-pointer hover:brightness-75"
+        className="font-sans tracking-tighter xl:w-[23vw] lg:w-[30vw] md:w-[40vw] w-full cursor-pointer hover:brightness-75"
         onClick={productClickHandler}
       >
         <div className="w-full 2xl:h[700px]  md:h-[445px] h-[440px]  relative">
@@ -100,7 +104,7 @@ const CollectionProductItem = ({
               <div>{productCount}</div>
               <div className="border w-8 h-8 grid place-items-center cursor-pointer" onClick={() => handleAddtocard("remove")}><GoDash /></div>
             </div> */}
-            <ViewButton productId={productId} />
+            <ViewButton link={`/product/${productId}?camefrompage=collection&title=${collectionTitle}&id=${encodeURIComponent(collectionId)}`}  />
             <div className="font-medium flex gap-1 items-center cursor-pointer" onClick={handleBookmark}>
                 {bookmark ? (
                     <FaBookmark />

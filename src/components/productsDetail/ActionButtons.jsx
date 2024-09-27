@@ -164,7 +164,8 @@ export default function ActionButtons() {
   };
 
   return (
-    <div className="md:relative fixed bottom-0 right-0 left-0 bg-[#ffff] md:bg-transparent p-2 xl:!p-0 md:p-0 flex sm:flex-row gap-2 justify-center md:justify-start border-2 md:border-none shadow-lg md:!shadow-none dark:bg-black font-outfit text-md  md:text-base  ">
+    <div className="md:static fixed bottom-0 right-0 left-0 bg-[#ffff] md:bg-transparent flex sm:flex-row  justify-center md:justify-start border-2 md:border-none shadow-lg md:!shadow-none dark:bg-black !font-outfit text-sm md:text-base p-2 md:!p-0 ">
+
       <ToastContainer
         hideProgressBar={true}
         autoClose={800}
@@ -184,9 +185,9 @@ export default function ActionButtons() {
       <button
         onClick={addToCartHandler}
         disabled={productOutOfStock || addingToThecart}
-        className={` disabled:bg-gray-400 px-4 py-2  ${
+        className={` disabled:bg-gray-400 mr-2  px-4 py-2  ${
           addingToThecart ? "bg-gray-800" : " bg-[#1F4A40]"
-        }   text-white border-2 shadow-lg flex items-center justify-center gap-2`}
+        }   text-white border-2 shadow-lg xl:!shadow-none flex items-center justify-center gap-2`}
       >
         {addingToThecart ? (
           "Adding Item..."
@@ -201,7 +202,7 @@ export default function ActionButtons() {
       <div className="realtive">
         <button
           disabled={!currentVariant}
-          className="relative disabled:text-gray-200 px-4 py-2 border-2 shadow-lg"
+          className="relative mr-2 disabled:text-gray-200 px-4 py-2 border-2 shadow-lg xl:!shadow-none"
           onClick={buyNowHandler}
         >
           {buyNowBtnClicked && (
