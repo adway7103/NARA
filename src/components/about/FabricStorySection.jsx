@@ -41,20 +41,20 @@ const FabricStorySection = () => {
           </div>
           <div className="col-span-3">
             <video
-              src="/home/spotlight/s4.mp4"
+              src="/home/spotlight/s4.webm"
               autoPlay
               loop
               muted
               className="bloc lg:col-span-2 lg:row-span-7 lg:w-[400px] lg:h-[500px] h-1/2 object-cover p-4 lg:mb-10 xl:ml-14"
             />
             <img
-              src="/about/fabric/a1.svg"
+              src="/about/fabric/a1.png"
               alt="Fabric story 4"
               className="bloc lg:col-span-2 row-span-2 sm:h-[400px] lg:h-[260px] lg:w-[400px] lg:py-8 lg:px-10 xl:pl-40 sm:pl-40 pl-20 lg:object-top object-cover"
             />
           </div>
           <div className="lg:col-span-9 lg:grid lg:grid-cols-9 lg:mt-20 lg:pl-7 xl:pl-20 ">
-            <img
+            {/* <img
               src="/about/fabric/a2.webp"
               alt="Fabric story 6"
               className="bloc lg:col-span-3 w-full h-full xl:h-4/5 object-cover mr-10 p-3 lg:p-0 "
@@ -68,7 +68,7 @@ const FabricStorySection = () => {
               src="/about/fabric/a4.webp"
               alt="Fabric story 7"
               className="bloc lg:col-span-3 w-full h-full xl:h-4/5 p-3 xl:ml-32 lg:ml-20 object-cover"
-            />
+            /> */}
           </div>
           <div className="lg:col-span-9 lg:grid lg:grid-cols-9 mt-2 lg:mt-0 gap-10 px-10 lg:px-10">
             <img

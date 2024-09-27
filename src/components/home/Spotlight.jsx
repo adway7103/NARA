@@ -12,7 +12,7 @@ const Spotlight = () => {
       bought: "1250 people bought it",
     },
     {
-      imgSrc: "/home/spotlight/s2.mp4",
+      imgSrc: "/home/spotlight/s2.webm",
       description: "Raglan mili panelled dress",
       price: "INR 4,500.50",
       label: "Best seller",
@@ -26,7 +26,7 @@ const Spotlight = () => {
       bought: "",
     },
     {
-      imgSrc: "/home/spotlight/s4.mp4",
+      imgSrc: "/home/spotlight/s4.webm",
       description: "Raglan mili panelled dress",
       price: "INR 4,500.50",
       label: "",
@@ -58,7 +58,7 @@ const Spotlight = () => {
                 className="flex-shrink-0 w-[300px] sm:w-1/3 lg:w-full"
               >
                 <div className="w-full md:w-full bg-gray-200  aspect-h-1 overflow-hidden relative h-3/4 ">
-                  {product.imgSrc.endsWith(".mp4") ? (
+                  {product.imgSrc.endsWith(".webm") ? (
                     <div className="bloc w-full h-full object-center object-cover">
                       <VideoLazy
                         src={product.imgSrc}

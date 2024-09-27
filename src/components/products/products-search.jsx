@@ -10,6 +10,7 @@ const ProductsSearch = ({ setIsLoading, className, setProducts }) => {
   const [debounceTimeout, setDebounceTimeout] = useState(null);
 
   const handleSearchInput = (e) => {
+    setIsLoading(true);
     setSearchInput(e.target.value);
     
     // Debounce the search
