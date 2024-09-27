@@ -154,7 +154,7 @@
 *, *::before, *::after {
   box-sizing: border-box;
   cursor: url('../public/icons/cursor.svg'), auto;
-  font-family: "Antikor Mono", monospace;
+  
 }
 
 

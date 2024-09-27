@@ -47,7 +47,7 @@ const ProductItem = ({ colors, setActiveProductColor, name, discount, message, p
 
     return (
       <Link to={`/product/${productId}?camefrompage=Products`}>
-      <div className="font-sans xl:w-[350px] w-[350px] cursor-pointer hover:brightness-75" onClick={productClickHandler} >
+      <div className="font-antikor tracking-tighter xl:w-[350px] w-[320px] cursor-pointer hover:brightness-75" onClick={productClickHandler} >
         <div className="w-full md:h-[400px] h-[477px] lg:h-[477px] relative">
          <ImageWithSkeleton img={img} name={name} />
         
@@ -86,7 +86,7 @@ const ProductItem = ({ colors, setActiveProductColor, name, discount, message, p
               <div>{productCount}</div>
               <div className="border w-8 h-8 grid place-items-center cursor-pointer" onClick={() => handleAddtocard("remove")}><GoDash /></div>
             </div> */}
-            <ViewButton productId={productId} />
+            <ViewButton link={`/product/${productId}?camefrompage=Products`} />
             <div className="font-medium flex gap-1 items-center cursor-pointer" onClick={handleBookmark}>
                 {bookmark ? (
                     <FaBookmark />
