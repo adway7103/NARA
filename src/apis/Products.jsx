@@ -201,7 +201,7 @@ export async function getProductVariantDetail(variantId) {
 export async function searchProductsAPI(searchTerm){
   const query =`
   {
-  search(query: "${searchTerm}", first: 50) {
+  search(query: "${searchTerm}", first: 100) {
     edges {
       node {
         ... on Product {
@@ -232,7 +232,7 @@ export async function searchProductsAPI(searchTerm){
       query
     });
 
-    console.log("searched for * and got: ", response);
+    
     const products = response.data.data.search.edges.map(edge => edge.node);
     
     console.log("logging from the search thingy: ", products);

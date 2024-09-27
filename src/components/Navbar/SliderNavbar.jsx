@@ -130,9 +130,9 @@ const SliderNavbar = ({ isOpen, toggleMenu }) => {
               </h1>
               <div className="mt-2 relative">
                 <img
-                  src="/home/slider.svg"
+                  src="/home/slider.png"
                   alt="Product"
-                  className="w-full h-auto"
+                  className="w-full max-h-[450px]"
                 />
                 <h2
                   className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-5xl md:text-7xl font-semibold text-white bg-opacity-50 px-4 py-2"
