@@ -57,7 +57,7 @@ const Spotlight = () => {
                 key={index}
                 className="flex-shrink-0 w-[300px] sm:w-1/3 lg:w-full"
               >
-                <div className="w-full md:w-full bg-gray-200  aspect-h-1 overflow-hidden relative h-3/4 ">
+                <div className="w-full md:w-full bg-gray-200 min-h-96 aspect-h-1 overflow-hidden relative h-3/4 ">
                   {product.imgSrc.endsWith(".webm") ? (
                     <div className="bloc w-full h-full object-center object-cover">
                       <VideoLazy

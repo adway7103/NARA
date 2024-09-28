@@ -87,14 +87,14 @@ const ProductItem = ({ colors, setActiveProductColor, name, discount, message, p
               <div className="border w-8 h-8 grid place-items-center cursor-pointer" onClick={() => handleAddtocard("remove")}><GoDash /></div>
             </div> */}
             <ViewButton link={`/product/${productId}?camefrompage=Products`} />
-            <div className="font-medium flex gap-1 items-center cursor-pointer" onClick={handleBookmark}>
+            {/* <div className="font-medium flex gap-1 items-center cursor-pointer" onClick={handleBookmark}>
                 {bookmark ? (
                     <FaBookmark />
                 ) : (
                     <FaRegBookmark />
                 )}
                 Wishlist
-            </div>
+            </div> */}
         </div>
       </div>
       </Link>
