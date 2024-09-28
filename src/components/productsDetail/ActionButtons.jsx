@@ -215,9 +215,9 @@ export default function ActionButtons() {
         </button>
       </div>
 
-      <button className="px-2 py-2 border-2 shadow-lg flex items-center justify-center">
+      {/* <button className="px-2 py-2 border-2 shadow-lg flex items-center justify-center">
         <MdBookmarkBorder size={24} />
-      </button>
+      </button> */}
     </div>
   );
 }
