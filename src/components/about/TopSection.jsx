@@ -10,8 +10,16 @@ const TopSection = () => {
           </h1>
         </div>
         <div className="flex flex-col lg:flex-row pl-8 lg:pr-24">
-          <img src="about/logo.svg" className="hidden lg:block h-48 pl-8" />
-          <img src="about/logo.svg" className="lg:hidden pr-8" alt="logo" />
+          {/* logo light mode */}
+         <div className="dark:hidden">
+         <img src="about/logo.svg" className="hidden lg:block h-48 pl-8 " />
+         <img src="about/logo.svg" className="lg:hidden pr-8 w-full" alt="logo" />
+         </div>
+          {/* Logo dark mode  */}
+          <div className="hidden dark:block">
+          <img src="/home/navbar/logo.svg" className="hidden lg:block h-48 pl-8 " />
+          <img src="/home/navbar/logo.svg" className="lg:hidden pr-8 w-full" alt="logo" />
+          </div>
           <p className="hidden lg:flex ml-7 text-lg tracking-tight text-black dark:!text-white font-semibold items-end ">
             NEW AGE <br /> REAL <br /> ATTIRE
           </p>
