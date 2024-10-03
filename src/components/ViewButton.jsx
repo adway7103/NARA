@@ -21,7 +21,7 @@ export default function ViewButton({ link }) {
     <div className="w-full">
       <Link
         to={link}
-        className={` !font-outfit disabled:bg-gray-400 px-4 py-2  rounded-xl border-2  flex items-center justify-center gap-2`}
+        className={` !font-outfit disabled:bg-gray-400 px-4 py-2   border-2  flex items-center justify-center gap-2`}
       >
         <FaEye /> <span>View Product</span>
       </Link>

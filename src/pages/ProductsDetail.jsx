@@ -218,21 +218,21 @@ export default function ProductsDetailPage() {
 
               <img src="/dividers/star_divider.svg" alt="" />
               {/* Fabric Name Section */}
-              <div className="bg-[#D8E3B11C] border-2 border-[#D8E3B1] p-4 flex flex-col gap-4">
-                <div className="flex gap-4">
-                  <img src="/test/star.svg" alt="" />
-                  <h2 className="font-bold text-2xl">Fabric Name</h2>
-                  <img src="/test/star.svg" alt="" />
-                </div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Incidunt doloribus eaque dicta sit architecto cum hic eum
-                  dolore
-                  <br />
-                  explicabo possimus, enim quae nobis nemo soluta qui officia
-                  aliquam alias! Quam!
-                </p>
-              </div>
+                      {/* <div className="bg-[#D8E3B11C] border-2 border-[#D8E3B1] p-4 flex flex-col gap-4">
+                        <div className="flex gap-4">
+                          <img src="/test/star.svg" alt="" />
+                          <h2 className="font-bold text-2xl">Fabric Name</h2>
+                          <img src="/test/star.svg" alt="" />
+                        </div>
+                        <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                          Incidunt doloribus eaque dicta sit architecto cum hic eum
+                          dolore
+                          <br />
+                          explicabo possimus, enim quae nobis nemo soluta qui officia
+                          aliquam alias! Quam!
+                        </p>
+                      </div> */}
               {/* Fabric Name section ends here */}
             </div>
           </div>
