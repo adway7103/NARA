@@ -25,19 +25,7 @@ function App() {
   const [soundOn, setSound] = useState(true);
   const soundRef = useRef(null);
 
-  // useEffect(() => {
-  //   const sound = new Howler.Howl({
-  //     src: "../public/bg.mp3", // Replace with your audio source
-  //     loop: true, // Set looping to true if you want the music to repeat
-  //     volume: 0.3, // Adjust volume as needed
-  //   });
-  //   soundRef.current = sound;
-  //   if (soundOn) {
-  //     sound.play();
-  //   } else {
-  //     sound.pause();
-  //   }
-  // }, [soundOn]);
+
   const fetchAllItemsInCart = async (cartId) => {
     try {
       const response = await getItemsInCartAPI(cartId);

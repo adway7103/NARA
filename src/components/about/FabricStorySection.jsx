@@ -14,14 +14,14 @@ const FabricStorySection = () => {
               Our Fabrics Have Their Own Story To Tell
             </h2>
             <p className="text-sm sm:text-lg pl-6 pr-2 pt-2 pb-4 lg:mt-4 lg:pb-0 sm:px-8 sm:py-4 font-normal lg:pl-8 xl:pl-32">
-              At NARA, our fabrics are more than just material—they're a
-              tapestry of stories and traditions that celebrate the versatility
-              of cotton. Embodying it in an array of skirts and tops to the
-              world’s most comfortable heritage pants, the unique patterns of
-              these textiles tell the timeless saga of Indian art and folklore.
-              Both our collections blend traditional techniques and weave them
-              with modern silhouettes. Each piece is a tribute to the artistry
-              and history of our fabrics, creating a wardrobe that's as
+              At NARA, our fabrics are more than just material—they’re a
+              tapestry of stories and traditions. We celebrate the versatility
+              of cotton, showcasing it in an array of prints and styles that
+              honor India’s rich textile heritage. From the intricate patterns
+              of Ikat and Kalamkari to the timeless elegance of Khadi cotton,
+              our clothes embrace these traditional techniques and weave them
+              into modern silhouettes. Each piece is a tribute to the artistry
+              and history of our fabrics, creating a wardrobe that’s as
               meaningful as it is stylish.
             </p>
             <div className="lg:relative lg:mt-10">

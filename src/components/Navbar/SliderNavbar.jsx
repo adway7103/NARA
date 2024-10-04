@@ -86,11 +86,11 @@ const SliderNavbar = ({ isOpen, toggleMenu }) => {
                 </li>
                 <li>
                   <Link
-                    to="#behind"
+                    to="/behind"
                     className="text-lg md:text-xl  text-[#5D5D5D] italic">
                     04
                     <span className="text-3xl md:text-5xl font-semibold text-black dark:!text-[#D8E3B1] not-italic pl-4 md:pl-8 md:tracking-widest">
-                      BEHIND THE SCENE
+                      BEHIND THE SCREEN
                     </span>
                   </Link>
                 </li>

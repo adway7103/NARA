@@ -1,6 +1,7 @@
 import React from "react";
 import VideoLazy from "../loaders/VideoLazy";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Link } from "react-router-dom";
 
 const BehindTheScreen = () => {
   return (
@@ -29,9 +30,9 @@ const BehindTheScreen = () => {
               From brainstorming designs over chai to the final quality check, a
               lot of magic goes into each NARA piece.
             </p>
-            <button className="text-lg text-[#1F4A40] dark:!text-[#D8E3B1] font-bold py-2 px-4 border-[2px] border-[#B5B5B5]">
+            <Link to="/behind" className="text-lg text-[#1F4A40] dark:!text-[#D8E3B1] font-bold py-2 px-4 border-[2px] border-[#B5B5B5]">
               Our process
-            </button>
+            </Link>
           </div>
           <div className="relative grid grid-cols-2 gap-2 lg:col-span-2">
             <div className="relative col-span-2 row-span-2">
