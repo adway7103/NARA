@@ -99,9 +99,9 @@ const BehindTheScreen = () => {
               From brainstorming designs over chai to the final quality check, a
               lot of magic goes into each NARA piece.
             </p>
-            <button className="text-[#1F4A40] dark:!text-[#D8E3B1] font-bold font-mono py-2 px-4 border-[2px] border-[#B5B5B5] ">
+            <Link to="/behind" className="text-[#1F4A40] dark:!text-[#D8E3B1] font-bold font-mono py-2 px-4 border-[2px] border-[#B5B5B5] ">
               Our process
-            </button>
+            </Link>
           </div>
           <div className="hidden lg:flex flex-col justify-end items-center lg:items-start lg:text-left">
             <h2 className="text-3xl font-bold mb-2 font-bold tracking-widest">
