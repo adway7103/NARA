@@ -54,7 +54,7 @@ const Products = () => {
             copyProducts={copiedProducts}
           />
         </div>
-        <div className="overflow-hidden ">
+        <div className="overflow-hidden min-h-screen ">
         {isLoading ? (
           <PageLoader  />
         ) : (

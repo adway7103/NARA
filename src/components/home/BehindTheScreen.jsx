@@ -105,10 +105,10 @@ const BehindTheScreen = () => {
           </div>
           <div className="hidden lg:flex flex-col justify-end items-center lg:items-start lg:text-left">
             <h2 className="text-3xl font-bold mb-2 font-bold tracking-widest">
-              Peek Into The
+              PEEK INTO THE 
             </h2>
             <h2 className="text-3xl font-bold mb-8 font-bold tracking-widest">
-              Chaos
+              CHAOS
             </h2>
             <p className="text-sm md:text-lg mb-4">
               and creativity behind the scenes
