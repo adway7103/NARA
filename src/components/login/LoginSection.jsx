@@ -164,11 +164,11 @@ function LoginSection() {
             {/* Privary Policy and terms and conditions clause */}
             <p className="text-xs tracking-tight text-center">
               By Signing in , I agree to{" "}
-              <Link className="text-indigo-500 underline" to="#">
+              <Link className="text-indigo-500 underline" to="https://docs.google.com/document/d/1D4n_mgSz9K1yVEFgDhKrTQdfdb3zUPlkpQNf8AxjBUI/edit?usp=sharing">
                 Terms and Conditions
               </Link>{" "}
               and{" "}
-              <Link className="text-indigo-500 underline" to="#">
+              <Link className="text-indigo-500 underline" to="https://docs.google.com/document/d/1D4n_mgSz9K1yVEFgDhKrTQdfdb3zUPlkpQNf8AxjBUI/edit?usp=sharing">
                 Privacy Policy{" "}
               </Link>
             </p>
