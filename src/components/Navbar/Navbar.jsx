@@ -68,7 +68,7 @@ const Navbar = () => {
           <Link to="/">
             <img
               src={isScrolled ? "about/logo.svg" : "/home/navbar/logo.svg"}
-              className={`${isScrolled? "h-[40px]" : " xl:h-[250px]  lg:h-[150px] md:h-[100px] sm:h-[60px] sm:absolute  top-2 h-[40px]"} md:ml-10 ml-4`}
+              className={`${isScrolled? "h-[40px] -mt-4" : " xl:h-[250px]  lg:h-[150px] md:h-[100px] sm:h-[60px] sm:absolute  top-2 h-[2px]"} md:ml-10 ml-4`}
               alt="logo"
             />
           </Link>
@@ -93,7 +93,7 @@ const Navbar = () => {
           {theme === "light" ? (
             isScrolled ? (
               <>
-                <img src="/home/navbar/icon1.svg" alt="light mode icon" />
+                {/* <img src="/home/navbar/icon1.svg" alt="light mode icon" /> */}
                 <Link to="/profile"><img src="home/navbar/user.svg" alt="light mode icon" /></Link>
                 <CartIcon theme = {theme}   />
                 
@@ -101,11 +101,11 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <img
+                {/* <img
                   src="/home/navbar/icon1.svg"
                   className="white-icon"
                   alt="light mode icon"
-                />
+                /> */}
                 <Link to="/profile">
                   <img
                     src="/home/navbar/user.svg"
@@ -118,11 +118,11 @@ const Navbar = () => {
             )
           ) : (
             <>
-              <img
+              {/* <img
                 src="/home/navbar/icon1.svg"
                 className="white-icon"
                 alt="dark mode icon"
-              />
+              /> */}
               <Link to="/profile">
                 <img
                   src="/home/navbar/user.svg"

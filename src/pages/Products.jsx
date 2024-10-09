@@ -59,7 +59,7 @@ const Products = () => {
           <PageLoader  />
         ) : (
           // <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 lg:gap-x-16 p-4 place-items-center">
-          <div className="flex flex-wrap gap-4 justify-center py-4">
+          <div className="flex flex-wrap gap-4 justify-center  py-4">
             {products.length===0? <h1 className="text-3xl text-center p-12 ">Could not get any product for you!</h1>: null}
             {products.map((product, index) => (
               <ProductItem

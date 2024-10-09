@@ -120,5 +120,3 @@ function extractLineItems(orders) {
 
   return extractedItems;
 }
-
-
