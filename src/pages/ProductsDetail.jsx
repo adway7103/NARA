@@ -15,6 +15,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PageLoader from "../components/utils/PageLoader";
 import useQuery from "../hooks/useQuery";
+import RelatedProducts from "../components/productsDetail/RelatedProducts";
 
 export default function ProductsDetailPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -193,7 +194,7 @@ export default function ProductsDetailPage() {
               scrollToImage={scrollToImage}
               imageRefs={imageRefs}
             />
-            <div className="xl:w-2/5 md:w-3/4 flex flex-col gap-8 p-4   mb-12 !pb-12 !px-8 xl:overflow-auto xl:h-screen xl:!pb-36 scrollbar-hide ">
+            <div className="xl:w-2/5 md:w-3/4 flex flex-col gap-8 p-4    !pb-12 !px-8 xl:overflow-auto xl:h-screen xl:!pb-36 scrollbar-hide ">
               <DetailSection
                 title={product.title}
                 descriptionHtml={product.descriptionHtml}
@@ -238,6 +239,9 @@ export default function ProductsDetailPage() {
           </div>
         </div>
       )}
+
+      {/* Related Products */}
+      <RelatedProducts />
     </>
   );
 }

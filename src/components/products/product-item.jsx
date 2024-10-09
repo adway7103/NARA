@@ -47,7 +47,7 @@ const ProductItem = ({ colors, setActiveProductColor, name, discount, message, p
 
     return (
       <Link to={`/product/${productId}?camefrompage=Products`}>
-      <div className="font-antikor tracking-tighter xl:w-[350px] w-[320px] cursor-pointer hover:brightness-75" onClick={productClickHandler} >
+      <div className="flex flex-col justify-between  h-full font-antikor tracking-tighter xl:w-[350px] w-[320px] cursor-pointer hover:brightness-75" onClick={productClickHandler} >
         <div className="w-full md:h-[400px] h-[477px] lg:h-[477px] relative">
          <ImageWithSkeleton img={img} name={name} />
         
@@ -68,7 +68,7 @@ const ProductItem = ({ colors, setActiveProductColor, name, discount, message, p
             <div className="font-mono text-base">INR {formatToINR(price)}</div>
             {colors && (
               <div className="flex items-center gap-2">
-                {colors.map((color, index) => (
+                {colors?.map((color, index) => (
                   <ProductColor 
                     key={index} 
                     color={color} 
@@ -79,23 +79,24 @@ const ProductItem = ({ colors, setActiveProductColor, name, discount, message, p
             )}
           </div>
         </div>
-        <div className="flex justify-between py-2">
-          {/* plus minus button */}
-            {/* <div className="flex text-xl items-center cursor-pointer gap-2">
+        <ViewButton link={`/product/${productId}?camefrompage=Products`} />
+        {/* <div className="flex justify-between py-2">
+          plus minus button
+            <div className="flex text-xl items-center cursor-pointer gap-2">
               <div className="border w-8 h-8 grid place-items-center cursor-pointer" onClick={() => handleAddtocard("add")}><GoPlus /></div>
               <div>{productCount}</div>
               <div className="border w-8 h-8 grid place-items-center cursor-pointer" onClick={() => handleAddtocard("remove")}><GoDash /></div>
-            </div> */}
-            <ViewButton link={`/product/${productId}?camefrompage=Products`} />
-            {/* <div className="font-medium flex gap-1 items-center cursor-pointer" onClick={handleBookmark}>
+            </div>
+            
+            <div className="font-medium flex gap-1 items-center cursor-pointer" onClick={handleBookmark}>
                 {bookmark ? (
                     <FaBookmark />
                 ) : (
                     <FaRegBookmark />
                 )}
                 Wishlist
-            </div> */}
-        </div>
+            </div>
+        </div> */}
       </div>
       </Link>
       

@@ -39,6 +39,7 @@ function LoginSection() {
       dispatch(setAuthStatus({ accessToken, isAuthenticated: true }));
       dispatch(deleteCart());
       localStorage.removeItem("cartId");
+      
       navigate("/");
     } catch (error) {
       if (error.message.includes("Unidentified customer")) {

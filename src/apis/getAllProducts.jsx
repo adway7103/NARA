@@ -2,7 +2,7 @@ import api from "../utils/interceptors";
 
 const GET_ALL_PRODUCTS_QUERY = `
  {
-  products(first: 50) {
+  products(first: 200) {
     edges {
       node {
         id

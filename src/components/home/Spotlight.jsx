@@ -5,32 +5,30 @@ import { Link } from "react-router-dom";
 const Spotlight = () => {
   const products = [
     {
-      imgSrc: "/home/spotlight/s1.svg",
-      description: "Raglan mili panelled dress",
-      price: "INR 4,500.50",
+      imgSrc: "https://cdn.shopify.com/s/files/1/0722/8951/7782/files/The_Olive_Cream_Co-ord-_4.jpg?v=1727246537",
+      description: "The Faux 9 to 5 Co-ord Set",
+      price: "INR 1,450.00",
       label: "Best seller",
-      bought: "1250 people bought it",
+      // bought: "1250 people bought it",
     },
     {
-      imgSrc: "/home/spotlight/s2.webm",
-      description: "Raglan mili panelled dress",
-      price: "INR 4,500.50",
+      imgSrc: "https://cdn.shopify.com/s/files/1/0722/8951/7782/files/OutoftheOfficeCo-ordset-4thpic-min.webp?v=1728406394",
+      description: "The Out of the Office Co-ord set",
+      price: "INR 2400.00",
       label: "Best seller",
-      bought: "12.5k people bought it",
+     
     },
     {
-      imgSrc: "/home/spotlight/s3.svg",
-      description: "Raglan mili panelled dress",
-      price: "INR 4,500.50",
-      label: "",
-      bought: "",
+      imgSrc: "https://cdn.shopify.com/s/files/1/0722/8951/7782/files/TheRedontheRunCo-ordset-1stpic-min.webp?v=1728406266",
+      description: "The Red on the Run Co-ord set",
+      price: "INR 2200.00",
+      label: "Best Seller",
     },
     {
-      imgSrc: "/home/spotlight/s4.webm",
-      description: "Raglan mili panelled dress",
-      price: "INR 4,500.50",
-      label: "",
-      bought: "",
+      imgSrc: "https://cdn.shopify.com/s/files/1/0722/8951/7782/files/TheJuneCo-ordset-1stpic-min.webp?v=1728406041",
+      description: "The June Co-ord set",
+      price: "INR 2300.00",
+      label: "Best Seller",
     },
   ];
 
@@ -57,7 +55,7 @@ const Spotlight = () => {
                 key={index}
                 className="flex-shrink-0 w-[300px] sm:w-1/3 lg:w-full"
               >
-                <div className="w-full md:w-full bg-gray-200 min-h-96 aspect-h-1 overflow-hidden relative h-3/4 ">
+                <div className="w-full md:w-full bg-gray-200 !max-h-3/4 min-h-96 aspect-h-1 overflow-hidden relative h-3/4 ">
                   {product.imgSrc.endsWith(".webm") ? (
                     <div className="bloc w-full h-full object-center object-cover">
                       <VideoLazy
@@ -71,21 +69,22 @@ const Spotlight = () => {
                     //   alt={product.description}
                     //   className="bloc w-full h-full object-center object-cover"
                     // />
-                    <div className="bloc w-full h-full object-center object-cover" >
+                    <div className="bg-gray-100 bloc w-full h-full object-center object-cover" >
                       <LazyLoadImage
                         src={product.imgSrc}
                         width={"100%"}
                         height={"100%"}
+                        
                         // PlaceholderSrc={PlaceholderImage}
                         alt={product.description}
                       />
                     </div>
                   )}
-                  {product.bought && (
+                  {product.label && (
                     <div className="absolute bottom-0 left-0 w-full text-left bg-opacity-70 pb-3 sm:pl-2 pl-4 flex items-center">
-                      <span className="text-xs font-bold font-mono text-black  bg-white py-1 sm:px-1 px-2 sm:mr-1 mr-2">
+                      {/* <span className="text-xs font-bold font-mono text-black  bg-white py-1 sm:px-1 px-2 sm:mr-1 mr-2">
                         {product.bought}
-                      </span>
+                      </span> */}
                       <span className="text-xs font-bold font-mono text-black  bg-white py-1 sm:px-1 px-2">
                         {product.label}
                       </span>

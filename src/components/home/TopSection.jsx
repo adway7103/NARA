@@ -106,7 +106,7 @@ const TopSection = () => {
         {/* Text and buttons */}
         <div className="absolute bottom-28 left-12 text-left text-white">
           <h5 className="text-sm">Featured collection, 2024</h5>
-          <h2 className="text-4xl font-bold py-4">{currentCollection.title}</h2>
+          <h2 className="text-5xl font-bold py-4">{currentCollection.title}</h2>
           <Link
             to={allCollections.length===0 ? "#" : `/collection?id=${encodeURIComponent(currentCollection.id)}`}
             className="inline-block bg-transparent border border-white text-[#D8E3B1] py-2 px-4"
