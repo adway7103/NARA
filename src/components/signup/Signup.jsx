@@ -120,7 +120,7 @@ function SignupSection() {
           </div>
           <div className="w-full h-full flex flex-col gap-[10px]">
             <div className="w-full">
-              <p className="text-[#626262] text-sm dark:text-[#ffff]">Your Name</p>
+              <p className="text-[#626262] text-sm dark:text-[#ffff]">Your Name*</p>
               <input
                 onChange={(e) => setName(e.target.value)}
                 className="px-4 py-2 border-1 border-[#A7A7A766] bg-[#F7F7F7] text-black w-full"
@@ -134,7 +134,7 @@ function SignupSection() {
               )}
             </div>
             <div className="">
-              <p className="text-[#626262] text-sm dark:text-[#ffff]">Phone Number</p>
+              <p className="text-[#626262] text-sm dark:text-[#ffff]">Phone Number*</p>
               <MuiTelInput
                 value={phone}
                 required={true}
@@ -158,7 +158,7 @@ function SignupSection() {
               )}
             </div>
             <div className="w-full">
-              <p className="text-[#626262] dark:text-[#ffff] text-sm">Email Id</p>
+              <p className="text-[#626262] dark:text-[#ffff] text-sm">Email Id*</p>
               <input
                 onChange={(e) => setEmail(e.target.value)}
                 className="px-4 py-2 border-1 border-[#A7A7A766] text-black bg-[#F7F7F7] w-full"
@@ -170,7 +170,7 @@ function SignupSection() {
               )}
             </div>
             <div>
-              <p className="text-[#626262] text-sm dark:text-[#ffff]">Password</p>
+              <p className="text-[#626262] text-sm dark:text-[#ffff]">Password*</p>
               <div className="relative w-full">
                 <input
                   onChange={(e) => {
@@ -198,11 +198,11 @@ function SignupSection() {
             {/* Privary Policy and terms and conditions clause */}
             <p className="text-xs text-center tracking-tighter">
               By Signing up , I agree to{" "}
-              <Link className="text-indigo-500 underline" to="#">
+              <Link className="text-indigo-500 underline" to="https://docs.google.com/document/d/1D4n_mgSz9K1yVEFgDhKrTQdfdb3zUPlkpQNf8AxjBUI/edit?usp=sharing">
                 Terms and Conditions
               </Link>{" "}
               and{" "}
-              <Link className="text-indigo-500 underline" to="#">
+              <Link className="text-indigo-500 underline" to="https://docs.google.com/document/d/1D4n_mgSz9K1yVEFgDhKrTQdfdb3zUPlkpQNf8AxjBUI/edit?usp=sharing">
                 Privacy Policy{" "}
               </Link>
             </p>
