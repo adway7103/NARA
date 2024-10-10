@@ -24,12 +24,10 @@ const TopSection = () => {
         <div className="max-w-screen-xl w-full ">
           <section className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-12 lg:gap-y-20 dark:!text-white px-4  items-center ">
             <div className="w-full h-full sm:h-[50vh] xl:h-[90vh] md:ml-4 xl:ml-40">
-              <video
-                src="/about/divein.mp4"
-                autoPlay
-                loop
-                muted
-                className="bloc w-full h-full object-cover object-top"
+              <img
+                src="/about/fabric/a1.CR2"
+                alt="Image 1"
+                className="bloc w-full h-full object-cover object-center"
               />
             </div>
             <div className="md:ml-10 xl:pl-28">
@@ -58,12 +56,10 @@ const TopSection = () => {
               </p>
             </div>
             <div className="w-full lg:pr-3 lg:h-[60vh] xl:h-[80vh] h-[80vh]">
-              <video
-                src="/about/fabric.mp4"
-                autoPlay
-                loop
-                muted
-                className="bloc w-full h-full object-cover"
+              <img
+                src="/about/fabric/a2.jpg"
+                alt="Image 2"
+                className="bloc w-full h-full object-cover object-center"
               />
             </div>
             <div className="lg:hidden pr-5">

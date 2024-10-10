@@ -1,5 +1,4 @@
 import React from "react";
-import topVideo from "../../assets/home/backgroundVideo.mp4";
 
 const SubscribeSection = () => {
   return (
@@ -9,31 +8,29 @@ const SubscribeSection = () => {
           {/* Top Row Images */}
           <div className="col-span-1 w-full h-full md:h-96">
             <img
-              src="/home/footer/f1.svg"
+              src="/home/footer/f3.jpeg"
               alt="Image 1"
               className="bloc w-full h-full object-center object-cover"
             />
           </div>
           <div className="col-span-1 w-full h-full md:h-96">
             <img
-              src="/home/footer/f2.svg"
+              src="/home/footer/f2.JPG"
               alt="Image 2"
               className="bloc w-full h-full object-cover object-center"
             />
           </div>
           <div className="hidden md:col-span-2 w-full h-96 md:block">
-            <video
-              autoPlay
-              loop
-              muted
-              src={topVideo}
+            <img
+              src="/home/footer/f1.jpeg"
+              alt="Image 2"
               className="bloc w-full h-full object-cover object-center"
             />
           </div>
           {/* Bottom Row Images */}
           <div className="col-span-1 w-full h-40 md:h-96">
             <img
-              src="/home/footer/f3.svg"
+              src="/home/footer/f4.JPG"
               alt="Image 4"
               className="bloc w-full h-full object-cover object-center"
             />
@@ -54,7 +51,7 @@ const SubscribeSection = () => {
           </div>
           <div className="col-span-1 w-full h-40 md:h-96">
             <img
-              src="/home/footer/f7.svg"
+              src="/home/footer/f5.jpeg"
               alt="Image 7"
               className="bloc w-full h-full object-cover object-left"
             />
