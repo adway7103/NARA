@@ -5,17 +5,18 @@ import { Link } from "react-router-dom";
 const Spotlight = () => {
   const products = [
     {
-      imgSrc: "https://cdn.shopify.com/s/files/1/0722/8951/7782/files/The_Olive_Cream_Co-ord-_4.jpg?v=1727246537",
-      description: "The Faux 9 to 5 Co-ord Set",
-      price: "INR 1,450.00",
+      imgSrc: "https://cdn.shopify.com/s/files/1/0722/8951/7782/files/LaidbackLuxeCo-ordSet-1stpic-min.webp?v=1728406565",
+      description: "Laidback Luxe Co-ord Set",
+      price: "INR 2,499.00",
       label: "Best seller",
-      // bought: "1250 people bought it",
+      link: "http://localhost:5173/product/gid%3A%2F%2Fshopify%2FProduct%2F8756899709142?camefrompage=collection&title=Co-ord%20Sets&id=gid%3A%2F%2Fshopify%2FCollection%2F446032871638"
     },
     {
       imgSrc: "https://cdn.shopify.com/s/files/1/0722/8951/7782/files/OutoftheOfficeCo-ordset-4thpic-min.webp?v=1728406394",
       description: "The Out of the Office Co-ord set",
       price: "INR 2400.00",
       label: "Best seller",
+      link: "http://localhost:5173/product/gid%3A%2F%2Fshopify%2FProduct%2F8756898365654?camefrompage=collection&title=Co-ord%20Sets&id=gid%3A%2F%2Fshopify%2FCollection%2F446032871638"
      
     },
     {
@@ -23,12 +24,14 @@ const Spotlight = () => {
       description: "The Red on the Run Co-ord set",
       price: "INR 2200.00",
       label: "Best Seller",
+      link: "http://localhost:5173/product/gid%3A%2F%2Fshopify%2FProduct%2F8756897644758?camefrompage=collection&title=Co-ord%20Sets&id=gid%3A%2F%2Fshopify%2FCollection%2F446032871638"
     },
     {
       imgSrc: "https://cdn.shopify.com/s/files/1/0722/8951/7782/files/TheJuneCo-ordset-1stpic-min.webp?v=1728406041",
       description: "The June Co-ord set",
       price: "INR 2300.00",
       label: "Best Seller",
+      link: "http://localhost:5173/product/gid%3A%2F%2Fshopify%2FProduct%2F8756895383766?camefrompage=collection&title=Co-ord%20Sets&id=gid%3A%2F%2Fshopify%2FCollection%2F446032871638"
     },
   ];
 
@@ -51,10 +54,12 @@ const Spotlight = () => {
         <div className="mt-6 md:mt-12 overflow-x-scroll testimonial-container">
           <div className="flex lg:grid lg:grid-cols-4 md:grid-cols-3 gap-3 md:gap-2 pl-4">
             {products.map((product, index) => (
+
               <div
-                key={index}
+              key={index}
                 className="flex-shrink-0 w-[300px] sm:w-1/3 lg:w-full"
               >
+              <Link to={product.link} >
                 <div className="w-full md:w-full bg-gray-200 !max-h-3/4 min-h-96 aspect-h-1 overflow-hidden relative h-3/4 ">
                   {product.imgSrc.endsWith(".webm") ? (
                     <div className="bloc w-full h-full object-center object-cover">
@@ -99,7 +104,9 @@ const Spotlight = () => {
                     {product.price}
                   </p>
                 </div>
+                </Link>
               </div>
+              
             ))}
           </div>
         </div>
