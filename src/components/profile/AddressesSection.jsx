@@ -45,23 +45,25 @@ export default function AddressesSection() {
           onClick={openAddressForm}
           className="active:bg-gray-100 border-2 px-2 py-1"
         >
-          Add New Address
+          Add New Aadress 
         </button>
         {addressFormOpen && <AddressForm closeForm={closeAddressForm} />}
       </div>
 
-      <div className="p-2 flex flex-wrap box-border justify-between gap-2">
+      <div className=" flex flex-wrap box-border justify-between gap-2">
+        
         {userAddresses.map((address) => (
+          
           <AddressCard
-            key={address.id}
-            fullName={address.firstName + " " + address.lastName}
-            addressLine={address.address1 +", "+address.address2}
-            phone={address.phone}
-            addressId={address.id}
-            province = {address.province}
+            key={address?.id}
+            fullName={address?.name}
+            addressLine={address?.formatted?.join(", ")}
+            phone={address?.phone}
+            addressId={address?.id}
             fullAddressObject = {address}
           />
         ))}
+        
       </div>
       </>
       }

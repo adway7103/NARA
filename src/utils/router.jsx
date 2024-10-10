@@ -6,6 +6,7 @@ import RedirectWhenLoggedIn from "../components/utils/RedirectWhenLoggedIn";
 import ScrollToTop from "../components/utils/ScrollToTop";
 import LazyComponent from "../components/utils/LazyComponent";
 
+
 // Lazy load the components
 const Home = React.lazy(() => import("../pages/Home"));
 const AboutUs = React.lazy(() => import("../pages/AboutUs"));
@@ -14,6 +15,9 @@ const Products = React.lazy(() => import("../pages/Products"));
 const SignUp = React.lazy(() => import("../pages/SignUp"));
 const Profile = React.lazy(() => import("../pages/Profile"));
 const ProductsDetail = React.lazy(()=>import("../pages/ProductsDetail"));
+const Orders = React.lazy(()=>import("../pages/Orders"));
+const CollectionDetail = React.lazy(()=>import("../pages/CollectionDetail"));
+const BehindTheScreen = React.lazy(()=>import("../pages/BehindTheScreen"));
 
 
 
@@ -31,8 +35,16 @@ export const router = createBrowserRouter([
         element: <LazyComponent component={<AboutUs />} />,
       },
       {
+        path: "behind",
+        element: <LazyComponent component={<BehindTheScreen />} />,
+      },
+      {
         path: "products",
         element: <LazyComponent component={<Products />} />,
+      },
+      {
+        path: "collection",
+        element: <LazyComponent component={<CollectionDetail />} />,
       },
       {
         path: "product/:id",
@@ -55,9 +67,14 @@ export const router = createBrowserRouter([
         element: <ProtectedRoutes />,
         children: [
           {
+            path: "orders",
+            element: <LazyComponent component={<Orders />} />,
+          },
+          {
             path: "profile",
             element: <LazyComponent component={<Profile />} />,
           },
+          
         ],
       },
     ],

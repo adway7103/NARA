@@ -5,13 +5,13 @@ import { deleteAddressAPI } from "../../apis/addressAPI";
 import { toast } from "sonner";
 import { setDefaultAddressId, setAddresses, setDefaultAddress } from "../../store";
 import { Skeleton } from "@mui/material";
+import AddressForm from "./AddressForm";
 
 export default function AddressCard({
   fullName,
   addressLine,
   phone,
   addressId,
-  province,
   fullAddressObject
 }) {
   const defaultAddressId = useSelector((state) => state.user.defaultAddressId);
@@ -20,6 +20,7 @@ export default function AddressCard({
   const [isDefaultAddress, setIsDefaultAddress] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
+  const [addressFormOpen, setAddressFormOpen] = useState(false);
 
   useEffect(() => {
     const thisAddressId = addressId?.split("?")[0];
@@ -90,6 +91,16 @@ export default function AddressCard({
     }
   };
 
+  const closeAddressFormHandler = ()=>{
+    setAddressFormOpen(false);
+  }
+
+  const editAddressHandler = ()=>{
+    
+    setAddressFormOpen(true);
+
+  }
+
   return (
     <>
       {isLoading ? (
@@ -99,30 +110,30 @@ export default function AddressCard({
         />
       ) : (
         <div
-          className={`p-12 xl:w-[45%] w-full ${
-            isDefaultAddress ? "bg-[#D8E3B14A]" : "bg-[#F7F7F7]"
+          className={`p-4 lg:!p-12 xl:w-[45%] w-full ${
+            isDefaultAddress ? "bg-green-100" : "bg-[#F7F7F7]"
           }  dark:bg-black dark:text-[#ffff] dark:border-2 flex flex-col justify-between`}
         >
           <address className="not-italic mb-4 dark:text-[#ffff]">
             <div className="flex justify-between items-center">
-              <h1 className="font-bold text-lg">{fullName}</h1>
+              <h1 className="font-bold lg:text-lg text-md">{fullName}</h1>
 
               {isDefaultAddress ? (
-                <span className="bg-[#ffff] dark:text-black lg:text-base text-xs rounded-full px-1">
+                <span className="whitespace-nowrap bg-[#ffff] dark:text-black lg:text-base text-xs rounded-full px-1">
                   {defaultAddressText}
                 </span>
               ) : (
-                <span className="flex items-center">
+                <span className="flex items-center whitespace-nowrap">
                   <input
                     type="radio"
                     name="makeDefaultAddress"
-                    id={`default-address-${fullName.replace(/\s+/g, "-")}`}
+                    id={`default-address-${fullName?.replace(/\s+/g, "-")}`}
                     aria-label={makeDefaultText}
                     onChange={handleDefaultAddressChange}
                   />
 
                   <label
-                    htmlFor={`default-address-${fullName.replace(/\s+/g, "-")}`}
+                    htmlFor={`default-address-${fullName?.replace(/\s+/g, "-")}`}
                     className="ml-2 lg:text-base text-xs"
                   >
                     {makeDefaultText}
@@ -133,13 +144,14 @@ export default function AddressCard({
             <p className="text-base text-[#7A7A7A]">{phone}</p>
             <p className="text-base mt-2">{addressLine}</p>
             <br />
-            <p>{province}</p>
+            
           </address>
           <div className="flex gap-2">
             <button className="border-r-2 pr-2" onClick={deleteAddressHandler}>
               Remove
             </button>
-            <button>Edit</button>
+            <button onClick={editAddressHandler}>Edit</button>
+            {addressFormOpen && <AddressForm isEditing={true} address={fullAddressObject} closeForm={closeAddressFormHandler} />}
           </div>
         </div>
       )}

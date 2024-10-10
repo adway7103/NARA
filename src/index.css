@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
 @font-face {
   font-family: "Antikor Mono";
   src: url("./fonts/antikor_mono/Taner Ardali  Antikor Mono Bold Italic.ttf") format("truetype");
@@ -151,7 +153,14 @@
 
 *, *::before, *::after {
   box-sizing: border-box;
+  cursor: url('../public/icons/cursor.svg'), auto;
+  
 }
+
+input[type="password"]::-ms-reveal {
+  display: none;
+}
+
 
 /* body {
   font-family: "Antikor Text", sans-serif;

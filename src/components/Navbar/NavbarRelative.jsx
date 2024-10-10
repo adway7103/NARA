@@ -32,7 +32,7 @@ const NavbarRelative = () => {
   return (
     <div>
       {/* Top Navbar */}
-      <div className="top-0 left-0  w-full z-50 flex justify-between items-center bg-white dark:!bg-black md:px-10 pl-4 pr-2 py-2 xl:!py-4 bg-opacity-80 fixed">
+      <div className="top-0 left-0  w-full z-50 flex justify-between items-center bg-white dark:!bg-black md:px-10 pl-4 pr-6 py-2 xl:!py-4 bg-opacity-80 fixed">
         <div className="flex items-center">
           <button
             className="text-4xl flex mt-[10px] items-center font-bold text-black dark:!text-white"
@@ -40,11 +40,13 @@ const NavbarRelative = () => {
           >
             &#9776;
           </button>
+          <Link to= "/" >
           <img
             src="/about/logo.svg"
             className="w-36 md:ml-10 ml-4"
             alt="logo"
           />
+          </Link>
         </div>
         <div className="flex items-center space-x-1 md:space-x-7">
           <button
@@ -63,7 +65,7 @@ const NavbarRelative = () => {
           </button>
           {theme == "light" ? (
             <>
-              <img src="/home/navbar/icon1.svg" alt="light mode icon" />
+              {/* <img src="/home/navbar/icon1.svg" alt="light mode icon" /> */}
 
               <Link to="/profile">
                 <img src="/home/navbar/user.svg" alt="light mode icon" />
@@ -72,16 +74,18 @@ const NavbarRelative = () => {
             </>
           ) : (
             <>
-              <img
+              {/* <img
                 src="/home/navbar/icon1.svg"
                 className="white-icon"
                 alt="light mode icon"
-              />
+              /> */}
+              <Link to={"/profile"}>
               <img
                 src="/home/navbar/user.svg"
                 className="white-icon"
                 alt="light mode icon"
               />
+               </Link>
               <CartIcon theme={theme} />
             </>
           )}

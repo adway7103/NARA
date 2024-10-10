@@ -8,9 +8,10 @@ import { Link, useNavigate } from "react-router-dom";
 
 import Skeleton from '@mui/material/Skeleton';
 import Box from '@mui/material/Box';
+import ViewButton from "../ViewButton";
 
 
-const ProductItem = ({ colors, setActiveProductColor, name, discount, message, price, img, productId  }) => {
+const ProductItem = ({ colors, setActiveProductColor, name, discount, message, price, img, productId, cameFromLink  }) => {
     productId = encodeURIComponent(productId) //Bad code 
     const navigate = useNavigate();  
     const [bookmark, setBookmark] = useState(false)
@@ -45,8 +46,8 @@ const ProductItem = ({ colors, setActiveProductColor, name, discount, message, p
     }
 
     return (
-      <Link to={`/product/${productId}`}>
-      <div className="font-sans xl:w-[350px] w-[350px] cursor-pointer hover:brightness-75" onClick={productClickHandler} >
+      <Link to={`/product/${productId}?camefrompage=Products`}>
+      <div className="flex flex-col justify-between  h-full font-antikor tracking-tighter xl:w-[350px] w-[320px] cursor-pointer hover:brightness-75" onClick={productClickHandler} >
         <div className="w-full md:h-[400px] h-[477px] lg:h-[477px] relative">
          <ImageWithSkeleton img={img} name={name} />
         
@@ -67,7 +68,7 @@ const ProductItem = ({ colors, setActiveProductColor, name, discount, message, p
             <div className="font-mono text-base">INR {formatToINR(price)}</div>
             {colors && (
               <div className="flex items-center gap-2">
-                {colors.map((color, index) => (
+                {colors?.map((color, index) => (
                   <ProductColor 
                     key={index} 
                     color={color} 
@@ -78,12 +79,15 @@ const ProductItem = ({ colors, setActiveProductColor, name, discount, message, p
             )}
           </div>
         </div>
-        <div className="flex justify-between py-2">
+        <ViewButton link={`/product/${productId}?camefrompage=Products`} />
+        {/* <div className="flex justify-between py-2">
+          plus minus button
             <div className="flex text-xl items-center cursor-pointer gap-2">
               <div className="border w-8 h-8 grid place-items-center cursor-pointer" onClick={() => handleAddtocard("add")}><GoPlus /></div>
               <div>{productCount}</div>
               <div className="border w-8 h-8 grid place-items-center cursor-pointer" onClick={() => handleAddtocard("remove")}><GoDash /></div>
             </div>
+            
             <div className="font-medium flex gap-1 items-center cursor-pointer" onClick={handleBookmark}>
                 {bookmark ? (
                     <FaBookmark />
@@ -92,7 +96,7 @@ const ProductItem = ({ colors, setActiveProductColor, name, discount, message, p
                 )}
                 Wishlist
             </div>
-        </div>
+        </div> */}
       </div>
       </Link>
       

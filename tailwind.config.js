@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-import aspectRatio from "@tailwindcss/aspect-ratio";
+import aspectRatio from '@tailwindcss/aspect-ratio';
+import typography from "@tailwindcss/typography";
+import scrollbarHide from "tailwind-scrollbar-hide";
 
 export default {
   darkMode: "class",
@@ -31,5 +33,9 @@ export default {
     },
   },
 
-  plugins: [aspectRatio],
+  plugins: [
+    aspectRatio,
+    typography,
+    scrollbarHide
+  ],
 };

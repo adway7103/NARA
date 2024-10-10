@@ -32,47 +32,53 @@ const Products = () => {
     loadProducts();
   }, []);
 
-  useEffect(() => {
-    if (!isLoading && products.length > 0) {
-      // Wait until the next frame to ensure painting
-      requestAnimationFrame(() => {
-        // alert("All products have been rendered!");
-      });
-    }
-  }, [isLoading, products]);
+  // useEffect(() => {
+  //   if (!isLoading && products.length > 0) {
+  //     // Wait until the next frame to ensure painting
+  //     requestAnimationFrame(() => {
+  //       // alert("All products have been rendered!");
+  //     });
+  //   }
+  // }, [isLoading, products]);
 
   return (
-    <div>
+    <div className="dark:!bg-black p-[0.2px] overflow-x-hidden  xl:h-screen ">
       <NavbarRelative />
 
-      <div className="mt-8">
-        <div className="bg-[#F7F7F7] pb-2 mt-20">
+      <div className=" dark:!bg-black bg-[#ffff]  dark:text-[#ffff] mt-8">
+        <div className="bg-[#F7F7F7]  dark:bg-black dark:border-b-[#ffff] dark:border-b-2  pb-2 mt-20">
           <ProductHeader
+            setIsLoading={setIsLoading}
             products={products}
             setProducts={setProducts}
             copyProducts={copiedProducts}
           />
         </div>
+        <div className="overflow-hidden min-h-screen ">
         {isLoading ? (
-          <PageLoader />
+          <PageLoader  />
         ) : (
           // <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 lg:gap-x-16 p-4 place-items-center">
-          <div className="flex flex-wrap gap-4 justify-center py-4">
+          <div className="flex flex-wrap gap-4 justify-center  py-4">
+            {products.length===0? <h1 className="text-3xl text-center p-12 ">Could not get any product for you!</h1>: null}
             {products.map((product, index) => (
               <ProductItem
                 key={product.id}
-                img={product?.images?.edges[0]?.node?.src}
+                img={product?.variants?.nodes[0]?.image?.src}
                 colors={colors}
                 setActiveProductColor={setActiveProductColor}
-                price={product.priceRange.minVariantPrice.amount}
+                price={product?.variants?.nodes[0]?.price?.amount}
                 name={product.title}
                 discount={""}
                 message={""}
                 productId={product.id}
               />
             ))}
+
           </div>
         )}
+
+        </div>
       </div>
     </div>
   );

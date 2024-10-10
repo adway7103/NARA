@@ -18,7 +18,7 @@ const sortItems = {
   // RatingDsc: "rating: high to low"
 }
 
-const ProductHeader = ({ products, setProducts, copyProducts }) => {
+const ProductHeader = ({setIsLoading, products, setProducts, copyProducts }) => {
   const [filter, setFilter] = useState(false);
   const [sort, setSort] = useState(false);
   const [activeMenProducts, setActiveMenProducts] = useState(menProfuctFilter);
@@ -107,7 +107,7 @@ const ProductHeader = ({ products, setProducts, copyProducts }) => {
       return (
         <div
           key={index}
-          className={`product-item font-mono flex items-center justify-between py-2 cursor-pointer px-2 rounded-md transition-colors duration-300 ${
+          className={`dark:bg-black product-item font-mono flex items-center justify-between py-2 cursor-pointer px-2 rounded-md transition-colors duration-300 ${
             isActive ? "bg-[#67eacb]" : "hover:bg-[#67eacb]"
           }`}
           onClick={() => handleActiveProductFilter(key)}
@@ -180,7 +180,7 @@ const ProductHeader = ({ products, setProducts, copyProducts }) => {
         )}
       </div>
       {/* Product search component reused at the bottom for mobile view. make sure to apply function call there as well for mobile view */}
-      <ProductsSearch products={products} originalProducts={copyProducts} className="hidden md:flex md:max-w-sm"/>
+      <ProductsSearch setIsLoading={setIsLoading} products={products} originalProducts={copyProducts} setProducts={setProducts} className="hidden md:flex md:max-w-sm"/>
       <div className="relative z-50">
         <div
           className="items-center gap-1 text-[#1F4A40] font-semibold flex cursor-pointer"
@@ -206,7 +206,13 @@ const ProductHeader = ({ products, setProducts, copyProducts }) => {
         )}
       </div>
       {/* Product serach component */}
-      <ProductsSearch products={products} originalProducts={copyProducts} className="md:hidden flex max-w-full"/>
+      <ProductsSearch
+        products={products}
+        originalProducts={copyProducts}
+        className="md:hidden flex max-w-full"
+        setProducts={setProducts}
+        setIsLoading={setIsLoading}
+      />
     </div>
   );
 };
