@@ -11,11 +11,11 @@ const SubscribeSection = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 w-full max-w-full">
           {/* Top Row Images */}
           <div className="col-span-1 w-full h-full md:h-96">
-            {/* <img
-              src="/home/footer/f1.svg"
+            <img
+              src="/home/footer/f3.jpeg"
               alt="Image 1"
               className="bloc w-full h-full object-center object-cover"
-            /> */}
+            /> 
             <div className="bloc w-full h-full object-center object-cover">
               <LazyLoadImage
                 src="/home/footer/f1.svg"
@@ -28,11 +28,11 @@ const SubscribeSection = () => {
             </div>
           </div>
           <div className="col-span-1 w-full h-full md:h-96">
-            {/* <img
-              src="/home/footer/f2.svg"
+            <img
+              src="/home/footer/f2.JPG"
               alt="Image 2"
               className="bloc w-full h-full object-cover object-center"
-            /> */}
+            /> 
 
             <div className="bloc w-full h-full object-center object-cover">
               <LazyLoadImage
@@ -46,17 +46,19 @@ const SubscribeSection = () => {
             </div>
           </div>
           <div className="hidden md:col-span-2 w-full h-96 md:block">
-            <div className="bloc w-full h-full object-cover object-center">
-              <VideoLazy src={topVideo} poster={topImage} />
-            </div>
+            <img
+              src="/home/footer/f1.jpeg"
+              alt="Image 2"
+              className="bloc w-full h-full object-cover object-center"
+            />
           </div>
           {/* Bottom Row Images */}
           <div className="col-span-1 w-full h-40 md:h-96">
-            {/* <img
-              src="/home/footer/f3.svg"
+            <img
+              src="/home/footer/f4.JPG"
               alt="Image 4"
               className="bloc w-full h-full object-cover object-center"
-            /> */}
+            /> 
 
             <div className="bloc w-full h-full object-center object-cover">
               <LazyLoadImage
@@ -105,8 +107,8 @@ const SubscribeSection = () => {
             </div>
           </div>
           <div className="col-span-1 w-full h-40 md:h-96">
-            {/* <img
-              src="/home/footer/f7.svg"
+            <img
+              src="/home/footer/f5.jpeg"
               alt="Image 7"
               className="bloc w-full h-full object-cover object-left"
             /> */}

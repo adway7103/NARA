@@ -48,7 +48,7 @@ const BehindTheScreen = () => {
 
             <div className="bloc absolute bottom-0 right-0 w-[150px] h-[300px] sm:w-[300px] sm:h-[400px] lg:w-[250px] lg:h-[450px] object-cover object-center">
               <LazyLoadImage
-                src={"/home/designs/d4.svg"}
+                src={"/home/designs/d2.CR2"}
                 width={"100%"}
                 height={"100%"}
                 // PlaceholderSrc={PlaceholderImage}
@@ -60,7 +60,7 @@ const BehindTheScreen = () => {
 
             <div className="bloc absolute top-0 right-0 w-[100px] sm:w-[200px] sm:h-[200px] lg:w-1/3 lg:h-1/3 object-fit">
               <LazyLoadImage
-                src={"/home/designs/d2.svg"}
+                src={"/home/designs/d4.jpg"}
                 width={"100%"}
                 height={"100%"}
                 // PlaceholderSrc={PlaceholderImage}
@@ -72,7 +72,7 @@ const BehindTheScreen = () => {
 
             <div className="bloc absolute bottom-0 left-0 w-[150px] h-[200px] sm:w-2/5 sm:h-[300px] lg:w-2/5 lg:h-[300px]">
               <LazyLoadImage
-                src="/home/designs/d3.svg"
+                src="/home/designs/d1.PNG"
                 width="100%"
                 height="100%"
                 className="w-full h-full object-cover object-center"
@@ -83,7 +83,7 @@ const BehindTheScreen = () => {
 
             <div className="bloc absolute bottom-0 right-0 w-2/5 h-[200px] mr-20 sm:mr-40 lg:mr-36 sm:w-2/5 sm:h-[300px] lg:w-[2/5] lg:h-[300px]">
               <LazyLoadImage
-               src="/home/designs/d1.svg"
+               src="/home/designs/d3.jpeg"
                 width="100%"
                 height="100%"
                 className="w-full h-full object-cover object-center"
