@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
-import LoginImage from "../../assets/LoginImage.png";
-import LoginMobile from "../../assets/loginMobile.png";
+import LoginImage from "../../assets/LoginImage.jpg";
+import LoginMobile from "../../assets/loginMobile.jpg";
 import logo from "../../assets/NaraLogo.png";
 import { MuiTelInput } from "mui-tel-input";
 import SignupApi from "../../apis/SignupApi";
