@@ -37,11 +37,13 @@ const BehindTheScreen = () => {
           <div className="relative grid grid-cols-2 gap-2 lg:col-span-2">
             <div className="relative col-span-2 row-span-2">
               <div className="bloc w-full md:w-full h-[400px] sm:h-[600px] sm:w-full lg:h-[650px] object-cover">
-                <VideoLazy
-                  src={"/home/designs/d5.mp4"}
-                  poster={"/home/designs/d5.png"}
-                  alt="Simple design video"
-                />
+                <LazyLoadImage
+                src={"/home/designs/d4.jpg"}
+                width={"100%"}
+                height={"100%"}
+                // PlaceholderSrc={PlaceholderImage}
+                alt="Image Alt"
+              />
               </div>
             </div>
             
@@ -59,13 +61,11 @@ const BehindTheScreen = () => {
            
 
             <div className="bloc absolute top-0 right-0 w-[100px] sm:w-[200px] sm:h-[200px] lg:w-1/3 lg:h-1/3 object-fit">
-              <LazyLoadImage
-                src={"/home/designs/d4.jpg"}
-                width={"100%"}
-                height={"100%"}
-                // PlaceholderSrc={PlaceholderImage}
-                alt="Image Alt"
-              />
+              <VideoLazy
+                  src={"/home/designs/d5.mp4"}
+                  poster={"/home/designs/d5.png"}
+                  alt="Simple design video"
+                />
             </div>
 
            
