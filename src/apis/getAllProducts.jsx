@@ -1,28 +1,29 @@
 import api from "../utils/interceptors"; 
 
 const GET_ALL_PRODUCTS_QUERY = `
-  {
-    products(first: 50) {
-      edges {
-        node {
-          id
-          title
-          priceRange {
-            minVariantPrice {
-              amount
+ {
+  products(first: 200) {
+    edges {
+      node {
+        id
+        title
+        variants(first: 1) {
+          nodes {
+            id
+            image {
+              src
             }
-          }
-          images(first: 1) {
-            edges {
-              node {
-                src
-              }
+            price {
+              amount
+              currencyCode
             }
           }
         }
       }
     }
   }
+}
+
 `;
 
 export const fetchProducts = async () => {

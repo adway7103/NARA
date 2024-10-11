@@ -196,3 +196,98 @@ export async function getProductVariantDetail(variantId) {
     throw error;
   }
 }
+
+
+export async function searchProductsAPI(searchTerm){
+  const query =`
+  {
+  search(query: "${searchTerm}", first: 100) {
+    edges {
+      node {
+        ... on Product {
+          id
+        title
+        variants(first: 1) {
+          nodes {
+            id
+            image {
+              src
+            }
+            price {
+              amount
+              currencyCode
+            }
+          }
+        }
+        }
+      }
+    }
+  }
+}
+`
+
+
+  try {
+    const response = await api.post('/', {
+      query
+    });
+
+    
+    const products = response.data.data.search.edges.map(edge => edge.node);
+    
+    console.log("logging from the search thingy: ", products);
+
+    return products;
+  } catch (error) {
+    console.error('Error searching products:', error);
+    throw error;
+  }
+
+};
+
+
+
+
+//here
+
+
+
+
+export const fetchFourProducts = async () => {
+  const GET_FOUR_PRODUCTS_QUERY = `
+ {
+  products(first: 4) {
+    edges {
+      node {
+        id
+        title
+        variants(first: 1) {
+          nodes {
+            id
+            image {
+              src
+            }
+            price {
+              amount
+              currencyCode
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+`;
+  try {
+
+    const response = await api.post('/', {
+      query: GET_FOUR_PRODUCTS_QUERY,
+    });
+    const products = response.data.data.products.edges.map(edge => edge.node);
+    return products;
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    throw error;
+  }
+};

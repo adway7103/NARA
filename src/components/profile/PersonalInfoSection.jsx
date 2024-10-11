@@ -53,11 +53,11 @@ export default function PersonalInfoSection() {
     return (
       <div className=" mx-auto">
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-12 xl:border-b-2 border-gray-300 my-4 pb-6 pt-2">
-          <PersonalInfoCard title="Your Name" value={fullName} type="name" />
-          <PersonalInfoCard title="Email Address" value={email} type="email" />
+          <PersonalInfoCard title="Your Name" value={fullName || "N/A"} type="name" />
+          <PersonalInfoCard title="Email Address" value={email || "N/A"} type="email" />
         </div>
         <div className="grid grid-cols-1 xl:grid-cols-2  gap-12 xl:border-b-2 border-gray-300 my-4 pb-6 pt-2">
-          <PersonalInfoCard title="Phone Number" value={phone} type="phone"/>
+          <PersonalInfoCard title="Phone Number" value={phone || "N/A"} type="phone"/>
           <PersonalInfoCard title="Password" value="********" type="password" />
         </div>
       </div>

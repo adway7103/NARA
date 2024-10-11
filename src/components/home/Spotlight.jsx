@@ -1,33 +1,37 @@
 import React from "react";
+import VideoLazy from "../loaders/VideoLazy";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Link } from "react-router-dom";
 const Spotlight = () => {
   const products = [
     {
-      imgSrc: "/home/spotlight/s1.svg",
-      description: "Raglan mili panelled dress",
-      price: "INR 4,500.50",
+      imgSrc: "https://cdn.shopify.com/s/files/1/0722/8951/7782/files/LaidbackLuxeCo-ordSet-1stpic-min.webp?v=1728406565",
+      description: "Laidback Luxe Co-ord Set",
+      price: "INR 2,499.00",
       label: "Best seller",
-      bought: "1250 people bought it",
+      link: "http://narawear.com/product/gid%3A%2F%2Fshopify%2FProduct%2F8756899709142?camefrompage=collection&title=Co-ord%20Sets&id=gid%3A%2F%2Fshopify%2FCollection%2F446032871638"
     },
     {
-      imgSrc: "/home/spotlight/s2.mp4",
-      description: "Raglan mili panelled dress",
-      price: "INR 4,500.50",
+      imgSrc: "https://cdn.shopify.com/s/files/1/0722/8951/7782/files/OutoftheOfficeCo-ordset-4thpic-min.webp?v=1728406394",
+      description: "The Out of the Office Co-ord set",
+      price: "INR 2400.00",
       label: "Best seller",
-      bought: "12.5k people bought it",
+      link: "http://narawear.com/product/gid%3A%2F%2Fshopify%2FProduct%2F8756898365654?camefrompage=collection&title=Co-ord%20Sets&id=gid%3A%2F%2Fshopify%2FCollection%2F446032871638"
+     
     },
     {
-      imgSrc: "/home/spotlight/s3.svg",
-      description: "Raglan mili panelled dress",
-      price: "INR 4,500.50",
-      label: "",
-      bought: "",
+      imgSrc: "https://cdn.shopify.com/s/files/1/0722/8951/7782/files/TheRedontheRunCo-ordset-1stpic-min.webp?v=1728406266",
+      description: "The Red on the Run Co-ord set",
+      price: "INR 2200.00",
+      label: "Best Seller",
+      link: "http://narawear.com/product/gid%3A%2F%2Fshopify%2FProduct%2F8756897644758?camefrompage=collection&title=Co-ord%20Sets&id=gid%3A%2F%2Fshopify%2FCollection%2F446032871638"
     },
     {
-      imgSrc: "/home/spotlight/s4.mp4",
-      description: "Raglan mili panelled dress",
-      price: "INR 4,500.50",
-      label: "",
-      bought: "",
+      imgSrc: "https://cdn.shopify.com/s/files/1/0722/8951/7782/files/TheJuneCo-ordset-1stpic-min.webp?v=1728406041",
+      description: "The June Co-ord set",
+      price: "INR 2300.00",
+      label: "Best Seller",
+      link: "http://narawear.com/product/gid%3A%2F%2Fshopify%2FProduct%2F8756895383766?camefrompage=collection&title=Co-ord%20Sets&id=gid%3A%2F%2Fshopify%2FCollection%2F446032871638"
     },
   ];
 
@@ -41,38 +45,51 @@ const Spotlight = () => {
           <p className="mt-2 text-[11px] lg:text-sm leading-8 font-mono tracking-widest sm:text-xl">
             Look what people loved the most this season
           </p>
+          <Link to={"/products"}>
           <button className="mt-3 bg-transparent hover:bg-gray-700 text-[#1F4A40] dark:!text-[#D8E3B1] font-semibold font-mono py-2 px-4 border border-[#B5B5B5]">
             View all
           </button>
+          </Link>
         </div>
         <div className="mt-6 md:mt-12 overflow-x-scroll testimonial-container">
           <div className="flex lg:grid lg:grid-cols-4 md:grid-cols-3 gap-3 md:gap-2 pl-4">
             {products.map((product, index) => (
+
               <div
-                key={index}
-                className="flex-shrink-0 w-[300px] sm:w-1/3 lg:w-full">
-                <div className="w-full md:w-full bg-gray-200  aspect-h-1 overflow-hidden relative h-3/4 ">
-                  {product.imgSrc.endsWith(".mp4") ? (
-                    <video
-                      src={product.imgSrc}
-                      alt={product.description}
-                      className="bloc w-full h-full object-center object-cover"
-                      autoPlay
-                      loop
-                      muted
-                    />
+              key={index}
+                className="flex-shrink-0 w-[300px] sm:w-1/3 lg:w-full"
+              >
+              <Link to={product.link} >
+                <div className="w-full md:w-full bg-gray-200 !max-h-3/4 min-h-96 aspect-h-1 overflow-hidden relative h-3/4 ">
+                  {product.imgSrc.endsWith(".webm") ? (
+                    <div className="bloc w-full h-full object-center object-cover">
+                      <VideoLazy
+                        src={product.imgSrc}
+                        alt={product.description}
+                      />
+                    </div>
                   ) : (
-                    <img
-                      src={product.imgSrc}
-                      alt={product.description}
-                      className="bloc w-full h-full object-center object-cover"
-                    />
+                    // <img
+                    //   src={product.imgSrc}
+                    //   alt={product.description}
+                    //   className="bloc w-full h-full object-center object-cover"
+                    // />
+                    <div className="bg-gray-100 bloc w-full h-full object-center object-cover" >
+                      <LazyLoadImage
+                        src={product.imgSrc}
+                        width={"100%"}
+                        height={"100%"}
+                        
+                        // PlaceholderSrc={PlaceholderImage}
+                        alt={product.description}
+                      />
+                    </div>
                   )}
-                  {product.bought && (
+                  {product.label && (
                     <div className="absolute bottom-0 left-0 w-full text-left bg-opacity-70 pb-3 sm:pl-2 pl-4 flex items-center">
-                      <span className="text-xs font-bold font-mono text-black  bg-white py-1 sm:px-1 px-2 sm:mr-1 mr-2">
+                      {/* <span className="text-xs font-bold font-mono text-black  bg-white py-1 sm:px-1 px-2 sm:mr-1 mr-2">
                         {product.bought}
-                      </span>
+                      </span> */}
                       <span className="text-xs font-bold font-mono text-black  bg-white py-1 sm:px-1 px-2">
                         {product.label}
                       </span>
@@ -87,7 +104,9 @@ const Spotlight = () => {
                     {product.price}
                   </p>
                 </div>
+                </Link>
               </div>
+              
             ))}
           </div>
         </div>

@@ -58,8 +58,8 @@ function SingleColorItem({ name, value, image, defaultColor, selectColor, enable
     <div
       className={`w-12 h-12 relative p-1 rounded-full  ${
         defaultColor === name
-          ? "border-3 border-indigo-500 shadow-lg " // Enhanced border and shadow for default color
-          : "" // Default styling for others
+          ? "border-3 border-indigo-500 shadow-lg " 
+          : "" 
       }`}
       style={{ backgroundColor: "white" }}
     >

@@ -11,9 +11,11 @@ import ColorSection from "../components/productsDetail/ColorSection";
 import { HiOutlineArrowRight } from "react-icons/hi";
 import { FaPlus } from "react-icons/fa6";
 import VariantsController from "../components/productsDetail/VariantsController";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import PageLoader from "../components/utils/PageLoader";
+import useQuery from "../hooks/useQuery";
+import RelatedProducts from "../components/productsDetail/RelatedProducts";
 
 export default function ProductsDetailPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,6 +29,8 @@ export default function ProductsDetailPage() {
   const [defaultSize, setDefaultSize] = useState(null);
   const [defaultColor, setDefaultColor] = useState(null);
   const [availableColors, setAvailableColors] = useState(null);
+  const query = useQuery();
+  const [cameFrom, setCameFrom] = useState({ page: "", link: "" });
 
   const [modelInfo, setModelInfo] = useState([]);
   const params = useParams();
@@ -101,45 +105,25 @@ export default function ProductsDetailPage() {
         container?.scrollTo({ top: offsetTop, behavior: "smooth" });
         setCurrentIndex(index);
       }
-    }, 300), // Throttling to every 300ms
+    }, 300),
     []
   );
 
-  // const scrollToImageBySrc = useCallback(
-  //   throttle((imageSrc) => {
-  //     // Find the index of the image element by its src
-  //     const imageElementIndex = imageRefs.current.findIndex(
-  //       (img) => img?.src === imageSrc
-  //     );
-
-  //     if (imageElementIndex !== -1) {
-  //       const imageElement = imageRefs.current[imageElementIndex];
-  //       if (imageElement) {
-  //         const container = imageRefs.current[0]?.parentElement;
-  //         const offsetTop = imageElement?.offsetTop - container?.offsetTop;
-  //         container?.scrollTo({ top: offsetTop, behavior: "smooth" });
-  //         setCurrentIndex(imageElementIndex);
-  //       }
-  //     } else {
-  //       console.warn(`Image with src ${imageSrc} not found.`);
-  //     }
-  //   }, 300), // Throttling to every 300ms
-  //   []
-  // );
-
   const scrollToImageBySrc = useCallback(
     throttle((imageSrc) => {
-      // Find the index of the div element by its image src
       const imageElementIndex = imageRefs.current.findIndex(
-        (div) => div?.querySelector('img')?.src === imageSrc // Use querySelector to find the img inside the div
+        (div) => div?.querySelector("img")?.src === imageSrc
       );
-  
+
       if (imageElementIndex !== -1) {
         const imageElement = imageRefs.current[imageElementIndex];
         if (imageElement) {
           const container = imageRefs.current[0]?.parentElement;
           // Calculate the offset relative to the container
-          const offsetTop = imageElement.getBoundingClientRect().top + container.scrollTop - container.getBoundingClientRect().top;
+          const offsetTop =
+            imageElement.getBoundingClientRect().top +
+            container.scrollTop -
+            container.getBoundingClientRect().top;
           container.scrollTo({ top: offsetTop, behavior: "smooth" });
           setCurrentIndex(imageElementIndex);
         }
@@ -149,51 +133,7 @@ export default function ProductsDetailPage() {
     }, 300), // Throttling to every 300ms
     []
   );
-  
-  // const scrollToImageBySrc = useCallback(
-  //   throttle((imageSrc) => {
-  //     // Find the index of the div element by its data attribute or some identifier
-  //     const imageElementIndex = imageRefs.current.findIndex(
-  //       (div) => div?.dataset?.src === imageSrc // assuming you're using a data attribute to identify the image
-  //     );
-  
-  //     if (imageElementIndex !== -1) {
-  //       const imageElement = imageRefs.current[imageElementIndex];
-  //       if (imageElement) {
-  //         const container = imageRefs.current[0]?.parentElement;
-  //         const offsetTop = imageElement.offsetTop - container.offsetTop;
-  //         container.scrollTo({ top: offsetTop, behavior: "smooth" });
-  //         setCurrentIndex(imageElementIndex);
-  //       }
-  //     } else {
-  //       console.warn(`Element with src ${imageSrc} not found.`);
-  //     }
-  //   }, 300), // Throttling to every 300ms
-  //   []
-  // );
-  
-  // const scrollToImageBySrc = useCallback(
-  //   throttle((imageSrc) => {
-  //     const imageElementIndex = imageRefs.current.findIndex(
-  //       (div) => div?.dataset?.src === imageSrc
-  //     );
-  
-  //     if (imageElementIndex !== -1) {
-  //       const imageElement = imageRefs.current[imageElementIndex];
-  //       if (imageElement) {
-  //         const container = imageRefs.current[0]?.parentElement;
-  //         // Calculate the offset relative to the container
-  //         const offsetTop = imageElement.getBoundingClientRect().top + container.scrollTop - container.getBoundingClientRect().top;
-  //         container.scrollTo({ top: offsetTop, behavior: "smooth" });
-  //         setCurrentIndex(imageElementIndex);
-  //       }
-  //     } else {
-  //       console.warn(`Element with src ${imageSrc} not found.`);
-  //     }
-  //   }, 300), // Throttling to every 300ms
-  //   []
-  // );
-  
+
   const handleUp = () => {
     if (currentIndex > 0) {
       scrollToImage(currentIndex - 1);
@@ -210,15 +150,42 @@ export default function ProductsDetailPage() {
     fetchProductInfo(params.id);
   }, [params.id]);
 
+  useEffect(() => {
+    const camefrompage = query.get("camefrompage");
+    if (camefrompage === "collection") {
+      const collectionId = query.get("id");
+      const title = query.get("title");
+      setCameFrom({ page: title, link: `/collection?id=${collectionId}` });
+    } else {
+      setCameFrom({ page: camefrompage, link: `/${camefrompage}` });
+    }
+  }, []);
+
   return (
     <>
       {isLoading ? (
         <PageLoader />
       ) : (
-        <div className=" flex flex-col bg-[#F7F7F7] dark:bg-black dark:text-[#ffff]  font-antikor max-h-screen lg:overflow-hidden">
+        <div className=" flex flex-col bg-[#F7F7F7] dark:bg-black dark:text-[#ffff]  font-antikor xl-h-screen xl:max-h-screen lg:overflow-hidden">
           <NavbarRelative />
 
-          <div className="mt-[74px]  flex flex-col gap-4 items-center justify-center xl:items-start xl:flex-row dark:bg-black xl:!p-2 p-2 ">
+          <div className="mt-[74px]  flex flex-col gap-4 items-center justify-center xl:items-start xl:justify-center xl:flex-row dark:bg-black xl:!p-2 p-2 ">
+            {/* breadcrumb  */}
+            <div className="md:w-3/4 flex xl:hidden text-sm gap-4 font-outfit w-full ">
+              <Link className="underline flex items-center gap-3" to="/">
+                Home <img src="/icons/leftTriangleIcon.svg" alt="" />
+              </Link>
+              <Link
+                to={cameFrom.link}
+                className="underline whitespace-nowrap flex items-center gap-3"
+              >
+                {cameFrom.page} <img src="/icons/leftTriangleIcon.svg" alt="" />
+              </Link>
+              <Link className="text-[#656565] whitespace-nowrap overflow-hidden text-ellipsis ">
+                {product.title}
+              </Link>
+            </div>
+
             <ImageGallery
               images={product?.images?.edges}
               currentIndex={currentIndex}
@@ -227,10 +194,11 @@ export default function ProductsDetailPage() {
               scrollToImage={scrollToImage}
               imageRefs={imageRefs}
             />
-            <div className="xl:w-2/5 md:w-3/4 flex flex-col gap-8 p-4 lg:h-screen  mb-12 !pb-12 !px-8 lg:overflow-scroll">
+            <div className="xl:w-2/5 md:w-3/4 flex flex-col gap-8 p-4    !pb-12 !px-8 xl:overflow-auto xl:h-screen xl:!pb-36 scrollbar-hide ">
               <DetailSection
                 title={product.title}
                 descriptionHtml={product.descriptionHtml}
+                cameFrom={cameFrom}
               />
 
               {/* Color Section */}
@@ -251,27 +219,29 @@ export default function ProductsDetailPage() {
 
               <img src="/dividers/star_divider.svg" alt="" />
               {/* Fabric Name Section */}
-              <div className="bg-[#D8E3B11C] border-2 border-[#D8E3B1] p-4 flex flex-col gap-4">
-                <div className="flex gap-4">
-                  <img src="/test/star.svg" alt="" />
-                  <h2 className="font-bold text-2xl">Fabric Name</h2>
-                  <img src="/test/star.svg" alt="" />
-                </div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Incidunt doloribus eaque dicta sit architecto cum hic eum
-                  dolore
-                  <br />
-                  explicabo possimus, enim quae nobis nemo soluta qui officia
-                  aliquam alias! Quam!
-                </p>
-              </div>
+                      {/* <div className="bg-[#D8E3B11C] border-2 border-[#D8E3B1] p-4 flex flex-col gap-4">
+                        <div className="flex gap-4">
+                          <img src="/test/star.svg" alt="" />
+                          <h2 className="font-bold text-2xl">Fabric Name</h2>
+                          <img src="/test/star.svg" alt="" />
+                        </div>
+                        <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                          Incidunt doloribus eaque dicta sit architecto cum hic eum
+                          dolore
+                          <br />
+                          explicabo possimus, enim quae nobis nemo soluta qui officia
+                          aliquam alias! Quam!
+                        </p>
+                      </div> */}
               {/* Fabric Name section ends here */}
             </div>
           </div>
         </div>
       )}
+
+      {/* Related Products */}
+      <RelatedProducts />
     </>
   );
 }
-

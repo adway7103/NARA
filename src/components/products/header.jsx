@@ -138,6 +138,7 @@ const ProductHeader = ({setIsLoading, products, setProducts, copyProducts }) => 
 
   return (
     <div className="flex items-center justify-between flex-wrap md:flex-nowrap py-3 px-4 lg:px-12">
+<<<<<<< HEAD
       <div className="relative ">
         {/* <div
           className="items-center gap-1 text-[#1F4A40] font-semibold flex cursor-pointer"
@@ -208,6 +209,8 @@ const ProductHeader = ({setIsLoading, products, setProducts, copyProducts }) => 
           </div>
         )}
       </div>
+=======
+>>>>>>> 155330761e110e3042aa58bb339a73531201a921
       {/* Product serach component */}
       <ProductsSearch
         products={products}

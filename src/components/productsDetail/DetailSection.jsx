@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { Skeleton } from "@mui/material";
 import classes from "./DetailSection.module.css"
 import { useEffect, useState } from "react";
-export default function DetailSection({ title, descriptionHtml }) {
- 
+import useQuery from "../../hooks/useQuery";
+export default function DetailSection({ title, descriptionHtml, cameFrom }) {
+
   const theme = useSelector(state=>state.app.theme);
   const currentVariant = useSelector(
     (state) => state.activeProduct.currentVariant
@@ -14,18 +15,22 @@ export default function DetailSection({ title, descriptionHtml }) {
   );
 
 
+
   return (
     <>
       <div className="flex flex-col xl:!gap-3 gap-1 ">
+
+      {/* Breadcrumb */}
         <div className="hidden xl:flex gap-4 font-outfit">
-          <Link className="underline flex items-center gap-3 ">
+          <Link className="underline flex items-center gap-3 " to="/">
             Home <img src="/icons/leftTriangleIcon.svg" alt="" />
           </Link>
-          <Link className="underline flex items-center gap-3 ">
-            Circa2950 <img src="/icons/leftTriangleIcon.svg" alt="" />
+          <Link to={cameFrom.link} className="underline flex items-center gap-3 ">
+            {cameFrom.page} <img src="/icons/leftTriangleIcon.svg" alt="" />
           </Link>
           <Link className="text-[#656565]">{title?.slice(0, 20)}...</Link>
         </div>
+
         <h2 className="font-black xl:text-2xl text-xl"> {title}</h2>{" "}
         {/*{product?.title}*/}
         <h3 className="tracking-tight font-semibold text-xl">
@@ -47,9 +52,9 @@ export default function DetailSection({ title, descriptionHtml }) {
       {/* Description HTML section */}
 
       <div className="flex flex-col gap-2">
-        <h2 className="font-bold">Description {theme}</h2>
+        <h2 className="font-bold">Description </h2>
         <div
-          className={`prose ${theme==="dark"  && classes["text-white-recursive"]}  text-sm`}
+          className={`prose dark:text-white text-sm`}
           dangerouslySetInnerHTML={{
             __html: descriptionHtml
           }}></div>
