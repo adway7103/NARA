@@ -1,20 +1,26 @@
 import React, { useState } from "react";
 import Navbar from "../Navbar/Navbar";
-import LoginImage from "../../assets/LoginImage.png";
-import LoginMobile from "../../assets/loginMobile.png";
+import LoginImage from "../../assets/LoginImage.jpg";
+import LoginMobile from "../../assets/loginMobile.jpg";
 import logo from "../../assets/NaraLogo.png";
 import LoginApi from "../../apis/LoginApi";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setActiveCartId, setAuthStatus, setCheckoutUrl, setProductsinCart, setTotalQuantityInCart } from "../../store";
+import {
+  setActiveCartId,
+  setAuthStatus,
+  setCheckoutUrl,
+  setProductsinCart,
+  setTotalQuantityInCart,
+} from "../../store";
 function LoginSection() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -22,7 +28,7 @@ function LoginSection() {
     try {
       const accessToken = await LoginApi(userData);
       toast.success("Login successful!");
-      dispatch(setAuthStatus({accessToken, isAuthenticated: true}));
+      dispatch(setAuthStatus({ accessToken, isAuthenticated: true }));
       // After login we are deleting any existing cart for now:
       dispatch(setActiveCartId(null));
       dispatch(setProductsinCart(null));
@@ -31,14 +37,13 @@ function LoginSection() {
       localStorage.removeItem("cartId");
       localStorage.removeItem("checkoutUrl");
       navigate("/");
-     
     } catch (error) {
       toast.error("Login failed: " + error.message);
     } finally {
       setIsLoading(false);
     }
   };
-  
+
   return (
     <div className="w-[100%] h-screen flex lg:flex-row flex-col">
       <div className="lg:w-[50%] h-full object-cover">
@@ -89,8 +94,7 @@ function LoginSection() {
             </p>
             <button
               onClick={handleLogin}
-              className="bg-[#1F4A40] text-white font-semibold px-2 py-2"
-            >
+              className="bg-[#1F4A40] text-white font-semibold px-2 py-2">
               {isLoading ? "Logging In..." : "Log In"}
             </button>
           </div>
