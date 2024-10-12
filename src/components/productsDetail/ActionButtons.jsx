@@ -164,7 +164,7 @@ export default function ActionButtons() {
   };
 
   return (
-    <div className="md:static fixed z-[10000] bottom-0 right-0 left-0 bg-[#ffff] md:bg-transparent flex sm:flex-row  justify-center md:justify-start border-2 md:border-none shadow-lg md:!shadow-none dark:bg-black !font-outfit text-sm md:text-base p-2 md:!p-0 ">
+    <div className="md:static fixed z-[2] bottom-0 right-0 left-0 bg-[#ffff] md:bg-transparent flex sm:flex-row  justify-center md:justify-start border-2 md:border-none shadow-lg md:!shadow-none dark:bg-black !font-outfit text-sm md:text-base p-2 md:!p-0 ">
 
       <ToastContainer
         hideProgressBar={true}

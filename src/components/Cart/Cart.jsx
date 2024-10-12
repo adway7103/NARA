@@ -99,7 +99,7 @@ export default function Cart({ toggleCartOpen, cartOpen }) {
             }}
             onClick={(e) => e.stopPropagation()}
             ref={cartRef}
-            className={`border-2 absolute z-[100] top-0 bottom-0 right-0 transition-transform duration-300 ease-in-out bg-[#ffff] w-[100vw] sm:w-[500px] dark:!bg-black dark:!text-white`}
+            className={`border-2 absolute z-[100]  top-0 bottom-0 right-0 transition-transform duration-300 ease-in-out bg-[#ffff] w-[100vw] sm:w-[500px] dark:!bg-black dark:!text-white`}
           >
             <div className="flex items-center justify-between border-b-2 p-4">
               <h1 className="text-2xl font-black">MY CART</h1>

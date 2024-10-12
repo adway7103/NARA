@@ -39,14 +39,16 @@ export default function DetailSection({ title, descriptionHtml, cameFrom }) {
           ) : currentVariant ? (
             currentVariant?.node.price.currencyCode +
             " " +
-            parseFloat(currentVariant?.node.price.amount).toFixed(2)
+            parseFloat(currentVariant?.node.price.amount).toFixed(2) 
           ) : (
             <Skeleton
               variant="rectangular"
               className="w-full h-auto p-2 dark:bg-white"
             />
           )}
+          
         </h3>
+        <span className="text-xs tracking-tighter capitalize">(Incl. of all taxes)</span>
       </div>
 
       {/* Description HTML section */}
