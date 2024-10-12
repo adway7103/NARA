@@ -18,7 +18,7 @@ const SubscribeSection = () => {
             /> */}
             <div className="bloc w-full h-full object-center object-cover">
               <LazyLoadImage
-                src="/home/footer/f1.svg"
+                src="/home/footer/1.webp"
                 width={"100%"}
                 height={"100%"}
                 className="w-full h-full object-cover"
@@ -36,7 +36,7 @@ const SubscribeSection = () => {
 
             <div className="bloc w-full h-full object-center object-cover">
               <LazyLoadImage
-                src="/home/footer/f2.svg"
+                src="/home/footer/2.webp"
                 width={"100%"}
                 height={"100%"}
                 className="w-full h-full object-cover"
@@ -46,9 +46,17 @@ const SubscribeSection = () => {
             </div>
           </div>
           <div className="hidden md:col-span-2 w-full h-96 md:block">
-            <div className="bloc w-full h-full object-cover object-center">
+            {/* <div className="bloc w-full h-full object-cover object-center">
               <VideoLazy src={topVideo} poster={topImage} />
-            </div>
+            </div> */}
+            <LazyLoadImage
+                src="/home/footer/3.webp"
+                width={"100%"}
+                height={"100%"}
+                className="w-full h-full object-cover"
+                // PlaceholderSrc={PlaceholderImage}
+                alt="Image 2"
+              />
           </div>
           {/* Bottom Row Images */}
           <div className="col-span-1 w-full h-40 md:h-96">
@@ -60,7 +68,7 @@ const SubscribeSection = () => {
 
             <div className="bloc w-full h-full object-center object-cover">
               <LazyLoadImage
-                src="/home/footer/f3.svg"
+                src="/home/footer/4.webp"
                 width={"100%"}
                 height={"100%"}
                 className="w-full h-full object-cover"
@@ -78,7 +86,7 @@ const SubscribeSection = () => {
 
             <div className="bloc w-full h-full object-center object-cover">
               <LazyLoadImage
-                 src="/home/footer/f5.svg"
+                 src="/home/footer/5.webp"
                 width={"100%"}
                 height={"100%"}
                 className="w-full h-full object-cover"
@@ -95,7 +103,7 @@ const SubscribeSection = () => {
             /> */}
             <div className="bloc w-full h-full object-center object-cover">
               <LazyLoadImage
-                src="/home/footer/f4.png"
+                src="/home/footer/5.webp"
                 width={"100%"}
                 height={"100%"}
                 className="w-full h-full object-cover"
@@ -112,7 +120,7 @@ const SubscribeSection = () => {
             /> */}
             <div className="bloc w-full h-full object-center object-cover">
               <LazyLoadImage
-                 src="/home/footer/f7.svg"
+                 src="/home/footer/5.webp"
                 width={"100%"}
                 height={"100%"}
                 className="w-full h-full object-cover"

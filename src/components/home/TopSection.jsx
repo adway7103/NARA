@@ -50,11 +50,24 @@ const TopSection = () => {
     fetchCollections();
   }, []);
 
+  useEffect(() => {
+    const carouselElement = carouselRef.current;
+  
+    if (carouselElement) {
+      const bsCarousel = new window.bootstrap.Carousel(carouselElement, {
+        interval: 5000, // Slide every 3 seconds
+        ride: "carousel"
+      });
+    }
+  }, []);
+  
+
   return (
     <div
       id="carouselExampleSlidesOnly"
       className="carousel slide relative"
       data-bs-ride="carousel"
+      data-bs-interval="5000"
       ref={carouselRef}
     >
       <div className="carousel-inner h-screen bg-black">
