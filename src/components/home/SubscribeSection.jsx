@@ -57,13 +57,7 @@ const SubscribeSection = () => {
                 // PlaceholderSrc={PlaceholderImage}
                 alt="Image 2"
               />
-// =======
-//             <img
-//               src="/home/footer/f1.jpeg"
-//               alt="Image 2"
-//               className="bloc w-full h-full object-cover object-center"
-//             />
-// >>>>>>> main
+
           </div>
           {/* Bottom Row Images */}
           <div className="col-span-1 w-full h-40 md:h-96">
