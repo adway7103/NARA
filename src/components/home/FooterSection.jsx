@@ -52,7 +52,7 @@ const FooterSection = () => {
           </div>
         </div>
 
-        {/* Footer Links */}
+        {/* Footer Links 
         <div className="text-[#1F4A40] dark:!text-[#D8E3B1] text-[8px] sm:text-[12px] lg:text-[14px] font-bold my-4 md:mb-4 px-10 sm:px-16">
           <div className="grid grid-cols-3 lg:flex lg:flex-row justify-center gap-y-2 lg:space-x-8 xl:space-x-20">
             <a href="#" className="underline">

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../Navbar/Navbar";
-import LoginImage from "../../assets/LoginImage.png";
-import LoginMobile from "../../assets/loginMobile.png";
+import LoginImage from "../../assets/LoginImage.jpg";
+import LoginMobile from "../../assets/loginMobile.jpg";
 import logo from "../../assets/NaraLogo.png";
 import LoginApi from "../../apis/LoginApi";
 import { toast } from "sonner";
@@ -39,7 +39,7 @@ function LoginSection() {
       dispatch(setAuthStatus({ accessToken, isAuthenticated: true }));
       dispatch(deleteCart());
       localStorage.removeItem("cartId");
-      
+
       navigate("/");
     } catch (error) {
       if (error.message.includes("Unidentified customer")) {
@@ -150,33 +150,38 @@ function LoginSection() {
                 <button
                   type="button"
                   className="text-black absolute right-3 top-2 text-sm"
-                  onClick={() => setShowPassword((prev) => !prev)}
-                >
-                  {showPassword ? <FaRegEyeSlash size={24} /> : <FaRegEye size={24} />}
+                  onClick={() => setShowPassword((prev) => !prev)}>
+                  {showPassword ? (
+                    <FaRegEyeSlash size={24} />
+                  ) : (
+                    <FaRegEye size={24} />
+                  )}
                 </button>
               </div>
             </div>
             <p
               onClick={handleForgotPassword}
-              className="dark:text-pink-500 hover:underline cursor-pointer inline  w-fit ml-auto text-[#1F4A40] "
-            >
+              className="dark:text-pink-500 hover:underline cursor-pointer inline  w-fit ml-auto text-[#1F4A40] ">
               Forgot Password?
             </p>
             {/* Privary Policy and terms and conditions clause */}
             <p className="text-xs tracking-tight text-center">
               By Signing in , I agree to{" "}
-              <Link className="text-indigo-500 underline" to="https://docs.google.com/document/d/1D4n_mgSz9K1yVEFgDhKrTQdfdb3zUPlkpQNf8AxjBUI/edit?usp=sharing">
+              <Link
+                className="text-indigo-500 underline"
+                to="https://docs.google.com/document/d/1D4n_mgSz9K1yVEFgDhKrTQdfdb3zUPlkpQNf8AxjBUI/edit?usp=sharing">
                 Terms and Conditions
               </Link>{" "}
               and{" "}
-              <Link className="text-indigo-500 underline" to="https://docs.google.com/document/d/1D4n_mgSz9K1yVEFgDhKrTQdfdb3zUPlkpQNf8AxjBUI/edit?usp=sharing">
+              <Link
+                className="text-indigo-500 underline"
+                to="https://docs.google.com/document/d/1D4n_mgSz9K1yVEFgDhKrTQdfdb3zUPlkpQNf8AxjBUI/edit?usp=sharing">
                 Privacy Policy{" "}
               </Link>
             </p>
             <button
               onClick={handleLogin}
-              className="bg-[#1F4A40] text-white font-semibold px-2 py-2"
-            >
+              className="bg-[#1F4A40] text-white font-semibold px-2 py-2">
               {isLoading ? "Logging In..." : "Log In"}
             </button>
           </div>
@@ -195,8 +200,7 @@ function LoginSection() {
             Dont have an account?
             <Link
               className="text-[#1F4A40] dark:text-green-500 font-semibold underline"
-              to="/signup"
-            >
+              to="/signup">
               Sign Up
             </Link>
             .

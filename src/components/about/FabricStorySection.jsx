@@ -26,14 +26,14 @@ const FabricStorySection = () => {
             </p>
             <div className="lg:relative lg:mt-10">
               <video
-                src="/home/designs/d5.mp4"
+                src="/about/fabric/a4.mp4"
                 autoPlay
                 loop
                 muted
                 className="bloc col-span-4 lg:h-[400px] xl:h-[440px] lg:w-3/4 lg:left-[180px] xl:left-[300px] object-cover lg:absolute "
               />
               <img
-                src="/home/spotlight/s1.svg"
+                src="/about/fabric/a5.JPG"
                 alt="Fabric story 3"
                 className="hidden col-span-1 lg:block left-0 h-[320px] lg:pl-10 xl:pl-32 lg:h-[300px] lg:top-[450px] object-center object-cover"
               />
@@ -41,16 +41,16 @@ const FabricStorySection = () => {
           </div>
           <div className="col-span-3">
             <video
-              src="/home/spotlight/s4.webm"
+              src="/about/fabric/a3.mp4"
               autoPlay
               loop
               muted
               className="bloc lg:col-span-2 lg:row-span-7 lg:w-[400px] lg:h-[500px] h-1/2 object-cover p-4 lg:mb-10 xl:ml-14"
             />
             <img
-              src="/about/fabric/a1.png"
+              src="/about/fabric/a6.jpeg"
               alt="Fabric story 4"
-              className="bloc lg:col-span-2 row-span-2 sm:h-[400px] lg:h-[260px] lg:w-[400px] lg:py-8 lg:px-10 xl:pl-40 sm:pl-40 pl-20 lg:object-top object-cover"
+              className="bloc lg:col-span-2 row-span-2 sm:h-[400px] lg:h-[260px] lg:w-[400px] lg:py-7 lg:px-10 xl:pl-40 sm:pl-40 pl-20 lg:object-bottom object-cover"
             />
           </div>
           <div className="lg:col-span-9 lg:grid lg:grid-cols-9 lg:mt-20 lg:pl-7 xl:pl-20 ">
@@ -72,12 +72,12 @@ const FabricStorySection = () => {
           </div>
           <div className="lg:col-span-9 lg:grid lg:grid-cols-9 mt-2 lg:mt-0 gap-10 px-10 lg:px-10">
             <img
-              src="/about/fabric/a5.webp"
+              src="/about/fabric/a7.jpg"
               alt="Fabric story 8"
               className="bloc lg:col-span-6 row-span-5 w-full h-full object-cover"
             />
             <img
-              src="/about/fabric/a6.webp"
+              src="/about/fabric/a8.jpg"
               alt="Fabric story 9"
               className="bloc lg:col-span-3 w-full h-full object-cover mt-10 lg:mt-20 "
             />

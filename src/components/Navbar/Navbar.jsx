@@ -68,7 +68,7 @@ const Navbar = () => {
           <Link to="/">
             <img
               src={isScrolled ? "about/logo.svg" : "/home/navbar/logo.svg"}
-              className={`${isScrolled? "h-[40px] -mt-4" : " xl:h-[250px]  lg:h-[150px] md:h-[100px] sm:h-[60px] sm:absolute  top-2 h-[2px]"} md:ml-10 ml-4`}
+              className={`${isScrolled? "h-[40px] -mt-4" : " xl:h-[200px]  lg:h-[150px] md:h-[100px] h-[60px] sm:absolute  top-2"} md:ml-10 ml-4`}
               alt="logo"
             />
           </Link>

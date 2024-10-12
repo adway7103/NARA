@@ -10,6 +10,7 @@ const Spotlight = () => {
       price: "INR 2,499.00",
       label: "Best seller",
       link: "/product/gid%3A%2F%2Fshopify%2FProduct%2F8756899709142?camefrompage=collection&title=Co-ord%20Sets&id=gid%3A%2F%2Fshopify%2FCollection%2F446032871638"
+
     },
     {
       imgSrc: "https://cdn.shopify.com/s/files/1/0722/8951/7782/files/OutoftheOfficeCo-ordset-4thpic-min.webp?v=1728406394",
@@ -17,6 +18,7 @@ const Spotlight = () => {
       price: "INR 2400.00",
       label: "Best seller",
       link: "/product/gid%3A%2F%2Fshopify%2FProduct%2F8756898365654?camefrompage=collection&title=Co-ord%20Sets&id=gid%3A%2F%2Fshopify%2FCollection%2F446032871638"
+
      
     },
     {
@@ -25,6 +27,7 @@ const Spotlight = () => {
       price: "INR 2200.00",
       label: "Best Seller",
       link: "/product/gid%3A%2F%2Fshopify%2FProduct%2F8756897644758?camefrompage=collection&title=Co-ord%20Sets&id=gid%3A%2F%2Fshopify%2FCollection%2F446032871638"
+
     },
     {
       imgSrc: "https://cdn.shopify.com/s/files/1/0722/8951/7782/files/TheJuneCo-ordset-1stpic-min.webp?v=1728406041",
@@ -32,6 +35,7 @@ const Spotlight = () => {
       price: "INR 2300.00",
       label: "Best Seller",
       link: "/product/gid%3A%2F%2Fshopify%2FProduct%2F8756895383766?camefrompage=collection&title=Co-ord%20Sets&id=gid%3A%2F%2Fshopify%2FCollection%2F446032871638"
+
     },
   ];
 
