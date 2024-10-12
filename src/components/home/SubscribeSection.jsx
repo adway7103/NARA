@@ -89,8 +89,8 @@ const SubscribeSection = () => {
               />
             </div>
           </div>
-          {/*  <div className="col-span-1 w-full h-40 md:h-96">
-            {/* <img
+          <div className="col-span-1 w-full h-40 md:h-96">
+            <img
               src="/home/footer/f4.png"
               alt="Image 6"
               className="bloc w-full h-full object-cover object-right-bottom"
