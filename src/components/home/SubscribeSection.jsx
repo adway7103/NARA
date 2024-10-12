@@ -89,12 +89,12 @@ const SubscribeSection = () => {
               />
             </div>
           </div>
-          <div className="col-span-1 w-full h-40 md:h-96">
+          {/*  <div className="col-span-1 w-full h-40 md:h-96">
             {/* <img
               src="/home/footer/f4.png"
               alt="Image 6"
               className="bloc w-full h-full object-cover object-right-bottom"
-            /> */}
+            /> 
             <div className="bloc w-full h-full object-center object-cover">
               <LazyLoadImage
                 src="/home/footer/f4.png"
@@ -111,7 +111,7 @@ const SubscribeSection = () => {
               src="/home/footer/f5.jpeg"
               alt="Image 7"
               className="bloc w-full h-full object-cover object-left"
-            /> */}
+            /> 
             <div className="bloc w-full h-full object-center object-cover">
               <LazyLoadImage
                  src="/home/footer/f7.svg"
