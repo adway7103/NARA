@@ -128,11 +128,11 @@ const SliderNavbar = ({ isOpen, toggleMenu }) => {
                 style={{ lineHeight: "1.2" }}>
                 NEW AGE
               </h1>
-              <div className="mt-2 relative">
+              <div className="mt-2 relative object-cover">
                 <img
-                  src="/home/slider.png"
+                  src="/home/navbar/slideimg.jpg"
                   alt="Product"
-                  className="w-full max-h-[450px]"
+                  className="w-full max-h-[450px] object-cover"
                 />
                 <h2
                   className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-5xl md:text-7xl font-semibold text-white bg-opacity-50 px-4 py-2"

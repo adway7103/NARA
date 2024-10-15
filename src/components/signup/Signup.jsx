@@ -7,8 +7,7 @@ import { MuiTelInput } from "mui-tel-input";
 import SignupApi from "../../apis/SignupApi";
 import { toast } from "sonner";
 import { Link, useNavigate } from "react-router-dom";
-import { FaRegEye,  FaRegEyeSlash } from "react-icons/fa6";
-
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 
 function SignupSection() {
   const navigate = useNavigate();
@@ -90,12 +89,32 @@ function SignupSection() {
   };
 
   return (
-    <div className="w-[100%] dark:text-[#ffff] flex lg:flex-row flex-col font-antikor">
+    <div className="w-[100%] xl:h-screen dark:text-[#ffff] flex lg:flex-row flex-col font-antikor">
       <div className="lg:w-[50%] h-full object-cover lg:fixed">
-        <img
-          src={LoginImage}
-          className="h-full w-full object-cover lg:flex hidden"
-        />
+        <div className="hidden w-full h-full p-10 md:p-8 md:flex justify-center items-center bg-white dark:!bg-black relative">
+          <div className="text-center ">
+            <h1
+              className="text-4xl md:text-6xl font-extrabold text-[#1F4A403B] dark:!text-[#D8E3B1] tracking-[0.60em] md:tracking-[0.40em]"
+              style={{ lineHeight: "1.2" }}>
+              NEW AGE
+            </h1>
+            <div className="mt-2 relative object-cover">
+              <img
+                src={LoginImage}
+                alt="Product"
+                className="w-full max-h-[450px] object-cover"
+              />
+              <h2
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-5xl md:text-7xl font-semibold text-white bg-opacity-50 px-4 py-2"
+                style={{ letterSpacing: "20px" }}>
+                REAL
+              </h2>
+            </div>
+            <h1 className="text-4xl md:text-6xl pl-4 md:pl-6 font-extrabold text-[#1F4A403B] dark:!text-[#D8E3B1] mt-2 tracking-[0.74em] md:tracking-[0.60em]">
+              ATTIRE
+            </h1>
+          </div>
+        </div>
         <img
           src={LoginMobile}
           className="h-full w-full object-cover lg:hidden"
@@ -104,14 +123,20 @@ function SignupSection() {
       <div className="lg:w-[50%] lg:ml-[50%] min-h-full px-8 py-16 flex justify-center items-center ">
         <div className="max-w-[480px] flex-col flex gap-[30px]">
           <div className="w-full h-full flex flex-col gap-[10px]">
-              {/* Breadcrumb */}
-              <div className="flex gap-2 ">
-            <Link className="underline" to={"/"}> Home</Link> <img src="/icons/leftTriangleIcon.svg" alt="" />
-            <span>Signup</span>
+            {/* Breadcrumb */}
+            <div className="flex gap-2 ">
+              <Link className="underline" to={"/"}>
+                {" "}
+                Home
+              </Link>{" "}
+              <img src="/icons/leftTriangleIcon.svg" alt="" />
+              <span>Signup</span>
             </div>
             <p className="font-extrabold text-2xl">Welcome to</p>
             <div>
-              <Link className="cursor-pointer" to="/"><img src={logo} alt="logo" className="w-[200px] lg:w-[300px]" /></Link>
+              <Link className="cursor-pointer" to="/">
+                <img src={logo} alt="logo" className="w-[200px] lg:w-[300px]" />
+              </Link>
             </div>
             <p className="font-light lg:text-xl text-md mt-2">
               Today is a new day. It's your day. You shape it. You style it. Be
@@ -120,7 +145,9 @@ function SignupSection() {
           </div>
           <div className="w-full h-full flex flex-col gap-[10px]">
             <div className="w-full">
-              <p className="text-[#626262] text-sm dark:text-[#ffff]">Your Name*</p>
+              <p className="text-[#626262] text-sm dark:text-[#ffff]">
+                Your Name*
+              </p>
               <input
                 onChange={(e) => setName(e.target.value)}
                 className="px-4 py-2 border-1 border-[#A7A7A766] bg-[#F7F7F7] text-black w-full"
@@ -134,7 +161,9 @@ function SignupSection() {
               )}
             </div>
             <div className="">
-              <p className="text-[#626262] text-sm dark:text-[#ffff]">Phone Number*</p>
+              <p className="text-[#626262] text-sm dark:text-[#ffff]">
+                Phone Number*
+              </p>
               <MuiTelInput
                 value={phone}
                 required={true}
@@ -158,7 +187,9 @@ function SignupSection() {
               )}
             </div>
             <div className="w-full">
-              <p className="text-[#626262] dark:text-[#ffff] text-sm">Email Id*</p>
+              <p className="text-[#626262] dark:text-[#ffff] text-sm">
+                Email Id*
+              </p>
               <input
                 onChange={(e) => setEmail(e.target.value)}
                 className="px-4 py-2 border-1 border-[#A7A7A766] text-black bg-[#F7F7F7] w-full"
@@ -170,7 +201,9 @@ function SignupSection() {
               )}
             </div>
             <div>
-              <p className="text-[#626262] text-sm dark:text-[#ffff]">Password*</p>
+              <p className="text-[#626262] text-sm dark:text-[#ffff]">
+                Password*
+              </p>
               <div className="relative w-full">
                 <input
                   onChange={(e) => {
@@ -183,9 +216,12 @@ function SignupSection() {
                 <button
                   type="button"
                   className="text-black absolute right-3 top-2 text-sm"
-                  onClick={() => setShowPassword((prev) => !prev)}
-                >
-                  {showPassword ? <FaRegEyeSlash size={24} /> : <FaRegEye size={24} />}
+                  onClick={() => setShowPassword((prev) => !prev)}>
+                  {showPassword ? (
+                    <FaRegEyeSlash size={24} />
+                  ) : (
+                    <FaRegEye size={24} />
+                  )}
                 </button>
               </div>
               {password && !validatePassword(password) && (
@@ -198,21 +234,23 @@ function SignupSection() {
             {/* Privary Policy and terms and conditions clause */}
             <p className="text-xs text-center tracking-tighter">
               By Signing up , I agree to{" "}
-              <Link className="text-indigo-500 underline" to="https://docs.google.com/document/d/1D4n_mgSz9K1yVEFgDhKrTQdfdb3zUPlkpQNf8AxjBUI/edit?usp=sharing">
+              <Link
+                className="text-indigo-500 underline"
+                to="https://docs.google.com/document/d/1D4n_mgSz9K1yVEFgDhKrTQdfdb3zUPlkpQNf8AxjBUI/edit?usp=sharing">
                 Terms and Conditions
               </Link>{" "}
               and{" "}
-              <Link className="text-indigo-500 underline" to="https://docs.google.com/document/d/1D4n_mgSz9K1yVEFgDhKrTQdfdb3zUPlkpQNf8AxjBUI/edit?usp=sharing">
+              <Link
+                className="text-indigo-500 underline"
+                to="https://docs.google.com/document/d/1D4n_mgSz9K1yVEFgDhKrTQdfdb3zUPlkpQNf8AxjBUI/edit?usp=sharing">
                 Privacy Policy{" "}
               </Link>
             </p>
 
-
             <button
               onClick={handleSubmit}
               className="disabled:bg-gray-500 bg-[#1F4A40] text-white font-semibold px-2 py-2 mt-2"
-              disabled={!isFormValidated}
-            >
+              disabled={!isFormValidated}>
               {isLoading ? "Signing Up..." : "Sign Up"}
             </button>
           </div>
@@ -228,9 +266,12 @@ function SignupSection() {
           </div> */}
           <div className="flex gap-1 justify-center">
             Already have an account?
-            <Link className="underline text-[#1F4A40] dark:text-green-500 font-semibold" to="/login">
+            <Link
+              className="underline text-[#1F4A40] dark:text-green-500 font-semibold"
+              to="/login">
               Login
-            </Link>.
+            </Link>
+            .
           </div>
         </div>
       </div>

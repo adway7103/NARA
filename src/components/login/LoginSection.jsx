@@ -89,10 +89,30 @@ function LoginSection() {
       {/* Same as */}
 
       <div className="lg:w-[50%] h-full object-cover">
-        <img
-          src={LoginImage}
-          className="h-full w-full object-cover lg:flex hidden"
-        />
+        <div className="hidden w-full h-full p-10 md:p-8 md:flex justify-center items-center bg-white dark:!bg-black relative">
+          <div className="text-center ">
+            <h1
+              className="text-4xl md:text-6xl font-extrabold text-[#1F4A403B] dark:!text-[#D8E3B1] tracking-[0.60em] md:tracking-[0.40em]"
+              style={{ lineHeight: "1.2" }}>
+              NEW AGE
+            </h1>
+            <div className="mt-2 relative object-cover">
+              <img
+                src={LoginImage}
+                alt="Product"
+                className="w-full max-h-[450px] object-cover"
+              />
+              <h2
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-5xl md:text-7xl font-semibold text-white bg-opacity-50 px-4 py-2"
+                style={{ letterSpacing: "20px" }}>
+                REAL
+              </h2>
+            </div>
+            <h1 className="text-4xl md:text-6xl pl-4 md:pl-6 font-extrabold text-[#1F4A403B] dark:!text-[#D8E3B1] mt-2 tracking-[0.74em] md:tracking-[0.60em]">
+              ATTIRE
+            </h1>
+          </div>
+        </div>
         <img
           src={LoginMobile}
           className="h-full w-full object-cover lg:hidden"
