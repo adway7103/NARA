@@ -59,7 +59,7 @@ export default function ImageGallery({
         </div>
       </div>
       <div
-        className="xl:w-full xl:h-full w-full sm:w-[641px] h-[460px]  overflow-hidden"
+        className="xl:w-full xl:h-full w-full sm:w-[641px] h-[460px] md:h-[600px]  overflow-hidden"
         ref={containerRef}
         
       >
