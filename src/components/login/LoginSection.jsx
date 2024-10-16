@@ -181,7 +181,7 @@ function LoginSection() {
             </div>
             <p
               onClick={handleForgotPassword}
-              className="dark:text-pink-500 hover:underline cursor-pointer inline  w-fit ml-auto text-[#1F4A40] ">
+              className="dark:text-[#1F4A40] hover:underline cursor-pointer inline  w-fit ml-auto text-[#1F4A40] ">
               Forgot Password?
             </p>
             {/* Privary Policy and terms and conditions clause */}
