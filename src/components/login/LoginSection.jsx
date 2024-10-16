@@ -89,7 +89,7 @@ function LoginSection() {
       {/* Same as */}
 
       <div className="lg:w-[50%] h-full object-cover">
-        <div className="hidden w-full h-full p-10 md:p-8 md:flex justify-center items-center bg-white dark:!bg-black relative">
+        <div className="hidden w-full h-full p-10 md:p-8 lg:flex justify-center items-center bg-white dark:!bg-black relative">
           <div className="text-center ">
             <h1
               className="text-4xl md:text-6xl font-extrabold text-[#1F4A403B] dark:!text-[#D8E3B1] tracking-[0.60em] md:tracking-[0.40em]"
