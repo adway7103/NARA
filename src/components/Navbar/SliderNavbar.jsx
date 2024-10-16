@@ -22,7 +22,7 @@ const SliderNavbar = ({ isOpen, toggleMenu }) => {
         className={`fixed top-0 overflow-scroll left-0 h-full w-full transition-transform duration-300 z-50 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}>
-        <div className="flex h-full flex-col md:flex-row">
+        <div className="flex h-full flex-col lg:flex-row">
           <div className="w-full md:w-1/2 bg-[#f5f5e1] dark:!bg-black pt-8 px-8 md:p-12">
             <div className="flex justify-end items-center">
               {/* <button className="text-black dark:!text-white font-bold text-lg md:text-xl pl-0">
