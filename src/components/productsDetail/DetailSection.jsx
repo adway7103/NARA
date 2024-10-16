@@ -56,7 +56,7 @@ export default function DetailSection({ title, descriptionHtml, cameFrom }) {
       <div className="flex flex-col gap-2">
         <h2 className="font-bold">Description </h2>
         <div
-          className={`prose dark:text-white text-sm`}
+          className={`dark:text-white text-sm`}
           dangerouslySetInnerHTML={{
             __html: descriptionHtml
           }}></div>
