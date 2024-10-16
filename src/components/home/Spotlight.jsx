@@ -7,7 +7,7 @@ const Spotlight = () => {
     {
       imgSrc: "https://cdn.shopify.com/s/files/1/0722/8951/7782/files/LaidbackLuxeCo-ordSet-1stpic-min.webp?v=1728406565",
       description: "Laidback Luxe Co-ord Set",
-      price: "INR 2,499.00",
+      price: "INR 2,800.00",
       label: "Best seller",
       link: "/product/gid%3A%2F%2Fshopify%2FProduct%2F8756899709142?camefrompage=collection&title=Co-ord%20Sets&id=gid%3A%2F%2Fshopify%2FCollection%2F446032871638"
 
@@ -15,7 +15,7 @@ const Spotlight = () => {
     {
       imgSrc: "https://cdn.shopify.com/s/files/1/0722/8951/7782/files/OutoftheOfficeCo-ordset-4thpic-min.webp?v=1728406394",
       description: "The Out of the Office Co-ord set",
-      price: "INR 2400.00",
+      price: "INR 2500.00",
       label: "Best seller",
       link: "/product/gid%3A%2F%2Fshopify%2FProduct%2F8756898365654?camefrompage=collection&title=Co-ord%20Sets&id=gid%3A%2F%2Fshopify%2FCollection%2F446032871638"
 
@@ -24,7 +24,7 @@ const Spotlight = () => {
     {
       imgSrc: "https://cdn.shopify.com/s/files/1/0722/8951/7782/files/TheRedontheRunCo-ordset-1stpic-min.webp?v=1728406266",
       description: "The Red on the Run Co-ord set",
-      price: "INR 2200.00",
+      price: "INR 2499.00",
       label: "Best Seller",
       link: "/product/gid%3A%2F%2Fshopify%2FProduct%2F8756897644758?camefrompage=collection&title=Co-ord%20Sets&id=gid%3A%2F%2Fshopify%2FCollection%2F446032871638"
 
@@ -32,7 +32,7 @@ const Spotlight = () => {
     {
       imgSrc: "https://cdn.shopify.com/s/files/1/0722/8951/7782/files/TheJuneCo-ordset-1stpic-min.webp?v=1728406041",
       description: "The June Co-ord set",
-      price: "INR 2300.00",
+      price: "INR 2500.00",
       label: "Best Seller",
       link: "/product/gid%3A%2F%2Fshopify%2FProduct%2F8756895383766?camefrompage=collection&title=Co-ord%20Sets&id=gid%3A%2F%2Fshopify%2FCollection%2F446032871638"
 
@@ -44,7 +44,7 @@ const Spotlight = () => {
       <div className="max-w-full mx-auto">
         <div className="text-left px-4 md:px-16 text-black dark:!text-white">
           <h2 className="text-xl md:text-3xl font-semibold  italic tracking-widest uppercase">
-            In the spotlight
+            What people are loving!
           </h2>
           <p className="mt-2 text-[11px] lg:text-sm leading-8 font-mono tracking-widest sm:text-xl">
             Look what people loved the most this season
