@@ -14,7 +14,7 @@ export default function ImageGallery({
   const containerRef = useRef(null);
 
   return (
-    <div className="flex w-full  gap-2 lg:w-[50%]   h-[460px] md:h-[750px]  xl:h-[calc(100vh-90px)] ">
+    <div className="flex w-full  gap-2 lg:w-[50%]   h-[460px] md:h-[790px]  xl:h-[calc(100vh-90px)] ">
       {/* Image Side Pane */}
       <div className="flex h-full  flex-col items-center gap-4 w-1/5 ">
         <div
@@ -59,7 +59,7 @@ export default function ImageGallery({
         </div>
       </div>
       <div
-        className="xl:w-full xl:h-full w-full sm:w-[641px] h-[460px] md:h-[750px]  overflow-hidden"
+        className="xl:w-full xl:h-full w-full sm:w-[641px] h-[460px] md:h-[790px]  overflow-hidden"
         ref={containerRef}
         
       >
