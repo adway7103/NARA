@@ -23,7 +23,7 @@ const SliderNavbar = ({ isOpen, toggleMenu }) => {
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}>
         <div className="flex h-full flex-col lg:flex-row">
-          <div className="w-full md:w-1/2 bg-[#f5f5e1] dark:!bg-black pt-8 px-8 md:p-12">
+          <div className="w-full lg:w-1/2 bg-[#f5f5e1] dark:!bg-black pt-8 px-8 md:p-12">
             <div className="flex justify-end items-center">
               {/* <button className="text-black dark:!text-white font-bold text-lg md:text-xl pl-0">
                 Menu
@@ -121,7 +121,7 @@ const SliderNavbar = ({ isOpen, toggleMenu }) => {
               </div>
             </div>
           </div>
-          <div className="w-full md:w-1/2 p-10 md:p-8 flex justify-center items-center bg-white dark:!bg-black relative">
+          <div className="w-full lg:w-1/2 p-10 md:p-8 flex justify-center items-center bg-white dark:!bg-black relative">
             <div className="text-center ">
               <h1
                 className="text-4xl md:text-6xl font-extrabold text-[#1F4A403B] dark:!text-[#D8E3B1] tracking-[0.60em] md:tracking-[0.40em]"
