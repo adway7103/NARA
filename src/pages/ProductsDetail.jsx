@@ -173,13 +173,15 @@ export default function ProductsDetailPage() {
             {/* breadcrumb  */}
             <div className="md:w-3/4 flex xl:hidden text-sm gap-4 font-outfit w-full ">
               <Link className="underline flex items-center gap-3" to="/">
-                Home <img src="/icons/leftTriangleIcon.svg" alt="" />
+                Home{" "}
+                <img title="image" src="/icons/leftTriangleIcon.svg" alt="" />
               </Link>
               <Link
                 to={cameFrom.link}
                 className="underline whitespace-nowrap flex items-center gap-3"
               >
-                {cameFrom.page} <img src="/icons/leftTriangleIcon.svg" alt="" />
+                {cameFrom.page}{" "}
+                <img title="image" src="/icons/leftTriangleIcon.svg" alt="" />
               </Link>
               <Link className="text-[#656565] whitespace-nowrap overflow-hidden text-ellipsis ">
                 {product.title}
@@ -217,13 +219,13 @@ export default function ProductsDetailPage() {
               }} className="bg-red-500 p-2 text-white">Click to view Toast</button>
               <ToastContainer hideProgressBar={true} closeButton={false} position="bottom-center" style={{backgroundColor: 0}} /> */}
 
-              <img src="/dividers/star_divider.svg" alt="" />
+              <img title="image" src="/dividers/star_divider.svg" alt="" />
               {/* Fabric Name Section */}
-                      {/* <div className="bg-[#D8E3B11C] border-2 border-[#D8E3B1] p-4 flex flex-col gap-4">
+              {/* <div className="bg-[#D8E3B11C] border-2 border-[#D8E3B1] p-4 flex flex-col gap-4">
                         <div className="flex gap-4">
-                          <img src="/test/star.svg" alt="" />
+                          <img title="image" src="/test/star.svg" alt="" />
                           <h2 className="font-bold text-2xl">Fabric Name</h2>
-                          <img src="/test/star.svg" alt="" />
+                          <img title="image" src="/test/star.svg" alt="" />
                         </div>
                         <p>
                           Lorem ipsum dolor sit amet consectetur adipisicing elit.

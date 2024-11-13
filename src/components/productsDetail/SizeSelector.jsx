@@ -3,17 +3,21 @@ import { HiOutlineArrowRight } from "react-icons/hi";
 export default function SizeSelector({ sizes, defaultSize, selectSize }) {
   const [sizeGuideVisible, setSizeGuideVisible] = useState(false);
 
-  const toggleSizeGuideVisibility = ()=>{
-    setSizeGuideVisible(state=>!state);
-  }
+  const toggleSizeGuideVisibility = () => {
+    setSizeGuideVisible((state) => !state);
+  };
 
   return (
     <div className="flex flex-col gap-4 tracking-tighter">
       {/* Size Guide */}
       {sizeGuideVisible && (
-        <div onClick={toggleSizeGuideVisibility} className="bg-black/50 fixed  top-0 right-0 bottom-0 left-0 z-[9900000] flex  bg-[rgb()] items-center justify-center">
+        <div
+          onClick={toggleSizeGuideVisibility}
+          className="bg-black/50 fixed  top-0 right-0 bottom-0 left-0 z-[9900000] flex  bg-[rgb()] items-center justify-center"
+        >
           <img
-            onClick={e=>e.stopPropagation()}
+            title="image"
+            onClick={(e) => e.stopPropagation()}
             className="xl:h-full h-5/6"
             src="/productDetail/sizeGuide.jpeg"
             alt=""
@@ -21,7 +25,11 @@ export default function SizeSelector({ sizes, defaultSize, selectSize }) {
         </div>
       )}
       <h2 className="font-bold text-lg">
-        Select Size | <button className="underline" onClick={toggleSizeGuideVisibility}> Size Guide</button>{" "}
+        Select Size |{" "}
+        <button className="underline" onClick={toggleSizeGuideVisibility}>
+          {" "}
+          Size Guide
+        </button>{" "}
         <HiOutlineArrowRight className="inline" />
       </h2>
 

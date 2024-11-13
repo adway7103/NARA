@@ -25,7 +25,7 @@ export default function ImageGallery({
             //   key={index}
             //   className=" mb-4 h-[102px] lg:h-[150px] cursor-pointer  flex items-center justify-center"
             // >
-            //   <img
+            //   <img title="image"
             //     src={el?.node?.src}
             //     className="cursor-pointer w-full h-full object-cover border-2"
             //     alt={`Image ${index + 1}`}
@@ -61,14 +61,12 @@ export default function ImageGallery({
       <div
         className="xl:w-full xl:h-full w-full sm:w-[641px] h-[460px] md:h-[790px]  overflow-hidden"
         ref={containerRef}
-        
       >
         {images?.map((el, index) => (
           <div
             key={el?.node?.src}
             className="w-full h-full"
             ref={(el) => (imageRefs.current[index] = el)}
-            
           >
             <ImageWithSkeleton img={el?.node?.src} name={index + 1} />
           </div>
