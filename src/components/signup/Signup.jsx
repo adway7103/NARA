@@ -95,18 +95,21 @@ function SignupSection() {
           <div className="text-center ">
             <h1
               className="text-4xl md:text-6xl font-extrabold text-[#1F4A403B] dark:!text-[#D8E3B1] tracking-[0.60em] md:tracking-[0.40em]"
-              style={{ lineHeight: "1.2" }}>
+              style={{ lineHeight: "1.2" }}
+            >
               NEW AGE
             </h1>
             <div className="mt-2 relative object-cover">
               <img
+                title="image"
                 src={LoginImage}
                 alt="Product"
                 className="w-full max-h-[450px] object-cover"
               />
               <h2
                 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-5xl md:text-7xl font-semibold text-white bg-opacity-50 px-4 py-2"
-                style={{ letterSpacing: "20px" }}>
+                style={{ letterSpacing: "20px" }}
+              >
                 REAL
               </h2>
             </div>
@@ -116,8 +119,10 @@ function SignupSection() {
           </div>
         </div>
         <img
+          title="image"
           src={LoginMobile}
           className="h-full w-full object-cover lg:hidden"
+          alt=""
         />
       </div>
       <div className="lg:w-[50%] lg:ml-[50%] min-h-full px-8 py-16 flex justify-center items-center ">
@@ -129,13 +134,18 @@ function SignupSection() {
                 {" "}
                 Home
               </Link>{" "}
-              <img src="/icons/leftTriangleIcon.svg" alt="" />
+              <img title="image" src="/icons/leftTriangleIcon.svg" alt="icon" />
               <span>Signup</span>
             </div>
             <p className="font-extrabold text-2xl">Welcome to</p>
             <div>
               <Link className="cursor-pointer" to="/">
-                <img src={logo} alt="logo" className="w-[200px] lg:w-[300px]" />
+                <img
+                  title="image"
+                  src={logo}
+                  alt="logo"
+                  className="w-[200px] lg:w-[300px]"
+                />
               </Link>
             </div>
             <p className="font-light lg:text-xl text-md mt-2">
@@ -216,7 +226,8 @@ function SignupSection() {
                 <button
                   type="button"
                   className="text-black absolute right-3 top-2 text-sm"
-                  onClick={() => setShowPassword((prev) => !prev)}>
+                  onClick={() => setShowPassword((prev) => !prev)}
+                >
                   {showPassword ? (
                     <FaRegEyeSlash size={24} />
                   ) : (
@@ -236,13 +247,15 @@ function SignupSection() {
               By Signing up , I agree to{" "}
               <Link
                 className="text-indigo-500 underline"
-                to="https://docs.google.com/document/d/1D4n_mgSz9K1yVEFgDhKrTQdfdb3zUPlkpQNf8AxjBUI/edit?usp=sharing">
+                to="https://docs.google.com/document/d/1D4n_mgSz9K1yVEFgDhKrTQdfdb3zUPlkpQNf8AxjBUI/edit?usp=sharing"
+              >
                 Terms and Conditions
               </Link>{" "}
               and{" "}
               <Link
                 className="text-indigo-500 underline"
-                to="https://docs.google.com/document/d/1D4n_mgSz9K1yVEFgDhKrTQdfdb3zUPlkpQNf8AxjBUI/edit?usp=sharing">
+                to="https://docs.google.com/document/d/1D4n_mgSz9K1yVEFgDhKrTQdfdb3zUPlkpQNf8AxjBUI/edit?usp=sharing"
+              >
                 Privacy Policy{" "}
               </Link>
             </p>
@@ -250,7 +263,8 @@ function SignupSection() {
             <button
               onClick={handleSubmit}
               className="disabled:bg-gray-500 bg-[#1F4A40] text-white font-semibold px-2 py-2 mt-2"
-              disabled={!isFormValidated}>
+              disabled={!isFormValidated}
+            >
               {isLoading ? "Signing Up..." : "Sign Up"}
             </button>
           </div>
@@ -268,7 +282,8 @@ function SignupSection() {
             Already have an account?
             <Link
               className="underline text-[#1F4A40] dark:text-green-500 font-semibold"
-              to="/login">
+              to="/login"
+            >
               Login
             </Link>
             .

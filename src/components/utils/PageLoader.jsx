@@ -10,7 +10,7 @@ export default function PageLoader(){
         <span></span>
         <span></span>
       </div> */}
-      <img src="/cat.gif" alt="" />
+      <img title="image" src="/cat.gif" alt="" />
     </div>
     )
 }

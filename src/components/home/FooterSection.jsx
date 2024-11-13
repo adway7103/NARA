@@ -13,7 +13,8 @@ const FooterSection = () => {
       <div className="bg-[#F5F5F5] dark:!bg-[#12322A] text-center pt-8 relative">
         <div
           className="top-2 text-[#1E7B74] text-sm cursor-pointer mt-16"
-          onClick={scrollToTop}>
+          onClick={scrollToTop}
+        >
           <p>Scroll up</p>
           <div className="text-2xl">
             <i className="fas fa-chevron-up"></i>
@@ -28,6 +29,7 @@ const FooterSection = () => {
               .map((_, index) => (
                 <>
                   <img
+                    title="image"
                     key={index}
                     src="/home/footer/star.svg"
                     alt="Decoration"
@@ -42,6 +44,7 @@ const FooterSection = () => {
               .map((_, index) => (
                 <>
                   <img
+                    title="image"
                     key={index}
                     src="/home/footer/star.svg"
                     alt="Decoration"

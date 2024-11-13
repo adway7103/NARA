@@ -10,7 +10,7 @@ import editPenIcon from "../../assets/icons/edit_pen_icon.svg";
 export default function PersonalInfoCard({ title, value, type }) {
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const customerAccessToken = useSelector(state=>state.user.accessToken);
+  const customerAccessToken = useSelector((state) => state.user.accessToken);
   const inputRef = useRef(null);
   const userId = useSelector((state) => state.user.id);
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ export default function PersonalInfoCard({ title, value, type }) {
         payload: () => {
           const value = newValue.split(" ");
           const firstName = value[0];
-          const lastName = value[value.length-1];
+          const lastName = value[value.length - 1];
           return { firstName, lastName };
         },
         successMessage: "Name Updated Successfully!",
@@ -56,15 +56,17 @@ export default function PersonalInfoCard({ title, value, type }) {
 
     if (apiField) {
       try {
-        await updateCustomerAPI(apiField, { ...payload(), userId }, customerAccessToken);
+        await updateCustomerAPI(
+          apiField,
+          { ...payload(), userId },
+          customerAccessToken
+        );
         if (action) dispatch(action(payload()));
         toast.success(successMessage);
-        
-        
       } catch (err) {
         console.error(err);
         toast.error(err.message);
-      }finally{
+      } finally {
         setIsEditing(false);
         setIsLoading(false);
       }
@@ -111,7 +113,7 @@ export default function PersonalInfoCard({ title, value, type }) {
               onClick={handleUpdate}
             />
           ) : (
-            <img src={editPenIcon} alt="Edit" />
+            <img title="image" src={editPenIcon} alt="Edit" />
           )}
         </button>
 

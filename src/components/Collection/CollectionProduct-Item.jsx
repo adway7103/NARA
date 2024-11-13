@@ -21,7 +21,7 @@ const CollectionProductItem = ({
   img,
   productId,
   collectionTitle,
-  collectionId
+  collectionId,
 }) => {
   productId = encodeURIComponent(productId); //Bad code
   const navigate = useNavigate();
@@ -51,9 +51,9 @@ const CollectionProductItem = ({
     }
   };
 
-  useEffect(()=>{
-    console.log("Logging information: ", collectionTitle, collectionId)
-  }, [])
+  useEffect(() => {
+    console.log("Logging information: ", collectionTitle, collectionId);
+  }, []);
 
   const productClickHandler = () => {
     // const encodedProductId = encodeURIComponent(productId);
@@ -61,7 +61,11 @@ const CollectionProductItem = ({
   };
 
   return (
-    <Link to={`/product/${productId}?camefrompage=collection&title=${collectionTitle}&id=${encodeURIComponent(collectionId)}`}>
+    <Link
+      to={`/product/${productId}?camefrompage=collection&title=${collectionTitle}&id=${encodeURIComponent(
+        collectionId
+      )}`}
+    >
       <div
         className="font-sans tracking-tighter xl:w-[23vw] lg:w-[30vw] md:w-[40vw] w-full cursor-pointer hover:brightness-75"
         onClick={productClickHandler}
@@ -99,14 +103,18 @@ const CollectionProductItem = ({
         </div>
         <div className="flex justify-between py-2">
           {/* plus minus button */}
-            {/* <div className="flex text-xl items-center cursor-pointer gap-2">
+          {/* <div className="flex text-xl items-center cursor-pointer gap-2">
               <div className="border w-8 h-8 grid place-items-center cursor-pointer" onClick={() => handleAddtocard("add")}><GoPlus /></div>
               <div>{productCount}</div>
               <div className="border w-8 h-8 grid place-items-center cursor-pointer" onClick={() => handleAddtocard("remove")}><GoDash /></div>
             </div> */}
-            <ViewButton link={`/product/${productId}?camefrompage=collection&title=${collectionTitle}&id=${encodeURIComponent(collectionId)}`}  />
-            {/* Bookmark button */}
-            {/* <div className="font-medium flex gap-1 items-center cursor-pointer" onClick={handleBookmark}>
+          <ViewButton
+            link={`/product/${productId}?camefrompage=collection&title=${collectionTitle}&id=${encodeURIComponent(
+              collectionId
+            )}`}
+          />
+          {/* Bookmark button */}
+          {/* <div className="font-medium flex gap-1 items-center cursor-pointer" onClick={handleBookmark}>
                 {bookmark ? (
                     <FaBookmark />
                 ) : (
@@ -151,7 +159,7 @@ function ProductColor({ color, active }) {
 //           sx={{ bgcolor: 'grey.300' }}
 //         />
 //       )}
-//       <img
+//       <img title="image"
 //         src={img}
 //         alt={`product-model-${name}`}
 //         className={`${loadingImage? "opacity-0": "opacity-100"} w-full h-full object-cover `}

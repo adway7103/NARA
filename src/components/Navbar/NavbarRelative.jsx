@@ -40,12 +40,13 @@ const NavbarRelative = () => {
           >
             &#9776;
           </button>
-          <Link to= "/" >
-          <img
-            src="/about/logo.svg"
-            className="w-36 md:ml-10 ml-4"
-            alt="logo"
-          />
+          <Link to="/">
+            <img
+              title="image"
+              src="/about/logo.svg"
+              className="w-36 md:ml-10 ml-4"
+              alt="logo"
+            />
           </Link>
         </div>
         <div className="flex items-center space-x-1 md:space-x-7">
@@ -54,9 +55,14 @@ const NavbarRelative = () => {
             className="w-8 h-8 leading-9 text-4xl rounded-full m-1 text-[#1F4A40] dark:!text-white"
           >
             {theme == "light" ? (
-              <img src="/home/navbar/light_icon1.svg" alt="light mode icon" />
+              <img
+                title="image"
+                src="/home/navbar/light_icon1.svg"
+                alt="light mode icon"
+              />
             ) : (
               <img
+                title="image"
                 src="/home/navbar/icon4.svg"
                 className="white-icon"
                 alt="/light mode icon"
@@ -65,27 +71,32 @@ const NavbarRelative = () => {
           </button>
           {theme == "light" ? (
             <>
-              {/* <img src="/home/navbar/icon1.svg" alt="light mode icon" /> */}
+              {/* <img title="image" src="/home/navbar/icon1.svg" alt="light mode icon" /> */}
 
               <Link to="/profile">
-                <img src="/home/navbar/user.svg" alt="light mode icon" />
+                <img
+                  title="image"
+                  src="/home/navbar/user.svg"
+                  alt="light mode icon"
+                />
               </Link>
               <CartIcon theme={theme} />
             </>
           ) : (
             <>
-              {/* <img
+              {/* <img title="image"
                 src="/home/navbar/icon1.svg"
                 className="white-icon"
                 alt="light mode icon"
               /> */}
               <Link to={"/profile"}>
-              <img
-                src="/home/navbar/user.svg"
-                className="white-icon"
-                alt="light mode icon"
-              />
-               </Link>
+                <img
+                  title="image"
+                  src="/home/navbar/user.svg"
+                  className="white-icon"
+                  alt="light mode icon"
+                />
+              </Link>
               <CartIcon theme={theme} />
             </>
           )}

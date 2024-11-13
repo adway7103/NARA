@@ -5,11 +5,8 @@ import CollectionProductItem from "../components/Collection/CollectionProduct-It
 import { useEffect } from "react";
 import { getCollectionById } from "../apis/Collections";
 
-
-
 export default function CollectionDetail() {
-
-  const fetchCollectionProducts = async()=>{
+  const fetchCollectionProducts = async () => {
     try {
       const response = await getCollectionById();
       console.log("collection products: ", response);
@@ -17,12 +14,11 @@ export default function CollectionDetail() {
       console.error(error);
       // have to handle errors more gracefully!
     }
-  }
+  };
 
-
-  useEffect(()=>{
+  useEffect(() => {
     fetchCollectionProducts();
-  }, [])
+  }, []);
   return (
     <div className="lg:h-[100vh] lg:!overflow-hidden overflow-auto ">
       <header className="h-[4em]">
@@ -34,7 +30,12 @@ export default function CollectionDetail() {
         <div className="  lg:w-1/3 w-full sm:w-3/4 md:w-1/2 xl:px-12 px-6 flex flex-col gap-8 overflow-auto">
           <div className="flex gap-2 items-center text-[#656565]">
             <Link className="underline ">Home</Link>
-            <img className="-mt-1" src="/public/icons/leftTriangleIcon.svg" />
+            <img
+              title="image"
+              className="-mt-1"
+              src="/public/icons/leftTriangleIcon.svg"
+              alt="icon"
+            />
             <span>Circa 295</span>
           </div>
 
@@ -49,9 +50,9 @@ export default function CollectionDetail() {
               A match, accordance, adjustment, affinity, blend .
               <br />
               <br />
-              A serious attempt to blen lore d what was once quintessential for one’s
-              wardrobe with what we now believe epitomises ideal sense of style
-              .
+              A serious attempt to blen lore d what was once quintessential for
+              one’s wardrobe with what we now believe epitomises ideal sense of
+              style .
               <br />
               <br />
               In it’s true essence, a source of an escape to an almost forgotten
@@ -102,5 +103,3 @@ export default function CollectionDetail() {
     </div>
   );
 }
-
-

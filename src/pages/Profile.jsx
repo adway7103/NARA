@@ -90,7 +90,7 @@ function Sidebar({ isMenuOpen }) {
       <div>
         <div className="text-sm font-semibold bg-[#D8E3B180] border-l-2 border-l-[#1F4A40] p-2 flex justify-between">
           <h2>Account Details</h2>
-          <img src={expandIcon} alt="expand icon" />
+          <img title="image" src={expandIcon} alt="expand icon" />
         </div>
         <Link to={"/orders"}>
           <h2 className="text-sm font-semibold border-b-2 p-2">My Orders</h2>

@@ -11,7 +11,7 @@ const SubscribeSection = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 w-full max-w-full">
           {/* Top Row Images */}
           <div className="col-span-1 w-full h-full md:h-96">
-            {/* <img
+            {/* <img title="image"
               src="/home/footer/f1.svg"
               alt="Image 1"
               className="bloc w-full h-full object-center object-cover"
@@ -28,7 +28,7 @@ const SubscribeSection = () => {
             </div>
           </div>
           <div className="col-span-1 w-full h-full md:h-96">
-            {/* <img
+            {/* <img title="image"
               src="/home/footer/f2.svg"
               alt="Image 2"
               className="bloc w-full h-full object-cover object-center"
@@ -60,7 +60,7 @@ const SubscribeSection = () => {
           </div>
           {/* Bottom Row Images */}
           <div className="col-span-1 w-full h-40 md:h-96">
-            {/* <img
+            {/* <img title="image"
               src="/home/footer/f3.svg"
               alt="Image 4"
               className="bloc w-full h-full object-cover object-center"
@@ -78,7 +78,7 @@ const SubscribeSection = () => {
             </div>
           </div>
           <div className="col-span-1 w-full h-40 md:h-96">
-            {/* <img
+            {/* <img title="image"
               src="/home/footer/f5.svg"
               alt="Image 5"
               className="bloc w-full h-full object-cover object-center"
@@ -96,7 +96,7 @@ const SubscribeSection = () => {
             </div>
           </div>
           <div className="col-span-1 w-full h-40 md:h-96">
-            {/* <img
+            {/* <img title="image"
               src="/home/footer/f4.png"
               alt="Image 6"
               className="bloc w-full h-full object-cover object-right-bottom"
@@ -113,7 +113,7 @@ const SubscribeSection = () => {
             </div>
           </div>
           <div className="col-span-1 w-full h-40 md:h-96">
-            {/* <img
+            {/* <img title="image"
               src="/home/footer/f7.svg"
               alt="Image 7"
               className="bloc w-full h-full object-cover object-left"

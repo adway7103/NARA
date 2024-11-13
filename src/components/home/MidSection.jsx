@@ -55,11 +55,13 @@ const MidSection = () => {
         </div>
         <div className="absolute bottom-0 top-[450px] left-0 right-0">
           <img
+            title="image"
             src="/home/frame.svg"
             alt="Stars pattern"
             className="dark:hidden w-full h-auto"
           />
           <img
+            title="image"
             src="/home/frame2.svg"
             alt="Stars pattern"
             className="hidden dark:block w-full h-auto"
@@ -84,9 +86,11 @@ const MidSection = () => {
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className={`min-w-[300px] md:min-w-[400px] py-3 px-6 md:p-6 border-2 ${testimonial.bgColor} ${testimonial.border}`}>
+                className={`min-w-[300px] md:min-w-[400px] py-3 px-6 md:p-6 border-2 ${testimonial.bgColor} ${testimonial.border}`}
+              >
                 <div className="flex mb-4 justify-between">
                   <img
+                    title="image"
                     src={testimonial.image}
                     alt={testimonial.name}
                     className=" w-12 h-12 rounded-full mr-4"

@@ -93,18 +93,21 @@ function LoginSection() {
           <div className="text-center ">
             <h1
               className="text-4xl md:text-6xl font-extrabold text-[#1F4A403B] dark:!text-[#D8E3B1] tracking-[0.60em] md:tracking-[0.40em]"
-              style={{ lineHeight: "1.2" }}>
+              style={{ lineHeight: "1.2" }}
+            >
               NEW AGE
             </h1>
             <div className="mt-2 relative object-cover">
               <img
+                title="image"
                 src={LoginImage}
                 alt="Product"
                 className="w-full max-h-[450px] object-cover"
               />
               <h2
                 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-5xl md:text-7xl font-semibold text-white bg-opacity-50 px-4 py-2"
-                style={{ letterSpacing: "20px" }}>
+                style={{ letterSpacing: "20px" }}
+              >
                 REAL
               </h2>
             </div>
@@ -114,7 +117,9 @@ function LoginSection() {
           </div>
         </div>
         <img
+          title="image"
           src={LoginMobile}
+          alt="Product"
           className="h-full w-full object-cover lg:hidden"
         />
       </div>
@@ -127,13 +132,18 @@ function LoginSection() {
                 {" "}
                 Home
               </Link>{" "}
-              <img src="/icons/leftTriangleIcon.svg" alt="" />
+              <img title="image" src="/icons/leftTriangleIcon.svg" alt="" />
               <span>Login</span>
             </div>
             <p className="font-extrabold text-2xl">Welcome to</p>
             <div>
               <Link to={"/"} className="cursor-pointer">
-                <img src={logo} alt="logo" className="w-[200px] lg:w-[300px]" />
+                <img
+                  title="image"
+                  src={logo}
+                  alt="logo"
+                  className="w-[200px] lg:w-[300px]"
+                />
               </Link>
             </div>{" "}
             <p className="font-light lg:text-xl text-md mt-2">
@@ -170,7 +180,8 @@ function LoginSection() {
                 <button
                   type="button"
                   className="text-black absolute right-3 top-2 text-sm"
-                  onClick={() => setShowPassword((prev) => !prev)}>
+                  onClick={() => setShowPassword((prev) => !prev)}
+                >
                   {showPassword ? (
                     <FaRegEyeSlash size={24} />
                   ) : (
@@ -181,7 +192,8 @@ function LoginSection() {
             </div>
             <p
               onClick={handleForgotPassword}
-              className="dark:text-[#1F4A40] hover:underline cursor-pointer inline  w-fit ml-auto text-[#1F4A40] ">
+              className="dark:text-[#1F4A40] hover:underline cursor-pointer inline  w-fit ml-auto text-[#1F4A40] "
+            >
               Forgot Password?
             </p>
             {/* Privary Policy and terms and conditions clause */}
@@ -189,19 +201,22 @@ function LoginSection() {
               By Signing in , I agree to{" "}
               <Link
                 className="text-indigo-500 underline"
-                to="https://docs.google.com/document/d/1D4n_mgSz9K1yVEFgDhKrTQdfdb3zUPlkpQNf8AxjBUI/edit?usp=sharing">
+                to="https://docs.google.com/document/d/1D4n_mgSz9K1yVEFgDhKrTQdfdb3zUPlkpQNf8AxjBUI/edit?usp=sharing"
+              >
                 Terms and Conditions
               </Link>{" "}
               and{" "}
               <Link
                 className="text-indigo-500 underline"
-                to="https://docs.google.com/document/d/1D4n_mgSz9K1yVEFgDhKrTQdfdb3zUPlkpQNf8AxjBUI/edit?usp=sharing">
+                to="https://docs.google.com/document/d/1D4n_mgSz9K1yVEFgDhKrTQdfdb3zUPlkpQNf8AxjBUI/edit?usp=sharing"
+              >
                 Privacy Policy{" "}
               </Link>
             </p>
             <button
               onClick={handleLogin}
-              className="bg-[#1F4A40] text-white font-semibold px-2 py-2">
+              className="bg-[#1F4A40] text-white font-semibold px-2 py-2"
+            >
               {isLoading ? "Logging In..." : "Log In"}
             </button>
           </div>
@@ -220,7 +235,8 @@ function LoginSection() {
             Dont have an account?
             <Link
               className="text-[#1F4A40] dark:text-green-500 font-semibold underline"
-              to="/signup">
+              to="/signup"
+            >
               Sign Up
             </Link>
             .
