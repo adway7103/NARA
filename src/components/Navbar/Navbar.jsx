@@ -70,12 +70,18 @@ const Navbar = () => {
           <Link to="/">
             <img
               title="image"
-              src={isScrolled ? "about/logo.svg" : "/home/navbar/logo.svg"}
+              src={
+                isScrolled
+                  ? theme === "dark"
+                    ? "/logo2.svg"
+                    : "/logo.svg"
+                  : "/logo2.svg"
+              }
               className={`${
                 isScrolled
-                  ? "h-[40px] -mt-4"
-                  : " xl:h-[170px]  lg:h-[140px] md:h-[100px] h-[60px] sm:absolute  top-2"
-              } md:ml-10 ml-4`}
+                  ? "h-[70px] -mt-4"
+                  : " xl:h-[170px]  lg:h-[140px] md:h-[100px] h-[80px] sm:absolute md:-top-3 lg:-top-8"
+              } md:ml-6 ml-4`}
               alt="logo"
             />
           </Link>
@@ -100,7 +106,7 @@ const Navbar = () => {
             ) : (
               <img
                 title="image"
-                src="/home/navbar/icon4.svg"
+                src="/home/navbar/light_icon1.svg"
                 alt="dark mode icon"
               />
             )}

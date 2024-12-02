@@ -43,8 +43,8 @@ const NavbarRelative = () => {
           <Link to="/">
             <img
               title="image"
-              src="/about/logo.svg"
-              className="w-36 md:ml-10 ml-4"
+              src="/logo.svg"
+              className="w-72 md:ml-10 ml-4"
               alt="logo"
             />
           </Link>

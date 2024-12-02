@@ -45,7 +45,7 @@ const Navbar2 = () => {
           <Link to="/">
             <img
               title="image"
-              src="about/logo.svg"
+              src="/logo.svg"
               className=" md:ml-10 ml-4"
               alt="logo"
             />
