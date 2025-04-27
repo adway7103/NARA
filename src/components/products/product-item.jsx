@@ -1,65 +1,24 @@
 import { formatToINR } from "../global/convert-to-inr";
-import { FaRegBookmark } from "react-icons/fa6";
-import { FaBookmark } from "react-icons/fa6";
-import { Suspense, useState } from "react";
-import { GoPlus, GoDash } from "react-icons/go";
-import { toast } from "sonner";
-import { Link, useNavigate } from "react-router-dom";
 
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import React from "react";
 import Skeleton from "@mui/material/Skeleton";
-import Box from "@mui/material/Box";
 import ViewButton from "../ViewButton";
 
 const ProductItem = ({
   colors,
-  setActiveProductColor,
   name,
   discount,
   message,
   price,
   img,
   productId,
-  cameFromLink,
 }) => {
   productId = encodeURIComponent(productId); //Bad code
-  const navigate = useNavigate();
-  const [bookmark, setBookmark] = useState(false);
-  const [addToCart, setAddToCart] = useState(false);
-  const [productCount, setProductCount] = useState(0);
-  const [loadingImage, setLoadingImage] = useState(true);
-
-  const handleBookmark = () => {
-    setBookmark(!bookmark);
-    if (bookmark) {
-      toast.success("Product removed from your whishlist");
-    } else {
-      toast.success("Product added to your whishlist");
-    }
-  };
-
-  const handleAddtocard = (action) => {
-    if (action === "add") {
-      setProductCount(productCount + 1);
-      toast.success("Product added to cart");
-    } else {
-      if (productCount > 0) {
-        setProductCount(productCount - 1);
-        toast.success("Product removed from cart");
-      }
-    }
-  };
-
-  const productClickHandler = () => {
-    // const encodedProductId = encodeURIComponent(productId);
-    // navigate(`/product/${encodedProductId}`);
-  };
-
   return (
     <Link to={`/product/${productId}?camefrompage=Products`}>
-      <div
-        className="flex flex-col justify-between  h-full font-antikor tracking-tighter xl:w-[350px] w-[320px] cursor-pointer hover:brightness-75"
-        onClick={productClickHandler}
-      >
+      <div className="flex flex-col justify-between  h-full font-antikor tracking-tighter xl:w-[350px] w-[320px] cursor-pointer hover:brightness-75">
         <div className="w-full md:h-[400px] h-[477px] lg:h-[477px] relative">
           <ImageWithSkeleton img={img} name={name} />
 
@@ -114,7 +73,7 @@ const ProductItem = ({
   );
 };
 
-export default ProductItem;
+export default React.memo(ProductItem);
 
 function ProductColor({ color, active }) {
   return (
@@ -132,27 +91,22 @@ function ProductColor({ color, active }) {
 }
 
 function ImageWithSkeleton({ img, name }) {
-  const [loadingImage, setLoadingImage] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   return (
-    <Box sx={{ width: "100%", height: "100%" }}>
-      {loadingImage && (
-        <Skeleton
-          variant="rectangular"
-          width="100%"
-          height="100%"
-          sx={{ bgcolor: "grey.300" }}
-        />
+    <div className="w-full h-full relative">
+      {loading && (
+        <div className="absolute inset-0 bg-gray-300 animate-pulse"></div>
       )}
       <img
-        title="image"
         src={img}
-        alt={`product-model-${name}`}
-        className={`${
-          loadingImage ? "opacity-0" : "opacity-100"
-        } w-full h-full object-cover `}
-        onLoad={() => setLoadingImage(false)}
+        alt={name}
+        loading="lazy"
+        className={`w-full h-full object-cover transition-opacity duration-300 ${
+          loading ? "opacity-0" : "opacity-100"
+        }`}
+        onLoad={() => setLoading(false)}
       />
-    </Box>
+    </div>
   );
 }

@@ -13,7 +13,8 @@ const BehindTheScreen = () => {
           backgroundAttachment: "fixed",
           backgroundSize: "cover",
           backgroundPosition: "center",
-        }}>
+        }}
+      >
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12 my-10 lg:my-28">
           <div className="hidden lg:flex flex-col justify-start items-center lg:items-end text-center lg:text-right">
             <h2 className=" text-3xl font-black mb-2 tracking-widest  ">
@@ -29,7 +30,8 @@ const BehindTheScreen = () => {
             </p>
             <Link
               to="/behind"
-              className="text-lg text-[#1F4A40] dark:!text-[#D8E3B1] font-bold py-2 px-4 border-[2px] border-[#B5B5B5]">
+              className="text-lg text-[#1F4A40] dark:!text-[#D8E3B1] font-bold py-2 px-4 border-[2px] border-[#B5B5B5]"
+            >
               Our process
             </Link>
           </div>
@@ -46,7 +48,7 @@ const BehindTheScreen = () => {
               </div>
             </div>
 
-            <div className="bloc absolute bottom-0 right-0 w-[150px] h-[300px] sm:w-[300px] sm:h-[400px] lg:w-[250px] lg:h-[450px] object-cover object-center">
+            <div className="block absolute bottom-0 right-0 w-[150px] h-[300px] sm:w-[300px] sm:h-[400px] lg:w-[250px] lg:h-[450px] object-cover object-center">
               <LazyLoadImage
                 src={"/home/designs/d2.CR2"}
                 width={"100%"}
@@ -94,7 +96,8 @@ const BehindTheScreen = () => {
             </p>
             <Link
               to="/behind"
-              className="text-[#1F4A40] dark:!text-[#D8E3B1] font-bold font-mono py-2 px-4 border-[2px] border-[#B5B5B5] ">
+              className="text-[#1F4A40] dark:!text-[#D8E3B1] font-bold font-mono py-2 px-4 border-[2px] border-[#B5B5B5] "
+            >
               Our process
             </Link>
           </div>

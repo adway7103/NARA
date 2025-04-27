@@ -17,7 +17,7 @@ const TopSection = () => {
     try {
       const allCollections = await getCollections();
       console.log(allCollections);
-      setAllCollections(allCollections);
+      setAllCollections(allCollections.reverse());
       setCurrentCollection(allCollections[0]);
     } catch (error) {
       console.error(error);
@@ -26,15 +26,8 @@ const TopSection = () => {
 
   useEffect(() => {
     const carouselElement = carouselRef.current;
-
     const handleSlideChange = (event) => {
       const newIndex = event.to;
-      console.log(
-        "current index: ",
-        event.to,
-        ", total length: ",
-        allCollections.length
-      );
       if (newIndex >= 0 && newIndex < allCollections.length) {
         setCurrentCollection(allCollections[newIndex]);
         console.log(
@@ -79,35 +72,7 @@ const TopSection = () => {
       data-bs-interval="5000"
       ref={carouselRef}
     >
-      <div className="carousel-inner h-screen bg-black">
-        {/* first video */}
-        {/* <div className="carousel-item active relative w-full h-full">
-          <img title="image"
-            src={topImage}
-            className={`${!videoLoaded ? "block" : "hidden"} w-full h-full object-cover`}
-            alt="slide1"
-          />
-          <video
-            autoPlay
-            loop
-            muted
-            src={topVideo}
-            className="block w-full h-full object-cover"
-            alt="slide1"
-            onCanPlay={() => {
-              setVideoLoaded(true);
-            }}
-          />
-        </div>
-        
-        <div className="carousel-item relative w-full h-full">
-          <img title="image"
-            src={CarouselImage}
-            className="block w-full h-full object-cover"
-            alt="slide2"
-          />
-        </div> */}
-
+      <div className="carousel-inner h-[97vh] bg-black">
         {/* third image */}
 
         {allCollections.map((collection, index) => (
@@ -125,10 +90,9 @@ const TopSection = () => {
             />
           </div>
         ))}
-
         {/* Text and buttons */}
         <div className="absolute bottom-28 left-12 text-left text-white">
-          <h5 className="text-sm">Featured collection, 2024</h5>
+          <h5 className="text-sm">Summer collection, 2025</h5>
           <h2 className="text-5xl font-bold py-4">{currentCollection.title}</h2>
           <Link
             to={
