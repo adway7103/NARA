@@ -70,7 +70,7 @@ const NewestArrivals = () => {
                 key={product.id}
                 className="flex-shrink-0 w-[300px] sm:w-1/3 lg:w-full"
               >
-                <Link to={`/product/${product.handle}`}>
+                <Link to={`/product/${product.id}`}>
                   <div className="w-full bg-gray-200 min-h-[350px] relative overflow-hidden rounded-lg">
                     {product.mediaType === "video" ? (
                       <VideoLazy
